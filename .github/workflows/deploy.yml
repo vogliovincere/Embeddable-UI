@@ -30,6 +30,12 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+        env:
+          VITE_WORKFLOW_TOKEN: ${{ secrets.VITE_WORKFLOW_TOKEN }}
+          VITE_WORKFLOW_SECRET: ${{ secrets.VITE_WORKFLOW_SECRET }}
+          VITE_JOURNEY_TOKEN: ${{ secrets.VITE_JOURNEY_TOKEN }}
+          VITE_ALLOY_SDK: ${{ secrets.VITE_ALLOY_SDK }}
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
