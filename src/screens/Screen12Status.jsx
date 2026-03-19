@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function Screen12Status() {
+export default function Screen12Status({ goTo }) {
   const [status, setStatus] = useState('pending')
 
   const cycleStatus = () => {
@@ -14,6 +14,7 @@ export default function Screen12Status() {
       <div style={{ position: 'relative', flex: 1, display: 'flex', flexDirection: 'column' }}>
         <div className="dev-toggle">
           <button onClick={cycleStatus}>Toggle: {status}</button>
+          <button onClick={() => goTo(1)}>Restart</button>
         </div>
         <div className="terminal-screen">
           <div className="terminal-icon success">✓</div>
@@ -31,6 +32,7 @@ export default function Screen12Status() {
       <div style={{ position: 'relative', flex: 1, display: 'flex', flexDirection: 'column' }}>
         <div className="dev-toggle">
           <button onClick={cycleStatus}>Toggle: {status}</button>
+          <button onClick={() => goTo(1)}>Restart</button>
         </div>
         <div className="terminal-screen">
           <div className="terminal-icon failure">✕</div>

@@ -1,0 +1,600 @@
+v1 Entity Verification Flow - Embedded UI
+v1 Entity Verification Flow - Embedded UI
+Purpose
+This document captures the screen-by-screen re=
+quirements for the entity verification flow within the embeddable KYC UI th=
+at Interro offers to application clients. This version has been revised fro=
+m the original Sumsub-derived specification to reflect the integration mode=
+l agreed with Verivend, our first client. The core Sumsub-informed structur=
+e is preserved for extensibility to future clients, with the following key =
+adjustments:
+Entity lookup removed. The fl=
+ow no longer searches a corporate registry. Instead, the component collects=
+entity information via manual entry as the default and only path. This sim=
+plifies the initial build while retaining the same data collection footprin=
+t.
+Confirmation screen added. Af=
+ter entity details are entered, the user sees a summary of all provided inf=
+ormation and must explicitly confirm before proceeding. This replaces the l=
+ookup-then-confirm pattern with a collect-then-confirm pattern.
+Host-controlled path selection. Verivend passes the verification path (Individual / Joint / Entity) as a=
+n initialization parameter at session creation. The component's built-in ty=
+pe selection screen is skippable when the host supplies this parameter, tho=
+ugh it remains available as a fallback for clients that prefer to defer pat=
+h selection to the component.
+Two-phase associated party model. The authorized representative enters biographical data for each associ=
+ated person. Each person then independently completes identity verification=
+via a standalone, token-authenticated link served by Interro outside the h=
+ost application.
+Session durability and integration hoo=
+ks. Requirements for server-side auto-save, cross-device resume, w=
+ebhook notifications, and retrieval API access are woven into the relevant =
+screens.
+Initialization & Configuration
+Before the entity flow begins, the host applic=
+ation (e.g., Verivend) creates a verification session via Interro's backend=
+API, passing context that configures the component's behavior.
+Session Initialization Parameters
+|
+Parameter
+|
+|
+Type
+|
+|
+When Passed
+|
+|
+Notes
+|
+|
+Path type
+|
+|
+individual / joint /=
+entity
+|
+|
+Always
+|
+|
+Determines which flow the component loads. Whe=
+n supplied, the component skips its own type selection screen (Screen 1) an=
+d enters the specified flow directly.
+|
+|
+Organization ID
+|
+|
+String
+|
+|
+Always
+|
+|
+Links the session to the host application's or=
+g record.
+|
+|
+Authenticated user context
+|
+|
+Token / session ref
+|
+|
+Always
+|
+|
+Component receives auth context from the host;=
+it does not manage login.
+|
+|
+Pre-fill data
+|
+|
+JSON object (optional)
+|
+|
+When available
+|
+|
+Any entity or person data the host already hol=
+ds (e.g., legal name, country) can be passed to pre-populate fields.
+Theming
+The component accepts brand configuration at i=
+nitialization:
+|
+Property
+|
+|
+Example (Verivend)
+|
+|
+Primary color
+|
+|
+#0042E0
+|
+|
+Accent color
+|
+|
+#008cf0
+|
+|
+Text color
+|
+|
+#333D57
+|
+|
+Heading color
+|
+|
+#000d2d
+|
+|
+Font family
+|
+|
+Inter
+|
+|
+Logo
+|
+|
+Supplied by host
+|
+|
+"Powered by" footer
+|
+|
+Configurable per vendor
+|
+The component renders inline within the host a=
+pplication â embedded, not redirected to a third-party domain.
+Entity Flow â Screen=
+1: Welcome / Type Selection
+Display introductory header text explaining th=
+e purpose of KYC verification. This can be a slide-up screen that takes 2/3=
+of the page. Links to data sharing agreements are layered into the explana=
+tion. the user must click âI agreeâ button at the bottom of=
+the slide up screen to move forward.
+User selects between "Individual" and "Corpora=
+te" via two buttons.
+Selection routes the user to the corresponding=
+flow (Corporate / Entity in this case).
+Conditional skip: If the host=
+application passes path_type = entity at session initializa=
+tion, this screen is bypassed entirely and the user enters the entity flow =
+directly. The screen remains available as a fallback when the host defers p=
+ath selection to the component. The user must still agree to the Tâ=
+s&Câs.
+Entity Flow=
+â Screen 2: KYB Loading & Sensitive Data Disclaimer
+Display a loading spinner while the KYB flow i=
+nitializes.
+Display configurable client name (e.g., "Veriv=
+end") in verification header.
+Display sensitive data warning: informs the us=
+er they are about to submit sensitive data to the named client, with instru=
+ctions to close the page if the link was received from a suspicious source.=
+Language selector available (e.g., "En").
+"Continue" button to proceed.
+"Powered by" branding footer (configurable per=
+vendor).
+Entity Flow â Screen 3: Step =
+Overview
+Display a step-by-step summary of the full ent=
+ity verification flow before the user begins:
+Step 1: Provide entity detail=
+s
+Step 2: Provide supplementary=
+documents
+Step 3: Provide entity docume=
+nts
+Step 4: Provide associated pa=
+rties
+Each step has an icon and label. "Start verifi=
+cation" button to begin the flow.
+Entity Flow â Scr=
+een 4: Privacy & Consent Modal
+Display a modal overlay with privacy/consent d=
+isclosures before proceeding.
+User must confirm they have read the Privacy N=
+otice and Notification to Processing of Personal Data (linked).
+US-specific clause: user consents to processin=
+g of personal data including biometrics, with link to Privacy User Acknowle=
+dgement and Consent.
+"Agree and continue" button to accept and proc=
+eed.
+Entity F=
+low â Screen 5: Entity Details â Manual Entry (Step 1a)
+Change from v1: The entity lo=
+okup / registry search has been removed. Entity information is collected di=
+rectly via manual entry as the sole path. There is no "Find entity" button =
+or registry integration.
+Progress bar indicating current step out of to=
+tal steps (4 segments visible).
+Back button to return to previous screen.
+Collect the following fields:
+Country of entity registration (dropdown, required) â opens as a modal/overlay with search bar, =
+scrollable list of countries with flag icons, real-time filtering, close (X=
+) button, and clear (X) within search input.
+State (dropdown, required) =
+â displayed dynamically when US is selected as country. Opens as a =
+modal/overlay with search bar, scrollable list of all US states and territo=
+ries. Hidden for non-US countries.
+Entity name (text input, requ=
+ired)
+File Number (text input, requ=
+ired) â with helper text explaining it can be found on registration=
+documents from the registrar.
+If the host application supplied pre-fill data=
+at session initialization (country, entity name, etc.), those fields are p=
+re-populated but remain editable.
+Field-level validation: required fields show r=
+ed border and "This field is required" error text when left empty on submit=
+. Country-specific conditional fields (e.g., State for US) enforce the same=
+validation.
+"Save and continue" button to proceed.
+"Continue on phone" option to transfer the flo=
+w to a mobile device.
+Persistence
+On "Save and continue," the step data is durab=
+ly saved server-side. If the user navigates away, logs out, or switches dev=
+ices, they resume at this point with all data intact.
+E=
+ntity Flow â Screen 6: Entity Details â Review & Confir=
+m (Step 1b)
+New screen. After entering en=
+tity details, the user sees a read-only summary of all information provided=
+in Step 1a and must confirm its accuracy before proceeding.
+Progress bar remains on Step 1.
+Back button to return to the entry form (Scree=
+n 5) for edits.
+Display all entered entity details in a struct=
+ured summary:
+Country of entity registration (with flag icon=
+)
+State (if applicable)
+Entity name
+File Number
+Each field displays its label and the user-ent=
+ered value. If any field was pre-filled by the host application, it is show=
+n here the same as manually entered data.
+Prompt text: "Please review the entity informa=
+tion below and confirm it is correct."
+"Confirm and continue" button to lock Step 1 d=
+ata and advance to Step 2.
+"Edit" link or button that returns the user to=
+Screen 5 with all fields pre-populated for correction.
+"Continue on phone" option persists.
+Persistence
+On "Confirm and continue," Step 1 is marked co=
+mplete. The confirmed data is durably saved server-side and a step:co=
+mpleted event is emitted to the host application.
+Entity Flow â=
+ Screen 7: Corporate KYC Document Request (Step 2)
+Progress bar advances to Step 2.
+Collect the following document uploads (each r=
+equired):
+Authorised Signatory List â=
+ "Please upload a signed authorised signatory list below"
+Structure Diagram â "=
+Please upload a structure diagram, outlining the organisational structure a=
+nd/or ownership structure"
+Each upload zone supports:
+Click to choose file or drag and drop
+Accepted formats: JPG, PNG, HEIC, WEBP, or PDF=
+Max file size: 50 MB (note: Verivend's securit=
+y spec caps at 10 MB â configurable per client)
+Documents upload directly to Interro infrastru=
+cture â never routed through the host application frontend.
+"Continue" button to proceed.
+"Continue on phone" option persists.
+Persistence
+Each successful upload is durably saved server=
+-side. If the user leaves and returns, previously uploaded documents are sh=
+own with thumbnail previews.
+Entity Flow â Scree=
+n 8: Entity Documents (Step 3)
+Progress bar advances to Step 3.
+Display a checklist of required document categ=
+ories, each with a status icon:
+Legal presence â Opti=
+ons: Incorporation certificate
+Entity details â Opti=
+ons: Articles and memorandum of association
+Ownership structure â=
+Options: Shareholder registry
+Each category has a checkmark icon (green) whe=
+n fulfilled, or a warning icon (orange) when missing, with validation messa=
+ge (e.g., "You need to upload at least one document for Ownership structure=
+").
+Some categories offer a document type selector=
+via dropdown; clicking opens a "Select document type" modal listing the ac=
+ceptable document types for that category.
+Uploaded documents display with:
+Thumbnail preview of the file
+Document type label
+Delete (trash) icon to remove the upload
+Each document type has its own upload zone (ch=
+oose or drag and drop, same format/size constraints as Step 2).
+Documents upload directly to Interro infrastru=
+cture.
+User cannot proceed until all required documen=
+t categories have at least one upload.
+"Continue" button to proceed.
+"Continue on phone" option persists.
+Entity Flow â Scr=
+een 9: Associated Parties (Step 4)
+Progress bar advances to Step 4.
+Display three associated party categories, eac=
+h with descriptive criteria:
+UBO â "Individuals wi=
+th direct or indirect ownership above 25%"; option to "+ Add individual"
+Shareholder â "Partie=
+s with direct ownership above 25%"; options to "+ Add individual" or "+ Add=
+entity"
+Director â options to=
+"+ Add individual" or "+ Add entity"
+At minimum, one Director must be added to proc=
+eed. If no Director is provided, at least one Shareholder or UBO must be en=
+tered.
+Each party type supports adding either an indi=
+vidual or an entity (except UBO, which only supports individuals).
+"Submit" button to complete the flow.
+"Continue on phone" option persists.
+Two-Phase Model
+This screen implements phase 1 of the two-phas=
+e associated party model: the authorized representative (the Verivend accou=
+nt holder) enters biographical data for each associated person within their=
+own session. Phase 2 (identity verification per person) occurs on Screen 1=
+1 via standalone verification links.
+Entity =
+Flow â Screen 10: Add Associated Party â Individual Form
+Role selection via checkboxes: UBO, Director, =
+Shareholder â multiple roles can be selected for the same individua=
+l.
+Helper text: "If this beneficiary has several =
+roles, you can fill out a questionnaire for them automatically."
+Collect the following fields:
+First name (required)
+Last name (required)
+Middle name (optional)
+Date of birth (mm/dd/yyyy format) â wi=
+th validation error "The date must be valid" for invalid dates
+Email (required)
+Field-level validation: required fields show r=
+ed "This field is required" error; date field shows format-specific error.
+"Create beneficiary" button to save the associ=
+ated party.
+"Continue on phone" option persists.
+Note on Additional Persons
+The people added here (UBOs, shareholders, dir=
+ectors) are likely not users of the host application. Their identity verifi=
+cation will happen outside the host app via standalone, token-authenticated=
+links (see Screen 11). The email address collected here is used to deliver=
+those verification links.
+E=
+ntity Flow â Screen 10a: Associated Parties â Populated &am=
+p; Submit
+Each added party displays as a card showing:
+Person icon
+Full name (first, middle, last)
+Email address
+Edit (pencil) icon to modify
+Delete (trash) icon to remove
+Additional individuals or entities can still b=
+e added via "+ Add individual" / "+ Add entity" links beneath each category=
+.
+"Submit" button triggers a loading animation (=
+rotating dot ellipsis) while processing.
+Global requirement: all "Subm=
+it," "Save and continue," "Continue," "Confirm and continue," and similar a=
+ction buttons display a loading animation while the request is being proces=
+sed.
+On Submit
+When the user submits, the component emits a flow:submitted event to the host application. This triggers the=
+host's retention copy retrieval and verification lifecycle management. The=
+user advances to Screen 11.
+Entity Flow â Screen 11: Associated Party Verification & =
+Submission Confirmation
+Display "One last step" screen informing the u=
+ser that all associated parties must verify their identity to complete busi=
+ness verification.
+"Remind all pending applicants" button to bulk=
+-notify all unverified parties.
+Collapsible "Verification required" section sh=
+owing count of pending verifications (e.g., "3").
+Each associated party listed with:
+Full name
+Role (UBO, Shareholder, Director)
+Email address
+Three verification options per party:
+"Verify now" â opens =
+the identity verification flow inline (e.g., Socure Document Verification)
+"Send to email" â sen=
+ds the verification link to the party's email address
+"Copy link" â copies =
+the verification link to clipboard
+Verification links route to the identity verif=
+ication provider (e.g., Socure Document Verification), associated with the =
+individual's screening step-up for that specific party.
+Verification option buttons are grayed=
+out / unclickable until the screening orchestrator (e.g., Alloy) =
+responds with the associated step-up document verification link.
+These verification links are standalone, token=
+-authenticated experiences served by Interro â they work without a =
+host application account. The standalone experience carries host branding s=
+o it does not feel disconnected from the host platform.
+"Checking info" section at the bottom displays=
+verification status of submitted entity data with loading spinners:
+Entity details
+Supplementary documents
+Entity documents
+Webhook Notifications
+As each associated party completes or stalls t=
+heir identity verification, Interro sends webhook notifications to the host=
+application. The host can query aggregate status (N of M persons verified)=
+via the retrieval API at any time.
+Reminder / Re-send
+If a party has not completed verification, the=
+primary user can re-send the verification link via email (and ideally SMS)=
+. The host application can also trigger reminders programmatically via API.=
+Entity Flow â Scr=
+een 12: Final Verification Status
+The page polls for completion status of all as=
+sociated party verifications automatically.
+Success state: Once all assoc=
+iated parties (UBOs, Shareholders, Directors) have successfully completed i=
+dentity verification, the page automatically updates to display:
+Success visual (e.g., green checkmark icon)
+"Verification complete" message
+Failure state: If any single =
+associated party fails their identity verification, the page displays:
+Failure visual (e.g., red X or warning icon)
+Generic "Verification failed" message â=
+ does not specify which party failed or the reason for failure
+No retry or remediation options are surfaced t=
+o the end user (resolution handled outside the embeddable UI)
+While verifications are still in progress, the=
+page remains on the Screen 11 state with pending indicators.
+Cross-Cutting Requirements
+Session Durability
+Server-side persistence on step comple=
+tion â not browser session storage, not localStorage. When=
+a user completes a step, that step's data is durably saved.
+Cross-device resume â=
+start on desktop, finish on mobile. Component keyed by external user ID; n=
+ew token for same user resumes at first incomplete step.
+No data loss on logout / navigation aw=
+ay â all previously completed steps survive a full logout/=
+login cycle.
+Long-lived sessions â=
+no expiry measured in minutes or hours; sessions remain resumable for week=
+s.
+Progress Visibility Outside the Compone=
+nt
+The host application can determine verificatio=
+n progress without loading the embedded component, via:
+Webhooks pushed from Interro =
+on step completion (session.step_completed, session.subm=
+itted, session.screening_completed, session.last_=
+activity)
+Polling API â G=
+ET /sessions/{id}/status returns current progress state
+This enables the host to show progress indicat=
+ors ("Verification in progress â 60% complete"), trigger email camp=
+aigns ("You're 2 steps away"), surface abandoned verifications in admin das=
+hboards, and track time-to-completion and drop-off metrics.
+Returned-for-Corrections Flow
+When a host admin or automated screening retur=
+ns a submission:
+The component supports re-entry in correction =
+mode â loads previously submitted data, flags items that need atten=
+tion, allows editing.
+Correction guidance is at minimum per-step, id=
+eally per-field with human-readable reasons.
+Two rejection modes: retry (u=
+ser corrects and resubmits) and final (rejected, contact s=
+upport).
+Re-completed flows emit the same flow:su=
+bmitted event for the host to re-process.
+Client-Side Events (Component =
+â Host App)
+|
+Event
+|
+|
+When
+|
+|
+Payload
+|
+|
+Host Action
+|
+|
+step:completed
+|
+|
+User completes a step and data is saved
+|
+Step number, step name, completion %
+|
+|
+Update progress indicator in host UI
+|
+|
+step:navigated
+|
+|
+User navigates between steps
+|
+|
+Current step, direction
+|
+|
+Analytics
+|
+|
+person:completed
+|
+|
+All steps for one person done (multi-person fl=
+ows)
+|
+|
+Person index, role
+|
+|
+Update per-person progress
+|
+|
+flow:submitted
+|
+|
+User submitted within the component
+|
+|
+Reference ID, person count
+|
+|
+Trigger retention copy retrieval, update verif=
+ication lifecycle
+|
+|
+flow:resumed
+|
+|
+Component loaded with existing partial data
+|
+|
+Resumed step, overall progress
+|
+|
+Sync host UI state
+|
+|
+document:uploaded
+|
+|
+A document was uploaded
+|
+|
+Document type, reference
+|
+|
+Track for progress
+|
+|
+error
+|
+|
+Validation failure, save failure, etc.
+|
+|
+Error type, message
+|

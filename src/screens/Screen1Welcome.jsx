@@ -41,9 +41,9 @@ export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms
         }}>
           🛡️
         </div>
-        <h1>Identity Verification</h1>
+        <h1>Verification</h1>
         <p className="subtitle" style={{ maxWidth: 300 }}>
-          We need to verify your identity before you can proceed. Please select your verification type below.
+          We need to verify your information before you can proceed. Please select your verification type below.
         </p>
 
         <div style={{ width: '100%', padding: '0 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>

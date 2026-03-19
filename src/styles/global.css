@@ -660,15 +660,16 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 16px 24px;
-  font-size: 13px;
-  color: var(--color-text);
+  gap: 8px;
+  padding: 18px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray-400);
 }
 
 .powered-footer img {
-  height: 16px;
-  filter: brightness(0) saturate(100%) invert(22%) sepia(15%) saturate(776%) hue-rotate(169deg) brightness(96%) contrast(89%);
+  height: 28px;
+  vertical-align: middle;
 }
 
 /* Checkbox */
