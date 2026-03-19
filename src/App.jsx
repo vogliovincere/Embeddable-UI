@@ -141,6 +141,7 @@ export default function App() {
         middleName: '',
         dob: '01/15/1985',
         email: 'jane.smith@acme.com',
+        ssn: '000-00-0001',
       },
     })
   }

@@ -11,6 +11,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
   const [middleName, setMiddleName] = useState(existingParty?.middleName || '')
   const [dob, setDob] = useState(existingParty?.dob || '')
   const [email, setEmail] = useState(existingParty?.email || '')
+  const [ssn, setSsn] = useState(existingParty?.ssn || '')
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
 
@@ -33,7 +34,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
     if (!validate()) return
     setLoading(true)
     setTimeout(() => {
-      const party = { roles, firstName, lastName, middleName, dob, email }
+      const party = { roles, firstName, lastName, middleName, dob, email, ssn }
       if (isEditing) {
         dispatch({ type: 'UPDATE_PARTY', index: editIndex, payload: party })
       } else {
@@ -154,6 +155,20 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
               onChange={e => setEmail(e.target.value)}
             />
             {errors.email && <div className="form-error">{errors.email}</div>}
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">SSN</label>
+            <input
+              className="form-input"
+              type="text"
+              placeholder="000-00-0000"
+              value={ssn}
+              onChange={e => setSsn(e.target.value)}
+            />
+            <div style={{ fontSize: 12, color: 'var(--color-text)', marginTop: 4 }}>
+              Sandbox: use test SSNs to control verification outcome
+            </div>
           </div>
         </div>
 
