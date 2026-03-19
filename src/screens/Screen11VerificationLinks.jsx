@@ -10,6 +10,7 @@ async function openAlloyVerification(party, callback) {
     journeyToken: JOURNEY_TOKEN,
     production: false,
     selfie: true,
+    documents: ['license', 'passport'],
     evaluationData: {
       nameFirst: party.firstName,
       nameLast: party.lastName,
