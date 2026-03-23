@@ -38,6 +38,8 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Create containing block so position:fixed modals stay inside the phone frame */
+  transform: translateZ(0);
 }
 
 .phone-frame::-webkit-scrollbar {

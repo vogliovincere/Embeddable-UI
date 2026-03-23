@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import MaskedSsnInput from '../components/MaskedSsnInput'
 
 export default function Screen10AddParty({ formData, dispatch, goTo }) {
   const editIndex = formData.editingPartyIndex
@@ -159,16 +160,12 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
 
           <div className="form-group">
             <label className="form-label">SSN</label>
-            <input
+            <MaskedSsnInput
               className="form-input"
-              type="text"
               placeholder="000-00-0000"
               value={ssn}
-              onChange={e => setSsn(e.target.value)}
+              onChange={setSsn}
             />
-            <div style={{ fontSize: 12, color: 'var(--color-text)', marginTop: 4 }}>
-              Sandbox: use test SSNs to control verification outcome
-            </div>
           </div>
         </div>
 

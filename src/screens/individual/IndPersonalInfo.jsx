@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
+import MaskedSsnInput from '../../components/MaskedSsnInput'
 
 export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, contextId }) {
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
-  const [showTaxId, setShowTaxId] = useState(false)
   const [showPhoneModal, setShowPhoneModal] = useState(false)
 
   const { firstName, lastName, dob, taxId } = formData.individualData
@@ -44,11 +44,6 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
     }
     updateField('dob', val)
   }
-
-  // Mask the tax ID value for display
-  const maskedTaxId = (taxId || '').length > 4
-    ? '\u2022'.repeat((taxId || '').length - 4) + (taxId || '').slice(-4)
-    : taxId || ''
 
   return (
     <>
@@ -113,42 +108,12 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
             <label className="form-label">
               SSN / Tax identifier <span className="required">*</span>
             </label>
-            <div style={{ position: 'relative' }}>
-              <input
-                className={`form-input ${errors.taxId ? 'error' : ''}`}
-                type="text"
-                placeholder="Enter SSN or tax identifier"
-                value={showTaxId ? (taxId || '') : maskedTaxId}
-                onChange={e => {
-                  if (showTaxId) {
-                    updateField('taxId', e.target.value)
-                  }
-                }}
-                onFocus={() => {
-                  if (!showTaxId) setShowTaxId(true)
-                }}
-                style={{ paddingRight: 64 }}
-              />
-              <button
-                type="button"
-                onClick={() => setShowTaxId(v => !v)}
-                style={{
-                  position: 'absolute',
-                  right: 12,
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  background: 'none',
-                  border: 'none',
-                  color: 'var(--color-accent)',
-                  fontSize: 13,
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  fontFamily: 'var(--font-family)',
-                }}
-              >
-                {showTaxId ? 'Hide' : 'Show'}
-              </button>
-            </div>
+            <MaskedSsnInput
+              className={`form-input ${errors.taxId ? 'error' : ''}`}
+              placeholder="Enter SSN or tax identifier"
+              value={taxId || ''}
+              onChange={val => updateField('taxId', val)}
+            />
             {errors.taxId && <div className="form-error">{errors.taxId}</div>}
           </div>
 

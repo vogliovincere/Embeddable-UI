@@ -278,19 +278,19 @@ export default function App() {
     dispatch({ type: 'SET_ENTITY_DOC', category: 'ownership_structure', payload: [{ name: 'shareholder-registry.pdf', type: 'Shareholder registry' }] })
   }
 
+  const partyPersonas = [
+    { roles: ['Director', 'UBO'], firstName: 'Jane', lastName: 'Smith', middleName: '', dob: '01/15/1985', email: 'jane.smith@acme.com', ssn: '000-00-0001' },
+    { roles: ['Shareholder'], firstName: 'Michael', lastName: 'Chen', middleName: 'Wei', dob: '06/22/1978', email: 'michael.chen@acme.com', ssn: '000-00-0002' },
+    { roles: ['Director'], firstName: 'Sarah', lastName: 'Johnson', middleName: 'Marie', dob: '11/03/1990', email: 'sarah.johnson@acme.com', ssn: '000-00-0003' },
+    { roles: ['UBO', 'Shareholder'], firstName: 'David', lastName: 'Okafor', middleName: '', dob: '09/17/1982', email: 'david.okafor@acme.com', ssn: '000-00-0004' },
+    { roles: ['Shareholder', 'Director'], firstName: 'Elena', lastName: 'Rodriguez', middleName: 'Sofia', dob: '04/28/1995', email: 'elena.rodriguez@acme.com', ssn: '000-00-0005' },
+  ]
+
   const prefillParty = () => {
-    dispatch({
-      type: 'ADD_PARTY',
-      payload: {
-        roles: ['Director', 'UBO'],
-        firstName: 'Jane',
-        lastName: 'Smith',
-        middleName: '',
-        dob: '01/15/1985',
-        email: 'jane.smith@acme.com',
-        ssn: '000-00-0001',
-      },
-    })
+    const usedEmails = new Set(formData.associatedParties.map(p => p.email))
+    const next = partyPersonas.find(p => !usedEmails.has(p.email))
+    if (!next) return
+    dispatch({ type: 'ADD_PARTY', payload: next })
   }
 
   // Individual prefill helpers
@@ -570,7 +570,7 @@ export default function App() {
               </div>
 
               <div className="prefill-data-row">
-                <button className="prefill-btn" onClick={prefillParty}>
+                <button className="prefill-btn" onClick={prefillParty} disabled={formData.associatedParties.length >= partyPersonas.length}>
                   + Add a party
                 </button>
                 {hasParties && <button className="prefill-clear-btn" onClick={() => dispatch({ type: 'CLEAR_PARTIES' })}>Clear</button>}
