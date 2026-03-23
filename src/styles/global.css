@@ -932,8 +932,19 @@ h3 {
   padding: 32px 24px;
   animation: slideUp 0.3s ease;
   z-index: 10;
-  max-height: 70%;
+  /* Two-thirds of the viewport per v2 spec */
+  min-height: 67%;
+  max-height: 67%;
   overflow-y: auto;
+}
+
+/* Dimming overlay behind slide-up panel */
+.slide-up-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9;
+  animation: fadeIn 0.2s ease;
 }
 
 /* Terminal states */
@@ -1275,4 +1286,10 @@ h3 {
 .prefill-btn-reset:hover {
   background: #5a2a2a;
   color: #ffaaaa;
+}
+
+.prefill-btn-flow-active {
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: #fff !important;
 }

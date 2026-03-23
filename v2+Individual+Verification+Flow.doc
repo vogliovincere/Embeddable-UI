@@ -1,0 +1,1194 @@
+Date: Mon, 23 Mar 2026 20:29:20 +0000 (UTC)
+Message-ID: <1877983411.57.1774297760772@ffa4be15c3e6>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_56_1031668731.1774297760771"
+
+------=_Part_56_1031668731.1774297760771
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>v2 Individual Verification Flow</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>v2 Individual Verification Flow</h1>
+    <div class=3D"Section1">
+        <h1 local-id=3D"f5d5c91b7dd4" id=3D"v2IndividualVerificationFlow-In=
+dividualVerificationFlow=E2=80=94Screen-by-ScreenRequirements">Individual V=
+erification Flow =E2=80=94 Screen-by-Screen Requirements</h1>
+<h2 local-id=3D"461e57e42bef" id=3D"v2IndividualVerificationFlow-Purpose">P=
+urpose</h2>
+<p local-id=3D"cd23af18c87a">This document captures the screen-by-screen re=
+quirements for the individual (solo) verification flow within the embeddabl=
+e KYC UI that Interro offers to application clients. It is structured to mi=
+rror the entity verification flow requirements document and shares overlapp=
+ing screens where the flows converge.</p>
+<p local-id=3D"7469e6231aa0">The individual flow is the simplest of Interro=
+'s three verification paths. A single natural person completes identity ver=
+ification in four steps. There is no multi-person orchestration, no entity =
+document collection, and no associated party management. The flow is derive=
+d from the Sumsub KYB/KYC widget UX patterns, adapted for Interro's integra=
+tion model with Verivend as the first client.</p>
+<p local-id=3D"7a33c7c22207"><strong>Key characteristics of the individual =
+flow:</strong></p>
+<ul local-id=3D"eba3e952-777d-4f59-aaac-18cd314b6d43">
+<li local-id=3D"c044e803-b0c5-4557-a3fc-1d1192213d85">
+<p local-id=3D"3a3715cd4a23">Single natural person verified end-to-end with=
+in one session.</p></li>
+<li local-id=3D"91936f54-dd06-4e5f-817e-ae348d34bc12">
+<p local-id=3D"1fc982236d6d">Four steps: provide identity document, provide=
+ address information, provide supplementary documents, perform liveness che=
+ck.</p></li>
+<li local-id=3D"7c448255-0cbf-414a-8c4b-17dffb2ccb66">
+<p local-id=3D"96d7b6d53a1a">Host-controlled path selection: Verivend passe=
+s <code>path_type =3D individual</code> at session initialization, bypassin=
+g the component's type selection screen.</p></li>
+<li local-id=3D"99b8beb8-c617-4319-ac44-d80490cf50ef">
+<p local-id=3D"f1c25f266741">No standalone verification links or two-phase =
+model =E2=80=94 the primary user completes everything within the embedded c=
+omponent.</p></li>
+<li local-id=3D"ce8ae485-7cec-48d3-9eb1-b6132ed61fb7">
+<p local-id=3D"57e2ee73af57">Context ID defaults to KYC Complete (includes =
+selfie/liveness step). KYC Basic (no selfie) is available via Context ID ov=
+erride.</p></li>
+</ul>
+<hr local-id=3D"9ef5819b-9e3e-41e6-9a99-7a89a9b0013e">
+<h2 local-id=3D"63663192300b" id=3D"v2IndividualVerificationFlow-Initializa=
+tion&amp;Configuration">Initialization &amp; Configuration</h2>
+<p local-id=3D"d2896d008fe3">Before the individual flow begins, the host ap=
+plication (e.g., Verivend) creates a verification session via Interro's bac=
+kend API, passing context that configures the component's behavior. The ini=
+tialization contract is shared across all verification paths; the parameter=
+s below are those relevant to the individual flow.</p>
+<h3 local-id=3D"ea88eb64b94e" id=3D"v2IndividualVerificationFlow-SessionIni=
+tializationParameters">Session Initialization Parameters</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"3e=
+624941-031c-4ef3-a14a-43bfb8a6e7bd" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"2f8c35a4-a8ab-4e50-860d-5d96c9b7c5f6">
+<th data-local-id=3D"49c5aa56-e7cf-4048-94f1-05fab989dd86" class=3D"conflue=
+nceTh">
+<p local-id=3D"53160b3ed9ad">Parameter</p></th>
+<th data-local-id=3D"26bf191c-71d6-4585-9011-c44a30fc4608" class=3D"conflue=
+nceTh">
+<p local-id=3D"92b5db2753c4">Type</p></th>
+<th data-local-id=3D"bb62738e-97a5-40b1-8985-09b3f6e4ab99" class=3D"conflue=
+nceTh">
+<p local-id=3D"f1fd48a68a46">When Passed</p></th>
+<th data-local-id=3D"791b90c8-d8b0-40d2-a238-f8de627370ab" class=3D"conflue=
+nceTh">
+<p local-id=3D"653d2ec2f5ca">Notes</p></th>
+</tr>
+<tr data-local-id=3D"1c9f9935-2f9f-4f15-b7c0-588286b1ded5">
+<td data-local-id=3D"2b1ac2b5-6064-4510-bf65-b72ecac98f18" class=3D"conflue=
+nceTd">
+<p local-id=3D"c134a1878b2c">Path type</p></td>
+<td data-local-id=3D"56a5ad49-c848-4567-9025-e8d5569dfa5b" class=3D"conflue=
+nceTd">
+<p local-id=3D"1a3a79691a4d"><code>individual</code></p></td>
+<td data-local-id=3D"2ab6c91f-6b83-4aa2-8ce1-ead50286c093" class=3D"conflue=
+nceTd">
+<p local-id=3D"4a33e71edbc0">Always</p></td>
+<td data-local-id=3D"74626e35-6530-4831-9e15-7e4195e0f5a8" class=3D"conflue=
+nceTd">
+<p local-id=3D"2a8c180c3d33">Determines which flow the component loads. Whe=
+n supplied, the component skips its own type selection screen (Screen 1) an=
+d enters the individual flow directly.</p></td>
+</tr>
+<tr data-local-id=3D"48fc9ca8-829c-4761-a9cc-11b01bf478b2">
+<td data-local-id=3D"c2071992-2e5c-4d9b-8e24-090730b13188" class=3D"conflue=
+nceTd">
+<p local-id=3D"c53b7abf9a59">Organization ID</p></td>
+<td data-local-id=3D"405174f3-c285-4398-94b2-2c3c1fbd9188" class=3D"conflue=
+nceTd">
+<p local-id=3D"05e1d3ea5871">String</p></td>
+<td data-local-id=3D"fae6fd27-9867-42b4-9e23-a809f1594c5a" class=3D"conflue=
+nceTd">
+<p local-id=3D"aa83723e0a6a">Always</p></td>
+<td data-local-id=3D"2252039c-9477-4037-a774-496b9ffbadd8" class=3D"conflue=
+nceTd">
+<p local-id=3D"e5a2812bdcfe">Links the session to the host application's or=
+g record.</p></td>
+</tr>
+<tr data-local-id=3D"2625da0b-43ae-47b7-9ef5-26ad746b66ab">
+<td data-local-id=3D"d863d707-ca5b-46e6-aabd-1d71a343e62e" class=3D"conflue=
+nceTd">
+<p local-id=3D"2a8dc9373a37">Authenticated user context</p></td>
+<td data-local-id=3D"95dac13b-f383-4a4c-a5e9-1e7b942d5637" class=3D"conflue=
+nceTd">
+<p local-id=3D"9e926cc6695c">Token / session ref</p></td>
+<td data-local-id=3D"0f3c0ab7-b98c-4f6d-a105-32b32866a65e" class=3D"conflue=
+nceTd">
+<p local-id=3D"543909b6ec15">Always</p></td>
+<td data-local-id=3D"e138879c-6c24-49fa-aea9-e0786c52b27c" class=3D"conflue=
+nceTd">
+<p local-id=3D"3de9cde89837">Component receives auth context from the host;=
+ it does not manage login.</p></td>
+</tr>
+<tr data-local-id=3D"2b9b292e-3e60-476d-b997-64b1591725b3">
+<td data-local-id=3D"e91629c8-ccfd-4621-b805-bdbd91d5f4f8" class=3D"conflue=
+nceTd">
+<p local-id=3D"b5681a15d28b">Pre-fill data</p></td>
+<td data-local-id=3D"c8ff13a6-00d9-474f-9acf-35e3d1ec07c0" class=3D"conflue=
+nceTd">
+<p local-id=3D"bb2cb6c840a8">JSON object (optional)</p></td>
+<td data-local-id=3D"158a8d34-b70e-4204-b225-386f17588e74" class=3D"conflue=
+nceTd">
+<p local-id=3D"9cd2ec17d76d">When available</p></td>
+<td data-local-id=3D"9df390a2-cf60-4fc2-a679-22b9708fee45" class=3D"conflue=
+nceTd">
+<p local-id=3D"84d991a509ba">Any person data the host already holds (e.g., =
+name, DOB, address, country) can be passed to pre-populate fields.</p></td>
+</tr>
+<tr data-local-id=3D"cea792e6-df95-4c2d-bcd7-88281fb0b4da">
+<td data-local-id=3D"600f8d79-6d4c-4b36-8b9c-ef6cf68c66a9" class=3D"conflue=
+nceTd">
+<p local-id=3D"4cb034e49760">Context ID</p></td>
+<td data-local-id=3D"199f5d5e-3651-47f9-8dd1-5568eed22d1e" class=3D"conflue=
+nceTd">
+<p local-id=3D"80605b0e355a">String</p></td>
+<td data-local-id=3D"9abc6d1d-c57e-441d-bedc-61b2d76965d4" class=3D"conflue=
+nceTd">
+<p local-id=3D"f017c67f3200">Optional</p></td>
+<td data-local-id=3D"cea0aaf0-a238-4533-8113-f84cead79dfc" class=3D"conflue=
+nceTd">
+<p local-id=3D"b4ff6a06bbb7">Selects the IDV flow variant. Defaults to KYC =
+Complete (includes liveness/selfie step). KYC Basic omits the selfie step.<=
+/p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"1bf8b6693d58" id=3D"v2IndividualVerificationFlow-Theming">T=
+heming</h3>
+<p local-id=3D"12d8d60ba331">The component accepts brand configuration at i=
+nitialization. This is shared across all flows and is identical to the enti=
+ty flow theming specification.</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"e1=
+6a3351-1916-4938-9567-0646f0e529bb" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"bc844741-7720-4a1b-a6c7-90fcd3741b23">
+<th data-local-id=3D"25f58d70-aa72-4469-a6d7-b397bdc296b6" class=3D"conflue=
+nceTh">
+<p local-id=3D"62ab424ea0c2">Property</p></th>
+<th data-local-id=3D"ae2af101-b1d1-431b-b07c-24940eb3bc1c" class=3D"conflue=
+nceTh">
+<p local-id=3D"9c799f7af3a8">Example (Verivend)</p></th>
+</tr>
+<tr data-local-id=3D"6074bda4-bfcb-421b-8067-a0d5bfd5339e">
+<td data-local-id=3D"68d7e53d-e698-4e1e-9a37-6ee9a1486e68" class=3D"conflue=
+nceTd">
+<p local-id=3D"ad6f622a9e55">Primary color</p></td>
+<td data-local-id=3D"6aae002a-9857-4857-9990-d2b78224067b" class=3D"conflue=
+nceTd">
+<p local-id=3D"5108f7f31726"><code>#0042E0</code></p></td>
+</tr>
+<tr data-local-id=3D"14e10f93-a058-49d0-94e3-f5707052ac22">
+<td data-local-id=3D"14063684-1c1d-465b-9bca-0a90a9e90f29" class=3D"conflue=
+nceTd">
+<p local-id=3D"2f9a2bfa1d92">Accent color</p></td>
+<td data-local-id=3D"064e4e02-2770-43b1-95c7-4368695f078c" class=3D"conflue=
+nceTd">
+<p local-id=3D"c9277d0e8ebf"><code>#008cf0</code></p></td>
+</tr>
+<tr data-local-id=3D"cb676026-5fe4-42d7-a239-0c4a6f0517df">
+<td data-local-id=3D"1f848c09-c6c6-45e5-8769-6a853cc0689c" class=3D"conflue=
+nceTd">
+<p local-id=3D"4a7f589bd1e9">Text color</p></td>
+<td data-local-id=3D"d43d8eb1-d653-4c93-ae06-c70f9d19fb08" class=3D"conflue=
+nceTd">
+<p local-id=3D"846cb2c9ede3"><code>#333D57</code></p></td>
+</tr>
+<tr data-local-id=3D"b91f3bbb-f9e4-416c-90a5-d4f458dc8d32">
+<td data-local-id=3D"082aaab0-ddff-4bd3-b2f3-5af65cdd581a" class=3D"conflue=
+nceTd">
+<p local-id=3D"eaf947be8d77">Heading color</p></td>
+<td data-local-id=3D"f68dcb22-35d9-4363-8e5c-2c9ae540f96a" class=3D"conflue=
+nceTd">
+<p local-id=3D"849bb395d9aa"><code>#000d2d</code></p></td>
+</tr>
+<tr data-local-id=3D"b5d08ca9-a289-4347-a04c-e6288e6fafc6">
+<td data-local-id=3D"d6e41861-5602-49e8-af87-51c5af70de93" class=3D"conflue=
+nceTd">
+<p local-id=3D"15b01fabb004">Font family</p></td>
+<td data-local-id=3D"1ee98d92-6e71-4831-b56d-e0713665b2c4" class=3D"conflue=
+nceTd">
+<p local-id=3D"d02ba5c74fa3">Inter</p></td>
+</tr>
+<tr data-local-id=3D"b0972463-2754-4f8e-be1e-2e0c9eebd24e">
+<td data-local-id=3D"6d0ec37e-3265-48ca-b341-903da506ef15" class=3D"conflue=
+nceTd">
+<p local-id=3D"41ab8cbd52f4">Logo</p></td>
+<td data-local-id=3D"b95a43f3-f7ab-4069-9b91-2bff9b2cb06e" class=3D"conflue=
+nceTd">
+<p local-id=3D"011dbf1a1daa">Supplied by host</p></td>
+</tr>
+<tr data-local-id=3D"6a870cad-df86-42b6-94a0-c9006b84beae">
+<td data-local-id=3D"3f5b2055-a1a5-4c52-a349-24ba97c7fa00" class=3D"conflue=
+nceTd">
+<p local-id=3D"e97493306cc4">"Powered by" footer</p></td>
+<td data-local-id=3D"6d1cb40e-46c6-4181-9fb8-c87962b119e3" class=3D"conflue=
+nceTd">
+<p local-id=3D"9f3e813c8ad0">Configurable per vendor</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"f09d9be53ef3">The component renders inline within the host a=
+pplication =E2=80=94 embedded in an iframe at <code>{client}.interro.co</co=
+de>, not redirected to a third-party domain.</p>
+<hr local-id=3D"a3b167d1-da1e-410b-a19f-42139cf3f022">
+<h2 local-id=3D"b40bbe574f27" id=3D"v2IndividualVerificationFlow-Individual=
+Flow=E2=80=94Screen1:Welcome/TypeSelection">Individual Flow =E2=80=94 Scree=
+n 1: Welcome / Type Selection</h2>
+<blockquote local-id=3D"b372ad2c-d173-47cb-a2b3-a40d0869f71f">
+<p local-id=3D"ffc7316c8011"><em>Shared with Entity and Joint flows. May be=
+ skipped when path_type is supplied at initialization.</em></p>
+</blockquote>
+<p local-id=3D"5a8d8fc97a56">Display introductory header text explaining th=
+e purpose of KYC verification. This is a slide-up screen that takes two-thi=
+rds of the page. Links to data sharing agreements are layered into the expl=
+anation. The user must click an "I agree" button at the bottom of the slide=
+-up screen to move forward.</p>
+<p local-id=3D"e51cd6797257">User selects between "Individual" and "Corpora=
+te" via two buttons. Selection routes the user to the corresponding flow (I=
+ndividual in this case).</p>
+<p local-id=3D"bb017f37d5aa"><strong>Conditional skip:</strong> If the host=
+ application passes <code>path_type =3D individual</code> at session initia=
+lization, this screen is bypassed entirely and the user enters the individu=
+al flow directly. The screen remains available as a fallback when the host =
+defers path selection to the component. The user must still agree to the te=
+rms and conditions; the consent is surfaced on Screen 4 instead.</p>
+<hr local-id=3D"93fbac9d-c99b-4484-944c-64561a9aa386">
+<h2 local-id=3D"66dd7faa4c9f" id=3D"v2IndividualVerificationFlow-Individual=
+Flow=E2=80=94Screen2:KYCLoading&amp;SensitiveDataDisclaimer">Individual Flo=
+w =E2=80=94 Screen 2: KYC Loading &amp; Sensitive Data Disclaimer</h2>
+<blockquote local-id=3D"d488de4b-7f7b-4bdc-acaf-e4dc0f078640">
+<p local-id=3D"edf6c1031e39"><em>Shared with Entity and Joint flows.</em></=
+p>
+</blockquote>
+<ul local-id=3D"fc41046b-135f-4f47-87fe-13168ad20376">
+<li local-id=3D"1ff13023-9885-46f6-b3d0-82d97efbba0a">
+<p local-id=3D"657dd4d8c9fb">Display a loading spinner while the KYC flow i=
+nitializes.</p></li>
+<li local-id=3D"4e355ff3-f4e9-4ce1-841d-7b432e4056b3">
+<p local-id=3D"6d66eac15738">Display configurable client name (e.g., "Veriv=
+end") in verification header.</p></li>
+<li local-id=3D"bb4b7d59-2228-415a-8bd9-07c863119471">
+<p local-id=3D"ed1c29522d6f">Display sensitive data warning: informs the us=
+er they are about to submit sensitive data to the named client, with instru=
+ctions to close the page if the link was received from a suspicious source.=
+</p></li>
+<li local-id=3D"caa78ea4-bdcf-4155-b240-444bbb882df2">
+<p local-id=3D"382c17c5cc5c">Language selector available (e.g., "En").</p><=
+/li>
+<li local-id=3D"11421026-5293-4d5b-8371-1255aae89352">
+<p local-id=3D"077a39d8008f">"Continue" button to proceed.</p></li>
+<li local-id=3D"818bba33-32a4-47cf-9185-e04f08075395">
+<p local-id=3D"cacba07b255a">"Powered by" branding footer (configurable per=
+ vendor).</p></li>
+</ul>
+<hr local-id=3D"32cf52c5-d717-4877-9254-8d837218f076">
+<h2 local-id=3D"6e902afb45a6" id=3D"v2IndividualVerificationFlow-Individual=
+Flow=E2=80=94Screen3:StepOverview">Individual Flow =E2=80=94 Screen 3: Step=
+ Overview</h2>
+<p local-id=3D"ff6b70420d6a">Display a step-by-step summary of the full ind=
+ividual verification flow before the user begins. The number of steps displ=
+ayed is determined by the Context ID:</p>
+<p local-id=3D"9223e9604dc7"><strong>KYC Complete (default):</strong></p>
+<ul local-id=3D"47bc2ee9-6d5e-45ed-87d8-526b1aa61543">
+<li local-id=3D"7d46b142-3f11-4a5b-bb12-5a8712a83119">
+<p local-id=3D"a46b5ca7f8f2">Step 1: Provide identity document</p></li>
+<li local-id=3D"7fb862ff-18b0-4d8f-bc70-298595b5da57">
+<p local-id=3D"ea59c65c5135">Step 2: Provide address information</p></li>
+<li local-id=3D"141cd2fd-f82b-46df-85dc-a8f34040111f">
+<p local-id=3D"18305f9a76d3">Step 3: Provide supplementary documents</p></l=
+i>
+<li local-id=3D"36171742-2348-40f8-9e9b-9409629e8b19">
+<p local-id=3D"03954ed0efd5">Step 4: Perform a liveness check</p></li>
+</ul>
+<p local-id=3D"2d99ed932305"><strong>KYC Basic:</strong></p>
+<ul local-id=3D"8a6a4d2d-13b1-461f-a9aa-6806eb3a141c">
+<li local-id=3D"5e0ee7b7-f272-4b39-b5d8-f8cb3cc5e01c">
+<p local-id=3D"4c4775a8401e">Step 1: Provide identity document</p></li>
+<li local-id=3D"15b93ddc-f4b5-40ea-837d-aa6b1be4409d">
+<p local-id=3D"b8565674002f">Step 2: Provide address information</p></li>
+<li local-id=3D"84da6cd9-c660-4369-8ab7-d60e3b48bf03">
+<p local-id=3D"08cfd658c4d8">Step 3: Provide supplementary documents</p></l=
+i>
+</ul>
+<p local-id=3D"8232408d2611">Each step has an icon and label. "Start verifi=
+cation" button to begin the flow.</p>
+<hr local-id=3D"c3900fa3-1e25-4b79-aa5b-3615445bff17">
+<h2 local-id=3D"584197b6e231" id=3D"v2IndividualVerificationFlow-Individual=
+Flow=E2=80=94Screen4:Privacy&amp;ConsentModal">Individual Flow =E2=80=94 Sc=
+reen 4: Privacy &amp; Consent Modal</h2>
+<blockquote local-id=3D"9deb7154-3fe8-492b-947b-59499fd60a39">
+<p local-id=3D"f1f4a40ceb17"><em>Shared with Entity and Joint flows.</em></=
+p>
+</blockquote>
+<p local-id=3D"1b26ced1a0b5">Display a modal overlay with privacy/consent d=
+isclosures before proceeding.</p>
+<p local-id=3D"ef74a9d7e2e0">User must confirm they have read the Privacy N=
+otice and Notification to Processing of Personal Data (linked).</p>
+<p local-id=3D"8e0df12b5d6d"><strong>US-specific clause:</strong> user cons=
+ents to processing of personal data including biometrics, with link to Priv=
+acy User Acknowledgement and Consent.</p>
+<p local-id=3D"669c9341467a">"Agree and continue" button to accept and proc=
+eed.</p>
+<hr local-id=3D"7b864e73-357a-4bdb-af43-31d40a9cf51d">
+<h2 local-id=3D"e25497cc592b" id=3D"v2IndividualVerificationFlow-Individual=
+Flow=E2=80=94Screen5:IdentityDocument=E2=80=94Country&amp;TypeSelection(Ste=
+p1a)">Individual Flow =E2=80=94 Screen 5: Identity Document =E2=80=94 Count=
+ry &amp; Type Selection (Step 1a)</h2>
+<p local-id=3D"d889e2c3a542">Progress bar indicating current step out of to=
+tal steps (3 or 4 segments depending on Context ID).</p>
+<p local-id=3D"5ff01cb2ffe4">Back button to return to previous screen.</p>
+<h3 local-id=3D"421cdaf887c5" id=3D"v2IndividualVerificationFlow-Collectthe=
+following">Collect the following</h3>
+<ul local-id=3D"4980f18e-1b7d-44ee-9881-d13a7dd9c055">
+<li local-id=3D"e9f6918f-7ee9-4982-bc2a-6914e6f363f4">
+<p local-id=3D"51152b2e4177"><strong>Issuing country</strong> (dropdown, re=
+quired) =E2=80=94 opens as a modal/overlay with search bar, scrollable list=
+ of countries with flag icons, real-time filtering, close (X) button, and c=
+lear (X) within search input.</p></li>
+<li local-id=3D"ea8f7e84-b5cd-4970-8c96-4799c606ba51">
+<p local-id=3D"98933c6fe13b"><strong>Document type</strong> (radio selectio=
+n, required) =E2=80=94 presented as a list of options below the country sel=
+ector. Available document types are filtered dynamically based on the selec=
+ted country. Options may include:</p>
+<ul local-id=3D"7d288b67-28f7-40a4-aef3-0a4b553a3ec6">
+<li local-id=3D"164aeaee-e94b-499e-89ce-915e5fe84131">
+<p local-id=3D"5d93dc23a3ec">ID card</p></li>
+<li local-id=3D"d7a38591-6994-4ea8-931f-6d6252d143b0">
+<p local-id=3D"ebd10ac2bf26">Passport</p></li>
+<li local-id=3D"c6a58105-a2f8-4d84-b5e1-d18e4d8f9ad1">
+<p local-id=3D"36a97ef606ea">Residence permit</p></li>
+<li local-id=3D"e1dfe3f3-4dc6-41b0-81ea-9e763ccadd3d">
+<p local-id=3D"280e916f8e02">Driving license</p></li>
+</ul></li>
+</ul>
+<p local-id=3D"aa4710d4d5b2">If the host application supplied pre-fill data=
+ at session initialization (e.g., country), the issuing country field is pr=
+e-populated but remains editable.</p>
+<p local-id=3D"c96c47cf4ff3">Field-level validation: required fields show r=
+ed border and "This field is required" error text when left empty on submit=
+.</p>
+<p local-id=3D"6f7d9fbb7699">"Continue" button to proceed to document uploa=
+d.</p>
+<p local-id=3D"ebe8c4f983f6">"Continue on phone" option to transfer the flo=
+w to a mobile device.</p>
+<p local-id=3D"f2a728b9815d"><em>Required fields indicator: "</em> Required=
+ fields" displayed below the form.*</p>
+<h3 local-id=3D"eb6f9b09cdc0" id=3D"v2IndividualVerificationFlow-Persistenc=
+e">Persistence</h3>
+<p local-id=3D"797e749502b7">On "Continue," the selected country and docume=
+nt type are durably saved server-side. If the user navigates away, logs out=
+, or switches devices, they resume at this point with selections intact.</p=
+>
+<hr local-id=3D"8e50dc32-6fa6-4c2b-9000-ae44e1b39065">
+<h2 local-id=3D"daa31d95fb6f" id=3D"v2IndividualVerificationFlow-Individual=
+Flow=E2=80=94Screen6:IdentityDocument=E2=80=94Upload(Step1b)">Individual Fl=
+ow =E2=80=94 Screen 6: Identity Document =E2=80=94 Upload (Step 1b)</h2>
+<p local-id=3D"9216d3ae6a15">Progress bar remains on Step 1.</p>
+<p local-id=3D"c09684c90724">Back button to return to country/type selectio=
+n (Screen 5).</p>
+<p local-id=3D"5a3885c06406">Display the selected document type with countr=
+y flag and an edit (pencil) icon to change the selection.</p>
+<h3 local-id=3D"d64b0a9a68b4" id=3D"v2IndividualVerificationFlow-Uploadrequ=
+irements">Upload requirements</h3>
+<p local-id=3D"65b7a3f665b8">The upload zone displays the required sides fo=
+r the selected document type:</p>
+<ul local-id=3D"44bbecaa-031b-4ea1-81de-9a9a6cd1ca6a">
+<li local-id=3D"bc33f8f5-273a-4d97-bef2-b5778b871587">
+<p local-id=3D"05d969062aa9"><strong>Passport:</strong> one upload zone (da=
+ta page).</p></li>
+<li local-id=3D"c841c49d-47fe-4d41-82b7-11a7e2549c62">
+<p local-id=3D"d86d864b29ca"><strong>ID card:</strong> two upload zones (fr=
+ont side, back side).</p></li>
+<li local-id=3D"eca083e7-52b8-4825-a0c1-3d49727fddc1">
+<p local-id=3D"c324b2293df4"><strong>Driving license:</strong> two upload z=
+ones (front side, back side).</p></li>
+<li local-id=3D"d4f2af2f-9583-4eda-91b0-cb75741765e6">
+<p local-id=3D"9ffaa58322ed"><strong>Residence permit:</strong> two upload =
+zones (front side, back side).</p></li>
+</ul>
+<p local-id=3D"3292db509244">Each upload zone supports click to choose file=
+ or drag and drop.</p>
+<p local-id=3D"4552ab556292">Accepted formats: JPG, PNG, HEIC, WEBP, or PDF=
+.</p>
+<p local-id=3D"1d65069832e2">Max file size: 50 MB (note: Verivend's securit=
+y spec caps at 10 MB =E2=80=94 configurable per client).</p>
+<p local-id=3D"e920a1c429b3">Helper text: "Ensure all details on the photo =
+are visible and easy to read."</p>
+<p local-id=3D"fe0ee264265d">Documents upload directly to Interro infrastru=
+cture =E2=80=94 never routed through the host application frontend.</p>
+<p local-id=3D"792256f554d6">"Upload document" button to proceed.</p>
+<p local-id=3D"0ad7f021fb74">"Continue on phone" option persists.</p>
+<h3 local-id=3D"b3c44fa6e6d2" id=3D"v2IndividualVerificationFlow-Persistenc=
+e.1">Persistence</h3>
+<p local-id=3D"d1d3c0f5c8ad">Each successful upload is durably saved server=
+-side. If the user leaves and returns, previously uploaded documents are sh=
+own with thumbnail previews.</p>
+<hr local-id=3D"682fcd14-0c09-40c8-9491-6e66084734f3">
+<h2 local-id=3D"e879bf094d18" id=3D"v2IndividualVerificationFlow-Individual=
+Flow=E2=80=94Screen7:AddressInformation(Step2)">Individual Flow =E2=80=94 S=
+creen 7: Address Information (Step 2)</h2>
+<p local-id=3D"1b516bebed39">Progress bar advances to Step 2.</p>
+<p local-id=3D"890cf1c200f7">Back button to return to previous screen.</p>
+<h3 local-id=3D"71d2c08648aa" id=3D"v2IndividualVerificationFlow-Collectthe=
+followingfields">Collect the following fields</h3>
+<ul local-id=3D"8a987b15-ac98-4ce9-af4a-7fa0be15e777">
+<li local-id=3D"a37e48bf-5629-4f25-ad2e-020799f1aea5">
+<p local-id=3D"89d47c93be94"><strong>Country</strong> (dropdown, required) =
+=E2=80=94 same country selector pattern as Screen 5.</p></li>
+<li local-id=3D"995870e7-d5c1-4269-ac9b-3114286f72a9">
+<p local-id=3D"f7728da8fe5e"><strong>State / Province / Region</strong> (dr=
+opdown, conditionally required) =E2=80=94 displayed dynamically when the se=
+lected country has subdivisions (e.g., US states, Canadian provinces). Hidd=
+en for countries without subdivisions.</p></li>
+<li local-id=3D"27df42e6-f793-4d19-a6d3-7ef3a7283ebc">
+<p local-id=3D"0ca6fe8e5f3d"><strong>Street address</strong> (text input, r=
+equired)</p></li>
+<li local-id=3D"4cbbe745-2c3b-402a-a555-254e3640be87">
+<p local-id=3D"fe9d5802184d"><strong>City / Town</strong> (text input, requ=
+ired)</p></li>
+<li local-id=3D"6ea96d69-8ebf-4ec7-974e-bc4d90d485a6">
+<p local-id=3D"6918db6e7327"><strong>Postal / ZIP code</strong> (text input=
+, required) =E2=80=94 format validation based on selected country.</p></li>
+<li local-id=3D"648a7980-6f12-42a8-9311-7495c1e05bd6">
+<p local-id=3D"980995bef4eb"><strong>Apartment / Suite / Unit</strong> (tex=
+t input, optional)</p></li>
+</ul>
+<p local-id=3D"922361a7e129">If the host application supplied pre-fill data=
+ at session initialization, address fields are pre-populated but remain edi=
+table.</p>
+<p local-id=3D"5349e0a70952">Field-level validation: required fields show r=
+ed border and "This field is required" error text when left empty on submit=
+. Postal code validates format per country.</p>
+<p local-id=3D"be0ce9500c74">"Save and continue" button to proceed.</p>
+<p local-id=3D"23601869740b">"Continue on phone" option persists.</p>
+<h3 local-id=3D"2cecd65dbac1" id=3D"v2IndividualVerificationFlow-Persistenc=
+e.2">Persistence</h3>
+<p local-id=3D"e79a090ffb89">On "Save and continue," the step data is durab=
+ly saved server-side. If the user navigates away, logs out, or switches dev=
+ices, they resume at this point with all data intact.</p>
+<hr local-id=3D"65f3c9a1-ca6e-4d3b-91bf-7029f89eff35">
+<h2 local-id=3D"6c6d6e0d37dd" id=3D"v2IndividualVerificationFlow-Individual=
+Flow=E2=80=94Screen8:SupplementaryDocuments(Step3)">Individual Flow =E2=80=
+=94 Screen 8: Supplementary Documents (Step 3)</h2>
+<p local-id=3D"742d7f3a5f74">Progress bar advances to Step 3.</p>
+<p local-id=3D"61fbad60b105">Back button to return to previous screen.</p>
+<p local-id=3D"9850d9cd5b16">Display a checklist of required document categ=
+ories with status icons. The specific categories required are configurable =
+per client and Context ID. Default categories for Verivend individual flow:=
+</p>
+<ul local-id=3D"478550db-3ca0-458c-bda0-7c689ea37aff">
+<li local-id=3D"5b53b836-9ed4-42da-a26a-0716d4aeae0a">
+<p local-id=3D"39f076cbb41f"><strong>Proof of address</strong> =E2=80=94 Op=
+tions: utility bill, bank statement, government correspondence. Document mu=
+st be dated within the last 3 months.</p></li>
+</ul>
+<p local-id=3D"5adc3922e8f9">Each category has a checkmark icon (green) whe=
+n fulfilled, or a warning icon (orange) when missing, with validation messa=
+ge (e.g., "You need to upload at least one document for Proof of address").=
+</p>
+<p local-id=3D"ea4af6cd120a">Some categories may offer a document type sele=
+ctor via dropdown; clicking opens a "Select document type" modal listing th=
+e acceptable document types for that category.</p>
+<h3 local-id=3D"5d4b3b303f21" id=3D"v2IndividualVerificationFlow-Uploadbeha=
+vior">Upload behavior</h3>
+<p local-id=3D"d62118ec16f1">Uploaded documents display with thumbnail prev=
+iew of the file, document type label, and a delete (trash) icon to remove t=
+he upload.</p>
+<p local-id=3D"c762c7942b86">Each document type has its own upload zone (ch=
+oose or drag and drop, same format/size constraints as Step 1b).</p>
+<p local-id=3D"aaa930ca3f6d">Documents upload directly to Interro infrastru=
+cture.</p>
+<p local-id=3D"f8f8e384e415">User cannot proceed until all required documen=
+t categories have at least one upload.</p>
+<p local-id=3D"bf8d6b568550">"Continue" button to proceed.</p>
+<p local-id=3D"340293a79213">"Continue on phone" option persists.</p>
+<h3 local-id=3D"5194276ff023" id=3D"v2IndividualVerificationFlow-Persistenc=
+e.3">Persistence</h3>
+<p local-id=3D"393f5ccda58d">Each successful upload is durably saved server=
+-side. If the user leaves and returns, previously uploaded documents are sh=
+own with thumbnail previews.</p>
+<blockquote local-id=3D"ba5aee0f-6d68-482c-b2f9-887fcb4c36a6">
+<p local-id=3D"f1d9806b85c5"><em>Note: For KYC Basic flows, this is the fin=
+al data collection step. For KYC Complete flows, the user proceeds to the l=
+iveness check.</em></p>
+</blockquote>
+<hr local-id=3D"0c60f507-0133-47b1-aaee-c21f482350fd">
+<h2 local-id=3D"f787ae572bb7" id=3D"v2IndividualVerificationFlow-Individual=
+Flow=E2=80=94Screen9:LivenessCheck(Step4)">Individual Flow =E2=80=94 Screen=
+ 9: Liveness Check (Step 4)</h2>
+<blockquote local-id=3D"e0af2303-8148-4855-851f-9b48a4614f62">
+<p local-id=3D"2ca4634272e2"><em>Only displayed when Context ID =3D KYC Com=
+plete (default). Omitted for KYC Basic.</em></p>
+</blockquote>
+<p local-id=3D"06b6c901adf0">Progress bar advances to Step 4 (final step).<=
+/p>
+<p local-id=3D"22e4c90df2f8">Back button to return to previous screen.</p>
+<p local-id=3D"9a3c5f288856">Display instructions for the liveness/selfie v=
+erification:</p>
+<ul local-id=3D"8508821a-f9d1-4a2b-86e7-b52205d9ec7e">
+<li local-id=3D"76e4d289-b0ad-4e8f-aa9f-8f5f4fa707ba">
+<p local-id=3D"4e89adc8b575">Header: "Perform a liveness check"</p></li>
+<li local-id=3D"602cfa16-79da-4798-8273-9da71859e8a9">
+<p local-id=3D"5454fa4cfc18">Instructions: "Please position your face withi=
+n the frame and follow the on-screen prompts."</p></li>
+<li local-id=3D"3c1d38cf-a46c-42a7-aef1-4e9e70d64587">
+<p local-id=3D"38811760b545">Guidance tips: ensure good lighting, remove gl=
+asses/hats, keep face centered.</p></li>
+</ul>
+<p local-id=3D"00fa8d96d596">The liveness check is initiated by the user cl=
+icking a "Start" button, which activates the device camera within the compo=
+nent.</p>
+<p local-id=3D"5c308250e719">The liveness capture is handled by the identit=
+y verification provider (e.g., Socure) via an embedded SDK or redirect with=
+in the iframe. The component orchestrates the handoff but does not implemen=
+t liveness detection logic itself.</p>
+<p local-id=3D"95b8b1b80603">On successful capture, the component advances =
+to the submission confirmation screen.</p>
+<p local-id=3D"acef16a2c69f">On failure, the user is prompted to retry with=
+ guidance on what may have gone wrong (e.g., "Poor lighting detected =E2=80=
+=94 please try again in a well-lit area").</p>
+<p local-id=3D"400ba288c4cd">"Continue on phone" option is especially relev=
+ant here, as mobile devices typically provide a better camera experience fo=
+r liveness checks.</p>
+<h3 local-id=3D"2e4a77ea8ee0" id=3D"v2IndividualVerificationFlow-Continueon=
+Phone">Continue on Phone</h3>
+<p local-id=3D"7b48bb2d763f">When the user selects "Continue on phone," a m=
+odal appears with two options:</p>
+<ul local-id=3D"32e2a84f-3c89-4667-8bf5-bf26f5196962">
+<li local-id=3D"b29b6fe2-21be-40e6-9a2a-37bd8ccec9d1">
+<p local-id=3D"ddda245f4cb0"><strong>QR code</strong> =E2=80=94 scannable w=
+ith mobile phone camera to open the flow on the device.</p></li>
+<li local-id=3D"0eab8c5b-cfaf-402f-9858-f98e1c023f2b">
+<p local-id=3D"d8cd1a2a1ed7"><strong>Copy link</strong> =E2=80=94 a URL tha=
+t can be opened in a mobile browser to resume the flow at the current step.=
+</p></li>
+</ul>
+<p local-id=3D"0a1c1a9d49cb">The mobile session resumes at the current step=
+ with all previously saved data intact. Session durability ensures no data =
+loss across devices.</p>
+<hr local-id=3D"5047a4ee-8f7b-4290-b5d5-d76766e9307a">
+<h2 local-id=3D"c2287ed9d2b9" id=3D"v2IndividualVerificationFlow-Individual=
+Flow=E2=80=94Screen10:SubmissionConfirmation&amp;VerificationStatus">Indivi=
+dual Flow =E2=80=94 Screen 10: Submission Confirmation &amp; Verification S=
+tatus</h2>
+<p local-id=3D"9ef3a7b1ef6a">After the final step is completed (liveness ch=
+eck for KYC Complete, or supplementary documents for KYC Basic), the compon=
+ent submits all collected data for verification processing.</p>
+<h3 local-id=3D"b560a59d7a51" id=3D"v2IndividualVerificationFlow-Submission=
+">Submission</h3>
+<p local-id=3D"916b3f87369b">On submission, the component emits a <code>flo=
+w:submitted</code> event to the host application. This triggers the host's =
+retention copy retrieval and verification lifecycle management.</p>
+<p local-id=3D"987b3b70e449">All "Submit" and similar action buttons displa=
+y a loading animation while the request is being processed.</p>
+<h3 local-id=3D"e070252883ad" id=3D"v2IndividualVerificationFlow-CheckingIn=
+fo">Checking Info</h3>
+<p local-id=3D"91d7d47ad1c8">After submission, the screen displays verifica=
+tion status with loading spinners for each data category being processed:</=
+p>
+<ul local-id=3D"d1aeed32-f735-446b-8fe0-ed1837935029">
+<li local-id=3D"a49e208a-a728-4016-a8a4-2b6cbd3fa994">
+<p local-id=3D"8941e64f2d26">Identity document</p></li>
+<li local-id=3D"20dec43f-d700-4b33-8211-15f55501f977">
+<p local-id=3D"d5bcac006be8">Address information</p></li>
+<li local-id=3D"9dbeb4d8-ba8d-48d1-b17f-25cb51f05960">
+<p local-id=3D"56fdef9c44bd">Supplementary documents</p></li>
+<li local-id=3D"a7069c1e-c2dd-4dd8-aabf-f389ab5d1c78">
+<p local-id=3D"4373b1079e66">Liveness check (if KYC Complete)</p></li>
+</ul>
+<h3 local-id=3D"5a8824037fe0" id=3D"v2IndividualVerificationFlow-FinalVerif=
+icationStatus">Final Verification Status</h3>
+<p local-id=3D"10467a78ad09"><strong>Success state:</strong> Once all verif=
+ication checks have passed, the screen automatically updates to display a s=
+uccess visual (e.g., green checkmark icon) and a "Verification complete" me=
+ssage.</p>
+<p local-id=3D"061701f0ff71"><strong>Failure state:</strong> If verificatio=
+n fails, the screen displays a failure visual (e.g., red X or warning icon)=
+ and a generic "Verification failed" message. No specific reason for failur=
+e is surfaced to the end user. Resolution is handled outside the embeddable=
+ UI.</p>
+<h3 local-id=3D"ca75b3bf4a1f" id=3D"v2IndividualVerificationFlow-WebhookNot=
+ifications">Webhook Notifications</h3>
+<p local-id=3D"40582067006c">As the individual's verification processing pr=
+ogresses and completes, Interro sends webhook notifications to the host app=
+lication (<code>session.screening_completed</code>). The host can query sta=
+tus via the retrieval API at any time.</p>
+<hr local-id=3D"cb7e82b4-ca17-4c0a-b825-bc1ab45aed3f">
+<h2 local-id=3D"545c321f9720" id=3D"v2IndividualVerificationFlow-Cross-Cutt=
+ingRequirements">Cross-Cutting Requirements</h2>
+<blockquote local-id=3D"271a6b07-854f-48d5-b734-7a82d27f0c22">
+<p local-id=3D"dac3843d9ae8"><em>These requirements are shared across all v=
+erification flows and are reproduced here for completeness. They are identi=
+cal to the entity flow cross-cutting requirements.</em></p>
+</blockquote>
+<h3 local-id=3D"0af759ef1dca" id=3D"v2IndividualVerificationFlow-SessionDur=
+ability">Session Durability</h3>
+<ul local-id=3D"ece18c6a-48c3-413d-a6a4-86ae369ac3ad">
+<li local-id=3D"05f51bfd-8459-48c1-ab8a-eecc0b693def">
+<p local-id=3D"c8955ab347a3">Server-side persistence on step completion =E2=
+=80=94 not browser session storage, not localStorage.</p></li>
+<li local-id=3D"104701b2-1b6b-4c20-b663-09490824c555">
+<p local-id=3D"eb57cb88576d">Cross-device resume =E2=80=94 start on desktop=
+, finish on mobile. Component keyed by external user ID; new token for same=
+ user resumes at first incomplete step.</p></li>
+<li local-id=3D"f2c7a0ff-0d9e-4b7d-9ba4-9881f0e22f33">
+<p local-id=3D"3d9fe352b291">No data loss on logout / navigation away =E2=
+=80=94 all previously completed steps survive a full logout/login cycle.</p=
+></li>
+<li local-id=3D"67fd68ce-2966-414b-9f50-52f048b49e1f">
+<p local-id=3D"1b7cdc3aa74e">Long-lived sessions =E2=80=94 sessions remain =
+resumable for 30 days.</p></li>
+</ul>
+<h3 local-id=3D"190e300323e0" id=3D"v2IndividualVerificationFlow-ProgressVi=
+sibilityOutsidetheComponent">Progress Visibility Outside the Component</h3>
+<p local-id=3D"30dfbbc39143">The host application can determine verificatio=
+n progress without loading the embedded component, via:</p>
+<ul local-id=3D"05d3be69-5b43-4caf-8250-2687a0414272">
+<li local-id=3D"70be2546-f42b-4e52-b7ea-3cda0134c09a">
+<p local-id=3D"8421320e17e1">Webhooks pushed from Interro on step completio=
+n (<code>session.step_completed</code>, <code>session.submitted</code>, <co=
+de>session.screening_completed</code>, <code>session.last_activity</code>)<=
+/p></li>
+<li local-id=3D"19a1abc0-6c95-46f6-ab35-d7d687d5c904">
+<p local-id=3D"65bc4324ec65">Polling API =E2=80=94 <code>GET /sessions/{id}=
+/status</code> returns current progress state</p></li>
+</ul>
+<p local-id=3D"b5585c4c32d1">This enables the host to show progress indicat=
+ors, trigger email campaigns, surface abandoned verifications in admin dash=
+boards, and track time-to-completion and drop-off metrics.</p>
+<h3 local-id=3D"9a64b047d584" id=3D"v2IndividualVerificationFlow-Returned-f=
+or-CorrectionsFlow">Returned-for-Corrections Flow</h3>
+<p local-id=3D"e0ae14867ad8">When a host admin or automated screening retur=
+ns a submission:</p>
+<ul local-id=3D"ee0ac86f-7cdd-4164-8bd3-e1f75d5dc528">
+<li local-id=3D"2ac0dd81-6471-42b1-bd7c-7cb70d528cf6">
+<p local-id=3D"3fe088f9b3a0">The component supports re-entry in correction =
+mode =E2=80=94 loads previously submitted data, flags items that need atten=
+tion, allows editing.</p></li>
+<li local-id=3D"4be97374-5c72-4428-aa82-24623c57019d">
+<p local-id=3D"5edbdd016de0">Correction guidance is at minimum per-step, id=
+eally per-field with human-readable reasons.</p></li>
+<li local-id=3D"f7dbdcf5-9824-4697-9f1b-dd5dd0086ab9">
+<p local-id=3D"5a980ba680b9">Two rejection modes: retry (user corrects and =
+resubmits) and final (rejected, contact support).</p></li>
+<li local-id=3D"1d23b465-2aef-4132-8c22-d753e073fece">
+<p local-id=3D"e10511642a3c">Re-completed flows emit the same <code>flow:su=
+bmitted</code> event for the host to re-process.</p></li>
+</ul>
+<h3 local-id=3D"b5b0b5381e95" id=3D"v2IndividualVerificationFlow-Client-Sid=
+eEvents(Component=E2=86=92HostApp)">Client-Side Events (Component =E2=86=92=
+ Host App)</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"7b=
+49b943-93ff-47a2-bea8-6ed0f0ea89d2" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"ffe414c4-98c0-48f7-a2fd-2602d08bedf4">
+<th data-local-id=3D"b54af98a-f6f7-4040-a7f2-cdf455562528" class=3D"conflue=
+nceTh">
+<p local-id=3D"beeba1309dc4">Event</p></th>
+<th data-local-id=3D"ac268a94-04ce-4ea2-8986-915cfa626c6c" class=3D"conflue=
+nceTh">
+<p local-id=3D"ba4304f6cd5a">When</p></th>
+<th data-local-id=3D"d211d98c-a658-479b-bf4d-d7202220c14b" class=3D"conflue=
+nceTh">
+<p local-id=3D"0e8d0a95ef81">Payload</p></th>
+<th data-local-id=3D"034fbaab-c1e9-4b9b-bfc1-8d8ff0d026f1" class=3D"conflue=
+nceTh">
+<p local-id=3D"2009ca21cc43">Host Action</p></th>
+</tr>
+<tr data-local-id=3D"10c0778b-049e-41f4-8d6c-a18a8e52bd42">
+<td data-local-id=3D"c3a86236-6ec5-45ba-bcbd-3a42eb762ea6" class=3D"conflue=
+nceTd">
+<p local-id=3D"0e154edfbf87"><code>step:completed</code></p></td>
+<td data-local-id=3D"77446720-bb1d-494d-9e4f-edba9d103b70" class=3D"conflue=
+nceTd">
+<p local-id=3D"4bcd3e5bd779">User completes a step and data is saved</p></t=
+d>
+<td data-local-id=3D"657952d9-e1cd-44d1-8c0e-89675b93e554" class=3D"conflue=
+nceTd">
+<p local-id=3D"2881a3eea97b">Step number, step name, completion %</p></td>
+<td data-local-id=3D"564f37a8-d5aa-4552-8bae-7acde5e8e932" class=3D"conflue=
+nceTd">
+<p local-id=3D"356d6a55886a">Update progress indicator in host UI</p></td>
+</tr>
+<tr data-local-id=3D"93539eba-1470-49b4-abd9-de7ae85dd83b">
+<td data-local-id=3D"748cde9e-ab2e-459a-b6c5-d3f675060829" class=3D"conflue=
+nceTd">
+<p local-id=3D"3f13ba161dd3"><code>step:navigated</code></p></td>
+<td data-local-id=3D"cbae21fc-f968-4f47-aa9a-bd2685869d9a" class=3D"conflue=
+nceTd">
+<p local-id=3D"2b4fe15b4fac">User navigates between steps</p></td>
+<td data-local-id=3D"e261f1bb-a32e-4363-b700-39a195d42db7" class=3D"conflue=
+nceTd">
+<p local-id=3D"fff87c8d1e28">Current step, direction</p></td>
+<td data-local-id=3D"624f09a4-cf45-489f-9b2f-721ccbbc1d27" class=3D"conflue=
+nceTd">
+<p local-id=3D"985b48539c16">Analytics</p></td>
+</tr>
+<tr data-local-id=3D"c5247dd2-a2bb-498f-a2bf-0ebdbaf5b8df">
+<td data-local-id=3D"6ae57443-62e8-4fdc-ad78-c7a1767bce03" class=3D"conflue=
+nceTd">
+<p local-id=3D"271c782e7fca"><code>flow:submitted</code></p></td>
+<td data-local-id=3D"f66c9d23-8ecc-49c7-9635-fdb44c1cf496" class=3D"conflue=
+nceTd">
+<p local-id=3D"8ae9c6ed0f8b">User submitted within the component</p></td>
+<td data-local-id=3D"ce9417c3-cec7-41ff-b902-f2070a8b435f" class=3D"conflue=
+nceTd">
+<p local-id=3D"6bae83daee7f">Reference ID</p></td>
+<td data-local-id=3D"b297c755-7f53-4cbc-89e7-1259edc9efe3" class=3D"conflue=
+nceTd">
+<p local-id=3D"506d586787fb">Trigger retention copy retrieval, update verif=
+ication lifecycle</p></td>
+</tr>
+<tr data-local-id=3D"456e2900-5f30-40cb-83e5-8dccfbd0f7ad">
+<td data-local-id=3D"326f15f0-cffc-4f01-892b-647ad7b40e6d" class=3D"conflue=
+nceTd">
+<p local-id=3D"8a46aeaad384"><code>flow:resumed</code></p></td>
+<td data-local-id=3D"b3e0fff1-0f2f-419b-94b4-4dac123147e6" class=3D"conflue=
+nceTd">
+<p local-id=3D"73df4f9abfaf">Component loaded with existing partial data</p=
+></td>
+<td data-local-id=3D"8e3398ed-d15a-431d-a8a8-450a433e3c47" class=3D"conflue=
+nceTd">
+<p local-id=3D"6ecbe90d24db">Resumed step, overall progress</p></td>
+<td data-local-id=3D"fe845939-a530-4396-a779-f4e237f2d485" class=3D"conflue=
+nceTd">
+<p local-id=3D"91afbc98aa5a">Sync host UI state</p></td>
+</tr>
+<tr data-local-id=3D"96ba8e4c-dc6b-4ed3-a98c-6947dd18a593">
+<td data-local-id=3D"45655224-c3ce-4d5b-96ed-bc4242eb76fa" class=3D"conflue=
+nceTd">
+<p local-id=3D"0b1233947527"><code>document:uploaded</code></p></td>
+<td data-local-id=3D"ef8aaab1-7ddb-42cc-a8f7-42643dfe59f3" class=3D"conflue=
+nceTd">
+<p local-id=3D"845e4f1486b0">A document was uploaded</p></td>
+<td data-local-id=3D"cbc02424-8286-46be-b375-d1d01801b53c" class=3D"conflue=
+nceTd">
+<p local-id=3D"434daee48e97">Document type, reference</p></td>
+<td data-local-id=3D"177825f1-5b51-4c9a-8d41-039b0e991b8c" class=3D"conflue=
+nceTd">
+<p local-id=3D"7377fcd3528a">Track for progress</p></td>
+</tr>
+<tr data-local-id=3D"b6bc280c-8b6c-4e09-b972-294c22de0e54">
+<td data-local-id=3D"da2e7c39-b884-4204-ac41-a6c66366a552" class=3D"conflue=
+nceTd">
+<p local-id=3D"9654eeb52e90"><code>error</code></p></td>
+<td data-local-id=3D"2e24e3a7-7721-48dd-a584-55bcadf8d0de" class=3D"conflue=
+nceTd">
+<p local-id=3D"8439de672f13">Validation failure, save failure, etc.</p></td=
+>
+<td data-local-id=3D"4150fdda-c446-4cb8-b2cb-69f57e44343d" class=3D"conflue=
+nceTd">
+<p local-id=3D"a10839494891">Error type, message</p></td>
+<td data-local-id=3D"f5c45a79-371a-4741-ac64-67e2679be826" class=3D"conflue=
+nceTd">
+<p local-id=3D"412f42b713dd">Display error or retry</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote local-id=3D"e9fec234-5362-47f8-a1e5-2c887172ec71">
+<p local-id=3D"3d7c57330ef1"><em>Note: The individual flow does not emit </=
+em><code>person:completed</code><em> events, as there is only one person be=
+ing verified.</em></p>
+</blockquote>
+<h3 local-id=3D"f5609900fc8f" id=3D"v2IndividualVerificationFlow-RetrievalA=
+PI">Retrieval API</h3>
+<p local-id=3D"2bf12a079dcc">Interro exposes endpoints for the host to retr=
+ieve full datasets at any time:</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"3f=
+514a5c-d72a-4746-8e74-1a20ca41f90c" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"67c175c3-a54a-4f08-85ae-e9e2cbb6c86f">
+<th data-local-id=3D"505d98a6-f395-4743-a553-bd976a558ec8" class=3D"conflue=
+nceTh">
+<p local-id=3D"09f998c59765">Data</p></th>
+<th data-local-id=3D"955ae3d6-df2a-46d9-852a-c7ae01793821" class=3D"conflue=
+nceTh">
+<p local-id=3D"85c6d17fd9e6">Endpoint</p></th>
+<th data-local-id=3D"2e4b573a-cda5-4e3e-b1ae-9f925511ebef" class=3D"conflue=
+nceTh">
+<p local-id=3D"51a8766218de">Format</p></th>
+</tr>
+<tr data-local-id=3D"2a4e95b9-a0c1-4f1b-a9b3-cf89127579c7">
+<td data-local-id=3D"e8ba0a8b-1ed8-4315-9b0e-5ba689ee509e" class=3D"conflue=
+nceTd">
+<p local-id=3D"f0886c324602">Applicant data (name, DOB, address, identity)<=
+/p></td>
+<td data-local-id=3D"1e5e5993-ca4b-44a4-85d0-c4c68a28e973" class=3D"conflue=
+nceTd">
+<p local-id=3D"942f90c8250e"><code>GET /sessions/{id}/applicants</code></p>=
+</td>
+<td data-local-id=3D"42a322b5-b4a8-4ff6-a064-0f024e84e6ac" class=3D"conflue=
+nceTd">
+<p local-id=3D"b1274982332a">Structured JSON</p></td>
+</tr>
+<tr data-local-id=3D"32598480-60a7-4ec1-934a-207aa7141309">
+<td data-local-id=3D"8f7db740-539d-4759-b469-28ce60bfdbc6" class=3D"conflue=
+nceTd">
+<p local-id=3D"79c3947db71e">Document images (photo ID, proof of address)</=
+p></td>
+<td data-local-id=3D"bf0c936d-9d65-4b03-8d36-f85a3e7e2648" class=3D"conflue=
+nceTd">
+<p local-id=3D"35ec3fddbf8a"><code>GET /sessions/{id}/documents/{docId}</co=
+de></p></td>
+<td data-local-id=3D"2c04cfb8-734f-4212-a71d-a18c2c68e42a" class=3D"conflue=
+nceTd">
+<p local-id=3D"1cd0c2bf2759">Binary (image/PDF)</p></td>
+</tr>
+<tr data-local-id=3D"c841e507-528b-4e2a-b5fa-1727d5d19e83">
+<td data-local-id=3D"8c22a7db-ab76-4739-9013-6e095090aeee" class=3D"conflue=
+nceTd">
+<p local-id=3D"50d3510f39d4">Document metadata (type, upload date, file inf=
+o)</p></td>
+<td data-local-id=3D"1f4f1349-bb43-4175-b4f3-5857fbfc1971" class=3D"conflue=
+nceTd">
+<p local-id=3D"36c65968d30d"><code>GET /sessions/{id}/documents</code></p><=
+/td>
+<td data-local-id=3D"c2e68061-c7c3-4d64-9146-2b57683c70fe" class=3D"conflue=
+nceTd">
+<p local-id=3D"ffba8d0ab7be">Structured JSON</p></td>
+</tr>
+<tr data-local-id=3D"bba09298-a19a-4d36-87f9-07c850bf298c">
+<td data-local-id=3D"13649bbe-7686-4f02-8b41-438b171d470e" class=3D"conflue=
+nceTd">
+<p local-id=3D"a31117507d7f">Screening results</p></td>
+<td data-local-id=3D"4f20eb3c-3fd4-4dba-aff8-708588b8c946" class=3D"conflue=
+nceTd">
+<p local-id=3D"fde4cda000a4"><code>GET /sessions/{id}/screening</code></p><=
+/td>
+<td data-local-id=3D"a5e5ff03-6404-4270-844a-319be2ca5484" class=3D"conflue=
+nceTd">
+<p local-id=3D"db81380d8cd8">Structured JSON</p></td>
+</tr>
+<tr data-local-id=3D"b183835a-2f89-4e8f-8e99-0556d7f97f55">
+<td data-local-id=3D"199923e4-a47d-4cfd-9301-f284f37462d3" class=3D"conflue=
+nceTd">
+<p local-id=3D"e5c26c83d632">Session progress (step completion, status)</p>=
+</td>
+<td data-local-id=3D"ca9bf530-736e-432c-aab2-57436bf64937" class=3D"conflue=
+nceTd">
+<p local-id=3D"4252f6d4f0e1"><code>GET /sessions/{id}/status</code></p></td=
+>
+<td data-local-id=3D"28afa56a-7b75-4287-80d9-1313ef5d2369" class=3D"conflue=
+nceTd">
+<p local-id=3D"b2097e854817">Structured JSON</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"06c90742b50f" id=3D"v2IndividualVerificationFlow-Security&a=
+mp;Compliance">Security &amp; Compliance</h3>
+<ul local-id=3D"0a2f1af8-c305-4a32-bb00-f82743d37198">
+<li local-id=3D"73df78d3-03d6-4a66-83d5-b47a076858df">
+<p local-id=3D"8cacf7c39823"><strong>PII in transit:</strong> TLS required =
+for all communication between component, Interro backend, and host backend.=
+</p></li>
+<li local-id=3D"e235e86a-77b3-4d27-9ac9-de283743cb9e">
+<p local-id=3D"652f3d1724ee"><strong>PII at rest:</strong> SSNs, passport n=
+umbers, and identity documents encrypted at rest in Interro's storage. Host=
+ encrypts its retention copies using its own encryption pipeline.</p></li>
+<li local-id=3D"ec1e2abf-daf4-4fe9-9132-0325c65e184b">
+<p local-id=3D"40a7a8cc50a4"><strong>Document uploads:</strong> Handled dir=
+ectly by the component to Interro infrastructure =E2=80=94 never routed thr=
+ough the host frontend.</p></li>
+<li local-id=3D"daf1c978-1880-48d5-b561-342d44bb9813">
+<p local-id=3D"7fe3316589fb"><strong>AML/OFAC screening:</strong> The indiv=
+idual is screened against AML/OFAC watchlists. Results delivered via webhoo=
+k.</p></li>
+<li local-id=3D"93e99f2f-18e9-477f-b7e3-213861aee3f6">
+<p local-id=3D"2164adf541ef"><strong>Data retention:</strong> Host requires=
+ retrieval access for a minimum of 10 years. If Interro purges data on a sh=
+orter cycle, the host must be notified in advance.</p></li>
+<li local-id=3D"39c5ebde-64f6-421a-a9b1-8ef87867f1e8">
+<p local-id=3D"c4b0df102971"><strong>Webhook security:</strong> HMAC signat=
+ure verification, retry with backoff on delivery failure, idempotency keys.=
+</p></li>
+</ul>
+<p local-id=3D"965422268d7b"></p>
+<p local-id=3D"ce38764fbdbe">Edits to v1 Individual FLow</p>
+<ul local-id=3D"10f3a1198702">
+<li local-id=3D"4dfa291c8ec4">
+<p local-id=3D"2a9b22c7b188">Both KYC basic and KYC Complete</p>
+<ul local-id=3D"f710529d7149">
+<li local-id=3D"3b6b4914134f">
+<p local-id=3D"f03a6ebe8dcc">There should be a flwo to have the user enter =
+in their first and last name, date of birth, SSN / tax identifier for other=
+ countries than the US. the SSN / tax id input should be masked with an opt=
+ional =E2=80=9CShow=E2=80=9D button. this will be the first step after the =
+user agrees to the agreements</p></li>
+<li local-id=3D"375191fa42ba">
+<p local-id=3D"dd28519c3d83">The collection of the address will be before t=
+he Socure sdk initialization. keep the address collection screen general fl=
+ow the same though, keep asking for the country.</p></li>
+</ul></li>
+</ul>
+<ul local-id=3D"3564fe7c99b5">
+<li local-id=3D"5f695eb213e2">
+<p local-id=3D"871570df5265">KYC Basic</p>
+<ul local-id=3D"a079f78d0a75">
+<li local-id=3D"3f666c2d5bbc">
+<p local-id=3D"e117d7ad3f11">KYC Basic will continue to have a document upl=
+oad screen in the embeddable UI for ID. No Socure SDK.</p></li>
+<li local-id=3D"829851ac5945">
+<p local-id=3D"1932a6d878d9">So the steps in step overview for KYC Basic wi=
+ll be: 1. Provide Identity Information. 2. Provide Address information. 3. =
+Provide Supplementary documents (if the application=E2=80=99s context id in=
+dicates that supplementary documents must be uploaded). 4. Upload Identity =
+Documents</p></li>
+</ul></li>
+<li local-id=3D"671a09358061">
+<p local-id=3D"8ef1531a6fe9">KYC Complete</p>
+<ul local-id=3D"3cb20df10059">
+<li local-id=3D"6b5d294d019e">
+<p local-id=3D"21936a1ff8dd">KYC Complete will not have a document upload s=
+creen in teh embeddable UI for ID. Instead, the embeddable UI will route to=
+ the Socure SDK through Alloy through our KYC and risk review microservice.=
+ The SDK will collect the ID through a scan or allow the user to upload doc=
+umens. The Socure SDK will initiate a selfie.</p></li>
+<li local-id=3D"aaf1ec1402c2">
+<p local-id=3D"be0fad1eb513">The Socure SDK will have a certain way of bein=
+g initialized. There should be a slick looking screen that explains how it =
+will work. there should be a centered header of =E2=80=9CIdentity Verificat=
+ion=E2=80=9D. Then it should explain in steps: 1. Snap a photo of Id or upl=
+oad it. 2. Take a selfie to verify identity. Then there should be a button =
+to instantiate the SDK.</p></li>
+<li local-id=3D"3c515e5ece26">
+<p local-id=3D"51c074bdf58c">So the steps in the step overview for kyc comp=
+lete should be: 1. Provide identity information. 2. provide address informa=
+tion. 3. Provide Supplementary documents (if the application=E2=80=99s cont=
+ext id indicates that supplementary documents must be uploaded). 4. Identit=
+y Verification</p></li>
+</ul></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_56_1031668731.1774297760771--

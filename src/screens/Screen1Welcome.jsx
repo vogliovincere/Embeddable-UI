@@ -1,12 +1,14 @@
 import { useState } from 'react'
 
-export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms }) {
+export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms, onSelectFlow }) {
   const [showPanel, setShowPanel] = useState(false)
+  const [pendingFlow, setPendingFlow] = useState(null)
 
-  const handleCorporateClick = () => {
+  const handleFlowClick = (type) => {
     if (agreedToTerms) {
-      goNext()
+      onSelectFlow(type)
     } else {
+      setPendingFlow(type)
       setShowPanel(true)
     }
   }
@@ -14,7 +16,9 @@ export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms
   const handleAgree = () => {
     setAgreedToTerms(true)
     setShowPanel(false)
-    goNext()
+    if (pendingFlow) {
+      onSelectFlow(pendingFlow)
+    }
   }
 
   return (
@@ -47,38 +51,50 @@ export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms
         </p>
 
         <div style={{ width: '100%', padding: '0 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <button className="btn btn-secondary" style={{ opacity: 0.5, cursor: 'not-allowed' }}>
+          <button className="btn btn-primary" onClick={() => handleFlowClick('individual')}>
             Individual
           </button>
-          <button className="btn btn-primary" onClick={handleCorporateClick}>
+          <button className="btn btn-secondary" onClick={() => handleFlowClick('entity')}>
             Corporate / Entity
           </button>
         </div>
       </div>
 
       {showPanel && (
-        <div className="slide-up-panel">
-          <h2>Terms & Conditions</h2>
-          <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.6, margin: '16px 0' }}>
-            By proceeding, you agree to share your information for the purpose of identity verification and compliance screening. Your data will be processed in accordance with our{' '}
-            <a href="#" style={{ color: 'var(--color-accent)' }}>Privacy Policy</a>{' '}
-            and{' '}
-            <a href="#" style={{ color: 'var(--color-accent)' }}>Data Sharing Agreement</a>.
-          </p>
-          <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.6, marginBottom: 24 }}>
-            We collect and process personal information including identification documents, business registration details, and beneficial ownership information as required by applicable anti-money laundering regulations.
-          </p>
-          <button className="btn btn-primary" onClick={handleAgree}>
-            I agree
-          </button>
-          <button
-            className="btn btn-ghost"
-            style={{ marginTop: 8, width: '100%' }}
+        <>
+          <div
+            className="slide-up-overlay"
             onClick={() => setShowPanel(false)}
-          >
-            Cancel
-          </button>
-        </div>
+          />
+          <div className="slide-up-panel">
+            <h2 style={{ marginBottom: 4 }}>Before you continue</h2>
+            <p style={{ fontSize: 13, color: 'var(--color-gray-400)', marginBottom: 16 }}>
+              Identity &amp; compliance verification
+            </p>
+            <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.6, marginBottom: 16 }}>
+              You are about to complete a Know Your Customer (KYC) verification. This process helps us confirm your identity and comply with anti-money laundering regulations.
+            </p>
+            <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.6, marginBottom: 16 }}>
+              By continuing, you agree to share your information for the purpose of identity verification. Your data will be processed in accordance with our{' '}
+              <a href="#" style={{ color: 'var(--color-accent)' }}>Privacy Policy</a>{' '}
+              and{' '}
+              <a href="#" style={{ color: 'var(--color-accent)' }}>Data Sharing Agreement</a>.
+            </p>
+            <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.6, marginBottom: 24 }}>
+              We collect and process personal information including identification documents and address information as required by applicable regulations.
+            </p>
+            <button className="btn btn-primary" onClick={handleAgree}>
+              I agree
+            </button>
+            <button
+              className="btn btn-ghost"
+              style={{ marginTop: 8, width: '100%' }}
+              onClick={() => setShowPanel(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </>
       )}
     </div>
   )
