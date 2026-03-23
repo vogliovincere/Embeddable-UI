@@ -5,7 +5,7 @@ import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 
-export default function IndIdentityVerification({ formData, goNext, goBack }) {
+export default function IndIdentityVerification({ formData, goNext, goBack, flowType }) {
   const [status, setStatus] = useState('idle') // idle | loading | success | error
   const [errorMsg, setErrorMsg] = useState('')
   const [showPhoneModal, setShowPhoneModal] = useState(false)
@@ -55,10 +55,9 @@ export default function IndIdentityVerification({ formData, goNext, goBack }) {
   return (
     <>
       <div className="progress-bar">
-        <div className="progress-segment active" />
-        <div className="progress-segment active" />
-        <div className="progress-segment active" />
-        <div className="progress-segment active" />
+        {Array.from({ length: flowType === 'joint' ? 5 : 4 }).map((_, i) => (
+          <div key={i} className={`progress-segment ${i <= 3 ? 'active' : ''}`} />
+        ))}
       </div>
       <div className="header">
         <button className="back-button" onClick={goBack}>←</button>

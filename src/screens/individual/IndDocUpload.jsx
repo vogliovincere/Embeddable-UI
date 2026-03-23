@@ -54,7 +54,7 @@ function UploadZone({ label, file, onUpload, onRemove }) {
   )
 }
 
-export default function IndDocUpload({ formData, dispatch, goNext, goBack, contextId }) {
+export default function IndDocUpload({ formData, dispatch, goNext, goBack, contextId, flowType }) {
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
   const [showPhoneModal, setShowPhoneModal] = useState(false)
@@ -62,7 +62,7 @@ export default function IndDocUpload({ formData, dispatch, goNext, goBack, conte
   const { idCountry, idDocType, idDocFront, idDocBack } = formData.individualData
   const sides = docUploadSides[idDocType] || ['Front side']
   const needsBack = sides.length > 1
-  const totalSteps = 4
+  const totalSteps = flowType === 'joint' ? 5 : 4
 
   const validate = () => {
     const errs = {}

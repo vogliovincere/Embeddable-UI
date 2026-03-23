@@ -2,13 +2,13 @@ import { useState } from 'react'
 import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 import MaskedSsnInput from '../../components/MaskedSsnInput'
 
-export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, contextId }) {
+export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, contextId, flowType }) {
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
   const [showPhoneModal, setShowPhoneModal] = useState(false)
 
   const { firstName, lastName, dob, taxId } = formData.individualData
-  const totalSteps = contextId === 'kyc_basic' ? 4 : 4
+  const totalSteps = flowType === 'joint' ? 5 : 4
 
   const validate = () => {
     const errs = {}

@@ -3,7 +3,7 @@ import { countries } from '../../data/countries'
 import { getDocTypesForCountry } from '../../data/identityDocTypes'
 import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 
-export default function IndDocCountryType({ formData, dispatch, goNext, goBack, contextId }) {
+export default function IndDocCountryType({ formData, dispatch, goNext, goBack, contextId, flowType }) {
   const [errors, setErrors] = useState({})
   const [showCountryModal, setShowCountryModal] = useState(false)
   const [countrySearch, setCountrySearch] = useState('')
@@ -11,7 +11,7 @@ export default function IndDocCountryType({ formData, dispatch, goNext, goBack, 
   const [showPhoneModal, setShowPhoneModal] = useState(false)
 
   const { idCountry, idDocType } = formData.individualData
-  const totalSteps = 4
+  const totalSteps = flowType === 'joint' ? 5 : 4
 
   const filteredCountries = countries.filter(c =>
     c.name.toLowerCase().includes(countrySearch.toLowerCase()) ||

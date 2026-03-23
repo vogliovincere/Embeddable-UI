@@ -61,7 +61,7 @@ function InlineUploadZone({ docType, onUpload, onCancel }) {
   )
 }
 
-export default function IndSupplementaryDocs({ formData, dispatch, goNext, goBack, contextId }) {
+export default function IndSupplementaryDocs({ formData, dispatch, goNext, goBack, contextId, flowType }) {
   const [loading, setLoading] = useState(false)
   const [validationAttempted, setValidationAttempted] = useState(false)
   // null = no pending upload; string = doc type selected, awaiting file
@@ -71,7 +71,7 @@ export default function IndSupplementaryDocs({ formData, dispatch, goNext, goBac
 
   const proofDocs = formData.individualData.proofOfAddress || []
   const fulfilled = proofDocs.length > 0
-  const totalSteps = 4
+  const totalSteps = flowType === 'joint' ? 5 : 4
 
   const handleContinue = () => {
     setValidationAttempted(true)

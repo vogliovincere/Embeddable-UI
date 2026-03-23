@@ -20,6 +20,11 @@ import IndDocCountryType from './screens/individual/IndDocCountryType'
 import IndDocUpload from './screens/individual/IndDocUpload'
 import IndIdentityVerification from './screens/individual/IndIdentityVerification'
 import IndStatus from './screens/individual/IndStatus'
+import JointStepOverview from './screens/joint/JointStepOverview'
+import JointCoHolderEntry from './screens/joint/JointCoHolderEntry'
+import JointAddCoHolder from './screens/joint/JointAddCoHolder'
+import JointVerification from './screens/joint/JointVerification'
+import JointStatus from './screens/joint/JointStatus'
 
 const individualInitialState = {
   firstName: '',
@@ -37,6 +42,13 @@ const individualInitialState = {
   postalCode: '',
   apartment: '',
   proofOfAddress: [],
+}
+
+const jointInitialState = {
+  coHolders: [],
+  editingCoHolderIndex: null,
+  numberOfHolders: 3,
+  jointAccountType: 'JTWROS',
 }
 
 const initialState = {
@@ -58,6 +70,7 @@ const initialState = {
   associatedParties: [],
   editingPartyIndex: null,
   individualData: { ...individualInitialState },
+  jointData: { ...jointInitialState },
 }
 
 function formReducer(state, action) {
@@ -84,6 +97,24 @@ function formReducer(state, action) {
       return { ...state, editingPartyIndex: action.index }
     case 'SET_INDIVIDUAL_DATA':
       return { ...state, individualData: { ...state.individualData, ...action.payload } }
+    // Joint flow actions
+    case 'ADD_CO_HOLDER':
+      return { ...state, jointData: { ...state.jointData, coHolders: [...state.jointData.coHolders, action.payload] } }
+    case 'UPDATE_CO_HOLDER': {
+      const coHolders = [...state.jointData.coHolders]
+      coHolders[action.index] = action.payload
+      return { ...state, jointData: { ...state.jointData, coHolders } }
+    }
+    case 'DELETE_CO_HOLDER':
+      return { ...state, jointData: { ...state.jointData, coHolders: state.jointData.coHolders.filter((_, i) => i !== action.index) } }
+    case 'SET_EDITING_CO_HOLDER':
+      return { ...state, jointData: { ...state.jointData, editingCoHolderIndex: action.index } }
+    case 'SET_JOINT_CONFIG':
+      return { ...state, jointData: { ...state.jointData, ...action.payload } }
+    case 'CLEAR_JOINT_DATA':
+      return { ...state, jointData: { ...jointInitialState } }
+    case 'CLEAR_CO_HOLDERS':
+      return { ...state, jointData: { ...state.jointData, coHolders: [], editingCoHolderIndex: null } }
     case 'CLEAR_ENTITY_DETAILS':
       return { ...state, entityDetails: initialState.entityDetails }
     case 'CLEAR_SUPPLEMENTARY_DOCS':
@@ -102,11 +133,6 @@ function formReducer(state, action) {
 }
 
 // Individual flow screen numbers: 101+
-// Shared: Disclaimer (101), Step Overview (102), Consent (103)
-// v2 flow: Personal Info (104), Address (105), Supp Docs (106)
-// KYC Complete: Identity Verification via SDK (107)
-// KYC Basic: Doc Country/Type (108), Doc Upload (109)
-// Status (110)
 const IND_SCREENS = {
   DISCLAIMER: 101,
   STEP_OVERVIEW: 102,
@@ -114,10 +140,27 @@ const IND_SCREENS = {
   PERSONAL_INFO: 104,
   ADDRESS: 105,
   SUPPLEMENTARY_DOCS: 106,
-  IDENTITY_VERIFICATION: 107,  // KYC Complete only — Alloy SDK
-  DOC_COUNTRY_TYPE: 108,       // KYC Basic only
-  DOC_UPLOAD: 109,             // KYC Basic only
+  IDENTITY_VERIFICATION: 107,
+  DOC_COUNTRY_TYPE: 108,
+  DOC_UPLOAD: 109,
   STATUS: 110,
+}
+
+// Joint flow screen numbers: 201+
+const JOINT_SCREENS = {
+  DISCLAIMER: 201,
+  STEP_OVERVIEW: 202,
+  CONSENT: 203,
+  PERSONAL_INFO: 204,
+  ADDRESS: 205,
+  SUPPLEMENTARY_DOCS: 206,
+  IDENTITY_VERIFICATION: 207,
+  DOC_COUNTRY_TYPE: 208,
+  DOC_UPLOAD: 209,
+  CO_HOLDER_ENTRY: 210,
+  ADD_CO_HOLDER: 211,
+  VERIFICATION: 212,
+  STATUS: 213,
 }
 
 // KYC Complete: personal info → address → supp docs → SDK verification → status
@@ -125,11 +168,16 @@ const indScreenOrderComplete = [101, 102, 103, 104, 105, 106, 107, 110]
 // KYC Basic: personal info → address → supp docs → doc country/type → doc upload → status
 const indScreenOrderBasic = [101, 102, 103, 104, 105, 106, 108, 109, 110]
 
+// Joint KYC Complete: disclaimer → overview → consent → personal → address → supp docs → SDK → co-holders → verification → status
+const jointScreenOrderComplete = [201, 202, 203, 204, 205, 206, 207, 210, 212, 213]
+// Joint KYC Basic: disclaimer → overview → consent → personal → address → supp docs → doc type → doc upload → co-holders → verification → status
+const jointScreenOrderBasic = [201, 202, 203, 204, 205, 206, 208, 209, 210, 212, 213]
+
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState(1)
   const [formData, dispatch] = useReducer(formReducer, initialState)
   const [agreedToTerms, setAgreedToTerms] = useState(false)
-  const [flowType, setFlowType] = useState(null) // null | 'entity' | 'individual'
+  const [flowType, setFlowType] = useState(null) // null | 'entity' | 'individual' | 'joint'
   const [contextId, setContextId] = useState('kyc_complete') // kyc_complete | kyc_basic
 
   // Read initialization params from URL query string.
@@ -137,6 +185,9 @@ export default function App() {
     const params = new URLSearchParams(window.location.search)
     const pathType = params.get('path_type')
     const ctxId = params.get('context_id')
+    const numHolders = parseInt(params.get('number_of_holders'), 10)
+    const jointType = params.get('joint_account_type')
+
     if (ctxId === 'kyc_basic' || ctxId === 'kyc_complete') {
       setContextId(ctxId)
     }
@@ -146,15 +197,28 @@ export default function App() {
     } else if (pathType === 'entity') {
       setFlowType('entity')
       setCurrentScreen(2)
+    } else if (pathType === 'joint') {
+      setFlowType('joint')
+      if (numHolders >= 2 && numHolders <= 5) {
+        dispatch({ type: 'SET_JOINT_CONFIG', payload: { numberOfHolders: numHolders } })
+      }
+      if (jointType === 'JTWROS' || jointType === 'TIC') {
+        dispatch({ type: 'SET_JOINT_CONFIG', payload: { jointAccountType: jointType } })
+      }
+      setCurrentScreen(JOINT_SCREENS.DISCLAIMER)
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const getIndScreenOrder = () =>
-    contextId === 'kyc_basic' ? indScreenOrderBasic : indScreenOrderComplete
+  const getScreenOrder = () => {
+    if (flowType === 'joint') {
+      return contextId === 'kyc_basic' ? jointScreenOrderBasic : jointScreenOrderComplete
+    }
+    return contextId === 'kyc_basic' ? indScreenOrderBasic : indScreenOrderComplete
+  }
 
   const goNext = () => {
-    if (flowType === 'individual') {
-      const order = getIndScreenOrder()
+    if (flowType === 'individual' || flowType === 'joint') {
+      const order = getScreenOrder()
       const idx = order.indexOf(currentScreen)
       if (idx >= 0 && idx < order.length - 1) {
         setCurrentScreen(order[idx + 1])
@@ -165,8 +229,8 @@ export default function App() {
   }
 
   const goBack = () => {
-    if (flowType === 'individual') {
-      const order = getIndScreenOrder()
+    if (flowType === 'individual' || flowType === 'joint') {
+      const order = getScreenOrder()
       const idx = order.indexOf(currentScreen)
       if (idx > 0) {
         setCurrentScreen(order[idx - 1])
@@ -186,6 +250,8 @@ export default function App() {
     setFlowType(type)
     if (type === 'individual') {
       setCurrentScreen(IND_SCREENS.DISCLAIMER)
+    } else if (type === 'joint') {
+      setCurrentScreen(JOINT_SCREENS.DISCLAIMER)
     } else {
       setCurrentScreen(2) // entity disclaimer
     }
@@ -201,6 +267,7 @@ export default function App() {
     agreedToTerms,
     setAgreedToTerms,
     contextId,
+    flowType,
   }
 
   const renderScreen = () => {
@@ -209,7 +276,41 @@ export default function App() {
       return <Screen1Welcome {...props} onSelectFlow={handleSelectFlow} />
     }
 
-    // Individual flow screens
+    // Joint flow screens (201+)
+    if (currentScreen >= 201) {
+      switch (currentScreen) {
+        case JOINT_SCREENS.DISCLAIMER:
+          return <Screen2Disclaimer {...props} />
+        case JOINT_SCREENS.STEP_OVERVIEW:
+          return <JointStepOverview {...props} />
+        case JOINT_SCREENS.CONSENT:
+          return <Screen4Consent {...props} />
+        case JOINT_SCREENS.PERSONAL_INFO:
+          return <IndPersonalInfo {...props} />
+        case JOINT_SCREENS.ADDRESS:
+          return <IndAddress {...props} />
+        case JOINT_SCREENS.SUPPLEMENTARY_DOCS:
+          return <IndSupplementaryDocs {...props} />
+        case JOINT_SCREENS.IDENTITY_VERIFICATION:
+          return <IndIdentityVerification {...props} />
+        case JOINT_SCREENS.DOC_COUNTRY_TYPE:
+          return <IndDocCountryType {...props} />
+        case JOINT_SCREENS.DOC_UPLOAD:
+          return <IndDocUpload {...props} />
+        case JOINT_SCREENS.CO_HOLDER_ENTRY:
+          return <JointCoHolderEntry {...props} />
+        case JOINT_SCREENS.ADD_CO_HOLDER:
+          return <JointAddCoHolder {...props} />
+        case JOINT_SCREENS.VERIFICATION:
+          return <JointVerification {...props} />
+        case JOINT_SCREENS.STATUS:
+          return <JointStatus {...props} />
+        default:
+          return <Screen1Welcome {...props} onSelectFlow={handleSelectFlow} />
+      }
+    }
+
+    // Individual flow screens (101+)
     if (currentScreen >= 101) {
       switch (currentScreen) {
         case IND_SCREENS.DISCLAIMER:
@@ -349,6 +450,41 @@ export default function App() {
     if (contextId === 'kyc_basic') prefillIndIdentityDoc()
   }
 
+  // Joint prefill helpers
+  const coHolderPersonas = [
+    { firstName: 'Lisa', lastName: 'Park', dob: '05/10/1988', email: 'lisa.park@email.com', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'New York', streetAddress: '456 Broadway', city: 'New York', postalCode: '10013', apartment: 'Suite 12A' },
+    { firstName: 'Robert', lastName: 'Kim', dob: '12/01/1975', email: 'robert.kim@email.com', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Texas', streetAddress: '789 Elm Street', city: 'Austin', postalCode: '73301', apartment: '' },
+    { firstName: 'Amanda', lastName: 'Torres', dob: '08/19/1992', email: 'amanda.torres@email.com', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Florida', streetAddress: '321 Ocean Drive', city: 'Miami', postalCode: '33139', apartment: 'Unit 8' },
+    { firstName: 'James', lastName: 'Wright', dob: '02/28/1983', email: 'james.wright@email.com', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Illinois', streetAddress: '555 Michigan Ave', city: 'Chicago', postalCode: '60601', apartment: '' },
+  ]
+
+  const prefillCoHolder = () => {
+    const usedEmails = new Set(formData.jointData.coHolders.map(h => h.email))
+    const next = coHolderPersonas.find(p => !usedEmails.has(p.email))
+    if (!next) return
+    dispatch({ type: 'ADD_CO_HOLDER', payload: next })
+  }
+
+  const prefillJointAll = () => {
+    setAgreedToTerms(true)
+    prefillIndPersonalInfo()
+    prefillIndAddress()
+    prefillIndSupDocs()
+    if (contextId === 'kyc_basic') prefillIndIdentityDoc()
+    // Add co-holders up to required count
+    const required = formData.jointData.numberOfHolders - 1
+    const usedEmails = new Set(formData.jointData.coHolders.map(h => h.email))
+    let added = formData.jointData.coHolders.length
+    for (const persona of coHolderPersonas) {
+      if (added >= required) break
+      if (!usedEmails.has(persona.email)) {
+        dispatch({ type: 'ADD_CO_HOLDER', payload: persona })
+        usedEmails.add(persona.email)
+        added++
+      }
+    }
+  }
+
   // Dev tools screen lists
   const entityScreens = [
     { num: 1, label: 'Welcome' },
@@ -390,10 +526,44 @@ export default function App() {
     { num: 110, label: 'Status' },
   ]
 
-  const isIndividualFlow = flowType === 'individual' || currentScreen >= 101
-  const screens = isIndividualFlow
-    ? (contextId === 'kyc_basic' ? individualScreensBasic : individualScreensComplete)
-    : entityScreens
+  const jointScreensComplete = [
+    { num: 1, label: 'Welcome' },
+    { num: 201, label: 'Disclaimer' },
+    { num: 202, label: 'Step Overview' },
+    { num: 203, label: 'Consent' },
+    { num: 204, label: 'Personal Info' },
+    { num: 205, label: 'Address' },
+    { num: 206, label: 'Supp. Docs' },
+    { num: 207, label: 'Identity Verification' },
+    { num: 210, label: 'Co-Holders' },
+    { num: 211, label: 'Add Co-Holder' },
+    { num: 212, label: 'Verification' },
+    { num: 213, label: 'Status' },
+  ]
+
+  const jointScreensBasic = [
+    { num: 1, label: 'Welcome' },
+    { num: 201, label: 'Disclaimer' },
+    { num: 202, label: 'Step Overview' },
+    { num: 203, label: 'Consent' },
+    { num: 204, label: 'Personal Info' },
+    { num: 205, label: 'Address' },
+    { num: 206, label: 'Supp. Docs' },
+    { num: 208, label: 'ID Country & Type' },
+    { num: 209, label: 'ID Upload' },
+    { num: 210, label: 'Co-Holders' },
+    { num: 211, label: 'Add Co-Holder' },
+    { num: 212, label: 'Verification' },
+    { num: 213, label: 'Status' },
+  ]
+
+  const isIndividualFlow = flowType === 'individual' || (currentScreen >= 101 && currentScreen < 201)
+  const isJointFlow = flowType === 'joint' || currentScreen >= 201
+  const screens = isJointFlow
+    ? (contextId === 'kyc_basic' ? jointScreensBasic : jointScreensComplete)
+    : isIndividualFlow
+      ? (contextId === 'kyc_basic' ? individualScreensBasic : individualScreensComplete)
+      : entityScreens
 
   const hasEntityDetails = !!formData.entityDetails.country || !!formData.entityDetails.entityName
   const hasSupDocs = !!formData.supplementaryDocs.signatoryList || !!formData.supplementaryDocs.structureDiagram
@@ -405,6 +575,7 @@ export default function App() {
   const hasIndIdDoc = !!ind.idCountry || !!ind.idDocType
   const hasIndAddress = !!ind.addressCountry || !!ind.streetAddress
   const hasIndSupDocs = ind.proofOfAddress.length > 0
+  const hasCoHolders = formData.jointData.coHolders.length > 0
 
   const handleReset = () => {
     dispatch({ type: 'RESET' })
@@ -414,7 +585,9 @@ export default function App() {
   }
 
   const handleNavClick = (num) => {
-    if (num >= 101) {
+    if (num >= 201) {
+      setFlowType('joint')
+    } else if (num >= 101) {
       setFlowType('individual')
     } else if (num >= 2) {
       setFlowType('entity')
@@ -432,7 +605,7 @@ export default function App() {
           <div className="prefill-section-title">Flow</div>
           <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
             <button
-              className={`prefill-btn ${!isIndividualFlow ? 'prefill-btn-flow-active' : ''}`}
+              className={`prefill-btn ${flowType === 'entity' || (!isIndividualFlow && !isJointFlow && currentScreen > 1) ? 'prefill-btn-flow-active' : ''}`}
               style={{ flex: 1, textAlign: 'center', marginBottom: 0 }}
               onClick={() => {
                 setFlowType('entity')
@@ -446,13 +619,23 @@ export default function App() {
               style={{ flex: 1, textAlign: 'center', marginBottom: 0 }}
               onClick={() => {
                 setFlowType('individual')
-                if (currentScreen > 1 && currentScreen < 101) setCurrentScreen(1)
+                if (currentScreen > 1 && (currentScreen < 101 || currentScreen >= 201)) setCurrentScreen(1)
               }}
             >
               Individual
             </button>
+            <button
+              className={`prefill-btn ${isJointFlow ? 'prefill-btn-flow-active' : ''}`}
+              style={{ flex: 1, textAlign: 'center', marginBottom: 0 }}
+              onClick={() => {
+                setFlowType('joint')
+                if (currentScreen > 1 && currentScreen < 201) setCurrentScreen(1)
+              }}
+            >
+              Joint
+            </button>
           </div>
-          {isIndividualFlow && (
+          {(isIndividualFlow || isJointFlow) && (
             <div style={{ display: 'flex', gap: 4 }}>
               <button
                 className={`prefill-btn ${contextId === 'kyc_complete' ? 'prefill-btn-flow-active' : ''}`}
@@ -470,6 +653,39 @@ export default function App() {
               </button>
             </div>
           )}
+          {isJointFlow && (
+            <div style={{ marginTop: 8 }}>
+              <div style={{ fontSize: 10, color: 'var(--color-gray-400)', marginBottom: 4 }}>Holders (2–5)</div>
+              <div style={{ display: 'flex', gap: 4 }}>
+                {[2, 3, 4, 5].map(n => (
+                  <button
+                    key={n}
+                    className={`prefill-btn ${formData.jointData.numberOfHolders === n ? 'prefill-btn-flow-active' : ''}`}
+                    style={{ flex: 1, textAlign: 'center', marginBottom: 0, fontSize: 11 }}
+                    onClick={() => dispatch({ type: 'SET_JOINT_CONFIG', payload: { numberOfHolders: n } })}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
+              <div style={{ display: 'flex', gap: 4, marginTop: 4 }}>
+                <button
+                  className={`prefill-btn ${formData.jointData.jointAccountType === 'JTWROS' ? 'prefill-btn-flow-active' : ''}`}
+                  style={{ flex: 1, textAlign: 'center', marginBottom: 0, fontSize: 9 }}
+                  onClick={() => dispatch({ type: 'SET_JOINT_CONFIG', payload: { jointAccountType: 'JTWROS' } })}
+                >
+                  JTWROS
+                </button>
+                <button
+                  className={`prefill-btn ${formData.jointData.jointAccountType === 'TIC' ? 'prefill-btn-flow-active' : ''}`}
+                  style={{ flex: 1, textAlign: 'center', marginBottom: 0, fontSize: 9 }}
+                  onClick={() => dispatch({ type: 'SET_JOINT_CONFIG', payload: { jointAccountType: 'TIC' } })}
+                >
+                  TIC
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="prefill-section">
@@ -481,7 +697,7 @@ export default function App() {
                 className={`prefill-nav-item ${s.num === currentScreen ? 'active' : ''}`}
                 onClick={() => handleNavClick(s.num)}
               >
-                <span className="prefill-nav-num">{s.num > 100 ? s.num - 100 : s.num}</span>
+                <span className="prefill-nav-num">{s.num > 200 ? s.num - 200 : s.num > 100 ? s.num - 100 : s.num}</span>
                 <span className="prefill-nav-label">{s.label}</span>
               </button>
             ))}
@@ -498,7 +714,66 @@ export default function App() {
             {agreedToTerms && <button className="prefill-clear-btn" onClick={() => setAgreedToTerms(false)}>Clear</button>}
           </div>
 
-          {isIndividualFlow ? (
+          {isJointFlow ? (
+            <>
+              <div className="prefill-data-row">
+                <button className="prefill-btn" onClick={prefillIndPersonalInfo} disabled={hasIndPersonalInfo}>
+                  Personal info
+                </button>
+                {hasIndPersonalInfo && <button className="prefill-clear-btn" onClick={() => dispatch({
+                  type: 'SET_INDIVIDUAL_DATA',
+                  payload: { firstName: '', lastName: '', dob: '', taxId: '' },
+                })}>Clear</button>}
+              </div>
+
+              <div className="prefill-data-row">
+                <button className="prefill-btn" onClick={prefillIndAddress} disabled={hasIndAddress}>
+                  Address info
+                </button>
+                {hasIndAddress && <button className="prefill-clear-btn" onClick={() => dispatch({
+                  type: 'SET_INDIVIDUAL_DATA',
+                  payload: { addressCountry: null, addressState: '', streetAddress: '', city: '', postalCode: '', apartment: '' },
+                })}>Clear</button>}
+              </div>
+
+              <div className="prefill-data-row">
+                <button className="prefill-btn" onClick={prefillIndSupDocs} disabled={hasIndSupDocs}>
+                  Proof of address
+                </button>
+                {hasIndSupDocs && <button className="prefill-clear-btn" onClick={() => dispatch({
+                  type: 'SET_INDIVIDUAL_DATA',
+                  payload: { proofOfAddress: [] },
+                })}>Clear</button>}
+              </div>
+
+              {contextId === 'kyc_basic' && (
+                <div className="prefill-data-row">
+                  <button className="prefill-btn" onClick={prefillIndIdentityDoc} disabled={hasIndIdDoc}>
+                    Identity document
+                  </button>
+                  {hasIndIdDoc && <button className="prefill-clear-btn" onClick={() => dispatch({
+                    type: 'SET_INDIVIDUAL_DATA',
+                    payload: { idCountry: null, idDocType: '', idDocFront: null, idDocBack: null },
+                  })}>Clear</button>}
+                </div>
+              )}
+
+              <div className="prefill-data-row">
+                <button
+                  className="prefill-btn"
+                  onClick={prefillCoHolder}
+                  disabled={formData.jointData.coHolders.length >= (formData.jointData.numberOfHolders - 1)}
+                >
+                  + Add co-holder
+                </button>
+                {hasCoHolders && <button className="prefill-clear-btn" onClick={() => dispatch({ type: 'CLEAR_CO_HOLDERS' })}>Clear</button>}
+              </div>
+
+              <button className="prefill-btn prefill-btn-all" onClick={prefillJointAll}>
+                Fill everything
+              </button>
+            </>
+          ) : isIndividualFlow ? (
             <>
               <div className="prefill-data-row">
                 <button className="prefill-btn" onClick={prefillIndPersonalInfo} disabled={hasIndPersonalInfo}>

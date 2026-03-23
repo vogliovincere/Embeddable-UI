@@ -3,7 +3,7 @@ import { countries } from '../../data/countries'
 import { usStates } from '../../data/usStates'
 import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 
-export default function IndAddress({ formData, dispatch, goNext, goBack, contextId }) {
+export default function IndAddress({ formData, dispatch, goNext, goBack, contextId, flowType }) {
   const [errors, setErrors] = useState({})
   const [showCountryModal, setShowCountryModal] = useState(false)
   const [showStateModal, setShowStateModal] = useState(false)
@@ -16,7 +16,7 @@ export default function IndAddress({ formData, dispatch, goNext, goBack, context
   const isUS = addressCountry?.code === 'US'
   const isCA = addressCountry?.code === 'CA'
   const showSubdivision = isUS || isCA
-  const totalSteps = 4
+  const totalSteps = flowType === 'joint' ? 5 : 4
 
   const filteredCountries = countries.filter(c =>
     c.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
