@@ -1,14 +1,12 @@
 import { useState } from 'react'
 import { countries } from '../../data/countries'
 import { getDocTypesForCountry } from '../../data/identityDocTypes'
-import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 
 export default function IndDocCountryType({ formData, dispatch, goNext, goBack, contextId, flowType }) {
   const [errors, setErrors] = useState({})
   const [showCountryModal, setShowCountryModal] = useState(false)
   const [countrySearch, setCountrySearch] = useState('')
   const [loading, setLoading] = useState(false)
-  const [showPhoneModal, setShowPhoneModal] = useState(false)
 
   const { idCountry, idDocType } = formData.individualData
   const totalSteps = flowType === 'joint' ? 5 : 4
@@ -143,13 +141,8 @@ export default function IndDocCountryType({ formData, dispatch, goNext, goBack, 
           <button className="btn btn-primary" onClick={handleSubmit} disabled={loading}>
             {loading ? <span className="loading-dots"><span /><span /><span /></span> : 'Continue'}
           </button>
-          <button className="btn btn-secondary" onClick={() => setShowPhoneModal(true)}>
-            Continue on phone
-          </button>
         </div>
       </div>
-
-      {showPhoneModal && <ContinueOnPhoneModal onClose={() => setShowPhoneModal(false)} />}
 
       {showCountryModal && (
         <div className="modal-overlay">

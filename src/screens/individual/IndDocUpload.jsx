@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react'
 import { docUploadSides } from '../../data/identityDocTypes'
-import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 
 function UploadZone({ label, file, onUpload, onRemove }) {
   const inputRef = useRef(null)
@@ -57,7 +56,6 @@ function UploadZone({ label, file, onUpload, onRemove }) {
 export default function IndDocUpload({ formData, dispatch, goNext, goBack, contextId, flowType }) {
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
-  const [showPhoneModal, setShowPhoneModal] = useState(false)
 
   const { idCountry, idDocType, idDocFront, idDocBack } = formData.individualData
   const sides = docUploadSides[idDocType] || ['Front side']
@@ -154,13 +152,8 @@ export default function IndDocUpload({ formData, dispatch, goNext, goBack, conte
           <button className="btn btn-primary" onClick={handleUpload} disabled={loading}>
             {loading ? <span className="loading-dots"><span /><span /><span /></span> : 'Upload document'}
           </button>
-          <button className="btn btn-secondary" onClick={() => setShowPhoneModal(true)}>
-            Continue on phone
-          </button>
         </div>
       </div>
-
-      {showPhoneModal && <ContinueOnPhoneModal onClose={() => setShowPhoneModal(false)} />}
     </>
   )
 }

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { countries } from '../../data/countries'
 import { usStates } from '../../data/usStates'
-import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 
 export default function IndAddress({ formData, dispatch, goNext, goBack, contextId, flowType }) {
   const [errors, setErrors] = useState({})
@@ -10,7 +9,6 @@ export default function IndAddress({ formData, dispatch, goNext, goBack, context
   const [countrySearch, setCountrySearch] = useState('')
   const [stateSearch, setStateSearch] = useState('')
   const [loading, setLoading] = useState(false)
-  const [showPhoneModal, setShowPhoneModal] = useState(false)
 
   const { addressCountry, addressState, streetAddress, city, postalCode, apartment } = formData.individualData
   const isUS = addressCountry?.code === 'US'
@@ -173,13 +171,8 @@ export default function IndAddress({ formData, dispatch, goNext, goBack, context
           <button className="btn btn-primary" onClick={handleSubmit} disabled={loading}>
             {loading ? <span className="loading-dots"><span /><span /><span /></span> : 'Save and continue'}
           </button>
-          <button className="btn btn-secondary" onClick={() => setShowPhoneModal(true)}>
-            Continue on phone
-          </button>
         </div>
       </div>
-
-      {showPhoneModal && <ContinueOnPhoneModal onClose={() => setShowPhoneModal(false)} />}
 
       {showCountryModal && (
         <div className="modal-overlay">

@@ -33,6 +33,7 @@ export default function Screen2Disclaimer({ goNext, goBack }) {
                 justifyContent: 'center',
                 fontSize: 28,
                 marginBottom: 16,
+                alignSelf: 'center',
               }}>
                 ⚠️
               </div>

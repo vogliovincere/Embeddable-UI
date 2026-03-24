@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import alloy from '@alloyidentity/web-sdk'
-import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
@@ -8,7 +7,6 @@ const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 export default function IndIdentityVerification({ formData, goNext, goBack, flowType }) {
   const [status, setStatus] = useState('idle') // idle | loading | success | error
   const [errorMsg, setErrorMsg] = useState('')
-  const [showPhoneModal, setShowPhoneModal] = useState(false)
 
   const { firstName, lastName, dob } = formData.individualData
 
@@ -235,15 +233,10 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
                     : 'Begin verification'
                 }
               </button>
-              <button className="btn btn-secondary" onClick={() => setShowPhoneModal(true)}>
-                Continue on phone
-              </button>
             </div>
           </>
         )}
       </div>
-
-      {showPhoneModal && <ContinueOnPhoneModal onClose={() => setShowPhoneModal(false)} />}
     </>
   )
 }

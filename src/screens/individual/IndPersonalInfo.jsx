@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 import MaskedSsnInput from '../../components/MaskedSsnInput'
 
 export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, contextId, flowType }) {
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
-  const [showPhoneModal, setShowPhoneModal] = useState(false)
 
   const { firstName, lastName, dob, taxId } = formData.individualData
   const totalSteps = flowType === 'joint' ? 5 : 4
@@ -126,13 +124,8 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
           <button className="btn btn-primary" onClick={handleSubmit} disabled={loading}>
             {loading ? <span className="loading-dots"><span /><span /><span /></span> : 'Save and continue'}
           </button>
-          <button className="btn btn-secondary" onClick={() => setShowPhoneModal(true)}>
-            Continue on phone
-          </button>
         </div>
       </div>
-
-      {showPhoneModal && <ContinueOnPhoneModal onClose={() => setShowPhoneModal(false)} />}
     </>
   )
 }

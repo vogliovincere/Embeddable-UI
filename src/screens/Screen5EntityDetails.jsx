@@ -133,7 +133,6 @@ export default function Screen5EntityDetails({ formData, dispatch, goNext, goBac
           <button className="btn btn-primary" onClick={handleSubmit} disabled={loading}>
             {loading ? <span className="loading-dots"><span /><span /><span /></span> : 'Save and continue'}
           </button>
-          <button className="btn btn-secondary">Continue on phone</button>
         </div>
       </div>
 

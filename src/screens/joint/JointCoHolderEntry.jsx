@@ -1,13 +1,11 @@
 import { useState } from 'react'
-import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 
 export default function JointCoHolderEntry({ formData, dispatch, goNext, goBack, goTo }) {
   const [loading, setLoading] = useState(false)
   const [validationError, setValidationError] = useState('')
-  const [showPhoneModal, setShowPhoneModal] = useState(false)
 
   const coHolders = formData.jointData.coHolders
-  const required = formData.jointData.numberOfHolders - 1
+  const maxCoHolders = 4
   const totalSteps = 5
 
   const handleAdd = () => {
@@ -25,12 +23,14 @@ export default function JointCoHolderEntry({ formData, dispatch, goNext, goBack,
   }
 
   const handleSubmit = () => {
-    if (coHolders.length < required) {
-      setValidationError(`Please add all joint account holders before submitting. ${coHolders.length} of ${required} added.`)
+    if (coHolders.length < 1) {
+      setValidationError('Please add at least one joint account holder before submitting.')
       return
     }
     setValidationError('')
     setLoading(true)
+    // Update numberOfHolders to match actual count (primary + co-holders)
+    dispatch({ type: 'SET_JOINT_CONFIG', payload: { numberOfHolders: coHolders.length + 1 } })
     setTimeout(() => {
       setLoading(false)
       goNext()
@@ -52,7 +52,7 @@ export default function JointCoHolderEntry({ formData, dispatch, goNext, goBack,
         <div className="card">
           <h1>Add your joint account holders</h1>
           <p className="subtitle">
-            Please provide the following information for each additional account holder. Each person will receive a link to independently verify their identity.
+            Please provide the following information for each additional account holder. Each person will receive a link to independently verify their identity. You can add up to {maxCoHolders} co-holders.
           </p>
 
           <div style={{
@@ -60,15 +60,15 @@ export default function JointCoHolderEntry({ formData, dispatch, goNext, goBack,
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '12px 16px',
-            background: coHolders.length >= required ? '#DCFCE7' : '#EEF2FF',
+            background: coHolders.length >= 1 ? '#DCFCE7' : '#EEF2FF',
             borderRadius: 'var(--radius-md)',
             marginBottom: 16,
             fontSize: 14,
             fontWeight: 600,
-            color: coHolders.length >= required ? 'var(--color-green)' : 'var(--color-primary)',
+            color: coHolders.length >= 1 ? 'var(--color-green)' : 'var(--color-primary)',
           }}>
-            <span>{coHolders.length} of {required} co-holder{required !== 1 ? 's' : ''} added</span>
-            {coHolders.length >= required && <span>✓</span>}
+            <span>{coHolders.length} co-holder{coHolders.length !== 1 ? 's' : ''} added</span>
+            {coHolders.length >= 1 && <span>✓</span>}
           </div>
 
           {coHolders.map((holder, index) => (
@@ -87,7 +87,7 @@ export default function JointCoHolderEntry({ formData, dispatch, goNext, goBack,
             </div>
           ))}
 
-          {coHolders.length < required && (
+          {coHolders.length < maxCoHolders && (
             <button className="add-person-link" onClick={handleAdd}>
               + Add co-holder
             </button>
@@ -102,17 +102,12 @@ export default function JointCoHolderEntry({ formData, dispatch, goNext, goBack,
           <button
             className="btn btn-primary"
             onClick={handleSubmit}
-            disabled={loading || coHolders.length < required}
+            disabled={loading || coHolders.length < 1}
           >
             {loading ? <span className="loading-dots"><span /><span /><span /></span> : 'Submit'}
           </button>
-          <button className="btn btn-secondary" onClick={() => setShowPhoneModal(true)}>
-            Continue on phone
-          </button>
         </div>
       </div>
-
-      {showPhoneModal && <ContinueOnPhoneModal onClose={() => setShowPhoneModal(false)} />}
     </>
   )
 }

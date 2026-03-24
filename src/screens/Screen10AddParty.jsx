@@ -173,7 +173,6 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
           <button className="btn btn-primary" onClick={handleSubmit} disabled={loading}>
             {loading ? <span className="loading-dots"><span /><span /><span /></span> : (isEditing ? 'Update beneficiary' : 'Create beneficiary')}
           </button>
-          <button className="btn btn-secondary">Continue on phone</button>
         </div>
       </div>
     </>

@@ -202,10 +202,7 @@ export default function App() {
       if (numHolders >= 2 && numHolders <= 5) {
         dispatch({ type: 'SET_JOINT_CONFIG', payload: { numberOfHolders: numHolders } })
       }
-      if (jointType === 'JTWROS' || jointType === 'TIC') {
-        dispatch({ type: 'SET_JOINT_CONFIG', payload: { jointAccountType: jointType } })
-      }
-      setCurrentScreen(JOINT_SCREENS.DISCLAIMER)
+        setCurrentScreen(JOINT_SCREENS.DISCLAIMER)
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -651,39 +648,6 @@ export default function App() {
               >
                 KYC Basic
               </button>
-            </div>
-          )}
-          {isJointFlow && (
-            <div style={{ marginTop: 8 }}>
-              <div style={{ fontSize: 10, color: 'var(--color-gray-400)', marginBottom: 4 }}>Holders (2–5)</div>
-              <div style={{ display: 'flex', gap: 4 }}>
-                {[2, 3, 4, 5].map(n => (
-                  <button
-                    key={n}
-                    className={`prefill-btn ${formData.jointData.numberOfHolders === n ? 'prefill-btn-flow-active' : ''}`}
-                    style={{ flex: 1, textAlign: 'center', marginBottom: 0, fontSize: 11 }}
-                    onClick={() => dispatch({ type: 'SET_JOINT_CONFIG', payload: { numberOfHolders: n } })}
-                  >
-                    {n}
-                  </button>
-                ))}
-              </div>
-              <div style={{ display: 'flex', gap: 4, marginTop: 4 }}>
-                <button
-                  className={`prefill-btn ${formData.jointData.jointAccountType === 'JTWROS' ? 'prefill-btn-flow-active' : ''}`}
-                  style={{ flex: 1, textAlign: 'center', marginBottom: 0, fontSize: 9 }}
-                  onClick={() => dispatch({ type: 'SET_JOINT_CONFIG', payload: { jointAccountType: 'JTWROS' } })}
-                >
-                  JTWROS
-                </button>
-                <button
-                  className={`prefill-btn ${formData.jointData.jointAccountType === 'TIC' ? 'prefill-btn-flow-active' : ''}`}
-                  style={{ flex: 1, textAlign: 'center', marginBottom: 0, fontSize: 9 }}
-                  onClick={() => dispatch({ type: 'SET_JOINT_CONFIG', payload: { jointAccountType: 'TIC' } })}
-                >
-                  TIC
-                </button>
-              </div>
             </div>
           )}
         </div>

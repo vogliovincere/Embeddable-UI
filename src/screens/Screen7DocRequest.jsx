@@ -123,7 +123,6 @@ export default function Screen7DocRequest({ formData, dispatch, goNext, goBack }
           <button className="btn btn-primary" onClick={handleContinue} disabled={loading}>
             {loading ? <span className="loading-dots"><span /><span /><span /></span> : 'Continue'}
           </button>
-          <button className="btn btn-secondary">Continue on phone</button>
         </div>
       </div>
     </>

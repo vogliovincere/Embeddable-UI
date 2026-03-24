@@ -64,7 +64,6 @@ export default function Screen6ReviewConfirm({ formData, goNext, goTo }) {
           <button className="btn btn-primary" onClick={handleConfirm} disabled={loading}>
             {loading ? <span className="loading-dots"><span /><span /><span /></span> : 'Confirm and continue'}
           </button>
-          <button className="btn btn-secondary">Continue on phone</button>
         </div>
       </div>
     </>

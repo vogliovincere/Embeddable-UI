@@ -3,29 +3,29 @@ export default function JointStepOverview({ goNext, goBack, contextId }) {
 
   const steps = [
     {
-      icon: '1',
+      icon: '👤',
       label: 'Provide your identity information',
       detail: 'Name, date of birth, and tax identifier',
     },
     {
-      icon: '2',
+      icon: '🏠',
       label: 'Provide your address information',
       detail: 'Current residential address',
     },
     {
-      icon: '3',
+      icon: '📄',
       label: 'Provide supplementary documents',
       detail: 'Proof of address',
     },
     {
-      icon: '4',
+      icon: isComplete ? '📷' : '🪪',
       label: isComplete ? 'Identity verification' : 'Upload identity documents',
       detail: isComplete
         ? 'Photo ID and selfie via secure verification'
         : 'Photo ID verification',
     },
     {
-      icon: '5',
+      icon: '👥',
       label: 'Provide co-holder information',
       detail: 'Enter details for each additional joint account holder',
     },

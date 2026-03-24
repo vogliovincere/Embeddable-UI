@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react'
-import ContinueOnPhoneModal from '../../components/ContinueOnPhoneModal'
 
 const proofOfAddressTypes = [
   'Utility bill',
@@ -67,7 +66,6 @@ export default function IndSupplementaryDocs({ formData, dispatch, goNext, goBac
   // null = no pending upload; string = doc type selected, awaiting file
   const [pendingDocType, setPendingDocType] = useState(null)
   const [showTypeModal, setShowTypeModal] = useState(false)
-  const [showPhoneModal, setShowPhoneModal] = useState(false)
 
   const proofDocs = formData.individualData.proofOfAddress || []
   const fulfilled = proofDocs.length > 0
@@ -165,13 +163,8 @@ export default function IndSupplementaryDocs({ formData, dispatch, goNext, goBac
           <button className="btn btn-primary" onClick={handleContinue} disabled={loading}>
             {loading ? <span className="loading-dots"><span /><span /><span /></span> : 'Continue'}
           </button>
-          <button className="btn btn-secondary" onClick={() => setShowPhoneModal(true)}>
-            Continue on phone
-          </button>
         </div>
       </div>
-
-      {showPhoneModal && <ContinueOnPhoneModal onClose={() => setShowPhoneModal(false)} />}
 
       {showTypeModal && (
         <div className="modal-overlay">
