@@ -1,43 +1,106 @@
 import { useState } from 'react'
 import alloy from '@alloyidentity/web-sdk'
+import { createJourneyApplication } from '../../utils/alloyApi'
+import { toIsoDate, toStateAbbr } from '../../utils/formatters'
 
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 
 export default function IndIdentityVerification({ formData, goNext, goBack, flowType }) {
-  const [status, setStatus] = useState('idle') // idle | loading | success | error
+  const [status, setStatus] = useState('idle') // idle | loading | success | error | review
   const [errorMsg, setErrorMsg] = useState('')
 
-  const { firstName, lastName, dob } = formData.individualData
+  const { firstName, lastName, email, phone, dob, taxId, streetAddress, city, addressState, postalCode, addressCountry } = formData.individualData
 
   const handleLaunchSdk = async () => {
     setStatus('loading')
     setErrorMsg('')
+
+    // Build personData for journey application
+    const personData = {
+      name_first: firstName || undefined,
+      name_last: lastName || undefined,
+      email_address: email || undefined,
+      phone_number: phone || undefined,
+      birth_date: toIsoDate(dob) || undefined,
+      document_ssn: taxId ? taxId.replace(/-/g, '') : undefined,
+    }
+
+    // Only include address if primary fields are populated
+    if (streetAddress && city && addressState && postalCode) {
+      personData.addresses = [{
+        line_1: streetAddress,
+        city: city,
+        state: toStateAbbr(addressState),
+        postal_code: postalCode,
+        country_code: addressCountry?.code || 'US',
+        type: 'primary',
+      }]
+    }
+
+    let journeyApplicationToken = null
+
+    // Attempt to create journey application; fall back to SDK-only flow on failure
     try {
-      await alloy.init({
+      const appResult = await createJourneyApplication(personData)
+      console.log('Journey application result:', appResult)
+
+      journeyApplicationToken = appResult.journey_application_token
+      const apiStatus = appResult.status
+      const completeOutcome = appResult.complete_outcome
+
+      // If already completed (rare - no doc verification needed)
+      if (apiStatus === 'completed') {
+        if (completeOutcome === 'Approved') {
+          setStatus('success')
+          setTimeout(() => goNext(), 1200)
+        } else {
+          setStatus('error')
+          setErrorMsg('Verification was not approved. Please try again or contact support.')
+        }
+        return
+      }
+    } catch (apiErr) {
+      console.warn('Journey application API failed (CORS or network), falling back to SDK-only flow:', apiErr)
+      // Continue without journeyApplicationToken - preserves existing functionality
+    }
+
+    try {
+      const initParams = {
         key: ALLOY_SDK_KEY,
         journeyToken: JOURNEY_TOKEN,
         production: false,
-        selfie: true,
-        documents: ['license', 'passport'],
         evaluationData: {
           nameFirst: firstName || undefined,
           nameLast: lastName || undefined,
           birthDate: dob || undefined,
         },
-      })
+      }
+
+      if (journeyApplicationToken) {
+        initParams.journeyApplicationToken = journeyApplicationToken
+      }
+
+      await alloy.init(initParams)
 
       alloy.open((result) => {
         console.log('Alloy SDK result:', result)
-        if (result.status === 'completed') {
-          const approved = result.journey_application_status === 'approved'
-          setStatus(approved ? 'success' : 'error')
-          if (approved) {
+        const sdkEvent = result.sdk?.sdkEvent
+        const appStatus = (result.journey_application_status || '').toLowerCase()
+        const outcome = (result.complete_outcome || result.recent_outcome || '').toLowerCase()
+
+        if (sdkEvent === 'completed' || result.status === 'completed') {
+          if (appStatus === 'approved' || outcome === 'approved') {
+            setStatus('success')
             setTimeout(() => goNext(), 1200)
+          } else if (appStatus === 'denied' || outcome === 'denied') {
+            setStatus('error')
+            setErrorMsg('Verification was not approved. Please try again or contact support.')
           } else {
-            setErrorMsg('Verification was not approved. Please try again.')
+            // pending manual review
+            setStatus('review')
           }
-        } else if (result.status === 'closed') {
+        } else if (sdkEvent === 'closed' || result.status === 'closed') {
           setStatus('idle')
         } else {
           setStatus('idle')
@@ -90,6 +153,36 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
             </p>
             <p style={{ fontSize: 14, color: 'var(--color-text)', textAlign: 'center' }}>
               Proceeding to submission...
+            </p>
+          </div>
+        ) : status === 'review' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 12,
+            padding: '40px 0',
+          }}>
+            <div style={{
+              width: 72,
+              height: 72,
+              borderRadius: '50%',
+              background: '#FEF3C7',
+              color: '#B45309',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 36,
+            }}>
+              &#128269;
+            </div>
+            <p style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-heading)' }}>
+              Under Review
+            </p>
+            <p style={{ fontSize: 14, color: 'var(--color-text)', textAlign: 'center' }}>
+              Your verification is being reviewed. We'll notify you once complete.
             </p>
           </div>
         ) : (

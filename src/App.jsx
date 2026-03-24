@@ -29,6 +29,8 @@ import JointStatus from './screens/joint/JointStatus'
 const individualInitialState = {
   firstName: '',
   lastName: '',
+  email: '',
+  phone: '',
   dob: '',
   taxId: '',
   idCountry: null,
@@ -377,11 +379,11 @@ export default function App() {
   }
 
   const partyPersonas = [
-    { roles: ['Director', 'UBO'], firstName: 'Jane', lastName: 'Smith', middleName: '', dob: '01/15/1985', email: 'jane.smith@acme.com', ssn: '000-00-0001' },
-    { roles: ['Shareholder'], firstName: 'Michael', lastName: 'Chen', middleName: 'Wei', dob: '06/22/1978', email: 'michael.chen@acme.com', ssn: '000-00-0002' },
-    { roles: ['Director'], firstName: 'Sarah', lastName: 'Johnson', middleName: 'Marie', dob: '11/03/1990', email: 'sarah.johnson@acme.com', ssn: '000-00-0003' },
-    { roles: ['UBO', 'Shareholder'], firstName: 'David', lastName: 'Okafor', middleName: '', dob: '09/17/1982', email: 'david.okafor@acme.com', ssn: '000-00-0004' },
-    { roles: ['Shareholder', 'Director'], firstName: 'Elena', lastName: 'Rodriguez', middleName: 'Sofia', dob: '04/28/1995', email: 'elena.rodriguez@acme.com', ssn: '000-00-0005' },
+    { roles: ['Director', 'UBO'], firstName: 'Jane', lastName: 'Smith', middleName: '', dob: '01/15/1985', email: 'jane.smith@acme.com', phone: '5559001001', ssn: '000-00-0001' },
+    { roles: ['Shareholder'], firstName: 'Michael', lastName: 'Chen', middleName: 'Wei', dob: '06/22/1978', email: 'michael.chen@acme.com', phone: '5559001002', ssn: '000-00-0002' },
+    { roles: ['Director'], firstName: 'Sarah', lastName: 'Johnson', middleName: 'Marie', dob: '11/03/1990', email: 'sarah.johnson@acme.com', phone: '5559001003', ssn: '000-00-0003' },
+    { roles: ['UBO', 'Shareholder'], firstName: 'David', lastName: 'Okafor', middleName: '', dob: '09/17/1982', email: 'david.okafor@acme.com', phone: '5559001004', ssn: '000-00-0004' },
+    { roles: ['Shareholder', 'Director'], firstName: 'Elena', lastName: 'Rodriguez', middleName: 'Sofia', dob: '04/28/1995', email: 'elena.rodriguez@acme.com', phone: '5559001005', ssn: '000-00-0005' },
   ]
 
   const prefillParty = () => {
@@ -398,6 +400,8 @@ export default function App() {
       payload: {
         firstName: 'John',
         lastName: 'Doe',
+        email: 'john.doe@email.com',
+        phone: '5551234567',
         dob: '03/22/1990',
         taxId: '123-45-6789',
       },
@@ -449,10 +453,10 @@ export default function App() {
 
   // Joint prefill helpers
   const coHolderPersonas = [
-    { firstName: 'Lisa', lastName: 'Park', dob: '05/10/1988', email: 'lisa.park@email.com', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'New York', streetAddress: '456 Broadway', city: 'New York', postalCode: '10013', apartment: 'Suite 12A' },
-    { firstName: 'Robert', lastName: 'Kim', dob: '12/01/1975', email: 'robert.kim@email.com', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Texas', streetAddress: '789 Elm Street', city: 'Austin', postalCode: '73301', apartment: '' },
-    { firstName: 'Amanda', lastName: 'Torres', dob: '08/19/1992', email: 'amanda.torres@email.com', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Florida', streetAddress: '321 Ocean Drive', city: 'Miami', postalCode: '33139', apartment: 'Unit 8' },
-    { firstName: 'James', lastName: 'Wright', dob: '02/28/1983', email: 'james.wright@email.com', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Illinois', streetAddress: '555 Michigan Ave', city: 'Chicago', postalCode: '60601', apartment: '' },
+    { firstName: 'Lisa', lastName: 'Park', dob: '05/10/1988', email: 'lisa.park@email.com', phone: '5552001001', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'New York', streetAddress: '456 Broadway', city: 'New York', postalCode: '10013', apartment: 'Suite 12A' },
+    { firstName: 'Robert', lastName: 'Kim', dob: '12/01/1975', email: 'robert.kim@email.com', phone: '5552001002', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Texas', streetAddress: '789 Elm Street', city: 'Austin', postalCode: '73301', apartment: '' },
+    { firstName: 'Amanda', lastName: 'Torres', dob: '08/19/1992', email: 'amanda.torres@email.com', phone: '5552001003', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Florida', streetAddress: '321 Ocean Drive', city: 'Miami', postalCode: '33139', apartment: 'Unit 8' },
+    { firstName: 'James', lastName: 'Wright', dob: '02/28/1983', email: 'james.wright@email.com', phone: '5552001004', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Illinois', streetAddress: '555 Michigan Ave', city: 'Chicago', postalCode: '60601', apartment: '' },
   ]
 
   const prefillCoHolder = () => {

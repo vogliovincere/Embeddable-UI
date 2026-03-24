@@ -1,23 +1,61 @@
 import { useState } from 'react'
 import alloy from '@alloyidentity/web-sdk'
+import { createJourneyApplication } from '../../utils/alloyApi'
+import { toIsoDate, toStateAbbr } from '../../utils/formatters'
 
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 
 async function openAlloyVerification(holder, callback) {
-  await alloy.init({
+  // Build personData for journey application
+  const personData = {
+    name_first: holder.firstName || undefined,
+    name_last: holder.lastName || undefined,
+    email_address: holder.email || undefined,
+    phone_number: holder.phone || undefined,
+    birth_date: toIsoDate(holder.dob) || undefined,
+  }
+
+  // Only include address if primary fields are populated
+  if (holder.streetAddress && holder.city && holder.state && holder.postalCode) {
+    personData.addresses = [{
+      line_1: holder.streetAddress,
+      city: holder.city,
+      state: toStateAbbr(holder.state),
+      postal_code: holder.postalCode,
+      country_code: holder.country?.code || 'US',
+      type: 'primary',
+    }]
+  }
+
+  let journeyApplicationToken = null
+
+  // Attempt to create journey application; fall back to SDK-only flow on failure
+  try {
+    const appResult = await createJourneyApplication(personData)
+    console.log('Journey application result:', appResult)
+    journeyApplicationToken = appResult.journey_application_token
+  } catch (apiErr) {
+    console.warn('Journey application API failed (CORS or network), falling back to SDK-only flow:', apiErr)
+  }
+
+  const initParams = {
     key: ALLOY_SDK_KEY,
     journeyToken: JOURNEY_TOKEN,
     production: false,
-    selfie: true,
-    documents: ['license', 'passport'],
     evaluationData: {
       nameFirst: holder.firstName,
       nameLast: holder.lastName,
       emailAddress: holder.email,
       birthDate: holder.dob || undefined,
     },
-  })
+  }
+
+  if (journeyApplicationToken) {
+    initParams.journeyApplicationToken = journeyApplicationToken
+  }
+
+  await alloy.init(initParams)
 
   alloy.open(callback)
 }
@@ -41,13 +79,20 @@ export default function JointVerification({ formData, goNext, contextId }) {
 
     try {
       await openAlloyVerification(holder, (result) => {
-        if (result.status === 'completed') {
-          const approved = result.journey_application_status === 'approved'
-          setStatus(index, {
-            state: approved ? 'approved' : 'denied',
-            message: approved ? 'Verified' : 'Denied',
-          })
-        } else if (result.status === 'closed') {
+        console.log('Alloy SDK result:', result)
+        const sdkEvent = result.sdk?.sdkEvent
+        const appStatus = (result.journey_application_status || '').toLowerCase()
+        const outcome = (result.complete_outcome || result.recent_outcome || '').toLowerCase()
+
+        if (sdkEvent === 'completed' || result.status === 'completed') {
+          if (appStatus === 'approved' || outcome === 'approved') {
+            setStatus(index, { state: 'approved', message: 'Verified' })
+          } else if (appStatus === 'denied' || outcome === 'denied') {
+            setStatus(index, { state: 'denied', message: 'Denied' })
+          } else {
+            setStatus(index, { state: 'review', message: 'Under Review' })
+          }
+        } else if (sdkEvent === 'closed' || result.status === 'closed') {
           setStatus(index, { state: 'idle', message: 'Closed by user' })
         } else {
           setStatus(index, { state: 'idle', message: result.status || 'Dismissed' })
@@ -71,6 +116,7 @@ export default function JointVerification({ formData, goNext, contextId }) {
       approved: { bg: '#DCFCE7', color: 'var(--color-green)' },
       denied: { bg: '#FEE2E2', color: 'var(--color-error)' },
       error: { bg: '#FEE2E2', color: 'var(--color-error)' },
+      review: { bg: '#FEF3C7', color: '#B45309' },
       idle: { bg: 'var(--color-gray-100)', color: 'var(--color-text)' },
     }
     const c = colors[status.state] || colors.idle

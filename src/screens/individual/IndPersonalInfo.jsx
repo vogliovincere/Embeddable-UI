@@ -5,13 +5,15 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
 
-  const { firstName, lastName, dob, taxId } = formData.individualData
+  const { firstName, lastName, email, phone, dob, taxId } = formData.individualData
   const totalSteps = flowType === 'joint' ? 5 : 4
 
   const validate = () => {
     const errs = {}
     if (!firstName?.trim()) errs.firstName = 'This field is required'
     if (!lastName?.trim()) errs.lastName = 'This field is required'
+    if (!email?.trim()) errs.email = 'This field is required'
+    if (!phone?.trim()) errs.phone = 'This field is required'
     if (!dob?.trim()) errs.dob = 'This field is required'
     if (!taxId?.trim()) errs.taxId = 'This field is required'
     setErrors(errs)
@@ -85,6 +87,35 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
               onChange={e => updateField('lastName', e.target.value)}
             />
             {errors.lastName && <div className="form-error">{errors.lastName}</div>}
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">
+              Email <span className="required">*</span>
+            </label>
+            <input
+              className={`form-input ${errors.email ? 'error' : ''}`}
+              type="email"
+              placeholder="email@example.com"
+              value={email || ''}
+              onChange={e => updateField('email', e.target.value)}
+            />
+            {errors.email && <div className="form-error">{errors.email}</div>}
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">
+              Phone number <span className="required">*</span>
+            </label>
+            <input
+              className={`form-input ${errors.phone ? 'error' : ''}`}
+              type="tel"
+              placeholder="5551234567"
+              value={phone || ''}
+              onChange={e => updateField('phone', e.target.value.replace(/[^\d]/g, ''))}
+              maxLength={15}
+            />
+            {errors.phone && <div className="form-error">{errors.phone}</div>}
           </div>
 
           <div className="form-group">

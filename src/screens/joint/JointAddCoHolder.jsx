@@ -11,6 +11,7 @@ export default function JointAddCoHolder({ formData, dispatch, goTo }) {
   const [lastName, setLastName] = useState(existing?.lastName || '')
   const [dob, setDob] = useState(existing?.dob || '')
   const [email, setEmail] = useState(existing?.email || '')
+  const [phone, setPhone] = useState(existing?.phone || '')
   const [country, setCountry] = useState(existing?.country || null)
   const [addrState, setAddrState] = useState(existing?.state || '')
   const [streetAddress, setStreetAddress] = useState(existing?.streetAddress || '')
@@ -55,6 +56,7 @@ export default function JointAddCoHolder({ formData, dispatch, goTo }) {
     if (!dob.trim()) errs.dob = 'This field is required'
     if (dob && !/^\d{2}\/\d{2}\/\d{4}$/.test(dob)) errs.dob = 'The date must be valid (mm/dd/yyyy)'
     if (!email.trim()) errs.email = 'This field is required'
+    if (!phone.trim()) errs.phone = 'This field is required'
     if (!country) errs.country = 'This field is required'
     if (showSubdivision && !addrState) errs.addrState = 'This field is required'
     if (!streetAddress.trim()) errs.streetAddress = 'This field is required'
@@ -72,7 +74,7 @@ export default function JointAddCoHolder({ formData, dispatch, goTo }) {
     setLoading(true)
     setTimeout(() => {
       const coHolder = {
-        firstName, lastName, dob, email,
+        firstName, lastName, dob, email, phone,
         country, state: addrState, streetAddress, city, postalCode, apartment,
       }
       if (isEditing) {
@@ -152,6 +154,19 @@ export default function JointAddCoHolder({ formData, dispatch, goTo }) {
               onChange={e => setEmail(e.target.value)}
             />
             {errors.email && <div className="form-error">{errors.email}</div>}
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Phone number <span className="required">*</span></label>
+            <input
+              className={`form-input ${errors.phone ? 'error' : ''}`}
+              type="tel"
+              placeholder="5551234567"
+              value={phone}
+              onChange={e => setPhone(e.target.value.replace(/[^\d]/g, ''))}
+              maxLength={15}
+            />
+            {errors.phone && <div className="form-error">{errors.phone}</div>}
           </div>
 
           <h2 style={{ fontSize: 16, marginTop: 24, marginBottom: 8 }}>Address</h2>

@@ -12,6 +12,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
   const [middleName, setMiddleName] = useState(existingParty?.middleName || '')
   const [dob, setDob] = useState(existingParty?.dob || '')
   const [email, setEmail] = useState(existingParty?.email || '')
+  const [phone, setPhone] = useState(existingParty?.phone || '')
   const [ssn, setSsn] = useState(existingParty?.ssn || '')
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
@@ -35,7 +36,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
     if (!validate()) return
     setLoading(true)
     setTimeout(() => {
-      const party = { roles, firstName, lastName, middleName, dob, email, ssn }
+      const party = { roles, firstName, lastName, middleName, dob, email, phone, ssn }
       if (isEditing) {
         dispatch({ type: 'UPDATE_PARTY', index: editIndex, payload: party })
       } else {
@@ -156,6 +157,18 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
               onChange={e => setEmail(e.target.value)}
             />
             {errors.email && <div className="form-error">{errors.email}</div>}
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Phone number</label>
+            <input
+              className="form-input"
+              type="tel"
+              placeholder="5551234567"
+              value={phone}
+              onChange={e => setPhone(e.target.value.replace(/[^\d]/g, ''))}
+              maxLength={15}
+            />
           </div>
 
           <div className="form-group">
