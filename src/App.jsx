@@ -379,11 +379,11 @@ export default function App() {
   }
 
   const partyPersonas = [
-    { roles: ['Director', 'UBO'], firstName: 'Jane', lastName: 'Smith', middleName: '', dob: '01/15/1985', email: 'jane.smith@acme.com', phone: '5559001001', ssn: '000-00-0001' },
-    { roles: ['Shareholder'], firstName: 'Michael', lastName: 'Chen', middleName: 'Wei', dob: '06/22/1978', email: 'michael.chen@acme.com', phone: '5559001002', ssn: '000-00-0002' },
-    { roles: ['Director'], firstName: 'Sarah', lastName: 'Johnson', middleName: 'Marie', dob: '11/03/1990', email: 'sarah.johnson@acme.com', phone: '5559001003', ssn: '000-00-0003' },
-    { roles: ['UBO', 'Shareholder'], firstName: 'David', lastName: 'Okafor', middleName: '', dob: '09/17/1982', email: 'david.okafor@acme.com', phone: '5559001004', ssn: '000-00-0004' },
-    { roles: ['Shareholder', 'Director'], firstName: 'Elena', lastName: 'Rodriguez', middleName: 'Sofia', dob: '04/28/1995', email: 'elena.rodriguez@acme.com', phone: '5559001005', ssn: '000-00-0005' },
+    { roles: ['Director', 'UBO'], firstName: 'Jane', lastName: 'Smith', middleName: '', dob: '01/15/1985', email: 'jane.smith@acme.com', phone: '5559001001', ssn: '000-00-0001', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'California', streetAddress: '100 Market St', city: 'San Francisco', postalCode: '94105', apartment: 'Ste 300' },
+    { roles: ['Shareholder'], firstName: 'Michael', lastName: 'Chen', middleName: 'Wei', dob: '06/22/1978', email: 'michael.chen@acme.com', phone: '5559001002', ssn: '000-00-0002', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'New York', streetAddress: '200 Park Ave', city: 'New York', postalCode: '10166', apartment: '' },
+    { roles: ['Director'], firstName: 'Sarah', lastName: 'Johnson', middleName: 'Marie', dob: '11/03/1990', email: 'sarah.johnson@acme.com', phone: '5559001003', ssn: '000-00-0003', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Texas', streetAddress: '300 Congress Ave', city: 'Austin', postalCode: '73301', apartment: '' },
+    { roles: ['UBO', 'Shareholder'], firstName: 'David', lastName: 'Okafor', middleName: '', dob: '09/17/1982', email: 'david.okafor@acme.com', phone: '5559001004', ssn: '000-00-0004', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Florida', streetAddress: '400 Brickell Ave', city: 'Miami', postalCode: '33131', apartment: 'Unit 15B' },
+    { roles: ['Shareholder', 'Director'], firstName: 'Elena', lastName: 'Rodriguez', middleName: 'Sofia', dob: '04/28/1995', email: 'elena.rodriguez@acme.com', phone: '5559001005', ssn: '000-00-0005', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Illinois', streetAddress: '500 Michigan Ave', city: 'Chicago', postalCode: '60601', apartment: '' },
   ]
 
   const prefillParty = () => {

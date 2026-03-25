@@ -45,9 +45,13 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
       const appResult = await createJourneyApplication(personData)
       console.log('Journey application result:', appResult)
 
-      journeyApplicationToken = appResult.journey_application_token
       const apiStatus = appResult.status
       const completeOutcome = appResult.complete_outcome
+
+      // Only use the token if the application is not already completed
+      if (apiStatus !== 'completed') {
+        journeyApplicationToken = appResult.journey_application_token
+      }
 
       // If already completed (rare - no doc verification needed)
       if (apiStatus === 'completed') {
@@ -81,6 +85,7 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
         initParams.journeyApplicationToken = journeyApplicationToken
       }
 
+      alloy.close()
       await alloy.init(initParams)
 
       alloy.open((result) => {

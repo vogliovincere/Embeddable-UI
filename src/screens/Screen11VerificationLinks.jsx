@@ -35,7 +35,11 @@ async function openAlloyVerification(party, callback) {
   try {
     const appResult = await createJourneyApplication(personData)
     console.log('Journey application result:', appResult)
-    journeyApplicationToken = appResult.journey_application_token
+    // Only use the token if the application is not already completed
+    // (sandbox may return a cached completed app for the same person data)
+    if (appResult.status !== 'completed') {
+      journeyApplicationToken = appResult.journey_application_token
+    }
   } catch (apiErr) {
     console.warn('Journey application API failed (CORS or network), falling back to SDK-only flow:', apiErr)
   }
@@ -56,6 +60,7 @@ async function openAlloyVerification(party, callback) {
     initParams.journeyApplicationToken = journeyApplicationToken
   }
 
+  alloy.close()
   await alloy.init(initParams)
 
   alloy.open(callback)
