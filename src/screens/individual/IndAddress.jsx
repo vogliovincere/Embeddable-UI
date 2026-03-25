@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { countries } from '../../data/countries'
 import { usStates } from '../../data/usStates'
 
@@ -174,9 +175,9 @@ export default function IndAddress({ formData, dispatch, goNext, goBack, context
         </div>
       </div>
 
-      {showCountryModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+      {showCountryModal && createPortal(
+        <div className="modal-overlay" onClick={() => setShowCountryModal(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Select country</h2>
               <button className="modal-close" onClick={() => setShowCountryModal(false)}>✕</button>
@@ -208,12 +209,13 @@ export default function IndAddress({ formData, dispatch, goNext, goBack, context
               ))}
             </div>
           </div>
-        </div>
+        </div>,
+        document.getElementById('phone-modal-root')
       )}
 
-      {showStateModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+      {showStateModal && createPortal(
+        <div className="modal-overlay" onClick={() => setShowStateModal(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Select {isUS ? 'state' : 'province'}</h2>
               <button className="modal-close" onClick={() => setShowStateModal(false)}>✕</button>
@@ -243,7 +245,8 @@ export default function IndAddress({ formData, dispatch, goNext, goBack, context
               ))}
             </div>
           </div>
-        </div>
+        </div>,
+        document.getElementById('phone-modal-root')
       )}
     </>
   )

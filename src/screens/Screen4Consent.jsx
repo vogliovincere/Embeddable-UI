@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 
 export default function Screen4Consent({ goNext, goBack }) {
   const [showModal, setShowModal] = useState(true)
@@ -27,9 +28,9 @@ export default function Screen4Consent({ goNext, goBack }) {
         </p>
       </div>
 
-      {showModal && (
-        <div className="modal-overlay center">
-          <div className="modal-content" style={{ padding: 24 }}>
+      {showModal && createPortal(
+        <div className="modal-overlay center" onClick={goBack}>
+          <div className="modal-content" style={{ padding: 24 }} onClick={e => e.stopPropagation()}>
             <h2 style={{ marginBottom: 16 }}>Privacy & Consent</h2>
             <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.6, marginBottom: 20 }}>
               Before proceeding, please confirm the following:
@@ -66,7 +67,8 @@ export default function Screen4Consent({ goNext, goBack }) {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.getElementById('phone-modal-root')
       )}
     </>
   )

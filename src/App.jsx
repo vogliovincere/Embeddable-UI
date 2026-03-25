@@ -840,11 +840,14 @@ export default function App() {
       </div>
 
       <div className="phone-frame">
-        {renderScreen()}
-        <div className="powered-footer">
-          <span>Powered by</span>
-          <img src={interroLogo} alt="Interro" />
+        <div className="phone-frame-scroll">
+          {renderScreen()}
+          <div className="powered-footer">
+            <span>Powered by</span>
+            <img src={interroLogo} alt="Interro" />
+          </div>
         </div>
+        <div id="phone-modal-root" />
       </div>
     </div>
   )

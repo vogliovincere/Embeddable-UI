@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 
 const proofOfAddressTypes = [
   'Utility bill',
@@ -166,9 +167,9 @@ export default function IndSupplementaryDocs({ formData, dispatch, goNext, goBac
         </div>
       </div>
 
-      {showTypeModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+      {showTypeModal && createPortal(
+        <div className="modal-overlay" onClick={() => setShowTypeModal(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Select document type</h2>
               <button className="modal-close" onClick={() => setShowTypeModal(false)}>&#10005;</button>
@@ -186,7 +187,8 @@ export default function IndSupplementaryDocs({ formData, dispatch, goNext, goBac
               ))}
             </div>
           </div>
-        </div>
+        </div>,
+        document.getElementById('phone-modal-root')
       )}
     </>
   )

@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { documentCategories } from '../data/documentTypes'
 
 function DocUploadZone({ onUpload }) {
@@ -148,9 +149,9 @@ export default function Screen8EntityDocs({ formData, dispatch, goNext, goBack }
         </div>
       </div>
 
-      {showTypeModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+      {showTypeModal && createPortal(
+        <div className="modal-overlay" onClick={() => setShowTypeModal(null)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Select document type</h2>
               <button className="modal-close" onClick={() => setShowTypeModal(null)}>✕</button>
@@ -172,7 +173,8 @@ export default function Screen8EntityDocs({ formData, dispatch, goNext, goBack }
                 ))}
             </div>
           </div>
-        </div>
+        </div>,
+        document.getElementById('phone-modal-root')
       )}
     </>
   )

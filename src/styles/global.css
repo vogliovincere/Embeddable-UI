@@ -33,20 +33,41 @@ body {
   border-radius: 32px;
   box-shadow: var(--shadow-phone);
   border: 1px solid var(--color-border);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
-  /* Create containing block so position:fixed modals stay inside the phone frame */
-  transform: translateZ(0);
 }
 
-.phone-frame::-webkit-scrollbar {
+.phone-frame-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#phone-modal-root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1000;
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+#phone-modal-root > * {
+  pointer-events: auto;
+}
+
+.phone-frame-scroll::-webkit-scrollbar {
   width: 4px;
 }
 
-.phone-frame::-webkit-scrollbar-thumb {
+.phone-frame-scroll::-webkit-scrollbar-thumb {
   background: var(--color-gray-300);
   border-radius: 2px;
 }
@@ -350,7 +371,7 @@ h3 {
 
 /* Modal overlay */
 .modal-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -365,8 +386,8 @@ h3 {
 
 .modal-content {
   background: var(--color-white);
-  width: 390px;
-  max-height: 80vh;
+  width: 100%;
+  max-height: 85%;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   display: flex;
   flex-direction: column;
@@ -931,12 +952,10 @@ h3 {
   background: var(--color-white);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-  padding: 32px 24px;
+  padding: 24px 24px;
   animation: slideUp 0.3s ease;
   z-index: 10;
-  /* Two-thirds of the viewport per v2 spec */
-  min-height: 67%;
-  max-height: 67%;
+  max-height: 85%;
   overflow-y: auto;
 }
 
@@ -1086,7 +1105,7 @@ h3 {
 
 .modal-overlay.center .modal-content {
   border-radius: var(--radius-lg);
-  max-height: 70vh;
+  max-height: 80%;
   margin: 0 20px;
 }
 

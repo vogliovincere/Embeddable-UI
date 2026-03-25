@@ -146,20 +146,20 @@ export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms
           />
           <div className="slide-up-panel">
             <h2 style={{ marginBottom: 4 }}>Before you continue</h2>
-            <p style={{ fontSize: 13, color: 'var(--color-gray-400)', marginBottom: 16 }}>
+            <p style={{ fontSize: 13, color: 'var(--color-gray-400)', marginBottom: 12 }}>
               Identity &amp; compliance verification
             </p>
-            <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.6, marginBottom: 16 }}>
-              You are about to complete a Know Your Customer (KYC) verification. This process helps us confirm your identity and comply with anti-money laundering regulations.
+            <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 10 }}>
+              You are about to complete a Know Your Customer (KYC) verification to confirm your identity and comply with anti-money laundering regulations.
             </p>
-            <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.6, marginBottom: 16 }}>
-              By continuing, you agree to share your information for the purpose of identity verification. Your data will be processed in accordance with our{' '}
+            <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 10 }}>
+              By continuing, you agree to share your information for identity verification. Your data will be processed per our{' '}
               <a href="#" style={{ color: 'var(--color-accent)' }}>Privacy Policy</a>{' '}
               and{' '}
               <a href="#" style={{ color: 'var(--color-accent)' }}>Data Sharing Agreement</a>.
             </p>
-            <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.6, marginBottom: 24 }}>
-              We collect and process personal information including identification documents and address information as required by applicable regulations.
+            <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 16 }}>
+              We collect personal information including identification documents and address details as required by applicable regulations.
             </p>
             <button className="btn btn-primary" onClick={handleAgree}>
               I agree
