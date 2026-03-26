@@ -9,7 +9,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
   const isEditing = editIndex !== null
   const existingParty = isEditing ? formData.associatedParties[editIndex] : null
 
-  const [roles, setRoles] = useState(existingParty?.roles || [])
+  const [roles, setRoles] = useState(existingParty?.roles || (formData.defaultPartyRole ? [formData.defaultPartyRole] : []))
   const [firstName, setFirstName] = useState(existingParty?.firstName || '')
   const [lastName, setLastName] = useState(existingParty?.lastName || '')
   const [middleName, setMiddleName] = useState(existingParty?.middleName || '')
@@ -84,7 +84,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
         dispatch({ type: 'ADD_PARTY', payload: party })
       }
       setLoading(false)
-      goTo(9)
+      goTo(8)
     }, 1000)
   }
 
@@ -97,7 +97,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
         <div className="progress-segment active" />
       </div>
       <div className="header">
-        <button className="back-button" onClick={() => goTo(9)}>←</button>
+        <button className="back-button" onClick={() => goTo(8)}>←</button>
         <button className="lang-selector">En</button>
       </div>
       <div className="screen-content">
@@ -110,7 +110,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
           <div className="form-group">
             <label className="form-label">Role <span className="required">*</span></label>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              {['UBO', 'Director', 'Shareholder'].map(role => (
+              {['UBO', 'Control Person'].map(role => (
                 <label
                   key={role}
                   style={{

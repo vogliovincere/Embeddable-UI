@@ -8,31 +8,36 @@ export default function Screen9AssociatedParties({ formData, dispatch, goNext, g
 
   const getPartiesByRole = (role) => parties.filter(p => p.roles.includes(role))
 
-  const hasDirector = getPartiesByRole('Director').length > 0
+  const controlPersonCount = getPartiesByRole('Control Person').length
   const hasAny = parties.length > 0
-  const canSubmit = hasDirector || (getPartiesByRole('UBO').length > 0 || getPartiesByRole('Shareholder').length > 0)
+  const canSubmit = controlPersonCount === 1
 
   const handleSubmit = () => {
-    if (!canSubmit) {
-      setValidationError('At minimum, one Director must be added. If no Director is provided, at least one Shareholder or UBO must be entered.')
+    if (controlPersonCount === 0) {
+      setValidationError('Exactly one Control Person is required per 31 CFR § 1010.230(d). Please add a Control Person before continuing.')
+      return
+    }
+    if (controlPersonCount > 1) {
+      setValidationError('Only one Control Person may be designated. Please remove additional Control Persons before continuing.')
       return
     }
     setValidationError('')
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      goTo(11)
+      goTo(10)
     }, 1500)
   }
 
   const handleAddIndividual = (defaultRole) => {
     dispatch({ type: 'SET_EDITING_PARTY', index: null })
-    goTo(10)
+    dispatch({ type: 'SET_DEFAULT_PARTY_ROLE', payload: defaultRole })
+    goTo(9)
   }
 
   const handleEdit = (index) => {
     dispatch({ type: 'SET_EDITING_PARTY', index })
-    goTo(10)
+    goTo(9)
   }
 
   const handleDelete = (index) => {
@@ -47,16 +52,10 @@ export default function Screen9AssociatedParties({ formData, dispatch, goNext, g
       allowEntity: false,
     },
     {
-      role: 'Shareholder',
-      title: 'Shareholder',
-      description: 'Parties with direct ownership above 25%',
-      allowEntity: true,
-    },
-    {
-      role: 'Director',
-      title: 'Director',
-      description: 'Company directors and officers',
-      allowEntity: true,
+      role: 'Control Person',
+      title: 'Control Person',
+      description: 'The single individual with significant responsibility to control, manage, or direct the legal entity',
+      allowEntity: false,
     },
   ]
 
@@ -104,7 +103,7 @@ export default function Screen9AssociatedParties({ formData, dispatch, goNext, g
                     </div>
                     <div>
                       {p.roles.map(r => (
-                        <span key={r} className={`role-badge ${r.toLowerCase()}`}>{r}</span>
+                        <span key={r} className={`role-badge ${r.toLowerCase().replace(/\s+/g, '-')}`}>{r}</span>
                       ))}
                     </div>
                   </div>

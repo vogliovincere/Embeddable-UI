@@ -667,8 +667,7 @@ h3 {
 }
 
 .role-badge.ubo { background: var(--color-primary); }
-.role-badge.shareholder { background: #6366F1; }
-.role-badge.director { background: #0891B2; }
+.role-badge.control-person { background: #0891B2; }
 
 /* Verification card buttons */
 .verify-buttons {

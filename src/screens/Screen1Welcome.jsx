@@ -129,7 +129,7 @@ export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms
         </p>
 
         <div style={{ width: '100%', padding: '0 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <button className="btn btn-primary" onClick={() => handleFlowClick('individual')}>
+          <button className="btn btn-secondary" onClick={() => handleFlowClick('individual')}>
             Individual
           </button>
           <button className="btn btn-secondary" onClick={() => handleFlowClick('entity')}>

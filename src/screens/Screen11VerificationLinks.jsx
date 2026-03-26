@@ -194,7 +194,7 @@ export default function Screen11VerificationLinks({ formData, goNext }) {
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
                           {party.roles.map(r => (
-                            <span key={r} className={`role-badge ${r.toLowerCase()}`}>{r}</span>
+                            <span key={r} className={`role-badge ${r.toLowerCase().replace(/\s+/g, '-')}`}>{r}</span>
                           ))}
                           <span style={{ fontSize: 13, color: 'var(--color-text)' }}>• {party.email}</span>
                         </div>

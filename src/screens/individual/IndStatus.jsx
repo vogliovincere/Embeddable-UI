@@ -92,7 +92,7 @@ export default function IndStatus({ goTo, contextId }) {
       <div className="screen-content" style={{ paddingTop: 40 }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div className="spinner" style={{ width: 48, height: 48, borderWidth: 4, margin: '0 auto 16px' }} />
-          <h1>Checking your information</h1>
+          <h1>Verification Submitted</h1>
           <p className="subtitle">Please wait while we verify your submission...</p>
         </div>
 

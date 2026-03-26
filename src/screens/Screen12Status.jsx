@@ -53,7 +53,7 @@ export default function Screen12Status({ goTo }) {
       </div>
       <div className="terminal-screen">
         <div className="spinner" style={{ width: 56, height: 56, borderWidth: 4, marginBottom: 24 }} />
-        <div className="terminal-heading">Verification in progress</div>
+        <div className="terminal-heading">Verification Submitted</div>
         <div className="terminal-subtext">
           We are reviewing your submission. This page will automatically update once all verifications are complete.
         </div>

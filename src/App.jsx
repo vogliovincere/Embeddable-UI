@@ -7,7 +7,6 @@ import Screen4Consent from './screens/Screen4Consent'
 import Screen5EntityDetails from './screens/Screen5EntityDetails'
 import Screen6ReviewConfirm from './screens/Screen6ReviewConfirm'
 import Screen7DocRequest from './screens/Screen7DocRequest'
-import Screen8EntityDocs from './screens/Screen8EntityDocs'
 import Screen9AssociatedParties from './screens/Screen9AssociatedParties'
 import Screen10AddParty from './screens/Screen10AddParty'
 import Screen11VerificationLinks from './screens/Screen11VerificationLinks'
@@ -60,17 +59,12 @@ const initialState = {
     entityName: '',
     fileNumber: '',
   },
-  supplementaryDocs: {
-    signatoryList: null,
-    structureDiagram: null,
-  },
   entityDocs: {
-    legal_presence: [],
-    entity_details: [],
-    ownership_structure: [],
+    formation_documents: [],
   },
   associatedParties: [],
   editingPartyIndex: null,
+  defaultPartyRole: null,
   individualData: { ...individualInitialState },
   jointData: { ...jointInitialState },
 }
@@ -79,8 +73,6 @@ function formReducer(state, action) {
   switch (action.type) {
     case 'SET_ENTITY_DETAILS':
       return { ...state, entityDetails: { ...state.entityDetails, ...action.payload } }
-    case 'SET_SUPPLEMENTARY_DOC':
-      return { ...state, supplementaryDocs: { ...state.supplementaryDocs, [action.field]: action.payload } }
     case 'SET_ENTITY_DOC': {
       const docs = { ...state.entityDocs }
       docs[action.category] = action.payload
@@ -97,6 +89,8 @@ function formReducer(state, action) {
       return { ...state, associatedParties: state.associatedParties.filter((_, i) => i !== action.index) }
     case 'SET_EDITING_PARTY':
       return { ...state, editingPartyIndex: action.index }
+    case 'SET_DEFAULT_PARTY_ROLE':
+      return { ...state, defaultPartyRole: action.payload }
     case 'SET_INDIVIDUAL_DATA':
       return { ...state, individualData: { ...state.individualData, ...action.payload } }
     // Joint flow actions
@@ -119,8 +113,6 @@ function formReducer(state, action) {
       return { ...state, jointData: { ...state.jointData, coHolders: [], editingCoHolderIndex: null } }
     case 'CLEAR_ENTITY_DETAILS':
       return { ...state, entityDetails: initialState.entityDetails }
-    case 'CLEAR_SUPPLEMENTARY_DOCS':
-      return { ...state, supplementaryDocs: initialState.supplementaryDocs }
     case 'CLEAR_ENTITY_DOCS':
       return { ...state, entityDocs: initialState.entityDocs }
     case 'CLEAR_PARTIES':
@@ -175,6 +167,10 @@ const jointScreenOrderComplete = [201, 202, 203, 204, 205, 206, 207, 210, 212, 2
 // Joint KYC Basic: disclaimer → overview → consent → personal → address → supp docs → doc type → doc upload → co-holders → verification → status
 const jointScreenOrderBasic = [201, 202, 203, 204, 205, 206, 208, 209, 210, 212, 213]
 
+// Entity flow: welcome → disclaimer → overview → consent → entity details → review → KYB docs → parties → add party → verification links → status
+// Entity flow: welcome → disclaimer → overview → consent → entity details → review → KYB docs → parties → add party → verification links → status
+const entityScreenOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState(1)
   const [formData, dispatch] = useReducer(formReducer, initialState)
@@ -209,6 +205,9 @@ export default function App() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const getScreenOrder = () => {
+    if (flowType === 'entity') {
+      return entityScreenOrder
+    }
     if (flowType === 'joint') {
       return contextId === 'kyc_basic' ? jointScreenOrderBasic : jointScreenOrderComplete
     }
@@ -216,30 +215,21 @@ export default function App() {
   }
 
   const goNext = () => {
-    if (flowType === 'individual' || flowType === 'joint') {
-      const order = getScreenOrder()
-      const idx = order.indexOf(currentScreen)
-      if (idx >= 0 && idx < order.length - 1) {
-        setCurrentScreen(order[idx + 1])
-      }
-    } else {
-      setCurrentScreen(s => s + 1)
+    const order = getScreenOrder()
+    const idx = order.indexOf(currentScreen)
+    if (idx >= 0 && idx < order.length - 1) {
+      setCurrentScreen(order[idx + 1])
     }
   }
 
   const goBack = () => {
-    if (flowType === 'individual' || flowType === 'joint') {
-      const order = getScreenOrder()
-      const idx = order.indexOf(currentScreen)
-      if (idx > 0) {
-        setCurrentScreen(order[idx - 1])
-      } else {
-        // Back to welcome
-        setFlowType(null)
-        setCurrentScreen(1)
-      }
+    const order = getScreenOrder()
+    const idx = order.indexOf(currentScreen)
+    if (idx > 0) {
+      setCurrentScreen(order[idx - 1])
     } else {
-      setCurrentScreen(s => Math.max(1, s - 1))
+      setFlowType(null)
+      setCurrentScreen(1)
     }
   }
 
@@ -345,11 +335,10 @@ export default function App() {
       case 5: return <Screen5EntityDetails {...props} />
       case 6: return <Screen6ReviewConfirm {...props} />
       case 7: return <Screen7DocRequest {...props} />
-      case 8: return <Screen8EntityDocs {...props} />
-      case 9: return <Screen9AssociatedParties {...props} />
-      case 10: return <Screen10AddParty {...props} />
-      case 11: return <Screen11VerificationLinks {...props} />
-      case 12: return <Screen12Status {...props} />
+      case 8: return <Screen9AssociatedParties {...props} />
+      case 9: return <Screen10AddParty {...props} />
+      case 10: return <Screen11VerificationLinks {...props} />
+      case 11: return <Screen12Status {...props} />
       default: return <Screen1Welcome {...props} onSelectFlow={handleSelectFlow} />
     }
   }
@@ -367,23 +356,16 @@ export default function App() {
     })
   }
 
-  const prefillSupplementaryDocs = () => {
-    dispatch({ type: 'SET_SUPPLEMENTARY_DOC', field: 'signatoryList', payload: 'signatory-list.pdf' })
-    dispatch({ type: 'SET_SUPPLEMENTARY_DOC', field: 'structureDiagram', payload: 'structure-diagram.pdf' })
-  }
-
   const prefillEntityDocs = () => {
-    dispatch({ type: 'SET_ENTITY_DOC', category: 'legal_presence', payload: [{ name: 'incorporation-cert.pdf', type: 'Incorporation certificate' }] })
-    dispatch({ type: 'SET_ENTITY_DOC', category: 'entity_details', payload: [{ name: 'articles-of-assoc.pdf', type: 'Articles and memorandum of association' }] })
-    dispatch({ type: 'SET_ENTITY_DOC', category: 'ownership_structure', payload: [{ name: 'shareholder-registry.pdf', type: 'Shareholder registry' }] })
+    dispatch({ type: 'SET_ENTITY_DOC', category: 'formation_documents', payload: [{ name: 'articles-of-incorporation.pdf', type: 'Formation document' }] })
   }
 
   const partyPersonas = [
-    { roles: ['Director', 'UBO'], firstName: 'Jane', lastName: 'Smith', middleName: '', dob: '01/15/1985', email: 'jane.smith@acme.com', phone: '5559001001', ssn: '000-00-0001', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'California', streetAddress: '100 Market St', city: 'San Francisco', postalCode: '94105', apartment: 'Ste 300' },
-    { roles: ['Shareholder'], firstName: 'Michael', lastName: 'Chen', middleName: 'Wei', dob: '06/22/1978', email: 'michael.chen@acme.com', phone: '5559001002', ssn: '000-00-0002', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'New York', streetAddress: '200 Park Ave', city: 'New York', postalCode: '10166', apartment: '' },
-    { roles: ['Director'], firstName: 'Sarah', lastName: 'Johnson', middleName: 'Marie', dob: '11/03/1990', email: 'sarah.johnson@acme.com', phone: '5559001003', ssn: '000-00-0003', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Texas', streetAddress: '300 Congress Ave', city: 'Austin', postalCode: '73301', apartment: '' },
-    { roles: ['UBO', 'Shareholder'], firstName: 'David', lastName: 'Okafor', middleName: '', dob: '09/17/1982', email: 'david.okafor@acme.com', phone: '5559001004', ssn: '000-00-0004', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Florida', streetAddress: '400 Brickell Ave', city: 'Miami', postalCode: '33131', apartment: 'Unit 15B' },
-    { roles: ['Shareholder', 'Director'], firstName: 'Elena', lastName: 'Rodriguez', middleName: 'Sofia', dob: '04/28/1995', email: 'elena.rodriguez@acme.com', phone: '5559001005', ssn: '000-00-0005', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Illinois', streetAddress: '500 Michigan Ave', city: 'Chicago', postalCode: '60601', apartment: '' },
+    { roles: ['Control Person', 'UBO'], firstName: 'Jane', lastName: 'Smith', middleName: '', dob: '01/15/1985', email: 'jane.smith@acme.com', phone: '5559001001', ssn: '000-00-0001', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'California', streetAddress: '100 Market St', city: 'San Francisco', postalCode: '94105', apartment: 'Ste 300' },
+    { roles: ['UBO'], firstName: 'Michael', lastName: 'Chen', middleName: 'Wei', dob: '06/22/1978', email: 'michael.chen@acme.com', phone: '5559001002', ssn: '000-00-0002', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'New York', streetAddress: '200 Park Ave', city: 'New York', postalCode: '10166', apartment: '' },
+    { roles: ['UBO'], firstName: 'Sarah', lastName: 'Johnson', middleName: 'Marie', dob: '11/03/1990', email: 'sarah.johnson@acme.com', phone: '5559001003', ssn: '000-00-0003', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Texas', streetAddress: '300 Congress Ave', city: 'Austin', postalCode: '73301', apartment: '' },
+    { roles: ['UBO'], firstName: 'David', lastName: 'Okafor', middleName: '', dob: '09/17/1982', email: 'david.okafor@acme.com', phone: '5559001004', ssn: '000-00-0004', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Florida', streetAddress: '400 Brickell Ave', city: 'Miami', postalCode: '33131', apartment: 'Unit 15B' },
+    { roles: ['UBO'], firstName: 'Elena', lastName: 'Rodriguez', middleName: 'Sofia', dob: '04/28/1995', email: 'elena.rodriguez@acme.com', phone: '5559001005', ssn: '000-00-0005', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Illinois', streetAddress: '500 Michigan Ave', city: 'Chicago', postalCode: '60601', apartment: '' },
   ]
 
   const prefillParty = () => {
@@ -494,12 +476,11 @@ export default function App() {
     { num: 4, label: 'Consent' },
     { num: 5, label: 'Entity Details' },
     { num: 6, label: 'Review & Confirm' },
-    { num: 7, label: 'Doc Request' },
-    { num: 8, label: 'Entity Docs' },
-    { num: 9, label: 'Associated Parties' },
-    { num: 10, label: 'Add Party' },
-    { num: 11, label: 'Verification Links' },
-    { num: 12, label: 'Status' },
+    { num: 7, label: 'KYB Document Request' },
+    { num: 8, label: 'Associated Parties' },
+    { num: 9, label: 'Add Party' },
+    { num: 10, label: 'Verification Links' },
+    { num: 11, label: 'Status' },
   ]
 
   const individualScreensComplete = [
@@ -567,7 +548,6 @@ export default function App() {
       : entityScreens
 
   const hasEntityDetails = !!formData.entityDetails.country || !!formData.entityDetails.entityName
-  const hasSupDocs = !!formData.supplementaryDocs.signatoryList || !!formData.supplementaryDocs.structureDiagram
   const hasEntityDocs = Object.values(formData.entityDocs).some(arr => arr.length > 0)
   const hasParties = formData.associatedParties.length > 0
 
@@ -799,15 +779,8 @@ export default function App() {
               </div>
 
               <div className="prefill-data-row">
-                <button className="prefill-btn" onClick={prefillSupplementaryDocs} disabled={hasSupDocs}>
-                  Supplementary docs
-                </button>
-                {hasSupDocs && <button className="prefill-clear-btn" onClick={() => dispatch({ type: 'CLEAR_SUPPLEMENTARY_DOCS' })}>Clear</button>}
-              </div>
-
-              <div className="prefill-data-row">
                 <button className="prefill-btn" onClick={prefillEntityDocs} disabled={hasEntityDocs}>
-                  Entity docs
+                  Formation docs
                 </button>
                 {hasEntityDocs && <button className="prefill-clear-btn" onClick={() => dispatch({ type: 'CLEAR_ENTITY_DOCS' })}>Clear</button>}
               </div>
@@ -822,7 +795,6 @@ export default function App() {
               <button className="prefill-btn prefill-btn-all" onClick={() => {
                 setAgreedToTerms(true)
                 prefillEntityDetails()
-                prefillSupplementaryDocs()
                 prefillEntityDocs()
                 if (!hasParties) prefillParty()
               }}>

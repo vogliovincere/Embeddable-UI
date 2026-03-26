@@ -1,46 +1,29 @@
 import { useState, useRef } from 'react'
+import { documentCategories } from '../data/documentTypes'
 
-function UploadZone({ label, description, file, onUpload, onRemove, required }) {
+function DocUploadZone({ onUpload }) {
   const inputRef = useRef(null)
 
-  const handleDrop = (e) => {
-    e.preventDefault()
-    const f = e.dataTransfer.files[0]
-    if (f) onUpload(f.name)
-  }
-
   return (
-    <div style={{ marginBottom: 24 }}>
-      <h3 style={{ marginBottom: 6 }}>{label}</h3>
-      <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 12 }}>
-        {description}
-        {required && <span style={{ color: 'var(--color-error)' }}> *</span>}
-      </p>
-
-      {file ? (
-        <div className="upload-zone has-file">
-          <div className="file-info">
-            <span>📄</span>
-            <span>{file}</span>
-            <button className="remove-file" onClick={onRemove}>✕</button>
-          </div>
+    <>
+      <div
+        className="upload-zone"
+        style={{ padding: '20px 16px', marginTop: 8 }}
+        onClick={() => inputRef.current?.click()}
+        onDragOver={e => e.preventDefault()}
+        onDrop={e => {
+          e.preventDefault()
+          const f = e.dataTransfer.files[0]
+          if (f) onUpload(f.name)
+        }}
+      >
+        <div className="cloud-icon" style={{ fontSize: 24 }}>☁️</div>
+        <div className="upload-text" style={{ fontSize: 13 }}>Upload file</div>
+        <div style={{ fontSize: 12 }}>
+          <span className="upload-link">Choose</span> or drag and drop
         </div>
-      ) : (
-        <div
-          className="upload-zone"
-          onClick={() => inputRef.current?.click()}
-          onDragOver={e => e.preventDefault()}
-          onDrop={handleDrop}
-        >
-          <div className="cloud-icon">☁️</div>
-          <div className="upload-text">Upload file</div>
-          <div>
-            <span className="upload-link">Choose</span> or drag and drop
-          </div>
-          <div className="upload-formats">JPG, PNG, HEIC, WEBP or PDF (max 10 MB)</div>
-        </div>
-      )}
-
+        <div className="upload-formats">JPG, PNG, HEIC, WEBP or PDF (max 10 MB)</div>
+      </div>
       <input
         ref={inputRef}
         type="file"
@@ -52,30 +35,44 @@ function UploadZone({ label, description, file, onUpload, onRemove, required }) 
           e.target.value = ''
         }}
       />
-    </div>
+    </>
   )
 }
 
 export default function Screen7DocRequest({ formData, dispatch, goNext, goBack }) {
   const [loading, setLoading] = useState(false)
-  const [errors, setErrors] = useState({})
-  const { signatoryList, structureDiagram } = formData.supplementaryDocs
+  const [validationAttempted, setValidationAttempted] = useState(false)
 
-  const validate = () => {
-    const errs = {}
-    if (!signatoryList) errs.signatoryList = true
-    if (!structureDiagram) errs.structureDiagram = true
-    setErrors(errs)
-    return Object.keys(errs).length === 0
-  }
+  const allFulfilled = documentCategories.every(
+    cat => formData.entityDocs[cat.id]?.length > 0
+  )
 
   const handleContinue = () => {
-    if (!validate()) return
+    setValidationAttempted(true)
+    if (!allFulfilled) return
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
       goNext()
     }, 1500)
+  }
+
+  const addDoc = (categoryId, fileName, docType) => {
+    const current = formData.entityDocs[categoryId] || []
+    dispatch({
+      type: 'SET_ENTITY_DOC',
+      category: categoryId,
+      payload: [...current, { name: fileName, type: docType }],
+    })
+  }
+
+  const removeDoc = (categoryId, index) => {
+    const current = formData.entityDocs[categoryId] || []
+    dispatch({
+      type: 'SET_ENTITY_DOC',
+      category: categoryId,
+      payload: current.filter((_, i) => i !== index),
+    })
   }
 
   return (
@@ -91,33 +88,54 @@ export default function Screen7DocRequest({ formData, dispatch, goNext, goBack }
         <button className="lang-selector">En</button>
       </div>
       <div className="screen-content">
-        <div className="card">
-          <h1>Corporate KYC Document Request</h1>
+        <h1>KYB Document Request</h1>
+        <p className="subtitle">
+          Upload the document establishing your entity's legal existence.
+        </p>
+        <p style={{ fontSize: 13, color: 'var(--color-gray-400)', lineHeight: 1.6, marginBottom: 20 }}>
+          <strong>Corporations:</strong> Articles / Certificate of Incorporation<br />
+          <strong>LLCs:</strong> Articles / Certificate of Organization<br />
+          <strong>Partnerships:</strong> Certificate of Limited Partnership<br />
+          <strong>Trusts:</strong> Trust Agreement or Certificate of Trust
+        </p>
 
-          <UploadZone
-            label="Authorised Signatory List"
-            description="Please upload a signed authorised signatory list below"
-            file={signatoryList}
-            required
-            onUpload={name => dispatch({ type: 'SET_SUPPLEMENTARY_DOC', field: 'signatoryList', payload: name })}
-            onRemove={() => dispatch({ type: 'SET_SUPPLEMENTARY_DOC', field: 'signatoryList', payload: null })}
-          />
-          {errors.signatoryList && !signatoryList && (
-            <div className="form-error" style={{ marginTop: -16, marginBottom: 16 }}>Please upload this document</div>
-          )}
+        {documentCategories.map(cat => {
+          const docs = formData.entityDocs[cat.id] || []
+          const fulfilled = docs.length > 0
+          const showError = validationAttempted && !fulfilled
 
-          <UploadZone
-            label="Structure Diagram"
-            description="Please upload a structure diagram, outlining the organisational structure and/or ownership structure"
-            file={structureDiagram}
-            required
-            onUpload={name => dispatch({ type: 'SET_SUPPLEMENTARY_DOC', field: 'structureDiagram', payload: name })}
-            onRemove={() => dispatch({ type: 'SET_SUPPLEMENTARY_DOC', field: 'structureDiagram', payload: null })}
-          />
-          {errors.structureDiagram && !structureDiagram && (
-            <div className="form-error" style={{ marginTop: -16, marginBottom: 16 }}>Please upload this document</div>
-          )}
-        </div>
+          return (
+            <div key={cat.id} className="doc-category">
+              <div className="doc-category-header">
+                <div className={`doc-status-icon ${fulfilled ? 'fulfilled' : 'missing'}`}>
+                  {fulfilled ? '✓' : '!'}
+                </div>
+                <span className="doc-category-name">{cat.name}</span>
+              </div>
+
+              {showError && (
+                <div className="doc-validation-msg">
+                  You need to upload at least one document for {cat.name}
+                </div>
+              )}
+
+              {docs.map((doc, i) => (
+                <div key={i} className="doc-uploaded-item">
+                  <div className="doc-thumb">📄</div>
+                  <div className="doc-name">
+                    <div>{doc.name}</div>
+                    <div style={{ fontSize: 11, color: 'var(--color-gray-400)' }}>{doc.type}</div>
+                  </div>
+                  <button className="doc-delete" onClick={() => removeDoc(cat.id, i)}>🗑</button>
+                </div>
+              ))}
+
+              <DocUploadZone
+                onUpload={fileName => addDoc(cat.id, fileName, cat.documentTypes[0])}
+              />
+            </div>
+          )
+        })}
 
         <div className="button-group">
           <button className="btn btn-primary" onClick={handleContinue} disabled={loading}>
