@@ -272,7 +272,7 @@ export default function JointAddCoHolder({ formData, dispatch, goTo }) {
               <button className="modal-close" onClick={() => setShowCountryModal(false)}>✕</button>
             </div>
             <div className="modal-search">
-              <span className="search-icon">🔍</span>
+              <span className="search-icon emoji-deco">🔍</span>
               <input
                 placeholder="Search countries..."
                 value={countrySearch}
@@ -310,7 +310,7 @@ export default function JointAddCoHolder({ formData, dispatch, goTo }) {
               <button className="modal-close" onClick={() => setShowStateModal(false)}>✕</button>
             </div>
             <div className="modal-search">
-              <span className="search-icon">🔍</span>
+              <span className="search-icon emoji-deco">🔍</span>
               <input
                 placeholder={`Search ${isUS ? 'states' : 'provinces'}...`}
                 value={stateSearch}

@@ -120,7 +120,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
                     padding: '8px 14px',
                     borderRadius: 'var(--radius-full)',
                     border: `2px solid ${roles.includes(role) ? 'var(--color-primary)' : 'var(--color-border)'}`,
-                    background: roles.includes(role) ? '#EEF2FF' : 'white',
+                    background: roles.includes(role) ? 'var(--color-primary-soft)' : 'white',
                     cursor: 'pointer',
                     fontSize: 14,
                     fontWeight: 500,
@@ -338,7 +338,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
               <button className="modal-close" onClick={() => setShowCountryModal(false)}>✕</button>
             </div>
             <div className="modal-search">
-              <span className="search-icon">🔍</span>
+              <span className="search-icon emoji-deco">🔍</span>
               <input
                 placeholder="Search countries..."
                 value={countrySearch}
@@ -376,7 +376,7 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
               <button className="modal-close" onClick={() => setShowStateModal(false)}>✕</button>
             </div>
             <div className="modal-search">
-              <span className="search-icon">🔍</span>
+              <span className="search-icon emoji-deco">🔍</span>
               <input
                 placeholder={`Search ${isUS ? 'states' : 'provinces'}...`}
                 value={stateSearch}

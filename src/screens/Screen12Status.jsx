@@ -52,10 +52,39 @@ export default function Screen12Status({ goTo }) {
         <button onClick={cycleStatus}>Toggle: {status}</button>
       </div>
       <div className="terminal-screen">
-        <div className="spinner" style={{ width: 56, height: 56, borderWidth: 4, marginBottom: 24 }} />
-        <div className="terminal-heading">Verification Submitted</div>
+        <div
+          style={{
+            width: 72,
+            height: 72,
+            borderRadius: '50%',
+            background: 'var(--color-primary-soft)',
+            color: 'var(--color-primary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: 24,
+          }}
+        >
+          <svg
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="5" y="4" width="14" height="17" rx="2" />
+            <path d="M9 4h6v3H9z" />
+            <circle cx="16" cy="16" r="4.5" fill="var(--color-primary-soft)" />
+            <path d="M16 13.5v2.5l1.5 1" />
+          </svg>
+        </div>
+        <div className="terminal-heading">Verification Under Review</div>
         <div className="terminal-subtext">
-          We are reviewing your submission. This page will automatically update once all verifications are complete.
+          Your information has been securely submitted. Our team is currently reviewing your details. This process typically takes 1 to 2 business days.
         </div>
       </div>
     </div>

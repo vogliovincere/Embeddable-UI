@@ -23,22 +23,21 @@ export default function Screen2Disclaimer({ goNext, goBack }) {
         ) : (
           <>
             <div className="card" style={{ flex: 1 }}>
-              <div style={{
+              <div className="emoji-badge" style={{
                 width: 56,
                 height: 56,
                 borderRadius: '50%',
-                background: '#FEF3C7',
+                background: 'var(--color-primary-soft)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: 28,
-                marginBottom: 16,
-                alignSelf: 'center',
+                margin: '0 auto 16px auto',
               }}>
-                ⚠️
+                <span className="emoji-deco">ℹ️</span>
               </div>
-              <h1>Verivend Verification</h1>
-              <p className="subtitle">
+              <h1 style={{ textAlign: 'center' }}>Verivend Verification</h1>
+              <p className="subtitle" style={{ textAlign: 'center' }}>
                 You are about to submit sensitive personal and business data to <strong>Verivend</strong> for the purpose of identity and entity verification.
               </p>
               <div style={{

@@ -91,9 +91,38 @@ export default function IndStatus({ goTo, contextId }) {
       </div>
       <div className="screen-content" style={{ paddingTop: 40 }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div className="spinner" style={{ width: 48, height: 48, borderWidth: 4, margin: '0 auto 16px' }} />
-          <h1>Verification Submitted</h1>
-          <p className="subtitle">Please wait while we verify your submission...</p>
+          <div
+            style={{
+              width: 72,
+              height: 72,
+              borderRadius: '50%',
+              background: 'var(--color-primary-soft)',
+              color: 'var(--color-primary)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 16px',
+            }}
+          >
+            <svg
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="5" y="4" width="14" height="17" rx="2" />
+              <path d="M9 4h6v3H9z" />
+              <circle cx="16" cy="16" r="4.5" fill="var(--color-primary-soft)" />
+              <path d="M16 13.5v2.5l1.5 1" />
+            </svg>
+          </div>
+          <h1>Verification Under Review</h1>
+          <p className="subtitle">Your information has been securely submitted. Our team is currently reviewing your details. This process typically takes 1 to 2 business days.</p>
         </div>
 
         <div style={{

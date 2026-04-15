@@ -180,8 +180,8 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: 36,
-            }}>
-              &#128269;
+            }} className="emoji-badge">
+              <span className="emoji-deco">&#128269;</span>
             </div>
             <p style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-heading)' }}>
               Under Review
@@ -200,18 +200,18 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
               textAlign: 'center',
               paddingTop: 24,
             }}>
-              <div style={{
+              <div className="emoji-badge" style={{
                 width: 72,
                 height: 72,
                 borderRadius: '50%',
-                background: '#EEF2FF',
+                background: 'var(--color-primary-soft)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: 36,
                 marginBottom: 24,
               }}>
-                🪪
+                <span className="emoji-deco emoji-id">🪪</span>
               </div>
               <h1 style={{ marginBottom: 12 }}>Identity Verification</h1>
               <p style={{
@@ -245,7 +245,7 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
                     width: 40,
                     height: 40,
                     borderRadius: '50%',
-                    background: '#EEF2FF',
+                    background: 'var(--color-primary-soft)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -280,7 +280,7 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
                     width: 40,
                     height: 40,
                     borderRadius: '50%',
-                    background: '#EEF2FF',
+                    background: 'var(--color-primary-soft)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

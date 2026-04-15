@@ -18,7 +18,7 @@ function UploadZone({ label, file, onUpload, onRemove }) {
       {file ? (
         <div className="upload-zone has-file">
           <div className="file-info">
-            <span>📄</span>
+            <span className="emoji-deco">📄</span>
             <span>{file}</span>
             <button className="remove-file" onClick={onRemove}>✕</button>
           </div>
@@ -30,7 +30,7 @@ function UploadZone({ label, file, onUpload, onRemove }) {
           onDragOver={e => e.preventDefault()}
           onDrop={handleDrop}
         >
-          <div className="cloud-icon">☁️</div>
+          <div className="cloud-icon emoji-deco">☁️</div>
           <div className="upload-text">Upload file</div>
           <div>
             <span className="upload-link">Choose</span> or drag and drop
@@ -98,8 +98,15 @@ export default function IndDocUpload({ formData, dispatch, goNext, goBack, conte
             justifyContent: 'space-between',
             marginBottom: 16,
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              {idCountry && <span style={{ fontSize: 20 }}>{idCountry.flag}</span>}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+              {idCountry && (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                  <span style={{ fontSize: 20, lineHeight: 1 }}>{idCountry.flag}</span>
+                  <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--color-text)' }}>
+                    {idCountry.name}
+                  </span>
+                </span>
+              )}
               <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--color-heading)' }}>
                 {idDocType}
               </span>
@@ -115,7 +122,7 @@ export default function IndDocUpload({ formData, dispatch, goNext, goBack, conte
               }}
               title="Change selection"
             >
-              ✏️
+              <span className="emoji-deco">✏️</span><span className="emoji-fallback">Change</span>
             </button>
           </div>
 

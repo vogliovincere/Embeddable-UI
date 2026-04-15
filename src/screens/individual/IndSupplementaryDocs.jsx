@@ -135,12 +135,12 @@ export default function IndSupplementaryDocs({ formData, dispatch, goNext, goBac
 
           {proofDocs.map((doc, i) => (
             <div key={i} className="doc-uploaded-item">
-              <div className="doc-thumb">&#128196;</div>
+              <div className="doc-thumb emoji-badge"><span className="emoji-deco">&#128196;</span></div>
               <div className="doc-name">
                 <div>{doc.name}</div>
                 <div style={{ fontSize: 11, color: 'var(--color-gray-400)' }}>{doc.type}</div>
               </div>
-              <button className="doc-delete" onClick={() => removeDoc(i)}>&#128465;</button>
+              <button className="doc-delete" onClick={() => removeDoc(i)}><span className="emoji-deco">&#128465;</span><span className="emoji-fallback">Remove</span></button>
             </div>
           ))}
 
@@ -181,7 +181,7 @@ export default function IndSupplementaryDocs({ formData, dispatch, goNext, goBac
                   className="modal-list-item"
                   onClick={() => handleDocTypeSelect(dt)}
                 >
-                  <span>&#128196;</span>
+                  <span className="emoji-deco">&#128196;</span>
                   <span>{dt}</span>
                 </div>
               ))}

@@ -47,7 +47,7 @@ export default function IndStepOverview({ goNext, goBack, contextId }) {
         <div className="step-list">
           {steps.map((step, i) => (
             <div key={i} className="step-item">
-              <div className="step-icon">{step.icon}</div>
+              <div className="step-icon emoji-badge"><span className={`emoji-deco${step.icon === '🪪' ? ' emoji-id' : ''}`}>{step.icon}</span></div>
               <div>
                 <div className="step-label">{step.label}</div>
                 <div className="step-description">{step.detail}</div>

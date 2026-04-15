@@ -60,7 +60,7 @@ export default function JointCoHolderEntry({ formData, dispatch, goNext, goBack,
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '12px 16px',
-            background: coHolders.length >= 1 ? '#DCFCE7' : '#EEF2FF',
+            background: coHolders.length >= 1 ? '#DCFCE7' : 'var(--color-primary-soft)',
             borderRadius: 'var(--radius-md)',
             marginBottom: 16,
             fontSize: 14,
@@ -74,14 +74,14 @@ export default function JointCoHolderEntry({ formData, dispatch, goNext, goBack,
           {coHolders.map((holder, index) => (
             <div key={index} className="party-card" style={{ marginBottom: 12 }}>
               <div className="party-card-header">
-                <div className="party-avatar">👤</div>
+                <div className="party-avatar emoji-badge"><span className="emoji-deco">👤</span></div>
                 <div className="party-info">
                   <div className="party-name">{holder.firstName} {holder.lastName}</div>
                   <div className="party-email">{holder.email}</div>
                 </div>
                 <div className="party-actions">
-                  <button onClick={() => handleEdit(index)} title="Edit">✏️</button>
-                  <button onClick={() => handleDelete(index)} title="Delete">🗑️</button>
+                  <button onClick={() => handleEdit(index)} title="Edit"><span className="emoji-deco">✏️</span><span className="emoji-fallback">Edit</span></button>
+                  <button onClick={() => handleDelete(index)} title="Delete"><span className="emoji-deco">🗑️</span><span className="emoji-fallback">Delete</span></button>
                 </div>
               </div>
             </div>

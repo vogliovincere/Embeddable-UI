@@ -145,7 +145,7 @@ export default function Screen5EntityDetails({ formData, dispatch, goNext, goBac
               <button className="modal-close" onClick={() => setShowCountryModal(false)}>✕</button>
             </div>
             <div className="modal-search">
-              <span className="search-icon">🔍</span>
+              <span className="search-icon emoji-deco">🔍</span>
               <input
                 placeholder="Search countries..."
                 value={countrySearch}
@@ -182,7 +182,7 @@ export default function Screen5EntityDetails({ formData, dispatch, goNext, goBac
               <button className="modal-close" onClick={() => setShowStateModal(false)}>✕</button>
             </div>
             <div className="modal-search">
-              <span className="search-icon">🔍</span>
+              <span className="search-icon emoji-deco">🔍</span>
               <input
                 placeholder="Search states..."
                 value={stateSearch}

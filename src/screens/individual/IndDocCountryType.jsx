@@ -111,7 +111,7 @@ export default function IndDocCountryType({ formData, dispatch, goNext, goBack, 
                       border: `1px solid ${idDocType === dt ? 'var(--color-primary)' : 'var(--color-border)'}`,
                       borderRadius: 'var(--radius-sm)',
                       cursor: 'pointer',
-                      background: idDocType === dt ? '#F0F4FF' : 'var(--color-white)',
+                      background: idDocType === dt ? 'var(--color-primary-soft)' : 'var(--color-white)',
                       transition: 'all 0.15s',
                     }}
                     onClick={() => selectDocType(dt)}
@@ -153,7 +153,7 @@ export default function IndDocCountryType({ formData, dispatch, goNext, goBack, 
               <button className="modal-close" onClick={() => setShowCountryModal(false)}>✕</button>
             </div>
             <div className="modal-search">
-              <span className="search-icon">🔍</span>
+              <span className="search-icon emoji-deco">🔍</span>
               <input
                 placeholder="Search countries..."
                 value={countrySearch}

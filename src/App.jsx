@@ -171,12 +171,32 @@ const jointScreenOrderBasic = [201, 202, 203, 204, 205, 206, 208, 209, 210, 212,
 // Entity flow: welcome → disclaimer → overview → consent → entity details → review → KYB docs → parties → add party → verification links → status
 const entityScreenOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
+const THEMES = [
+  { id: 'verivend', label: 'Verivend Strict' },
+  { id: 'interro-green', label: 'Interro Green' },
+  { id: 'interro-gold', label: 'Interro Gold' },
+  { id: 'interro-light-green', label: 'Interro Light Green' },
+  { id: 'interro-dark-gold', label: 'Interro Dark Gold' },
+  { id: 'minimalist', label: 'Minimalist' },
+]
+
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState(1)
   const [formData, dispatch] = useReducer(formReducer, initialState)
   const [agreedToTerms, setAgreedToTerms] = useState(false)
   const [flowType, setFlowType] = useState(null) // null | 'entity' | 'individual' | 'joint'
   const [contextId, setContextId] = useState('kyc_complete') // kyc_complete | kyc_basic
+
+  // Display toggles. Applied to <html data-theme=... data-emojis=...> so only
+  // the CSS cascade re-runs — the React tree never remounts and no form
+  // state is lost when the user flips themes or hides emojis mid-flow.
+  const [colorScheme, setColorScheme] = useState('verivend')
+  const [showEmojis, setShowEmojis] = useState(true)
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = colorScheme
+    document.documentElement.dataset.emojis = showEmojis ? 'on' : 'off'
+  }, [colorScheme, showEmojis])
 
   // Read initialization params from URL query string.
   useEffect(() => {
@@ -636,6 +656,34 @@ export default function App() {
           )}
         </div>
 
+        {/* Display controls — theme picker + emoji switch.
+            Writes to <html data-theme> / <html data-emojis> via useEffect,
+            triggering pure-CSS re-render without unmounting the form. */}
+        <div className="prefill-section">
+          <div className="prefill-section-title">Display</div>
+          <select
+            className="prefill-theme-select"
+            value={colorScheme}
+            onChange={(e) => setColorScheme(e.target.value)}
+            style={{ marginBottom: 8 }}
+          >
+            {THEMES.map((t) => (
+              <option key={t.id} value={t.id}>{t.label}</option>
+            ))}
+          </select>
+          <label className="prefill-toggle-row">
+            <span>Show emojis</span>
+            <span className="prefill-toggle">
+              <input
+                type="checkbox"
+                checked={showEmojis}
+                onChange={(e) => setShowEmojis(e.target.checked)}
+              />
+              <span className="prefill-toggle-slider" />
+            </span>
+          </label>
+        </div>
+
         <div className="prefill-section">
           <div className="prefill-section-title">Navigate</div>
           <div className="prefill-nav-list">
@@ -645,7 +693,7 @@ export default function App() {
                 className={`prefill-nav-item ${s.num === currentScreen ? 'active' : ''}`}
                 onClick={() => handleNavClick(s.num)}
               >
-                <span className="prefill-nav-num">{s.num > 200 ? s.num - 200 : s.num > 100 ? s.num - 100 : s.num}</span>
+                <span className="prefill-nav-num">{s.num > 200 ? s.num - 199 : s.num > 100 ? s.num - 99 : s.num}</span>
                 <span className="prefill-nav-label">{s.label}</span>
               </button>
             ))}

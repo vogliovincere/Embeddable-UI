@@ -89,7 +89,7 @@ export default function Screen9AssociatedParties({ formData, dispatch, goNext, g
                 return (
                   <div key={globalIndex} className="party-card">
                     <div className="party-card-header">
-                      <div className="party-avatar">👤</div>
+                      <div className="party-avatar emoji-badge"><span className="emoji-deco">👤</span></div>
                       <div className="party-info">
                         <div className="party-name">
                           {p.firstName} {p.middleName ? p.middleName + ' ' : ''}{p.lastName}
@@ -97,8 +97,8 @@ export default function Screen9AssociatedParties({ formData, dispatch, goNext, g
                         <div className="party-email">{p.email}</div>
                       </div>
                       <div className="party-actions">
-                        <button onClick={() => handleEdit(globalIndex)} title="Edit">✏️</button>
-                        <button onClick={() => handleDelete(globalIndex)} title="Delete">🗑️</button>
+                        <button onClick={() => handleEdit(globalIndex)} title="Edit"><span className="emoji-deco">✏️</span><span className="emoji-fallback">Edit</span></button>
+                        <button onClick={() => handleDelete(globalIndex)} title="Delete"><span className="emoji-deco">🗑️</span><span className="emoji-fallback">Delete</span></button>
                       </div>
                     </div>
                     <div>

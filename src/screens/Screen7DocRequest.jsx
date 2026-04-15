@@ -17,7 +17,7 @@ function DocUploadZone({ onUpload }) {
           if (f) onUpload(f.name)
         }}
       >
-        <div className="cloud-icon" style={{ fontSize: 24 }}>☁️</div>
+        <div className="cloud-icon emoji-deco" style={{ fontSize: 24 }}>☁️</div>
         <div className="upload-text" style={{ fontSize: 13 }}>Upload file</div>
         <div style={{ fontSize: 12 }}>
           <span className="upload-link">Choose</span> or drag and drop
@@ -121,12 +121,12 @@ export default function Screen7DocRequest({ formData, dispatch, goNext, goBack }
 
               {docs.map((doc, i) => (
                 <div key={i} className="doc-uploaded-item">
-                  <div className="doc-thumb">📄</div>
+                  <div className="doc-thumb emoji-badge"><span className="emoji-deco">📄</span></div>
                   <div className="doc-name">
                     <div>{doc.name}</div>
                     <div style={{ fontSize: 11, color: 'var(--color-gray-400)' }}>{doc.type}</div>
                   </div>
-                  <button className="doc-delete" onClick={() => removeDoc(cat.id, i)}>🗑</button>
+                  <button className="doc-delete" onClick={() => removeDoc(cat.id, i)}><span className="emoji-deco">🗑</span><span className="emoji-fallback">Remove</span></button>
                 </div>
               ))}
 

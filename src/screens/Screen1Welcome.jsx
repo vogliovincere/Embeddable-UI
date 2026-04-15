@@ -65,18 +65,18 @@ export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms
           >
             ←
           </button>
-          <div style={{
+          <div className="emoji-badge" style={{
             width: 80,
             height: 80,
             borderRadius: '50%',
-            background: '#EEF2FF',
+            background: 'var(--color-primary-soft)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontSize: 36,
             marginBottom: 24,
           }}>
-            👤
+            <span className="emoji-deco">👤</span>
           </div>
           <h1>Individual Verification</h1>
           <p className="subtitle" style={{ maxWidth: 300 }}>
@@ -110,18 +110,18 @@ export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms
         padding: '40px 24px',
         textAlign: 'center',
       }}>
-        <div style={{
+        <div className="emoji-badge" style={{
           width: 80,
           height: 80,
           borderRadius: '50%',
-          background: '#EEF2FF',
+          background: 'var(--color-primary-soft)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           fontSize: 36,
           marginBottom: 24,
         }}>
-          🛡️
+          <span className="emoji-deco">🛡️</span>
         </div>
         <h1>Verification</h1>
         <p className="subtitle" style={{ maxWidth: 300 }}>

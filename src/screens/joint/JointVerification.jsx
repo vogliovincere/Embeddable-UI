@@ -115,7 +115,7 @@ export default function JointVerification({ formData, goNext, contextId }) {
   const getStatusBadge = (status) => {
     if (!status) return null
     const colors = {
-      loading: { bg: '#EEF2FF', color: 'var(--color-primary)' },
+      loading: { bg: 'var(--color-primary-soft)', color: 'var(--color-primary)' },
       approved: { bg: '#DCFCE7', color: 'var(--color-green)' },
       denied: { bg: '#FEE2E2', color: 'var(--color-error)' },
       error: { bg: '#FEE2E2', color: 'var(--color-error)' },
@@ -189,7 +189,7 @@ export default function JointVerification({ formData, goNext, contextId }) {
                 return (
                   <div key={index} style={{ padding: '16px' }}>
                     <div className="party-card-header">
-                      <div className="party-avatar">👤</div>
+                      <div className="party-avatar emoji-badge"><span className="emoji-deco">👤</span></div>
                       <div className="party-info">
                         <div className="party-name">
                           {holder.firstName} {holder.lastName}

@@ -117,7 +117,7 @@ export default function Screen11VerificationLinks({ formData, goNext }) {
   const getStatusBadge = (status) => {
     if (!status) return null
     const colors = {
-      loading: { bg: '#EEF2FF', color: 'var(--color-primary)' },
+      loading: { bg: 'var(--color-primary-soft)', color: 'var(--color-primary)' },
       approved: { bg: '#DCFCE7', color: 'var(--color-green)' },
       denied: { bg: '#FEE2E2', color: 'var(--color-error)' },
       error: { bg: '#FEE2E2', color: 'var(--color-error)' },
@@ -187,16 +187,16 @@ export default function Screen11VerificationLinks({ formData, goNext }) {
                 return (
                   <div key={index} style={{ padding: '16px' }}>
                     <div className="party-card-header">
-                      <div className="party-avatar">👤</div>
+                      <div className="party-avatar"><span className="emoji-deco">👤</span></div>
                       <div className="party-info">
                         <div className="party-name">
                           {party.firstName} {party.lastName}
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4, minWidth: 0 }}>
                           {party.roles.map(r => (
                             <span key={r} className={`role-badge ${r.toLowerCase().replace(/\s+/g, '-')}`}>{r}</span>
                           ))}
-                          <span style={{ fontSize: 13, color: 'var(--color-text)' }}>• {party.email}</span>
+                          <span className="party-email-inline">• {party.email}</span>
                         </div>
                       </div>
                     </div>

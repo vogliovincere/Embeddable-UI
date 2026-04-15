@@ -45,13 +45,13 @@ export default function JointStepOverview({ goNext, goBack, contextId }) {
         <div className="step-list">
           {steps.map((step, i) => (
             <div key={i} className="step-item">
-              <div className="step-icon" style={{
-                background: i < 4 ? '#EEF2FF' : '#FEF3C7',
-                color: i < 4 ? 'var(--color-primary)' : '#B45309',
+              <div className="step-icon emoji-badge" style={{
+                background: 'var(--color-primary-soft)',
+                color: 'var(--color-primary)',
                 fontWeight: 700,
                 fontSize: 15,
               }}>
-                {step.icon}
+                <span className={`emoji-deco${step.icon === '🪪' ? ' emoji-id' : ''}`}>{step.icon}</span>
               </div>
               <div>
                 <div className="step-label">{step.label}</div>

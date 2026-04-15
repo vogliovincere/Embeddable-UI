@@ -20,7 +20,7 @@ export default function Screen3StepOverview({ goNext, goBack }) {
         <div className="step-list">
           {steps.map((step, i) => (
             <div key={i} className="step-item">
-              <div className="step-icon">{step.icon}</div>
+              <div className="step-icon emoji-badge"><span className="emoji-deco">{step.icon}</span></div>
               <div>
                 <div className="step-label">Step {i + 1}</div>
                 <div className="step-description">{step.label}</div>

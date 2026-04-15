@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap');
 @import './tokens.css';
 
 *, *::before, *::after {
@@ -207,8 +207,8 @@ h3 {
 }
 
 .btn-primary:hover {
-  background: #0036B8;
-  border-color: #0036B8;
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
 }
 
 .btn-secondary {
@@ -218,7 +218,7 @@ h3 {
 }
 
 .btn-secondary:hover {
-  background: #F0F4FF;
+  background: var(--color-primary-soft);
 }
 
 .btn-ghost {
@@ -485,7 +485,7 @@ h3 {
 
 .upload-zone:hover {
   border-color: var(--color-accent);
-  background: #F0F8FF;
+  background: var(--color-accent-soft);
 }
 
 .upload-zone.has-file {
@@ -623,6 +623,7 @@ h3 {
 
 .party-info {
   flex: 1;
+  min-width: 0;
 }
 
 .party-name {
@@ -657,6 +658,8 @@ h3 {
 
 .role-badge {
   display: inline-block;
+  flex: 0 0 auto;
+  width: auto;
   padding: 2px 10px;
   border-radius: var(--radius-full);
   font-size: 12px;
@@ -667,7 +670,26 @@ h3 {
 }
 
 .role-badge.ubo { background: var(--color-primary); }
-.role-badge.control-person { background: #0891B2; }
+.role-badge.control-person {
+  background: #0891B2;
+  /* Force the two-word label to break into two lines for a compact taller pill. */
+  max-width: 72px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.15;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.party-email-inline {
+  font-size: 13px;
+  color: var(--color-text);
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /* Verification card buttons */
 .verify-buttons {
@@ -745,7 +767,7 @@ h3 {
   width: 48px;
   height: 48px;
   border-radius: var(--radius-sm);
-  background: #EEF2FF;
+  background: var(--color-primary-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1312,4 +1334,160 @@ h3 {
   background: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
   color: #fff !important;
+}
+
+/* =========================================================================
+   Dev panel — Display controls (theme select + emoji switch)
+   ========================================================================= */
+.prefill-theme-select {
+  width: 100%;
+  background: #2a2a4a;
+  color: #fff;
+  border: 1px solid #3a3a5a;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.prefill-theme-select:focus {
+  border-color: #5a5a8f;
+}
+
+.prefill-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 2px;
+  color: #ccc;
+  font-size: 12px;
+}
+
+.prefill-toggle {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.prefill-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.prefill-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #3a3a5a;
+  border-radius: 18px;
+  transition: background 0.15s ease;
+}
+
+.prefill-toggle-slider::before {
+  content: "";
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  top: 2px;
+  background: #ccc;
+  border-radius: 50%;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.prefill-toggle input:checked + .prefill-toggle-slider {
+  background: #2a5a8f;
+}
+
+.prefill-toggle input:checked + .prefill-toggle-slider::before {
+  transform: translateX(16px);
+  background: #fff;
+}
+
+/* =========================================================================
+   Emoji visibility toggle
+   -------------------------------------------------------------------------
+   `.emoji-deco` wraps DECORATIVE emojis (icons, avatars, section glyphs).
+   `.emoji-badge` wraps the supporting styled container (colored circle,
+   padded wrapper) so it collapses cleanly when emojis are hidden — no
+   hollow artifacts remain.
+   Functional symbols (✕ close, ✓ checkmarks) and data values (🇺🇸 flags)
+   are intentionally NOT wrapped and stay visible at all times.
+   ========================================================================= */
+/* Normalize decorative emoji rendering: strip inline line-height/baseline
+   quirks so glyphs like 🪪 don't drift off-center inside circle/square
+   badges. `.emoji-deco` is always centered on its own axes. */
+.emoji-deco {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-style: normal;
+}
+
+/* The 🪪 ID-card glyph specifically has a low baseline that makes it sit
+   well below the geometric center of any circular badge. Scoped override —
+   do NOT apply this to other emojis. */
+.emoji-deco.emoji-id {
+  transform: translateY(-0.15em);
+}
+
+html[data-emojis="off"] .emoji-deco,
+html[data-emojis="off"] .emoji-badge {
+  display: none !important;
+}
+
+/* Text fallbacks: only visible when emojis are OFF so icon-only affordances
+   (e.g. Edit/Delete buttons, doc thumbnails) still carry a label. */
+.emoji-fallback { display: none; }
+html[data-emojis="off"] .emoji-fallback { display: inline; }
+
+/* With emojis off, collapse the avatar slot entirely so the party name
+   and role pills left-align flush instead of leaving an empty circle space. */
+html[data-emojis="off"] .party-avatar {
+  display: none;
+}
+
+/* =========================================================================
+   Theme guard rails
+   -------------------------------------------------------------------------
+   Keep critical cross-theme invariants regardless of which [data-theme] is
+   applied: outline-style path-select buttons, the Interro footer logo, and
+   the dev panel's dark debugger overlay.
+   ========================================================================= */
+
+/* Path-select buttons (Screen1Welcome "Individual" / "Corporate/Entity" /
+   "Solo" / "Joint Account") must stay outline, never solid-filled. */
+.btn.btn-secondary {
+  background: var(--color-white) !important;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn.btn-secondary:hover {
+  background: var(--color-primary-soft) !important;
+  color: var(--color-primary);
+}
+
+/* Footer logo must stay untouched — no tint, no background, no filter. */
+.powered-footer {
+  background: transparent !important;
+}
+.powered-footer img {
+  filter: none !important;
+  background: transparent !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+/* Dev panel stays on the Inter stack so Lora/Aptos themes don't leak into
+   the debugger overlay. Its dark color palette is hard-coded above. */
+.prefill-panel,
+.prefill-panel * {
+  font-family: var(--font-stack-inter);
 }
