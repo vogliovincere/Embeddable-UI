@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   const apiBase = env.VITE_API_BASE_URL || 'https://ialta.sandbox.alloy.com/'
 
   return {
-    base: '/Embeddable-UI/',
+    base: env.VITE_BASE || '/Embeddable-UI/',
     plugins: [react()],
     server: {
       proxy: {
