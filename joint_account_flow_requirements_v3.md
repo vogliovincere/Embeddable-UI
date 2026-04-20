@@ -1,6 +1,6 @@
 # Joint Account Verification Flow — Screen-by-Screen Requirements
 
-**Version:** 2.0
+**Version:** 3.0
 **Date:** March 2026
 **Author:** Marco — Product, iAltA Payments
 **First client:** Verivend
