@@ -533,6 +533,8 @@ Each co-holder listed with:
     - **"Send to email"** — sends the verification link to the co-holder's email address.
     - **"Copy link"** — copies the verification link to clipboard. Displays "Copied!" confirmation for 2 seconds.
 
+The three options are presented uniformly across both variants, but their relative utility differs — see *Verification Link Behavior* below for UX expectations per variant.
+
 ### Verification Status Badges
 
 Each co-holder displays a status badge that updates based on their verification progress:
@@ -552,6 +554,13 @@ Verification links route to the identity verification experience determined by t
 
 - **KYC Complete:** the standalone link initiates the Alloy SDK for document capture and selfie/liveness.
 - **KYC Basic:** the standalone link opens the embeddable UI's document upload flow (country/type selection, then upload).
+
+#### UX Expectations by Variant
+
+The three verification options (*Verify now*, *Send to email*, *Copy link*) are offered uniformly across both variants, but the intended primary path differs:
+
+- **KYC Complete:** *Verify now* is a meaningful primary path when the co-holder is physically present, because the Alloy SDK requires live selfie/liveness capture that benefits from synchronous handoff of the device. *Send to email* / *Copy link* cover the asynchronous case.
+- **KYC Basic:** *Send to email* (and *Copy link*) are the expected primary paths. Document upload is inherently asynchronous — the co-holder needs their physical ID on hand and will typically prefer to complete the step on their own device. *Verify now* remains available for edge cases (e.g., a co-holder who explicitly asks to use the primary user's device), but should not be presented as the default action. Hosts and the embeddable UI may choose to visually deprioritize *Verify now* in KYC Basic (e.g., as a secondary link rather than an equal-weight button) to steer users toward the email-delivered path.
 
 The SDK is initialized with the co-holder's biographical data (name, email, date of birth, address) collected in Screen 9a. A journey application is created via the Alloy API with the co-holder's data; if the API call fails, the SDK falls back to SDK-only flow.
 
