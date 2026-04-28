@@ -150,6 +150,10 @@ Clicking the overlay behind the modal also returns to the previous screen.
 
 ---
 
+> **Reuse note.** Screens 5 (Identity Information, including SSN) and 6 (Address) are also the entry point for secondary users who arrive via a UBO / Control Person / joint co-holder verification link. In that context they run on Interro's standalone, token-authenticated landing page and must complete **before** Screen 8 (the Alloy SDK in KYC Complete, or the ID country/type + upload screens in KYC Basic). The SDK is never instantiated, and the ID upload screens never render, until a secondary user has successfully submitted both Screen 5 and Screen 6 on the standalone page. See the *Co-Holder Link Landing Flow* (joint requirements) and *UBO / Control Person Link Landing Flow* (entity requirements) for the full sequences per KYC variant.
+
+---
+
 ## Individual Flow — Screen 5: Identity Information (Step 1)
 
 Progress bar indicating current step: segment 1 of 4 is active. (If the flow is used within the joint account flow, the progress bar shows 5 segments.)

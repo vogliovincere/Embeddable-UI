@@ -105,6 +105,11 @@ export default function Screen9AssociatedParties({ formData, dispatch, goNext, g
                       {p.roles.map(r => (
                         <span key={r} className={`role-badge ${r.toLowerCase().replace(/\s+/g, '-')}`}>{r}</span>
                       ))}
+                      {p.ownershipPercentage != null && p.ownershipPercentage !== '' && (
+                        <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--color-text-secondary)' }}>
+                          Owns {p.ownershipPercentage}%
+                        </span>
+                      )}
                     </div>
                   </div>
                 )

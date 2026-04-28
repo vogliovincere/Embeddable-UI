@@ -301,12 +301,14 @@ Two associated party categories are displayed, each with a title, description, a
 - **Title:** "UBO (Ultimate Beneficial Owner)"
 - **Description:** "Individuals with direct or indirect ownership above 25%"
 - **"+ Add individual"** link to open the add party form with UBO pre-selected as the default role.
+- For each UBO the authorized representative may optionally capture the **percentage of the company owned (directly or indirectly)**. This field is on the add party form and is optional — leaving it blank is permitted. The same field is also offered for Control Persons (see below) so that the form is consistent regardless of role combination.
 
 #### Control Person
 
 - **Title:** "Control Person"
 - **Description:** "The single individual with significant responsibility to control, manage, or direct the legal entity"
 - **"+ Add individual"** link to open the add party form with Control Person pre-selected as the default role.
+- The optional ownership-percentage field is also available for Control Persons (same field as for UBOs). This is intentionally always visible on the form — it does not appear/disappear as the role toggle changes — and can be left blank for Control Persons who do not hold equity.
 
 ### Party Cards (Populated State)
 
@@ -344,7 +346,9 @@ Back button returns to the Associated Parties screen (Screen 8). Language select
 
 ### Heading
 
-"Add associated party" (or "Edit associated party" when editing an existing entry) with subtitle: "If this beneficiary has several roles, you can fill out a questionnaire for them automatically." (When editing: "Update the details for this associated party.")
+"Add associated party" (or "Edit associated party" when editing an existing entry) with subtitle: "Enter contact details for this person. They will receive a link to provide their own address and verify their identity. If this beneficiary has several roles, you can fill out a questionnaire for them automatically." (When editing: "Update the details for this associated party.")
+
+> **Address and SSN are no longer collected here.** The authorized representative only captures the associated party's name and contact details (plus the optional ownership percentage). The associated party supplies their own SSN / tax identifier and address on the standalone Interro link before any identity-document step runs. See *UBO / Control Person Link Landing Flow* below.
 
 ### Role Selection
 
@@ -365,28 +369,17 @@ Validation: "Select at least one role" if no role is selected on submit.
 - **Date of birth** (text input, mm/dd/yyyy format, required) — with validation error "The date must be valid (mm/dd/yyyy)" for invalid dates.
 - **Email** (email input, required) — used to deliver the standalone verification link.
 - **Phone number** (tel input, optional) — numeric only, max 15 digits.
-- **SSN** (masked input, optional) — input is masked by default (e.g., `000-00-0000`). The field uses a masked input component for secure entry.
-
-### Collect the following fields — Address
-
-Displayed under an "Address" subheading within the same form.
-
-- **Country** (dropdown, required) — opens as a modal/overlay with search bar, scrollable list of countries with flag icons, real-time filtering, close (X) button.
-- **State / Province** (dropdown, conditionally required) — displayed dynamically when US or Canada is selected as the country. Label adjusts: "State" for US, "Province" for Canada. Opens as a modal/overlay with search bar. Hidden for other countries.
-- **Street address** (text input, required)
-- **Apartment / Suite / Unit** (text input, optional)
-- **City / Town** (text input, required)
-- **Postal / ZIP code** (text input, required) — format validation for US: must match `#####` or `#####-####` pattern. Error: "Enter a valid US ZIP code."
+- **% of the company owned (directly or indirectly)** (number input, optional, 0–100) — placeholder: "e.g., 25 (optional)." Accepts integers or decimals. Always visible on the form for both UBO and Control Person selections — the field does not appear or disappear as the role toggle changes. Leaving it blank is permitted. If a value is entered, it must be a number between 0 and 100; otherwise the error "Enter a number between 0 and 100" is shown.
 
 ### Field-Level Validation
 
-Required fields show red border and "This field is required" error text when left empty on submit. Date field shows format-specific error. Postal code validates format based on country.
+Required fields show red border and "This field is required" error text when left empty on submit. Date field shows format-specific error. Ownership percentage, if supplied, must be numeric and within 0–100.
 
 If any required field is incomplete, a red callout box appears: "Please complete all required fields before submitting."
 
 ### Constraint to proceed
 
-All required fields (roles, first name, last name, date of birth, email, country, state/province if applicable, street address, city, postal code) must pass validation.
+All required fields (roles, first name, last name, date of birth, email) must pass validation. Ownership percentage is optional.
 
 - **"Create beneficiary"** button (or **"Update beneficiary"** when editing) to save the associated party. Displays a loading animation while processing.
 
@@ -399,6 +392,40 @@ Each added party is durably saved server-side. If the primary user navigates awa
 ### Note on Additional Persons
 
 The people added here (UBOs, Control Persons) are likely not users of the host application. Their identity verification will happen outside the host app via standalone, token-authenticated links (see Screen 10). The email address collected here is used to deliver those verification links.
+
+---
+
+## Entity Flow — Screen 9b: UBO / Control Person Link Landing Flow (Standalone)
+
+> *This is the experience a UBO or Control Person sees when they open the verification link emailed to them from Screen 10. It runs on Interro's standalone, token-authenticated web page and is served without a host application account. Host branding is preserved.*
+
+### Core principle
+
+The associated party is the authoritative source of their own address and SSN. The Alloy SDK (KYC Complete) and the document upload screens (KYC Basic) **must not render or instantiate** until the party has successfully submitted both their personal info (including SSN) and their address on this standalone page.
+
+### Common sequence (both KYC variants)
+
+1. **Personal Info (Individual flow Screen 5 equivalent)** — first name, last name, email, phone, date of birth, and SSN / tax identifier. Pre-filled with the data the authorized representative captured on Screen 9 (first / middle / last name, DOB, email, phone). **SSN is never pre-filled** — the authorized representative does not collect it on Screen 9; the associated party always enters it themselves here. SSN / tax identifier is required before proceeding.
+2. **Address (Individual flow Screen 6 equivalent)** — country, state/province (if US/Canada), street address, apartment (optional), city, postal/ZIP code. Same field behaviour and validation as the individual flow's Screen 6.
+
+The supplementary-docs screen (proof-of-address for the business) is **not** shown to associated parties — only the authorized representative is responsible for that artifact on behalf of the entity.
+
+### KYC Complete branch (after address + SSN are saved)
+
+3. **Alloy SDK (Individual flow Screen 8c equivalent)** — the SDK is instantiated on the same standalone page with the party's biographical data (name, email, DOB) **plus** the address and SSN the party just supplied. The SDK runs document capture and selfie/liveness. Result handling mirrors Screen 8c.
+4. **Status / completion** — success, review, denied, or error states. Webhook sent to host.
+
+### KYC Basic branch (after address + SSN are saved)
+
+3. **Identity Document — Country & Type (Individual flow Screen 8a equivalent)** — select country of issuance and document type.
+4. **Identity Document — Upload (Individual flow Screen 8b equivalent)** — upload front / back / single image per selected doc type.
+5. **Status / completion** — webhook sent to host. The Alloy SDK is **not** used on the party side in KYC Basic; Alloy receives the uploaded documents via server-side submission.
+
+### Acceptance criteria
+
+- The SDK (KYC Complete) and the ID country/type + upload screens (KYC Basic) are gated: they must not render until Personal Info (including SSN) and Address have been persisted server-side for this associated party.
+- If the party abandons mid-flow, on resume they return to the first incomplete step with previously saved data intact. SSN appears in its masked form on resume.
+- Supplementary-docs screen is skipped for associated parties in both variants.
 
 ---
 
@@ -442,7 +469,7 @@ Verification option buttons are disabled once verification is loading, approved,
 
 ### Verification Link Behavior
 
-Verification links route to the identity verification provider (e.g., Alloy SDK for document verification), associated with the individual's screening step-up for that specific party. The SDK is initialized with the party's biographical data (name, email, date of birth, SSN, address) collected in Screen 9.
+Verification links route to the identity verification provider (e.g., Alloy SDK for document verification), associated with the individual's screening step-up for that specific party. The SDK is initialized with the party's biographical data (name, email, date of birth) collected in Screen 9, **plus the address and SSN the party supplies themselves on the standalone landing page (Screen 9b)**. The SDK is never instantiated until those two screens are complete.
 
 Verification option buttons are grayed out / unclickable until the screening orchestrator (e.g., Alloy) responds with the verification link for that party.
 

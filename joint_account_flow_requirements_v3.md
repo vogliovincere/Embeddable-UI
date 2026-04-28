@@ -468,7 +468,9 @@ Back button returns to the Co-Holder Entry screen (Screen 9). Language selector 
 
 ### Heading
 
-"Add co-holder" (or "Edit co-holder" when editing an existing entry) with subtitle: "Provide contact and address information. They will receive a link to verify their identity independently." (When editing: "Update the details for this co-holder.")
+"Add co-holder" (or "Edit co-holder" when editing an existing entry) with subtitle: "Provide contact information for this co-holder. They will receive a link to provide their own address and verify their identity independently." (When editing: "Update the details for this co-holder.")
+
+> **Address is no longer collected here.** The primary user only captures the co-holder's name and contact details. The co-holder supplies their own address (and SSN) on the standalone Interro link before any identity-document step runs. See *Co-Holder Link Landing Flow* below.
 
 ### Collect the following fields — Identity Information
 
@@ -478,24 +480,13 @@ Back button returns to the Co-Holder Entry screen (Screen 9). Language selector 
 - **Email** (email input, required) — placeholder: "email@example.com." Used to deliver the standalone verification link.
 - **Phone number** (tel input, required) — placeholder: "5551234567." Numeric only, maximum 15 digits. Non-numeric characters are stripped on input.
 
-### Collect the following fields — Address
-
-Displayed under an "Address" subheading within the same form.
-
-- **Country** (dropdown, required) — opens as a modal/overlay with search bar, scrollable list of countries with flag icons, real-time filtering, close (X) button.
-- **State / Province** (dropdown, conditionally required) — displayed dynamically when US or Canada is selected as the country. Label adjusts: "State" for US, "Province" for Canada. Opens as a modal/overlay with search bar. Hidden for other countries.
-- **Street address** (text input, required) — placeholder: "Enter street address."
-- **Apartment / Suite / Unit** (text input, optional) — placeholder: "Apt, suite, unit (optional)."
-- **City / Town** (text input, required) — placeholder: "Enter city or town."
-- **Postal / ZIP code** (text input, required) — placeholder: "Enter postal code." Format validation for US: must match `#####` or `#####-####` pattern. Error: "Enter a valid US ZIP code."
-
 ### Field-Level Validation
 
-Required fields show red border and "This field is required" error text when left empty on submit. Date field shows format-specific error. Postal code validates format based on country.
+Required fields show red border and "This field is required" error text when left empty on submit. Date field shows format-specific error.
 
 ### Constraint to proceed
 
-All required fields (first name, last name, date of birth, email, phone, country, state/province if applicable, street address, city, postal code) must pass validation.
+All required fields (first name, last name, date of birth, email, phone) must pass validation.
 
 - **"Add co-holder"** button (or **"Update co-holder"** when editing) to save the person and return to the co-holder list. Displays a loading animation while processing.
 
@@ -504,6 +495,40 @@ After saving, the user is returned to the Co-Holder Entry screen (Screen 9) with
 ### Note on Co-Holders
 
 The co-holders added here are not assumed to be users of the host application. Their identity verification will happen outside the host app via standalone, token-authenticated links (see Screen 10). The email address collected here is used to deliver those verification links.
+
+---
+
+## Joint Account Flow — Screen 9b: Co-Holder Link Landing Flow (Standalone)
+
+> *This is the experience a co-holder sees when they open the verification link emailed to them from Screen 10. It runs on Interro's standalone, token-authenticated web page and is served without a host application account. Host branding is preserved.*
+
+### Core principle
+
+The co-holder is the authoritative source of their own address and SSN. The Alloy SDK (KYC Complete) and the document upload screens (KYC Basic) **must not render or instantiate** until the co-holder has successfully submitted both their personal info (including SSN) and their address on this standalone page.
+
+### Common sequence (both KYC variants)
+
+1. **Personal Info (Screen 5 equivalent)** — first name, last name, email, phone, date of birth, and SSN / tax identifier. Pre-filled (read-only for first/last name, email, DOB, phone) with the data the primary user entered on Screen 9a; SSN is never pre-filled and is always required. The co-holder can correct pre-filled values where appropriate.
+2. **Address (Screen 6 equivalent)** — country, state/province (if US/Canada), street address, apartment (optional), city, postal/ZIP code. Same field behaviour and validation as the individual flow's Screen 6.
+
+The supplementary-docs screen (proof-of-address for the joint account) is **not** shown to co-holders — only the primary user is responsible for that artifact.
+
+### KYC Complete branch (after address + SSN are saved)
+
+3. **Alloy SDK (Screen 8c equivalent)** — the SDK is instantiated on the same standalone page with the co-holder's biographical data (name, email, DOB) **plus** the address and SSN the co-holder just supplied. The SDK runs document capture and selfie/liveness. Result handling mirrors Screen 8c.
+4. **Status / completion** — success, review, denied, or error states, per Screen 8c's result handling. Webhook sent to host.
+
+### KYC Basic branch (after address + SSN are saved)
+
+3. **Identity Document — Country & Type (Screen 8a equivalent)** — select country of issuance and document type.
+4. **Identity Document — Upload (Screen 8b equivalent)** — upload front / back / single image per selected doc type.
+5. **Status / completion** — webhook sent to host. The Alloy SDK is **not** used on the co-holder side in KYC Basic; Alloy receives the uploaded documents via server-side submission.
+
+### Acceptance criteria
+
+- The SDK (KYC Complete) and the ID country/type + upload screens (KYC Basic) are gated: they must not render until Personal Info (including SSN) and Address have been persisted server-side for this co-holder.
+- If the co-holder abandons mid-flow, on resume they return to the first incomplete step with previously saved data intact. SSN appears in its masked form on resume.
+- Supplementary-docs screen is skipped for co-holders in both variants.
 
 ---
 
@@ -562,7 +587,7 @@ The three verification options (*Verify now*, *Send to email*, *Copy link*) are 
 - **KYC Complete:** *Verify now* is a meaningful primary path when the co-holder is physically present, because the Alloy SDK requires live selfie/liveness capture that benefits from synchronous handoff of the device. *Send to email* / *Copy link* cover the asynchronous case.
 - **KYC Basic:** *Send to email* (and *Copy link*) are the expected primary paths. Document upload is inherently asynchronous — the co-holder needs their physical ID on hand and will typically prefer to complete the step on their own device. *Verify now* remains available for edge cases (e.g., a co-holder who explicitly asks to use the primary user's device), but should not be presented as the default action. Hosts and the embeddable UI may choose to visually deprioritize *Verify now* in KYC Basic (e.g., as a secondary link rather than an equal-weight button) to steer users toward the email-delivered path.
 
-The SDK is initialized with the co-holder's biographical data (name, email, date of birth, address) collected in Screen 9a. A journey application is created via the Alloy API with the co-holder's data; if the API call fails, the SDK falls back to SDK-only flow.
+The SDK is initialized with the co-holder's biographical data (name, email, date of birth) collected in Screen 9a, **plus the address and SSN the co-holder supplies themselves on the standalone landing page (Screen 9b)**. The SDK is never instantiated until those two screens are complete. A journey application is created via the Alloy API with the co-holder's data; if the API call fails, the SDK falls back to SDK-only flow.
 
 Verification option buttons are grayed out / unclickable until the screening orchestrator (e.g., Alloy) responds with the verification link for that co-holder.
 
