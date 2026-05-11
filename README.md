@@ -1,51 +1,56 @@
 # Embeddable-UI
 
-A clickable prototype for an embeddable KYC (Know Your Customer) / entity verification widget. Built with React + Vite, rendered inside a phone frame to simulate how the widget would appear when embedded in a host product.
+A clickable prototype for an embeddable KYC (Know Your Customer) / entity verification widget. Built with React + Vite.
 
-## Purpose
+This repository contains **two versions** of the app:
 
-This prototype exists to **visualize and iterate on flow requirements** — not to ship production code. The goal is to make the end-to-end user journey tangible so that stakeholders, designers, and product owners can walk through it, identify gaps, and refine requirements before any real integration work begins.
+## `app-demo/`
 
-Because it lives in a browser and runs locally in seconds, feedback cycles are fast. Change a screen, reload, and immediately see how the flow feels.
+The standalone prototype with demo/dev tools — phone-frame preview, screen-jump controls, and other affordances for stakeholder walk-throughs and flow iteration. Use this to demo the flow end-to-end or to iterate on requirements.
 
-## What it covers
+```bash
+cd app-demo
+npm install
+npm run dev
+```
 
-The prototype walks through a 12-screen corporate entity verification flow:
+## `app-embedded/`
+
+The integration-ready version, prepared for embedding inside a host product (e.g. the Delio / WPM platform demo) as an iframe. Includes the `EMBED_READY` handshake, postMessage prefill, and the cleanups made during integration. No demo overlays.
+
+```bash
+cd app-embedded
+npm install
+npm run dev
+```
+
+## Which one to use?
+
+- **Demoing or iterating on the flow** → `app-demo/`
+- **Integrating into a host product** → `app-embedded/`
+
+## What the flow covers
+
+A 12-screen corporate entity verification flow:
 
 | Screen | Description |
 |--------|-------------|
 | 1 | Welcome — select verification type (Individual / Corporate) |
 | 2 | Disclaimer |
-| 3 | Step overview — what the user is about to do |
+| 3 | Step overview |
 | 4 | Consent |
-| 5 | Entity details — name, file number, country, state |
+| 5 | Entity details |
 | 6 | Review & confirm |
-| 7 | Document request — what docs are needed |
+| 7 | Document request |
 | 8 | Entity document upload |
 | 9 | Associated parties list |
 | 10 | Add / edit an associated party |
-| 11 | Verification links — send links to associated parties |
-| 12 | Status — submission complete |
-
-## Running locally
-
-```bash
-npm install
-npm run dev
-```
-
-Open `http://localhost:5173`. The app renders inside a phone frame so you can preview the embedded widget experience directly in a desktop browser.
-
-## How to use it for iteration
-
-- **Walk the flow end-to-end** to feel the progression and spot any missing or redundant steps.
-- **Jump to a specific screen** by temporarily changing the `useState(1)` initial value in `src/App.jsx` to the screen number you want to inspect.
-- **Edit screen content** directly in `src/screens/Screen*.jsx` — each screen is a self-contained component.
-- **Annotate with placeholder states** (disabled buttons, greyed-out options) to represent flows that are out of scope for the current iteration, as seen on the "Individual" button on Screen 1.
+| 11 | Verification links |
+| 12 | Status |
 
 ## Tech
 
 - React 19 + Vite
-- Plain CSS with design tokens (`src/styles/tokens.css`)
-- No backend — all state lives in a `useReducer` in `App.jsx`
+- Plain CSS with design tokens
+- No backend — state lives in a `useReducer` in `App.jsx`
 - Powered by [Interro](https://interro.ai)
