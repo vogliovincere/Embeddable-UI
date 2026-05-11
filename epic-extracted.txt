@@ -1,0 +1,200 @@
+Embeddable KYC and Risk Review UI
+Embeddable KYC and Risk Review UI
+Background
+This Epic encapsulates the requirements of an =
+embeddable UI component. Its main purpose is to collect information from en=
+d users and route it to the KYC and Risk Review Microservice to perform rel=
+evant checks. It will have configurable branding and document collection fl=
+ows to serve the application client.
+The first client of this embeddable UI compone=
+nt will be Verivend. Verivend is a capital raising and investor portal plat=
+form serving both General Partners (GPs) and Limited Partners (LPs). Histor=
+ically, Verivend has operated in a model where GPs handle the KYC of their =
+own investors, allowing rapid LP onboarding without a verification gate. Ho=
+wever, certain sensitive platform capabilities â such as registerin=
+g multiple bank accounts against an LP organization â now require V=
+erivend to perform direct LP KYC. A parallel need exists on the GP side: Ve=
+rivend has always verified GPs and sponsors manually through an admin-drive=
+n process, and automating that workflow is a strategic priority.
+Verivend will use the embeddable component to =
+collect information required to perform KYC on both LPs and GPs across thre=
+e verification paths: Individual (solo), Individual (joint account), and En=
+tity. The component owns the collection experience end-to-end; Verivend own=
+s the surrounding workflow, path selection, and verification lifecycle. Res=
+ults of checks will surface in the Verivend UI natively â the embed=
+dable component collects and submits; it does not display verification outc=
+omes.
+A key architectural driver is that additional =
+persons required for multi-person verification flows (joint account co-hold=
+ers, entity beneficial owners) are likely not Verivend platform users and m=
+ay never be. Their identity verification must occur outside the Verivend au=
+thenticated portal via a token-authenticated standalone link served by Inte=
+rro. This two-surface model â embedded component for the primary us=
+er, standalone link for additional persons â is a core design const=
+raint for the MVP.
+The MVP will support configurable branding, a =
+set of default user flows for individuals and entities, country-aware field=
+collection, and server-side session persistence. Future iterations will ad=
+d configurability of collected fields and documents.
+MVP Requirements
+Configurable Branding
+Ability to configure primary, accent, heading,=
+and text colors depending on the application client
+Ability to configure the font depending on the=
+application client
+Ability to configure a client logo or wordmark=
+; "Powered by Interro" lockup is always present and must meet a defined min=
+imum size and placement spec
+Client-supplied color configurations must be v=
+alidated against minimum WCAG 2.1 AA contrast ratios at configuration time,=
+with a warning surfaced for non-compliant values
+Product Question (Marco): Are=
+we required to disclose the use of Alloy in the Alloy MSA to end users wit=
+hin the component UI? Resolve and capture as a hard requirement or explicit=
+deferral with owner.
+Verification Paths
+Component must support three first-class verif=
+ication paths:
+Individual (Solo): Single nat=
+ural person; 4 steps; 1 person KYC'd
+Individual (Joint Account): 2=
+â5 co-equal natural persons; 5 steps; each holder independently KYC=
+'d
+Entity: LLC, Corporation, Tru=
+st, Partnership, etc.; 5 steps; 1 authorized representative + N beneficial =
+owners (â¥25% ownership) KYC'd
+Joint account verification must be a native fl=
+ow â not a workaround on top of entity KYB logic. Co-equal natural =
+persons with no underlying entity is not a standard provider pattern and mu=
+st be designed for explicitly.
+Path type is passed as a session initializatio=
+n parameter by the host application, bypassing the component's built-in pat=
+h selector. The component's built-in selector must remain functional for co=
+ntexts where the host defers path selection to the component.
+Multi-Person Orchestration
+Two-phase model for all non-solo paths:
+Phase 1 (Primary user): The V=
+erivend account holder enters biographical data for all additional persons =
+(name, DOB, nationality, ownership % where applicable) within the embedded =
+component session
+Phase 2 (Additional persons):=
+Each additional person receives a token-authenticated verification link vi=
+a email and SMS, served by Interro outside the Verivend portal, requiring n=
+o Verivend account. The Primary user will be able to enter the details of a=
+dditional persons as well if they have the information. If the additional p=
+ersons are still required to do an ID upload + selfie via mobile workflow, =
+they will be able to see and confirm the information that was entered on th=
+eir behalf.
+Primary user sees real-time aggregate progress=
+within the component (e.g., "2 of 4 holders verified") and understands thi=
+s is a multi-party process that will not complete instantly
+Interro must support reminder/re-send of verif=
+ication links for persons who have not completed
+Standalone verification links must be branded =
+consistently with the host client's active theme configuration
+Standalone link expiry policy must be defined;=
+behavior on expiry must be specified (e.g., re-send flow, graceful error s=
+creen)
+Open Question: Can the primar=
+y user complete identity verification on behalf of an additional person (e.=
+g., a co-located spouse)? The answer determines whether liveness/selfie che=
+cks are required and whether self-verification is mandatory per person. Thi=
+s must be resolved before detailed flow design for joint accounts is finali=
+zed.
+Session Initialization Contract
+Verivend passes the following parameters at se=
+ssion creation:
+|
+Parameter
+|
+|
+Type
+|
+|
+When Passed
+|
+|
+Path type
+|
+|
+individual / joint /=
+entity
+|
+|
+Always
+|
+|
+Joint account type
+|
+|
+JTWROS / TIC
+|
+|
+Joint path only
+|
+|
+Number of holders
+|
+|
+2â5
+|
+|
+Joint path only
+|
+|
+Organization ID
+|
+|
+String
+|
+|
+Always
+|
+|
+Authenticated user context
+|
+|
+Token / session ref
+|
+|
+Always
+|
+|
+Pre-fill data
+|
+|
+Key-value map
+|
+|
+Optional
+|
+Component must fail gracefully and surface a c=
+lear error state if required initialization parameters are missing or malfo=
+rmed â it must not silently render an incomplete flow
+Client-Side Event Contract
+Component emits the following events to the ho=
+st application:
+|
+Event
+|
+|
+When
+|
+|
+Payload
+|
+|
+step:completed
+|
+|
+User completes a step and data is saved
+|
+Step number, step name, completion %
+|
+|
+step:navigated
+|
+|
+User navigates between steps
+|
+|
