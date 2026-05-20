@@ -8,16 +8,51 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
   const { firstName, lastName, email, phone, dob, taxId } = formData.individualData
   const totalSteps = flowType === 'joint' ? 5 : 4
 
+  const fieldRules = {
+    firstName: (v) => (v?.trim() ? null : 'This field is required'),
+    lastName: (v) => (v?.trim() ? null : 'This field is required'),
+    email: (v) => {
+      if (!v?.trim()) return 'This field is required'
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())) return 'Enter a valid email address'
+      return null
+    },
+    phone: (v) => {
+      if (!v?.trim()) return 'This field is required'
+      if (v.replace(/\D/g, '').length !== 10) return 'Phone number must be 10 digits'
+      return null
+    },
+    dob: (v) => {
+      if (!v?.trim()) return 'This field is required'
+      if (!/^\d{2}\/\d{2}\/\d{4}$/.test(v)) return 'The date must be valid (mm/dd/yyyy)'
+      return null
+    },
+    taxId: (v) => {
+      if (!v?.trim()) return 'This field is required'
+      if (v.replace(/\D/g, '').length !== 9) return 'SSN must be 9 digits'
+      return null
+    },
+  }
+
   const validate = () => {
+    const values = { firstName, lastName, email, phone, dob, taxId }
     const errs = {}
-    if (!firstName?.trim()) errs.firstName = 'This field is required'
-    if (!lastName?.trim()) errs.lastName = 'This field is required'
-    if (!email?.trim()) errs.email = 'This field is required'
-    if (!phone?.trim()) errs.phone = 'This field is required'
-    if (!dob?.trim()) errs.dob = 'This field is required'
-    if (!taxId?.trim()) errs.taxId = 'This field is required'
+    for (const [name, rule] of Object.entries(fieldRules)) {
+      const e = rule(values[name])
+      if (e) errs[name] = e
+    }
     setErrors(errs)
     return Object.keys(errs).length === 0
+  }
+
+  const handleBlur = (name, value) => {
+    const err = fieldRules[name]?.(value) ?? null
+    setErrors(prev => {
+      if (err === prev[name]) return prev
+      const next = { ...prev }
+      if (err) next[name] = err
+      else delete next[name]
+      return next
+    })
   }
 
   const handleSubmit = () => {
@@ -31,6 +66,13 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
 
   const updateField = (field, value) => {
     dispatch({ type: 'SET_INDIVIDUAL_DATA', payload: { [field]: value } })
+    if (errors[field]) {
+      setErrors(prev => {
+        const next = { ...prev }
+        delete next[field]
+        return next
+      })
+    }
   }
 
   // Format DOB as MM/DD/YYYY while typing
@@ -58,7 +100,7 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
       </div>
       <div className="screen-content">
         <div className="card">
-          <h1>Identity information</h1>
+          <h1>Identity information </h1>
           <p className="subtitle">Please provide your personal details</p>
 
           <div className="form-group">
@@ -71,6 +113,7 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
               placeholder="Enter first name"
               value={firstName || ''}
               onChange={e => updateField('firstName', e.target.value)}
+              onBlur={e => handleBlur('firstName', e.target.value)}
             />
             {errors.firstName && <div className="form-error">{errors.firstName}</div>}
           </div>
@@ -85,6 +128,7 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
               placeholder="Enter last name"
               value={lastName || ''}
               onChange={e => updateField('lastName', e.target.value)}
+              onBlur={e => handleBlur('lastName', e.target.value)}
             />
             {errors.lastName && <div className="form-error">{errors.lastName}</div>}
           </div>
@@ -99,6 +143,7 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
               placeholder="email@example.com"
               value={email || ''}
               onChange={e => updateField('email', e.target.value)}
+              onBlur={e => handleBlur('email', e.target.value)}
             />
             {errors.email && <div className="form-error">{errors.email}</div>}
           </div>
@@ -113,7 +158,9 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
               placeholder="5551234567"
               value={phone || ''}
               onChange={e => updateField('phone', e.target.value.replace(/[^\d]/g, ''))}
-              maxLength={15}
+              onBlur={e => handleBlur('phone', e.target.value)}
+              maxLength={10}
+              inputMode="numeric"
             />
             {errors.phone && <div className="form-error">{errors.phone}</div>}
           </div>
@@ -128,6 +175,7 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
               placeholder="MM/DD/YYYY"
               value={dob || ''}
               onChange={handleDobChange}
+              onBlur={e => handleBlur('dob', e.target.value)}
               maxLength={10}
             />
             {errors.dob && <div className="form-error">{errors.dob}</div>}
@@ -142,6 +190,7 @@ export default function IndPersonalInfo({ formData, dispatch, goNext, goBack, co
               placeholder="Enter SSN or tax identifier"
               value={taxId || ''}
               onChange={val => updateField('taxId', val)}
+              onBlur={() => handleBlur('taxId', taxId)}
             />
             {errors.taxId && <div className="form-error">{errors.taxId}</div>}
           </div>

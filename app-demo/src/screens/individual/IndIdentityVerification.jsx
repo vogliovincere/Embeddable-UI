@@ -6,7 +6,7 @@ import { toIsoDate, toStateAbbr } from '../../utils/formatters'
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 
-export default function IndIdentityVerification({ formData, goNext, goBack, flowType }) {
+export default function IndIdentityVerification({ formData, dispatch, goNext, goBack, flowType }) {
   const [status, setStatus] = useState('idle') // idle | loading | success | error | review
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -88,6 +88,11 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
       alloy.close()
       await alloy.init(initParams)
 
+      // Journey is now live with Alloy (either via the API call above or via
+      // the SDK-only fallback). Lock the back-navigation so the user cannot
+      // return to edit the data that was used to initiate the journey.
+      dispatch({ type: 'SET_JOURNEY_INITIATED' })
+
       alloy.open((result) => {
         console.log('Alloy SDK result:', result)
         const sdkEvent = result.sdk?.sdkEvent
@@ -126,7 +131,9 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
         ))}
       </div>
       <div className="header">
-        <button className="back-button" onClick={goBack}>←</button>
+        {!formData.journeyInitiated && (
+          <button className="back-button" onClick={goBack}>←</button>
+        )}
         <button className="lang-selector">En</button>
       </div>
       <div className="screen-content">

@@ -2,8 +2,9 @@ import { useState, useRef, useLayoutEffect } from 'react'
 
 const BULLET = '\u2022'
 const REVEAL_MS = 750
+const MAX_LEN = 9
 
-export default function MaskedSsnInput({ value, onChange, placeholder, className, style }) {
+export default function MaskedSsnInput({ value, onChange, onBlur, placeholder, className, style }) {
   const [showAll, setShowAll] = useState(false)
   const [revealIdx, setRevealIdx] = useState(-1)
   const inputRef = useRef(null)
@@ -45,6 +46,8 @@ export default function MaskedSsnInput({ value, onChange, placeholder, className
 
     if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
       e.preventDefault()
+      if (!/\d/.test(e.key)) return
+      if (real.length - (end - start) >= MAX_LEN) return
       const next = real.slice(0, start) + e.key + real.slice(end)
       applyChange(next, start + 1, start)
     } else if (e.key === 'Backspace') {
@@ -67,19 +70,28 @@ export default function MaskedSsnInput({ value, onChange, placeholder, className
   const handlePaste = (e) => {
     if (showAll) return
     e.preventDefault()
-    const paste = e.clipboardData.getData('text')
+    const paste = e.clipboardData.getData('text').replace(/\D/g, '')
     const start = e.target.selectionStart
     const end = e.target.selectionEnd
-    const next = real.slice(0, start) + paste + real.slice(end)
-    applyChange(next, start + paste.length, -1)
+    const merged = real.slice(0, start) + paste + real.slice(end)
+    const next = merged.slice(0, MAX_LEN)
+    applyChange(next, Math.min(start + paste.length, MAX_LEN), -1)
   }
 
   const handleChange = (e) => {
-    if (showAll) onChange(e.target.value)
+    if (showAll) {
+      const filtered = e.target.value.replace(/\D/g, '').slice(0, MAX_LEN)
+      onChange(filtered)
+    }
   }
 
   return (
-    <div style={{ position: 'relative', ...(style || {}) }}>
+    <div
+      style={{ position: 'relative', ...(style || {}) }}
+      onBlur={(e) => {
+        if (onBlur && !e.currentTarget.contains(e.relatedTarget)) onBlur(e)
+      }}
+    >
       <input
         ref={inputRef}
         className={className}
