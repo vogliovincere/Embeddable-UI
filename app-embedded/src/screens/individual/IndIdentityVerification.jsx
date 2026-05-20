@@ -19,7 +19,7 @@ function randomUuid() {
   })
 }
 
-export default function IndIdentityVerification({ formData, goNext, goBack, flowType }) {
+export default function IndIdentityVerification({ formData, dispatch, goNext, goBack, flowType }) {
   const [status, setStatus] = useState('idle') // idle | loading | success | error | review
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -93,6 +93,11 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
       alloy.close()
       await alloy.init(initParams)
 
+      // Journey is now live with Alloy (either via the API call above or via
+      // the SDK-only fallback). Lock the back-navigation so the user cannot
+      // return to edit the data that was used to initiate the journey.
+      dispatch({ type: 'SET_JOURNEY_INITIATED' })
+
       // The React flow only advances on the SDK's completion callback — never
       // on the journey API response above. The SDK is what hosts the DocV
       // (Socure) iframe, so its callback is the source of truth for IDV.
@@ -134,7 +139,9 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
         ))}
       </div>
       <div className="header">
-        <button className="back-button" onClick={goBack}>←</button>
+        {!formData.journeyInitiated && (
+          <button className="back-button" onClick={goBack}>←</button>
+        )}
         <button className="lang-selector">En</button>
       </div>
       <div className="screen-content">

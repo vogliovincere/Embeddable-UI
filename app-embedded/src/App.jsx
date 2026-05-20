@@ -67,6 +67,7 @@ const initialState = {
   defaultPartyRole: null,
   individualData: { ...individualInitialState },
   jointData: { ...jointInitialState },
+  journeyInitiated: false,
 }
 
 function formReducer(state, action) {
@@ -119,6 +120,8 @@ function formReducer(state, action) {
       return { ...state, associatedParties: [], editingPartyIndex: null }
     case 'CLEAR_INDIVIDUAL_DATA':
       return { ...state, individualData: { ...individualInitialState } }
+    case 'SET_JOURNEY_INITIATED':
+      return { ...state, journeyInitiated: true }
     case 'RESET':
       return initialState
     default:
@@ -303,6 +306,9 @@ export default function App() {
   }
 
   const goBack = () => {
+    // Once the Alloy journey is initiated, the user cannot return to edit any
+    // of the information used to create the journey application.
+    if (formData.journeyInitiated) return
     const order = getScreenOrder()
     const idx = order.indexOf(currentScreen)
     if (idx > 0) {
