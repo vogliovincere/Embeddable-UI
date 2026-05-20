@@ -21,26 +21,84 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
 
   const toggleRole = (role) => {
     setRoles(prev => prev.includes(role) ? prev.filter(r => r !== role) : [...prev, role])
+    if (errors.roles) {
+      setErrors(prev => {
+        const next = { ...prev }
+        delete next.roles
+        return next
+      })
+    }
+  }
+
+  const fieldRules = {
+    firstName: (v) => (v?.trim() ? null : 'This field is required'),
+    lastName: (v) => (v?.trim() ? null : 'This field is required'),
+    email: (v) => {
+      if (!v?.trim()) return 'This field is required'
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())) return 'Enter a valid email address'
+      return null
+    },
+    phone: (v) => {
+      if (!v?.trim()) return null
+      if (v.replace(/\D/g, '').length !== 10) return 'Phone number must be 10 digits'
+      return null
+    },
+    dob: (v) => {
+      if (!v?.trim()) return 'This field is required'
+      if (!/^\d{2}\/\d{2}\/\d{4}$/.test(v)) return 'The date must be valid (mm/dd/yyyy)'
+      return null
+    },
+    ownershipPercentage: (v) => {
+      if (v === '' || v === null) return null
+      const n = Number(v)
+      if (Number.isNaN(n) || n < 0 || n > 100) return 'Enter a number between 0 and 100'
+      return null
+    },
   }
 
   const validate = () => {
+    const values = { firstName, lastName, email, phone, dob, ownershipPercentage }
     const errs = {}
     if (roles.length === 0) errs.roles = 'Select at least one role'
-    if (!firstName.trim()) errs.firstName = 'This field is required'
-    if (!lastName.trim()) errs.lastName = 'This field is required'
-    if (!email.trim()) errs.email = 'This field is required'
-    if (!dob.trim()) errs.dob = 'This field is required'
-    if (dob && !/^\d{2}\/\d{2}\/\d{4}$/.test(dob)) errs.dob = 'The date must be valid (mm/dd/yyyy)'
-    if (ownershipPercentage !== '' && ownershipPercentage !== null) {
-      const n = Number(ownershipPercentage)
-      if (Number.isNaN(n) || n < 0 || n > 100) {
-        errs.ownershipPercentage = 'Enter a number between 0 and 100'
-      }
+    for (const [name, rule] of Object.entries(fieldRules)) {
+      const e = rule(values[name])
+      if (e) errs[name] = e
     }
     setErrors(errs)
     const valid = Object.keys(errs).length === 0
     setSubmitError(!valid)
     return valid
+  }
+
+  const handleBlur = (name, value) => {
+    const err = fieldRules[name]?.(value) ?? null
+    setErrors(prev => {
+      if (err === prev[name]) return prev
+      const next = { ...prev }
+      if (err) next[name] = err
+      else delete next[name]
+      return next
+    })
+  }
+
+  const clearError = (name) => {
+    if (errors[name]) {
+      setErrors(prev => {
+        const next = { ...prev }
+        delete next[name]
+        return next
+      })
+    }
+  }
+
+  const handleDobChange = (e) => {
+    const formatted = e.target.value
+      .replace(/\D/g, '')
+      .slice(0, 8)
+      .replace(/^(\d{2})(\d)/, '$1/$2')
+      .replace(/^(\d{2}\/\d{2})(\d)/, '$1/$2')
+    setDob(formatted)
+    clearError('dob')
   }
 
   const handleSubmit = () => {
@@ -123,7 +181,8 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
               type="text"
               placeholder="First name"
               value={firstName}
-              onChange={e => setFirstName(e.target.value)}
+              onChange={e => { setFirstName(e.target.value); clearError('firstName') }}
+              onBlur={e => handleBlur('firstName', e.target.value)}
             />
             {errors.firstName && <div className="form-error">{errors.firstName}</div>}
           </div>
@@ -135,7 +194,8 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
               type="text"
               placeholder="Last name"
               value={lastName}
-              onChange={e => setLastName(e.target.value)}
+              onChange={e => { setLastName(e.target.value); clearError('lastName') }}
+              onBlur={e => handleBlur('lastName', e.target.value)}
             />
             {errors.lastName && <div className="form-error">{errors.lastName}</div>}
           </div>
@@ -156,9 +216,12 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
             <input
               className={`form-input ${errors.dob ? 'error' : ''}`}
               type="text"
-              placeholder="mm/dd/yyyy"
+              placeholder="MM/DD/YYYY"
               value={dob}
-              onChange={e => setDob(e.target.value)}
+              onChange={handleDobChange}
+              onBlur={e => handleBlur('dob', e.target.value)}
+              inputMode="numeric"
+              maxLength={10}
             />
             {errors.dob && <div className="form-error">{errors.dob}</div>}
           </div>
@@ -170,7 +233,8 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
               type="email"
               placeholder="email@example.com"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => { setEmail(e.target.value); clearError('email') }}
+              onBlur={e => handleBlur('email', e.target.value)}
             />
             {errors.email && <div className="form-error">{errors.email}</div>}
           </div>
@@ -178,13 +242,16 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
           <div className="form-group">
             <label className="form-label">Phone number</label>
             <input
-              className="form-input"
+              className={`form-input ${errors.phone ? 'error' : ''}`}
               type="tel"
               placeholder="5551234567"
               value={phone}
-              onChange={e => setPhone(e.target.value.replace(/[^\d]/g, ''))}
-              maxLength={15}
+              onChange={e => { setPhone(e.target.value.replace(/[^\d]/g, '')); clearError('phone') }}
+              onBlur={e => handleBlur('phone', e.target.value)}
+              maxLength={10}
+              inputMode="numeric"
             />
+            {errors.phone && <div className="form-error">{errors.phone}</div>}
           </div>
 
           <div className="form-group">
@@ -198,7 +265,8 @@ export default function Screen10AddParty({ formData, dispatch, goTo }) {
               step="0.01"
               placeholder="e.g., 25 (optional)"
               value={ownershipPercentage}
-              onChange={e => setOwnershipPercentage(e.target.value)}
+              onChange={e => { setOwnershipPercentage(e.target.value); clearError('ownershipPercentage') }}
+              onBlur={e => handleBlur('ownershipPercentage', e.target.value)}
             />
             {errors.ownershipPercentage && <div className="form-error">{errors.ownershipPercentage}</div>}
           </div>
