@@ -1,0 +1,1289 @@
+Date: Tue, 17 Mar 2026 15:24:39 +0000 (UTC)
+Message-ID: <770324570.9.1773761079098@c3dd63f5be71>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_8_1614914531.1773761079097"
+
+------=_Part_8_1614914531.1773761079097
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>v1 Entity Verification Flow - Embedded UI</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>v1 Entity Verification Flow - Embedded UI</h1>
+    <div class=3D"Section1">
+        <h2 local-id=3D"00f5a3a3f778" id=3D"v1EntityVerificationFlow-Embedd=
+edUI-Purpose">Purpose</h2>
+<p local-id=3D"09b5802cfcff">This document captures the screen-by-screen re=
+quirements for the entity verification flow within the embeddable KYC UI th=
+at Interro offers to application clients. This version has been revised fro=
+m the original Sumsub-derived specification to reflect the integration mode=
+l agreed with Verivend, our first client. The core Sumsub-informed structur=
+e is preserved for extensibility to future clients, with the following key =
+adjustments:</p>
+<ul local-id=3D"bb5cf021-00b3-4744-b4b4-fa9970663b9e">
+<li local-id=3D"1ef616a0-cd7f-48ab-83b8-47e4b8d95022">
+<p local-id=3D"2bdb7db36ba8"><strong>Entity lookup removed.</strong> The fl=
+ow no longer searches a corporate registry. Instead, the component collects=
+ entity information via manual entry as the default and only path. This sim=
+plifies the initial build while retaining the same data collection footprin=
+t.</p></li>
+<li local-id=3D"68e25d00-5f7b-4911-b6cd-690d83a32064">
+<p local-id=3D"b958b8e02dd6"><strong>Confirmation screen added.</strong> Af=
+ter entity details are entered, the user sees a summary of all provided inf=
+ormation and must explicitly confirm before proceeding. This replaces the l=
+ookup-then-confirm pattern with a collect-then-confirm pattern.</p></li>
+<li local-id=3D"c872eac1-6b12-4718-82be-47bf2a06435a">
+<p local-id=3D"df2a25251648"><strong>Host-controlled path selection.</stron=
+g> Verivend passes the verification path (Individual / Joint / Entity) as a=
+n initialization parameter at session creation. The component's built-in ty=
+pe selection screen is skippable when the host supplies this parameter, tho=
+ugh it remains available as a fallback for clients that prefer to defer pat=
+h selection to the component.</p></li>
+<li local-id=3D"6cd0305c-1b3f-4d25-a451-4a8118a82018">
+<p local-id=3D"6946637cbc5c"><strong>Two-phase associated party model.</str=
+ong> The authorized representative enters biographical data for each associ=
+ated person. Each person then independently completes identity verification=
+ via a standalone, token-authenticated link served by Interro outside the h=
+ost application.</p></li>
+<li local-id=3D"1964c279-08a7-444d-8e0b-6ecf99fe81ee">
+<p local-id=3D"fd80ad1b795e"><strong>Session durability and integration hoo=
+ks.</strong> Requirements for server-side auto-save, cross-device resume, w=
+ebhook notifications, and retrieval API access are woven into the relevant =
+screens.</p></li>
+</ul>
+<hr local-id=3D"26ac1036-971a-4986-8beb-05b0b5ad23c3">
+<h2 local-id=3D"65cfc8370abb" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ini=
+tialization&amp;Configuration">Initialization &amp; Configuration</h2>
+<p local-id=3D"0daae55ee10a">Before the entity flow begins, the host applic=
+ation (e.g., Verivend) creates a verification session via Interro's backend=
+ API, passing context that configures the component's behavior.</p>
+<h3 local-id=3D"614bfa6266ce" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ses=
+sionInitializationParameters">Session Initialization Parameters</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"29=
+d364d6-d9b6-497f-bdcd-8c4c5d5b69fb" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"7918b23c-29e4-4a05-9990-18c9a2e0b3a0">
+<th data-local-id=3D"f608aa0c-ebf6-40ea-81b7-d41193b8c4bd" class=3D"conflue=
+nceTh">
+<p local-id=3D"b758cf32fd9c">Parameter</p></th>
+<th data-local-id=3D"3f653524-b9d3-4c16-94e8-fd026ea8930c" class=3D"conflue=
+nceTh">
+<p local-id=3D"d917f66eb748">Type</p></th>
+<th data-local-id=3D"ba3e53d8-a320-483f-9bee-b6e076653468" class=3D"conflue=
+nceTh">
+<p local-id=3D"ea2292904572">When Passed</p></th>
+<th data-local-id=3D"0d244c78-a3e0-46e3-a27b-0c0aae05fb44" class=3D"conflue=
+nceTh">
+<p local-id=3D"48f2449e7a85">Notes</p></th>
+</tr>
+<tr data-local-id=3D"46f817ab-29af-428a-bd52-3e1e4699192b">
+<td data-local-id=3D"e6752da9-6ea6-4975-9550-e2dfd72d6eaf" class=3D"conflue=
+nceTd">
+<p local-id=3D"c6556734bb8d">Path type</p></td>
+<td data-local-id=3D"a4cb084b-f208-4a2e-8a4d-94dfb5ea0c57" class=3D"conflue=
+nceTd">
+<p local-id=3D"bd1369e30dc6"><code>individual</code> / <code>joint</code> /=
+ <code>entity</code></p></td>
+<td data-local-id=3D"ec0ef3fd-f849-4514-9b0a-4f27d2a63349" class=3D"conflue=
+nceTd">
+<p local-id=3D"a184ab859b7b">Always</p></td>
+<td data-local-id=3D"c0d89f0f-f416-4283-a17f-3782ef7fe135" class=3D"conflue=
+nceTd">
+<p local-id=3D"faaf23635050">Determines which flow the component loads. Whe=
+n supplied, the component skips its own type selection screen (Screen 1) an=
+d enters the specified flow directly.</p></td>
+</tr>
+<tr data-local-id=3D"2fdb05e4-e11a-4155-a058-f8dec35d3b00">
+<td data-local-id=3D"68c26037-eea3-42e2-9637-522ae63edef7" class=3D"conflue=
+nceTd">
+<p local-id=3D"44ef8c19f00d">Organization ID</p></td>
+<td data-local-id=3D"13b483f3-7b1d-474c-afc1-6ece4773dbe4" class=3D"conflue=
+nceTd">
+<p local-id=3D"3b70a0ae6538">String</p></td>
+<td data-local-id=3D"bfcea0ce-f65d-488f-94a7-bb61d1cc0e9b" class=3D"conflue=
+nceTd">
+<p local-id=3D"ff0e028acf01">Always</p></td>
+<td data-local-id=3D"116f27fc-8e61-4f0d-8d56-968ab393813c" class=3D"conflue=
+nceTd">
+<p local-id=3D"c0e67242dad4">Links the session to the host application's or=
+g record.</p></td>
+</tr>
+<tr data-local-id=3D"a153461f-ac8e-429f-933c-753a48fda539">
+<td data-local-id=3D"98610824-c396-4d3f-9edb-7c92e5ad0595" class=3D"conflue=
+nceTd">
+<p local-id=3D"ef653e67c571">Authenticated user context</p></td>
+<td data-local-id=3D"7685bc94-9f80-42e6-a571-bb8a7b6f63e3" class=3D"conflue=
+nceTd">
+<p local-id=3D"fd8793286ac6">Token / session ref</p></td>
+<td data-local-id=3D"a0553df4-03d5-4e49-bf82-6057eabf1470" class=3D"conflue=
+nceTd">
+<p local-id=3D"f200677d485c">Always</p></td>
+<td data-local-id=3D"ba80d497-75bf-4aaa-a265-415146669b70" class=3D"conflue=
+nceTd">
+<p local-id=3D"8b20ba9f12b0">Component receives auth context from the host;=
+ it does not manage login.</p></td>
+</tr>
+<tr data-local-id=3D"1a85142b-5d1f-40e9-883a-97d3cbe7e0ff">
+<td data-local-id=3D"81efeafd-61f5-4e8a-9bb4-390f53a3d6ff" class=3D"conflue=
+nceTd">
+<p local-id=3D"285fa606470f">Pre-fill data</p></td>
+<td data-local-id=3D"05dcbc1b-c54e-42c5-b9d4-d7bb6bcf18bd" class=3D"conflue=
+nceTd">
+<p local-id=3D"21acdec1e84c">JSON object (optional)</p></td>
+<td data-local-id=3D"38688620-dedb-4ce6-bc32-acc3ced83b2b" class=3D"conflue=
+nceTd">
+<p local-id=3D"879462c8512e">When available</p></td>
+<td data-local-id=3D"9227c645-b290-47cf-9355-682b984dd5d5" class=3D"conflue=
+nceTd">
+<p local-id=3D"d06ad2b66dc8">Any entity or person data the host already hol=
+ds (e.g., legal name, country) can be passed to pre-populate fields.</p></t=
+d>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"00846bda6d86" id=3D"v1EntityVerificationFlow-EmbeddedUI-The=
+ming">Theming</h3>
+<p local-id=3D"1fad371f5959">The component accepts brand configuration at i=
+nitialization:</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"3d=
+ba8b77-35f3-4dec-9864-244219d8d3c4" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"d1810363-6e5d-4d40-b402-96115a6787b2">
+<th data-local-id=3D"767d0158-167b-4b2a-b572-2636a6521f6e" class=3D"conflue=
+nceTh">
+<p local-id=3D"7bc71311dcb0">Property</p></th>
+<th data-local-id=3D"8a1f0b71-4280-4246-ba61-73bfbf3c52ff" class=3D"conflue=
+nceTh">
+<p local-id=3D"b168d2d2dcb8">Example (Verivend)</p></th>
+</tr>
+<tr data-local-id=3D"1a175336-e48f-4d2d-8c4a-be2e642b42c4">
+<td data-local-id=3D"594b1a74-bc3f-44f0-a06a-f0478c8b5a26" class=3D"conflue=
+nceTd">
+<p local-id=3D"d80cfff413cc">Primary color</p></td>
+<td data-local-id=3D"1eeb9b55-a1e4-45bc-8290-38e69022549c" class=3D"conflue=
+nceTd">
+<p local-id=3D"cc8c98210aef"><code>#0042E0</code></p></td>
+</tr>
+<tr data-local-id=3D"7dfcc6e9-3bac-4bb2-82f6-ada96991ff34">
+<td data-local-id=3D"734abf47-cbb2-4633-b13d-c55786de9f60" class=3D"conflue=
+nceTd">
+<p local-id=3D"6fdd3dc38ac4">Accent color</p></td>
+<td data-local-id=3D"d135b8ea-b8ea-4103-8b3c-c1f6675f4287" class=3D"conflue=
+nceTd">
+<p local-id=3D"a65a1dc0107f"><code>#008cf0</code></p></td>
+</tr>
+<tr data-local-id=3D"b78638ae-ba94-4854-aa8d-95e5d7cbb60a">
+<td data-local-id=3D"298ee99f-260b-4385-98e6-2255fe9749af" class=3D"conflue=
+nceTd">
+<p local-id=3D"d623312efe06">Text color</p></td>
+<td data-local-id=3D"10f4a14d-d694-4358-94fd-35104deba6b2" class=3D"conflue=
+nceTd">
+<p local-id=3D"f792743bb4e3"><code>#333D57</code></p></td>
+</tr>
+<tr data-local-id=3D"0130f8fd-7832-4262-9aa4-17923e084492">
+<td data-local-id=3D"37c48ba0-3748-4106-995a-f25976ee5db9" class=3D"conflue=
+nceTd">
+<p local-id=3D"4c4e2a47dd48">Heading color</p></td>
+<td data-local-id=3D"40371327-7d54-4739-9456-761076b1622a" class=3D"conflue=
+nceTd">
+<p local-id=3D"293c00d747c8"><code>#000d2d</code></p></td>
+</tr>
+<tr data-local-id=3D"0d3c6934-7a08-405a-85cc-a142dbb8b85d">
+<td data-local-id=3D"d60e23ce-8c87-487f-b6a8-b73e0f7b7629" class=3D"conflue=
+nceTd">
+<p local-id=3D"15c734f21a8a">Font family</p></td>
+<td data-local-id=3D"79c03224-ab32-4d1b-bb04-fc6772bee36c" class=3D"conflue=
+nceTd">
+<p local-id=3D"dcc5833143c2">Inter</p></td>
+</tr>
+<tr data-local-id=3D"78e9741c-c474-4f83-8c5a-fbf1670a9c1d">
+<td data-local-id=3D"00a07162-dad6-4f25-823c-0df2de052ab0" class=3D"conflue=
+nceTd">
+<p local-id=3D"25101dea618b">Logo</p></td>
+<td data-local-id=3D"9c6c23b1-0818-48cd-95a2-7d867d1f9b57" class=3D"conflue=
+nceTd">
+<p local-id=3D"40b0e0f25421">Supplied by host</p></td>
+</tr>
+<tr data-local-id=3D"a7b31e74-0a50-4090-aea3-ee05824e45fe">
+<td data-local-id=3D"f506513a-ae4d-498e-9877-735d9c41542a" class=3D"conflue=
+nceTd">
+<p local-id=3D"05ff6409bf9b">"Powered by" footer</p></td>
+<td data-local-id=3D"dad304ab-afe8-4a66-8854-bebed7040447" class=3D"conflue=
+nceTd">
+<p local-id=3D"0306ffe7f8f8">Configurable per vendor</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"c594f7329c7b">The component renders inline within the host a=
+pplication =E2=80=94 embedded, not redirected to a third-party domain.</p>
+<hr local-id=3D"dbf37038-d0c0-4556-9f0b-760fc5fb06d8">
+<h2 local-id=3D"576f53b6e706" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen1:Welcome/TypeSelection">Entity Flow =E2=80=94 Screen=
+ 1: Welcome / Type Selection</h2>
+<ol start=3D"1" local-id=3D"d49b8aac-da5d-4c6e-b786-d00f8e7b6324">
+<li local-id=3D"b9ef44ba-6362-47c6-9660-abae811c8478">
+<p local-id=3D"495649f76cb0">Display introductory header text explaining th=
+e purpose of KYC verification. This can be a slide-up screen that takes 2/3=
+ of the page. Links to data sharing agreements are layered into the explana=
+tion. the user must click =E2=80=9CI agree=E2=80=9D button at the bottom of=
+ the slide up screen to move forward.</p></li>
+<li local-id=3D"acd3bdd6-419d-4897-9265-dfdff0e60d8c">
+<p local-id=3D"2803c7990d37">User selects between "Individual" and "Corpora=
+te" via two buttons.</p></li>
+<li local-id=3D"408e7bd4-aac7-43ea-8b8f-130d40a6002f">
+<p local-id=3D"ad61140daf4c">Selection routes the user to the corresponding=
+ flow (Corporate / Entity in this case).</p></li>
+</ol>
+<p local-id=3D"94310050df67"><strong>Conditional skip:</strong> If the host=
+ application passes <code>path_type =3D entity</code> at session initializa=
+tion, this screen is bypassed entirely and the user enters the entity flow =
+directly. The screen remains available as a fallback when the host defers p=
+ath selection to the component. The user must still agree to the T=E2=80=99=
+s&amp;C=E2=80=99s.</p>
+<hr local-id=3D"415ec84a-3574-4cee-baaa-3546105a3b3a">
+<h2 local-id=3D"34d231da1e11" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen2:KYBLoading&amp;SensitiveDataDisclaimer">Entity Flow=
+ =E2=80=94 Screen 2: KYB Loading &amp; Sensitive Data Disclaimer</h2>
+<ol start=3D"1" local-id=3D"7265dd42-e3a0-4535-be06-bdacc03bf5e9">
+<li local-id=3D"f29cfc16-fbd3-4f4c-abc5-67b9c6d01d72">
+<p local-id=3D"6aeef64fa3d7">Display a loading spinner while the KYB flow i=
+nitializes.</p></li>
+<li local-id=3D"f1a8c182-f5d5-490c-af36-1f2b6ee47e5d">
+<p local-id=3D"6af22e271a00">Display configurable client name (e.g., "Veriv=
+end") in verification header.</p></li>
+<li local-id=3D"85f1bdc1-f199-4b41-afb4-79e824b62347">
+<p local-id=3D"ac40da9f0217">Display sensitive data warning: informs the us=
+er they are about to submit sensitive data to the named client, with instru=
+ctions to close the page if the link was received from a suspicious source.=
+</p></li>
+<li local-id=3D"eb7f3c6d-1c27-4c3f-ac95-b816850dc70a">
+<p local-id=3D"b12ee2df676b">Language selector available (e.g., "En").</p><=
+/li>
+<li local-id=3D"2636553d-05c3-4290-bd62-9e6b5bcaefa3">
+<p local-id=3D"73f8255a3dbc">"Continue" button to proceed.</p></li>
+<li local-id=3D"3e04060f-e0e0-4713-9815-772c51e0193e">
+<p local-id=3D"b32db5bcbc14">"Powered by" branding footer (configurable per=
+ vendor).</p></li>
+</ol>
+<hr local-id=3D"bafebc95-41ae-4a65-bd29-f9a3d25f7e6c">
+<h2 local-id=3D"7d994511dcc7" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen3:StepOverview">Entity Flow =E2=80=94 Screen 3: Step =
+Overview</h2>
+<p local-id=3D"a4de8a20d4e9">Display a step-by-step summary of the full ent=
+ity verification flow before the user begins:</p>
+<ol start=3D"1" local-id=3D"cc5e159b-6fc5-4cc0-91d2-5498729be252">
+<li local-id=3D"9015ce16-3df7-4f59-bcf9-66530bad5942">
+<p local-id=3D"7a3593414966"><strong>Step 1:</strong> Provide entity detail=
+s</p></li>
+<li local-id=3D"1a0c9641-6b5f-4eec-a865-84c2e308f88e">
+<p local-id=3D"6c1ef59d4282"><strong>Step 2:</strong> Provide supplementary=
+ documents</p></li>
+<li local-id=3D"672ec03e-bcad-462d-bf4b-0703c81c842d">
+<p local-id=3D"59a621db6dae"><strong>Step 3:</strong> Provide entity docume=
+nts</p></li>
+<li local-id=3D"bc9fe0a8-df44-40e8-9df0-76d43803b59a">
+<p local-id=3D"08db31839f2c"><strong>Step 4:</strong> Provide associated pa=
+rties</p></li>
+</ol>
+<p local-id=3D"c53167c79f7a">Each step has an icon and label. "Start verifi=
+cation" button to begin the flow.</p>
+<hr local-id=3D"603d59ce-09fe-4c10-9e6f-49f59a7b7b3d">
+<h2 local-id=3D"20f5d3b88d59" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen4:Privacy&amp;ConsentModal">Entity Flow =E2=80=94 Scr=
+een 4: Privacy &amp; Consent Modal</h2>
+<ol start=3D"1" local-id=3D"7faf6111-c9e1-47e8-b2dd-c53fe0fb9b02">
+<li local-id=3D"ff7cf4c7-32bf-4b40-a0fa-6f7f5a36079c">
+<p local-id=3D"6a4ee256088a">Display a modal overlay with privacy/consent d=
+isclosures before proceeding.</p></li>
+<li local-id=3D"2c4da63e-a2b8-4b0f-a3bc-6d86062b695a">
+<p local-id=3D"7c01efc2986c">User must confirm they have read the Privacy N=
+otice and Notification to Processing of Personal Data (linked).</p></li>
+<li local-id=3D"2fa5e046-d0cb-459c-abfe-2fb9c3a0138a">
+<p local-id=3D"8a39147728c7">US-specific clause: user consents to processin=
+g of personal data including biometrics, with link to Privacy User Acknowle=
+dgement and Consent.</p></li>
+<li local-id=3D"74723525-9432-4ca5-9de8-9855f2a31087">
+<p local-id=3D"f5774ec5f0f9">"Agree and continue" button to accept and proc=
+eed.</p></li>
+</ol>
+<hr local-id=3D"b573648a-ab6d-4f1c-a3c3-399e3039b678">
+<h2 local-id=3D"3296b98916d5" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen5:EntityDetails=E2=80=94ManualEntry(Step1a)">Entity F=
+low =E2=80=94 Screen 5: Entity Details =E2=80=94 Manual Entry (Step 1a)</h2=
+>
+<blockquote local-id=3D"4c9c964d-1265-48b1-be09-37ab62cb535b">
+<p local-id=3D"9e9bd530d63b"><strong>Change from v1:</strong> The entity lo=
+okup / registry search has been removed. Entity information is collected di=
+rectly via manual entry as the sole path. There is no "Find entity" button =
+or registry integration.</p>
+</blockquote>
+<ol start=3D"1" local-id=3D"cb453591-0de9-40dd-9c42-a2f031249d30">
+<li local-id=3D"a8cb8c54-2c11-4302-befe-c64c4d3e521a">
+<p local-id=3D"23a4941ed127">Progress bar indicating current step out of to=
+tal steps (4 segments visible).</p></li>
+<li local-id=3D"339cbff5-9e4f-477d-82ef-dd41f7fc9a9e">
+<p local-id=3D"55b8a0f91737">Back button to return to previous screen.</p><=
+/li>
+<li local-id=3D"9a5fb23e-0975-4d2d-a78a-8c771df48626">
+<p local-id=3D"20b0b39d75bb">Collect the following fields:</p>
+<ul local-id=3D"801107c4-e08c-43a7-8d3f-5d71447bea57">
+<li local-id=3D"adccbb7a-af92-4977-b00d-f3310a041022">
+<p local-id=3D"bbc198f73973"><strong>Country of entity registration</strong=
+> (dropdown, required) =E2=80=94 opens as a modal/overlay with search bar, =
+scrollable list of countries with flag icons, real-time filtering, close (X=
+) button, and clear (X) within search input.</p></li>
+<li local-id=3D"b7486ce0-f65c-4b3b-a3b2-70a32de507ce">
+<p local-id=3D"32d2213d17be"><strong>State</strong> (dropdown, required) =
+=E2=80=94 displayed dynamically when US is selected as country. Opens as a =
+modal/overlay with search bar, scrollable list of all US states and territo=
+ries. Hidden for non-US countries.</p></li>
+<li local-id=3D"304d4de6-de55-498e-a21e-111107bb70f9">
+<p local-id=3D"fab447ad1b73"><strong>Entity name</strong> (text input, requ=
+ired)</p></li>
+<li local-id=3D"0b788aa0-ebe4-41df-ba9c-32a82e20ff1d">
+<p local-id=3D"8d408574c47e"><strong>File Number</strong> (text input, requ=
+ired) =E2=80=94 with helper text explaining it can be found on registration=
+ documents from the registrar.</p></li>
+</ul></li>
+<li local-id=3D"fc71e1a8-66c5-4c57-9553-b100c3436e01">
+<p local-id=3D"8fc43223e42b">If the host application supplied pre-fill data=
+ at session initialization (country, entity name, etc.), those fields are p=
+re-populated but remain editable.</p></li>
+<li local-id=3D"08ae6b74-743a-482d-9906-448004bad58e">
+<p local-id=3D"053370db22c6">Field-level validation: required fields show r=
+ed border and "This field is required" error text when left empty on submit=
+. Country-specific conditional fields (e.g., State for US) enforce the same=
+ validation.</p></li>
+<li local-id=3D"30323c32-cd96-4e36-97ab-aa7722672e72">
+<p local-id=3D"7b1ad3708b4a">"Save and continue" button to proceed.</p></li=
+>
+<li local-id=3D"4e29a20b-4551-4d42-9b14-b6142b13bcd3">
+<p local-id=3D"75e2106a37c8">"Continue on phone" option to transfer the flo=
+w to a mobile device.</p></li>
+</ol>
+<h3 local-id=3D"a9454693db17" id=3D"v1EntityVerificationFlow-EmbeddedUI-Per=
+sistence">Persistence</h3>
+<p local-id=3D"cb3fe066ffee">On "Save and continue," the step data is durab=
+ly saved server-side. If the user navigates away, logs out, or switches dev=
+ices, they resume at this point with all data intact.</p>
+<hr local-id=3D"6b1e4709-8e5d-4ce6-ad0b-6f8cc809930f">
+<h2 local-id=3D"6cc292b64b16" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen6:EntityDetails=E2=80=94Review&amp;Confirm(Step1b)">E=
+ntity Flow =E2=80=94 Screen 6: Entity Details =E2=80=94 Review &amp; Confir=
+m (Step 1b)</h2>
+<blockquote local-id=3D"cbdaf83a-5692-4025-bf2e-bbafdd0e9ba8">
+<p local-id=3D"ba2531ad289e"><strong>New screen.</strong> After entering en=
+tity details, the user sees a read-only summary of all information provided=
+ in Step 1a and must confirm its accuracy before proceeding.</p>
+</blockquote>
+<ol start=3D"1" local-id=3D"d4852bf4-27e9-4aff-b10c-45f20d98042a">
+<li local-id=3D"60c6c68c-93b1-46a7-a96e-fa5700dd9a4e">
+<p local-id=3D"310eda022e7a">Progress bar remains on Step 1.</p></li>
+<li local-id=3D"0b341b87-c04f-462d-abe8-ef4d1aeb7252">
+<p local-id=3D"152e044eccbd">Back button to return to the entry form (Scree=
+n 5) for edits.</p></li>
+<li local-id=3D"dea3cb6d-f7fb-442e-9426-446fa30bfee9">
+<p local-id=3D"0d1963c2d18b">Display all entered entity details in a struct=
+ured summary:</p>
+<ul local-id=3D"26d6fa71-4f0e-4780-a0db-c1558ae3f353">
+<li local-id=3D"70381552-f967-4a7f-b1e6-3fc536636710">
+<p local-id=3D"d5ba3989e507">Country of entity registration (with flag icon=
+)</p></li>
+<li local-id=3D"ea9550f6-e5f2-4f1d-90b8-972e9cc230c0">
+<p local-id=3D"7540d39044c1">State (if applicable)</p></li>
+<li local-id=3D"7b68a840-681b-493f-ba4d-589b13a16ad6">
+<p local-id=3D"be7122beee73">Entity name</p></li>
+<li local-id=3D"e6064c88-b28b-4002-ae89-d6dc9d5f9d13">
+<p local-id=3D"4c8c6c4ae3ae">File Number</p></li>
+</ul></li>
+<li local-id=3D"e834aa81-3de2-4707-9ca6-2411a8e1b720">
+<p local-id=3D"d5ad8281603d">Each field displays its label and the user-ent=
+ered value. If any field was pre-filled by the host application, it is show=
+n here the same as manually entered data.</p></li>
+<li local-id=3D"1936f4b4-249c-4d11-a009-c554b3db4014">
+<p local-id=3D"ee7497920df2">Prompt text: "Please review the entity informa=
+tion below and confirm it is correct."</p></li>
+<li local-id=3D"8c950230-5fb5-4cb6-86c4-f77072b1a5ae">
+<p local-id=3D"e6531409a5b3">"Confirm and continue" button to lock Step 1 d=
+ata and advance to Step 2.</p></li>
+<li local-id=3D"f064833a-99e6-4630-830e-dc7e3456a19d">
+<p local-id=3D"7da02bae6d88">"Edit" link or button that returns the user to=
+ Screen 5 with all fields pre-populated for correction.</p></li>
+<li local-id=3D"c46b970a-a3c7-41ab-9b1c-97cc15d7c4a3">
+<p local-id=3D"212e70d49fdd">"Continue on phone" option persists.</p></li>
+</ol>
+<h3 local-id=3D"701d75cf2cc9" id=3D"v1EntityVerificationFlow-EmbeddedUI-Per=
+sistence.1">Persistence</h3>
+<p local-id=3D"3dd508442e32">On "Confirm and continue," Step 1 is marked co=
+mplete. The confirmed data is durably saved server-side and a <code>step:co=
+mpleted</code> event is emitted to the host application.</p>
+<hr local-id=3D"2fe60302-262e-42b7-b440-ea2182737c12">
+<h2 local-id=3D"30234576fc02" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen7:CorporateKYCDocumentRequest(Step2)">Entity Flow =E2=
+=80=94 Screen 7: Corporate KYC Document Request (Step 2)</h2>
+<ol start=3D"1" local-id=3D"b62a23e2-4d3f-402d-9375-7a7f6c829d61">
+<li local-id=3D"9796a77e-6cd6-4f0e-acc1-5fd19f16f072">
+<p local-id=3D"9cdd2815c31b">Progress bar advances to Step 2.</p></li>
+<li local-id=3D"ab7a613f-823e-4220-8fb8-7c1bdf15a092">
+<p local-id=3D"6252fede4eb1">Collect the following document uploads (each r=
+equired):</p>
+<ul local-id=3D"87a572fc-27c3-4e49-b59f-3d8112bf9354">
+<li local-id=3D"8da3b67d-79b0-43a2-a627-23482fe4d7b2">
+<p local-id=3D"f634c33d7556"><strong>Authorised Signatory List</strong> =E2=
+=80=94 "Please upload a signed authorised signatory list below"</p></li>
+<li local-id=3D"5cb7c76a-ec05-4739-a4b2-0164cca1f184">
+<p local-id=3D"39af9759e721"><strong>Structure Diagram</strong> =E2=80=94 "=
+Please upload a structure diagram, outlining the organisational structure a=
+nd/or ownership structure"</p></li>
+</ul></li>
+<li local-id=3D"56cd1184-6465-46b4-bcf3-6a3ef3e00f74">
+<p local-id=3D"afcbd5b65c3e">Each upload zone supports:</p>
+<ul local-id=3D"6d9ab0e8-d616-4e64-8224-459f02f7393f">
+<li local-id=3D"f34b1a67-7eb2-46cc-a751-ee27877a02bd">
+<p local-id=3D"03cdaf1f6ef8">Click to choose file or drag and drop</p></li>
+<li local-id=3D"e81dae23-cb47-43d1-8c36-8f30bfb79ab5">
+<p local-id=3D"85f1c353d6df">Accepted formats: JPG, PNG, HEIC, WEBP, or PDF=
+</p></li>
+<li local-id=3D"9e67a22d-508b-4e5b-9d5e-ce08fc6b8b5b">
+<p local-id=3D"8fa97aafa9bb">Max file size: 50 MB (note: Verivend's securit=
+y spec caps at 10 MB =E2=80=94 configurable per client)</p></li>
+</ul></li>
+<li local-id=3D"b095e24e-f2aa-474d-b079-83c91d685898">
+<p local-id=3D"d247fb428fe6">Documents upload directly to Interro infrastru=
+cture =E2=80=94 never routed through the host application frontend.</p></li=
+>
+<li local-id=3D"eef4d3fe-4416-4b3e-95e5-1489dc84e24a">
+<p local-id=3D"8344a94c7d18">"Continue" button to proceed.</p></li>
+<li local-id=3D"aa153995-71f5-44a2-973a-5daa6f8983cb">
+<p local-id=3D"b79769bbd7c5">"Continue on phone" option persists.</p></li>
+</ol>
+<h3 local-id=3D"3fd69b8c14e4" id=3D"v1EntityVerificationFlow-EmbeddedUI-Per=
+sistence.2">Persistence</h3>
+<p local-id=3D"830180d0b9be">Each successful upload is durably saved server=
+-side. If the user leaves and returns, previously uploaded documents are sh=
+own with thumbnail previews.</p>
+<hr local-id=3D"087461f4-4c66-42dd-b292-58246dfc25b8">
+<h2 local-id=3D"3c938a7497e4" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen8:EntityDocuments(Step3)">Entity Flow =E2=80=94 Scree=
+n 8: Entity Documents (Step 3)</h2>
+<ol start=3D"1" local-id=3D"96451059-e2b9-4af5-9307-a654ce0921d7">
+<li local-id=3D"e7788c2b-7bd9-46a4-acc5-fb5e8a70cde0">
+<p local-id=3D"279122688c90">Progress bar advances to Step 3.</p></li>
+<li local-id=3D"9a59bb44-5197-4807-b57e-284bd9ba475c">
+<p local-id=3D"e68f38524310">Display a checklist of required document categ=
+ories, each with a status icon:</p>
+<ul local-id=3D"d83f7692-393a-4417-a8d3-447204007fac">
+<li local-id=3D"969f9252-9193-4d19-a64e-21e474046328">
+<p local-id=3D"4090259d0f37"><strong>Legal presence</strong> =E2=80=94 Opti=
+ons: Incorporation certificate</p></li>
+<li local-id=3D"541364f5-0366-4329-bbc0-76f3aa8ec190">
+<p local-id=3D"39b204c19741"><strong>Entity details</strong> =E2=80=94 Opti=
+ons: Articles and memorandum of association</p></li>
+<li local-id=3D"a7b826ea-a866-40dc-8014-6f15497a7a73">
+<p local-id=3D"1819e3f164fc"><strong>Ownership structure</strong> =E2=80=94=
+ Options: Shareholder registry</p></li>
+</ul></li>
+<li local-id=3D"916c2675-199b-4eb1-892f-7333b3d18907">
+<p local-id=3D"a6549f3fa7ed">Each category has a checkmark icon (green) whe=
+n fulfilled, or a warning icon (orange) when missing, with validation messa=
+ge (e.g., "You need to upload at least one document for Ownership structure=
+").</p></li>
+<li local-id=3D"347011d2-dcc2-452d-a13f-375f30f45760">
+<p local-id=3D"7641c0b23062">Some categories offer a document type selector=
+ via dropdown; clicking opens a "Select document type" modal listing the ac=
+ceptable document types for that category.</p></li>
+<li local-id=3D"e610ee38-15bf-44e2-aba4-e418ba0862e2">
+<p local-id=3D"5caeda739edc">Uploaded documents display with:</p>
+<ul local-id=3D"108bfde4-f522-4bf5-971d-9ed06bb15136">
+<li local-id=3D"090dd596-016c-4e09-8671-e580c95b30bd">
+<p local-id=3D"722847885dc0">Thumbnail preview of the file</p></li>
+<li local-id=3D"4ce46380-ec9f-4506-8bd0-20de48b479f2">
+<p local-id=3D"54ddcd7cc7fd">Document type label</p></li>
+<li local-id=3D"7556cd88-9c64-4897-816c-7e4b6be4eaf1">
+<p local-id=3D"c3b744f847a9">Delete (trash) icon to remove the upload</p></=
+li>
+</ul></li>
+<li local-id=3D"5e0708b8-bb90-4631-a822-b905b36ef213">
+<p local-id=3D"e922e4add03d">Each document type has its own upload zone (ch=
+oose or drag and drop, same format/size constraints as Step 2).</p></li>
+<li local-id=3D"5be9276f-8b07-4bb9-884a-32b3c15b4338">
+<p local-id=3D"a0a0f786b4cd">Documents upload directly to Interro infrastru=
+cture.</p></li>
+<li local-id=3D"ecdad033-718a-4832-bb7b-9189d32555b8">
+<p local-id=3D"87c807e20f6e">User cannot proceed until all required documen=
+t categories have at least one upload.</p></li>
+<li local-id=3D"e08eceda-d7c1-4b4d-b572-13da4117025e">
+<p local-id=3D"71d2ed21d4be">"Continue" button to proceed.</p></li>
+<li local-id=3D"ebd29b8f-7d2f-4c91-b77c-62a5d1ce429a">
+<p local-id=3D"09e142e898a9">"Continue on phone" option persists.</p></li>
+</ol>
+<hr local-id=3D"33eff44b-3a12-41cd-8777-6c6bf9e44933">
+<h2 local-id=3D"edcfe6a0ca58" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen9:AssociatedParties(Step4)">Entity Flow =E2=80=94 Scr=
+een 9: Associated Parties (Step 4)</h2>
+<ol start=3D"1" local-id=3D"abbc941d-28f4-474a-8f5d-6e05705487d8">
+<li local-id=3D"efb3ad1c-f302-485d-b0bd-8d55c4b6086f">
+<p local-id=3D"05a30c3e4632">Progress bar advances to Step 4.</p></li>
+<li local-id=3D"37cd4f4d-1797-4ec5-ac29-4a0b9a4c2347">
+<p local-id=3D"59070aa12722">Display three associated party categories, eac=
+h with descriptive criteria:</p>
+<ul local-id=3D"abda3559-8b11-4fc0-97c5-16305f51d4d8">
+<li local-id=3D"6fa03f5d-49a0-4046-b3e5-c4fc28c3a789">
+<p local-id=3D"46ca2a35f6d2"><strong>UBO</strong> =E2=80=94 "Individuals wi=
+th direct or indirect ownership above 25%"; option to "+ Add individual"</p=
+></li>
+<li local-id=3D"a2248ba7-3751-4e5f-9fb5-c43f3d47bacb">
+<p local-id=3D"a8ee1537a8b8"><strong>Shareholder</strong> =E2=80=94 "Partie=
+s with direct ownership above 25%"; options to "+ Add individual" or "+ Add=
+ entity"</p></li>
+<li local-id=3D"ab1fec40-f2cf-4717-900b-c1551f0787c3">
+<p local-id=3D"747dae6b602f"><strong>Director</strong> =E2=80=94 options to=
+ "+ Add individual" or "+ Add entity"</p></li>
+</ul></li>
+<li local-id=3D"a5b12e4c-61b6-4a91-b280-2584792ded15">
+<p local-id=3D"4de2f7ca4cb8">At minimum, one Director must be added to proc=
+eed. If no Director is provided, at least one Shareholder or UBO must be en=
+tered.</p></li>
+<li local-id=3D"96ccf5a2-7b0a-433e-a7e4-aab4c1b51351">
+<p local-id=3D"0f31f4f2d0af">Each party type supports adding either an indi=
+vidual or an entity (except UBO, which only supports individuals).</p></li>
+<li local-id=3D"ac5b5301-3b83-4822-99ec-b2f941af5f8f">
+<p local-id=3D"d0fbfd59a56d">"Submit" button to complete the flow.</p></li>
+<li local-id=3D"9f179a92-7ec3-4695-b340-50f3ea6318f0">
+<p local-id=3D"a2cb0e7b8959">"Continue on phone" option persists.</p></li>
+</ol>
+<h3 local-id=3D"e327753b2bf9" id=3D"v1EntityVerificationFlow-EmbeddedUI-Two=
+-PhaseModel">Two-Phase Model</h3>
+<p local-id=3D"2744125ef631">This screen implements phase 1 of the two-phas=
+e associated party model: the authorized representative (the Verivend accou=
+nt holder) enters biographical data for each associated person within their=
+ own session. Phase 2 (identity verification per person) occurs on Screen 1=
+1 via standalone verification links.</p>
+<hr local-id=3D"f565f9a0-65a1-41f5-8906-1729f4095de7">
+<h2 local-id=3D"28982704eb35" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen10:AddAssociatedParty=E2=80=94IndividualForm">Entity =
+Flow =E2=80=94 Screen 10: Add Associated Party =E2=80=94 Individual Form</h=
+2>
+<ol start=3D"1" local-id=3D"fc8f466d-1ad3-4509-a5b8-0f170c7429f2">
+<li local-id=3D"99df3a81-8fd1-47b6-a4d2-9ef0b07d36f2">
+<p local-id=3D"be18c599e2b9">Role selection via checkboxes: UBO, Director, =
+Shareholder =E2=80=94 multiple roles can be selected for the same individua=
+l.</p></li>
+<li local-id=3D"5b41ad33-609d-4b84-8c19-b2f64dc0ac22">
+<p local-id=3D"b5806bcf3078">Helper text: "If this beneficiary has several =
+roles, you can fill out a questionnaire for them automatically."</p></li>
+<li local-id=3D"e887e6e4-fd4e-4985-bb8b-7c40f62949f7">
+<p local-id=3D"b903660a4666">Collect the following fields:</p>
+<ul local-id=3D"94dd245c-ab23-4b12-bde7-b93c0d9e74bc">
+<li local-id=3D"dce0e6f2-3558-4fb3-9165-dd5eb791f2d7">
+<p local-id=3D"b9ee2ae73a1f">First name (required)</p></li>
+<li local-id=3D"63afaa31-df85-4342-b76e-d53b142b7001">
+<p local-id=3D"2b08a95162cb">Last name (required)</p></li>
+<li local-id=3D"335ebd25-ef6c-4e28-84b8-763548c00f54">
+<p local-id=3D"3819993cedfd">Middle name (optional)</p></li>
+<li local-id=3D"dd440809-e9ee-46cf-9fa1-5093ca8f7dcd">
+<p local-id=3D"0a0780f041ea">Date of birth (mm/dd/yyyy format) =E2=80=94 wi=
+th validation error "The date must be valid" for invalid dates</p></li>
+<li local-id=3D"377e8d82-c034-4d73-bafa-92803313f66b">
+<p local-id=3D"b8613ad78042">Email (required)</p></li>
+</ul></li>
+<li local-id=3D"de5e7871-2e84-468d-93b9-4a871d0ea4db">
+<p local-id=3D"cce09d088a84">Field-level validation: required fields show r=
+ed "This field is required" error; date field shows format-specific error.<=
+/p></li>
+<li local-id=3D"464872d9-bc47-4158-8cf7-5c23ada1eef4">
+<p local-id=3D"e40dbd005868">"Create beneficiary" button to save the associ=
+ated party.</p></li>
+<li local-id=3D"d54bb8fb-defb-4b0f-b821-2f3286a5b0ff">
+<p local-id=3D"83690c7e63c3">"Continue on phone" option persists.</p></li>
+</ol>
+<h3 local-id=3D"b0e2bc0bca9f" id=3D"v1EntityVerificationFlow-EmbeddedUI-Not=
+eonAdditionalPersons">Note on Additional Persons</h3>
+<p local-id=3D"e14d35398125">The people added here (UBOs, shareholders, dir=
+ectors) are likely not users of the host application. Their identity verifi=
+cation will happen outside the host app via standalone, token-authenticated=
+ links (see Screen 11). The email address collected here is used to deliver=
+ those verification links.</p>
+<hr local-id=3D"e68fac5a-cc86-4dac-b11b-dbdf9e08c294">
+<h2 local-id=3D"3ed48d00b0b4" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen10a:AssociatedParties=E2=80=94Populated&amp;Submit">E=
+ntity Flow =E2=80=94 Screen 10a: Associated Parties =E2=80=94 Populated &am=
+p; Submit</h2>
+<ol start=3D"1" local-id=3D"d278c077-6d45-4517-843d-f2729cf567a4">
+<li local-id=3D"ce11130d-debb-415f-badc-bded7cbb89fd">
+<p local-id=3D"b82ed68eb560">Each added party displays as a card showing:</=
+p>
+<ul local-id=3D"897200eb-6333-4d55-bac8-bffacda2bc9e">
+<li local-id=3D"4f3e010e-8d78-44a1-9115-555e98ff9c27">
+<p local-id=3D"a11b9fff9583">Person icon</p></li>
+<li local-id=3D"07baf15c-de64-4509-a30c-d9009b917a43">
+<p local-id=3D"0cffd8618c7a">Full name (first, middle, last)</p></li>
+<li local-id=3D"f0a850c7-caef-4167-a817-9bb2fa653470">
+<p local-id=3D"0b71746d54c7">Email address</p></li>
+<li local-id=3D"d5e9d0e0-fc37-41b2-9b26-bb69fd769449">
+<p local-id=3D"bb888f31499c">Edit (pencil) icon to modify</p></li>
+<li local-id=3D"564d9339-f1c1-4029-a93e-3c6d4a8cd20b">
+<p local-id=3D"f67bd36e3b28">Delete (trash) icon to remove</p></li>
+</ul></li>
+<li local-id=3D"aae1e686-8c08-449d-9797-813a9ae4f719">
+<p local-id=3D"4807783c1a59">Additional individuals or entities can still b=
+e added via "+ Add individual" / "+ Add entity" links beneath each category=
+.</p></li>
+<li local-id=3D"9b2332f6-12a3-42ab-8063-1933767d9e30">
+<p local-id=3D"826f9c1f2198">"Submit" button triggers a loading animation (=
+rotating dot ellipsis) while processing.</p></li>
+<li local-id=3D"a8003d0f-73fc-427d-93cd-620ef5dfb738">
+<p local-id=3D"d4c1a467c79a"><strong>Global requirement:</strong> all "Subm=
+it," "Save and continue," "Continue," "Confirm and continue," and similar a=
+ction buttons display a loading animation while the request is being proces=
+sed.</p></li>
+</ol>
+<h3 local-id=3D"9ba936b2497e" id=3D"v1EntityVerificationFlow-EmbeddedUI-OnS=
+ubmit">On Submit</h3>
+<p local-id=3D"a919ba758561">When the user submits, the component emits a <=
+code>flow:submitted</code> event to the host application. This triggers the=
+ host's retention copy retrieval and verification lifecycle management. The=
+ user advances to Screen 11.</p>
+<hr local-id=3D"20efab14-ab1e-4571-826b-1493e6556103">
+<h2 local-id=3D"52cd4a648b42" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen11:AssociatedPartyVerification&amp;SubmissionConfirma=
+tion">Entity Flow =E2=80=94 Screen 11: Associated Party Verification &amp; =
+Submission Confirmation</h2>
+<ol start=3D"1" local-id=3D"8c31ba4b-deef-46b6-9139-612c08ba3df6">
+<li local-id=3D"20a812c4-a015-4d18-a30b-5e19c4a4631d">
+<p local-id=3D"99c3f9ae23a9">Display "One last step" screen informing the u=
+ser that all associated parties must verify their identity to complete busi=
+ness verification.</p></li>
+<li local-id=3D"0cbb7b08-f216-487b-9171-f7213ab3219a">
+<p local-id=3D"7b2f5055418b">"Remind all pending applicants" button to bulk=
+-notify all unverified parties.</p></li>
+<li local-id=3D"26df8bbf-edcc-4998-8a37-59b97d6fea2b">
+<p local-id=3D"fbad84235d62">Collapsible "Verification required" section sh=
+owing count of pending verifications (e.g., "3").</p></li>
+<li local-id=3D"cc385071-8fc8-497a-8599-5b61accbdb1a">
+<p local-id=3D"5021f8dd8865">Each associated party listed with:</p>
+<ul local-id=3D"681da414-da2c-435d-840a-cfa3a5c743d9">
+<li local-id=3D"4a8f1505-a35f-47bb-b12b-1cf08ef32c1b">
+<p local-id=3D"bcf8ab257bac">Full name</p></li>
+<li local-id=3D"cf59e6c4-b355-4658-ac8d-8e71d9fff0b9">
+<p local-id=3D"361fd5a62d96">Role (UBO, Shareholder, Director)</p></li>
+<li local-id=3D"523c8d6c-41af-454c-97b0-3b5de5868003">
+<p local-id=3D"220a52e65ccf">Email address</p></li>
+</ul></li>
+<li local-id=3D"b1babf05-4705-43b6-8e73-f433d764c10f">
+<p local-id=3D"c20ff484e271">Three verification options per party:</p>
+<ul local-id=3D"e91319e4-020e-452d-acdb-bec52b33df3f">
+<li local-id=3D"e5a54be1-75b5-459a-ab0d-f70170c27638">
+<p local-id=3D"8fca74f1d9b0"><strong>"Verify now"</strong> =E2=80=94 opens =
+the identity verification flow inline (e.g., Socure Document Verification)<=
+/p></li>
+<li local-id=3D"81a17d5b-cd2e-4a37-a59e-7c816eb660bd">
+<p local-id=3D"ac4b3def634c"><strong>"Send to email"</strong> =E2=80=94 sen=
+ds the verification link to the party's email address</p></li>
+<li local-id=3D"de2dc977-c40f-49f9-9bad-03625db40709">
+<p local-id=3D"40ad9d91f3d2"><strong>"Copy link"</strong> =E2=80=94 copies =
+the verification link to clipboard</p></li>
+</ul></li>
+<li local-id=3D"27c14b2d-d53e-4d62-942d-41c27271fe1a">
+<p local-id=3D"eddb1eeeb10f">Verification links route to the identity verif=
+ication provider (e.g., Socure Document Verification), associated with the =
+individual's screening step-up for that specific party.</p></li>
+<li local-id=3D"1d44b66c-c8d0-457e-a13e-7df361fa44a1">
+<p local-id=3D"41bb23ceb423"><strong>Verification option buttons are grayed=
+ out / unclickable</strong> until the screening orchestrator (e.g., Alloy) =
+responds with the associated step-up document verification link.</p></li>
+<li local-id=3D"594b8a8c-c124-4cec-829e-3e7ea6fb4a35">
+<p local-id=3D"6148fab87a5d">These verification links are standalone, token=
+-authenticated experiences served by Interro =E2=80=94 they work without a =
+host application account. The standalone experience carries host branding s=
+o it does not feel disconnected from the host platform.</p></li>
+<li local-id=3D"25eb7549-dc5a-4da9-8b00-97a939c2fb76">
+<p local-id=3D"216039b61717">"Checking info" section at the bottom displays=
+ verification status of submitted entity data with loading spinners:</p>
+<ul local-id=3D"5feeccd4-91c5-41c7-9d92-7d8ba5f75788">
+<li local-id=3D"c36a59d2-b557-4f64-947d-b1f7991d36a8">
+<p local-id=3D"df8fb72698d2">Entity details</p></li>
+<li local-id=3D"193076cc-0e53-4851-9ac3-ab88019adbf4">
+<p local-id=3D"15581042885b">Supplementary documents</p></li>
+<li local-id=3D"65555152-e4c4-466b-9af2-72b0e852b1e0">
+<p local-id=3D"38a66b9de3c6">Entity documents</p></li>
+</ul></li>
+</ol>
+<h3 local-id=3D"32b9e7275b95" id=3D"v1EntityVerificationFlow-EmbeddedUI-Web=
+hookNotifications">Webhook Notifications</h3>
+<p local-id=3D"b19ff0211684">As each associated party completes or stalls t=
+heir identity verification, Interro sends webhook notifications to the host=
+ application. The host can query aggregate status (N of M persons verified)=
+ via the retrieval API at any time.</p>
+<h3 local-id=3D"4a00b8661681" id=3D"v1EntityVerificationFlow-EmbeddedUI-Rem=
+inder/Re-send">Reminder / Re-send</h3>
+<p local-id=3D"194c47a60da5">If a party has not completed verification, the=
+ primary user can re-send the verification link via email (and ideally SMS)=
+. The host application can also trigger reminders programmatically via API.=
+</p>
+<hr local-id=3D"2a0bae2f-43ad-464c-8818-abafc347a6fb">
+<h2 local-id=3D"c64d2172ea6c" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ent=
+ityFlow=E2=80=94Screen12:FinalVerificationStatus">Entity Flow =E2=80=94 Scr=
+een 12: Final Verification Status</h2>
+<ol start=3D"1" local-id=3D"ceb0a983-0e79-453a-950e-5017f5dca7e4">
+<li local-id=3D"5a8fd3bc-cffc-4edf-b155-6c885de3cdee">
+<p local-id=3D"cf867a98106b">The page polls for completion status of all as=
+sociated party verifications automatically.</p></li>
+<li local-id=3D"a036d96d-1e23-434d-a0ee-15aa1c9d2f93">
+<p local-id=3D"4ad8ccd2ad04"><strong>Success state:</strong> Once all assoc=
+iated parties (UBOs, Shareholders, Directors) have successfully completed i=
+dentity verification, the page automatically updates to display:</p>
+<ul local-id=3D"8ebc9d19-77d6-44cf-9e09-a13185f7517e">
+<li local-id=3D"04d561bd-4f25-4707-9cde-c6743ff635a0">
+<p local-id=3D"723d60e6c5a4">Success visual (e.g., green checkmark icon)</p=
+></li>
+<li local-id=3D"8e2e5feb-36ba-4955-ba05-bf22f2001e09">
+<p local-id=3D"9a3d2b24e466">"Verification complete" message</p></li>
+</ul></li>
+<li local-id=3D"8a8e9512-7746-41d8-834d-ea57da2e1059">
+<p local-id=3D"f0d14d592314"><strong>Failure state:</strong> If any single =
+associated party fails their identity verification, the page displays:</p>
+<ul local-id=3D"19f94c66-9ce6-4741-8ab8-d54cd2abfacf">
+<li local-id=3D"86644141-09cd-4878-979d-9ae7369af942">
+<p local-id=3D"b12541343a24">Failure visual (e.g., red X or warning icon)</=
+p></li>
+<li local-id=3D"dfe0785a-4d10-44d2-ba15-b3a803e22be4">
+<p local-id=3D"5216717e84aa">Generic "Verification failed" message =E2=80=
+=94 does not specify which party failed or the reason for failure</p></li>
+<li local-id=3D"ee65fa33-75ec-49d1-bbef-60f4fb78d7ad">
+<p local-id=3D"c4e6b9fb5464">No retry or remediation options are surfaced t=
+o the end user (resolution handled outside the embeddable UI)</p></li>
+</ul></li>
+<li local-id=3D"fa3677cf-a5c1-4b3a-a5a9-0ccb333daf00">
+<p local-id=3D"f28e8612b2df">While verifications are still in progress, the=
+ page remains on the Screen 11 state with pending indicators.</p></li>
+</ol>
+<hr local-id=3D"0736ba3f-6cae-4744-8b72-d40cc579938b">
+<h2 local-id=3D"71b34cc7b666" id=3D"v1EntityVerificationFlow-EmbeddedUI-Cro=
+ss-CuttingRequirements">Cross-Cutting Requirements</h2>
+<h3 local-id=3D"4ab938357b70" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ses=
+sionDurability">Session Durability</h3>
+<ul local-id=3D"5ffcb671-83d6-4cc0-ae8b-8bfbe361f725">
+<li local-id=3D"3dc5adec-00b6-459c-972c-bad67131df2c">
+<p local-id=3D"82717ad54e6f"><strong>Server-side persistence on step comple=
+tion</strong> =E2=80=94 not browser session storage, not localStorage. When=
+ a user completes a step, that step's data is durably saved.</p></li>
+<li local-id=3D"5b92aa7f-1b8b-4148-be8e-b32007120311">
+<p local-id=3D"8affdb5b42c2"><strong>Cross-device resume</strong> =E2=80=94=
+ start on desktop, finish on mobile. Component keyed by external user ID; n=
+ew token for same user resumes at first incomplete step.</p></li>
+<li local-id=3D"b701468d-775a-4606-801f-f94bef52205b">
+<p local-id=3D"a14a342ac113"><strong>No data loss on logout / navigation aw=
+ay</strong> =E2=80=94 all previously completed steps survive a full logout/=
+login cycle.</p></li>
+<li local-id=3D"a1565e5f-a04f-4b01-80ff-8ce5e0b24cca">
+<p local-id=3D"eafa54893796"><strong>Long-lived sessions</strong> =E2=80=94=
+ no expiry measured in minutes or hours; sessions remain resumable for week=
+s.</p></li>
+</ul>
+<h3 local-id=3D"0ed48f3bdd52" id=3D"v1EntityVerificationFlow-EmbeddedUI-Pro=
+gressVisibilityOutsidetheComponent">Progress Visibility Outside the Compone=
+nt</h3>
+<p local-id=3D"0a9c40cb3a7f">The host application can determine verificatio=
+n progress without loading the embedded component, via:</p>
+<ul local-id=3D"dfe1d120-bc1a-421d-a459-7f4664e23e5c">
+<li local-id=3D"30bfcedb-3c42-48e1-b8ba-9ee701655857">
+<p local-id=3D"ec8141cbcc27"><strong>Webhooks</strong> pushed from Interro =
+on step completion (<code>session.step_completed</code>, <code>session.subm=
+itted</code>, <code>session.screening_completed</code>, <code>session.last_=
+activity</code>)</p></li>
+<li local-id=3D"7d347845-764d-4005-aef9-5650ed3a0f91">
+<p local-id=3D"818243fcc5de"><strong>Polling API</strong> =E2=80=94 <code>G=
+ET /sessions/{id}/status</code> returns current progress state</p></li>
+</ul>
+<p local-id=3D"5e81116f0ec3">This enables the host to show progress indicat=
+ors ("Verification in progress =E2=80=94 60% complete"), trigger email camp=
+aigns ("You're 2 steps away"), surface abandoned verifications in admin das=
+hboards, and track time-to-completion and drop-off metrics.</p>
+<h3 local-id=3D"dcfed0ad5747" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ret=
+urned-for-CorrectionsFlow">Returned-for-Corrections Flow</h3>
+<p local-id=3D"cfd7bef2b056">When a host admin or automated screening retur=
+ns a submission:</p>
+<ul local-id=3D"8de28aa0-831a-4918-98a7-36cfd1f97803">
+<li local-id=3D"5676b8a1-3aa3-4a5c-9f48-3aaab0e938d5">
+<p local-id=3D"549a28959efd">The component supports re-entry in correction =
+mode =E2=80=94 loads previously submitted data, flags items that need atten=
+tion, allows editing.</p></li>
+<li local-id=3D"84465358-915c-432d-8aec-40b46febcf88">
+<p local-id=3D"5d39db5e742a">Correction guidance is at minimum per-step, id=
+eally per-field with human-readable reasons.</p></li>
+<li local-id=3D"3c2ef077-0390-42a2-bf29-7de15944cda7">
+<p local-id=3D"0bc86a4b2504">Two rejection modes: <strong>retry</strong> (u=
+ser corrects and resubmits) and <strong>final</strong> (rejected, contact s=
+upport).</p></li>
+<li local-id=3D"0d9634ea-4004-4bf2-97ee-c921ccbd9ebf">
+<p local-id=3D"dbba7c6ddea2">Re-completed flows emit the same <code>flow:su=
+bmitted</code> event for the host to re-process.</p></li>
+</ul>
+<h3 local-id=3D"b4f81a51687a" id=3D"v1EntityVerificationFlow-EmbeddedUI-Cli=
+ent-SideEvents(Component=E2=86=92HostApp)">Client-Side Events (Component =
+=E2=86=92 Host App)</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"c3=
+803048-e0dd-4955-bdc4-2febbf4a3cdf" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"24bf2a01-8a66-479c-a90c-b5f9116acb52">
+<th data-local-id=3D"eaa34e81-404f-4120-ad02-d8da4a669f16" class=3D"conflue=
+nceTh">
+<p local-id=3D"b68fb13f479c">Event</p></th>
+<th data-local-id=3D"2bdc8323-95b9-4a06-80aa-3fe40e627c80" class=3D"conflue=
+nceTh">
+<p local-id=3D"44463f195275">When</p></th>
+<th data-local-id=3D"c61dfe08-ef8b-49f0-bfa1-aea096d5184c" class=3D"conflue=
+nceTh">
+<p local-id=3D"36d14d2c1032">Payload</p></th>
+<th data-local-id=3D"69060b39-c9d3-46f0-b298-7fb856d59198" class=3D"conflue=
+nceTh">
+<p local-id=3D"208d6a27dfb4">Host Action</p></th>
+</tr>
+<tr data-local-id=3D"364dcbb1-5a61-4c2b-8138-a5ae693423f2">
+<td data-local-id=3D"8730277d-2ab1-4c3b-b29b-5c40b651104d" class=3D"conflue=
+nceTd">
+<p local-id=3D"0d28ec776edf"><code>step:completed</code></p></td>
+<td data-local-id=3D"70fb21e0-ee1d-4bcd-b615-22ae62dc4e2c" class=3D"conflue=
+nceTd">
+<p local-id=3D"76cc65140239">User completes a step and data is saved</p></t=
+d>
+<td data-local-id=3D"0193b36e-2617-4e00-ab57-fe85f6f2cf2c" class=3D"conflue=
+nceTd">
+<p local-id=3D"6ca0817bb97b">Step number, step name, completion %</p></td>
+<td data-local-id=3D"40705c93-9cfa-4cb4-bfac-773cafff75f1" class=3D"conflue=
+nceTd">
+<p local-id=3D"90d8d3fbabb2">Update progress indicator in host UI</p></td>
+</tr>
+<tr data-local-id=3D"16022346-9e61-4fcf-aa00-3ea0f7008696">
+<td data-local-id=3D"5cdb3260-f4da-475b-bc34-99d87b11166e" class=3D"conflue=
+nceTd">
+<p local-id=3D"9fd337f9e801"><code>step:navigated</code></p></td>
+<td data-local-id=3D"86e26689-692f-4776-ab59-9685e809f64d" class=3D"conflue=
+nceTd">
+<p local-id=3D"a48d42ec53d2">User navigates between steps</p></td>
+<td data-local-id=3D"1ec01e26-0fae-4461-bf1b-59942978384e" class=3D"conflue=
+nceTd">
+<p local-id=3D"a3692c7bc7ce">Current step, direction</p></td>
+<td data-local-id=3D"92345aad-fe43-45e7-be7c-65aef27c3006" class=3D"conflue=
+nceTd">
+<p local-id=3D"fe3516f8b874">Analytics</p></td>
+</tr>
+<tr data-local-id=3D"c5539b16-5228-4851-a6b3-02fe17081bd8">
+<td data-local-id=3D"1aec06bd-cca4-436a-a900-fb1a9f8a8a5a" class=3D"conflue=
+nceTd">
+<p local-id=3D"dc77db58f45c"><code>person:completed</code></p></td>
+<td data-local-id=3D"02924c7d-5de6-4448-a031-048a10069dd3" class=3D"conflue=
+nceTd">
+<p local-id=3D"919b1773a472">All steps for one person done (multi-person fl=
+ows)</p></td>
+<td data-local-id=3D"525d68ef-971c-4d2a-9c5b-89c8533c2f7b" class=3D"conflue=
+nceTd">
+<p local-id=3D"00e6522e9b93">Person index, role</p></td>
+<td data-local-id=3D"a9455f71-df64-44f8-ab09-0426ed5f269d" class=3D"conflue=
+nceTd">
+<p local-id=3D"9f3f0b072512">Update per-person progress</p></td>
+</tr>
+<tr data-local-id=3D"b8b679a7-dc37-4370-b3a1-64579a0fbd6f">
+<td data-local-id=3D"9c1e238d-3e1a-4dd4-9f31-a1829430fe02" class=3D"conflue=
+nceTd">
+<p local-id=3D"1d788667653a"><code>flow:submitted</code></p></td>
+<td data-local-id=3D"245a28f1-f696-439d-9c0c-f4f920dd81db" class=3D"conflue=
+nceTd">
+<p local-id=3D"97978285a075">User submitted within the component</p></td>
+<td data-local-id=3D"93ff040f-ae8f-4aed-b786-cdf373e2d30f" class=3D"conflue=
+nceTd">
+<p local-id=3D"b84ae0b85d33">Reference ID, person count</p></td>
+<td data-local-id=3D"fda0f2ad-8601-4b7c-b38e-368150abf74a" class=3D"conflue=
+nceTd">
+<p local-id=3D"1737e46acb17">Trigger retention copy retrieval, update verif=
+ication lifecycle</p></td>
+</tr>
+<tr data-local-id=3D"6e04f144-7321-4bc2-ad87-33de9686c573">
+<td data-local-id=3D"314deec4-468e-4fa6-b47d-ae79f79f3240" class=3D"conflue=
+nceTd">
+<p local-id=3D"4f6e5b6edede"><code>flow:resumed</code></p></td>
+<td data-local-id=3D"10a7d2da-f3d3-424a-a27f-256593b0e630" class=3D"conflue=
+nceTd">
+<p local-id=3D"fc32283fac4c">Component loaded with existing partial data</p=
+></td>
+<td data-local-id=3D"8db37530-4985-4327-aca3-c2e13329385e" class=3D"conflue=
+nceTd">
+<p local-id=3D"eba2e2759035">Resumed step, overall progress</p></td>
+<td data-local-id=3D"2766904c-10db-4a00-85cf-18a52314c551" class=3D"conflue=
+nceTd">
+<p local-id=3D"c17a1eda363c">Sync host UI state</p></td>
+</tr>
+<tr data-local-id=3D"be4eeccf-a2b6-43d6-a32f-101b4a4f4c72">
+<td data-local-id=3D"f05645b2-632b-4323-a7be-5736770ce165" class=3D"conflue=
+nceTd">
+<p local-id=3D"146d94f13522"><code>document:uploaded</code></p></td>
+<td data-local-id=3D"2c91c85d-4219-4206-bdb7-336759dcad38" class=3D"conflue=
+nceTd">
+<p local-id=3D"d0891972cfc1">A document was uploaded</p></td>
+<td data-local-id=3D"86b28445-08c9-4391-95ad-fc108247b68e" class=3D"conflue=
+nceTd">
+<p local-id=3D"66f36274cbe3">Document type, reference</p></td>
+<td data-local-id=3D"67ab3135-f556-4cdb-984c-b60eb07851fa" class=3D"conflue=
+nceTd">
+<p local-id=3D"572dc13f65bb">Track for progress</p></td>
+</tr>
+<tr data-local-id=3D"7e489821-ddcf-429c-abf1-0316906ef8df">
+<td data-local-id=3D"09803a05-34b8-46fc-8d20-8e9d71d7dbf3" class=3D"conflue=
+nceTd">
+<p local-id=3D"1286bd6aba0e"><code>error</code></p></td>
+<td data-local-id=3D"8f433a29-5424-437c-9fdb-6d466d55e9de" class=3D"conflue=
+nceTd">
+<p local-id=3D"a2cdfce35e06">Validation failure, save failure, etc.</p></td=
+>
+<td data-local-id=3D"e8a530d1-bd69-46cc-8035-adae04deec13" class=3D"conflue=
+nceTd">
+<p local-id=3D"a1b75c39c8a2">Error type, message</p></td>
+<td data-local-id=3D"6d16257a-e771-4d5c-81ad-c23f9ea435fd" class=3D"conflue=
+nceTd">
+<p local-id=3D"1fa86def0dbc">Display error or retry</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"27a8921ca9f7" id=3D"v1EntityVerificationFlow-EmbeddedUI-Ret=
+rievalAPI">Retrieval API</h3>
+<p local-id=3D"e1cf85eb2666">Interro exposes endpoints for the host to retr=
+ieve full datasets at any time:</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"f3=
+fe4caf-3791-4b41-b76c-1b0cb3e45df5" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"0e3fdeb4-f5ce-4ac4-97fb-ac7f8e7c59d8">
+<th data-local-id=3D"73d09f4e-1d2f-4f0d-aafa-526770ca624d" class=3D"conflue=
+nceTh">
+<p local-id=3D"0fbd31ef7c86">Data</p></th>
+<th data-local-id=3D"1fe27691-53f3-4e1a-b63e-3caddbc711d1" class=3D"conflue=
+nceTh">
+<p local-id=3D"22fdbee4d967">Endpoint</p></th>
+<th data-local-id=3D"a3abdd5f-4744-4f27-b19a-911f58871369" class=3D"conflue=
+nceTh">
+<p local-id=3D"2c43619bbdee">Format</p></th>
+</tr>
+<tr data-local-id=3D"fe0b6310-dddd-4a8e-8e66-0ca6377f88dd">
+<td data-local-id=3D"024168d3-5db4-4b80-813f-8f3c51ce682c" class=3D"conflue=
+nceTd">
+<p local-id=3D"58991996f950">Applicant/person data (name, DOB, address, ide=
+ntity)</p></td>
+<td data-local-id=3D"a4576cf1-6d75-48be-8b02-97d7237d3eb3" class=3D"conflue=
+nceTd">
+<p local-id=3D"60751f662710"><code>GET /sessions/{id}/applicants</code></p>=
+</td>
+<td data-local-id=3D"3e466c19-acf8-45ea-82b9-f0ad1a220977" class=3D"conflue=
+nceTd">
+<p local-id=3D"9dc84cc59d0d">Structured JSON</p></td>
+</tr>
+<tr data-local-id=3D"f2ca0502-4da1-420d-bb33-0db2152d3a10">
+<td data-local-id=3D"b47c9a7c-f84c-4237-8086-763d4fa0b6e9" class=3D"conflue=
+nceTd">
+<p local-id=3D"08eee0d5b660">Document images (photo ID, tax forms)</p></td>
+<td data-local-id=3D"d4107be7-af65-4a14-b013-f7101007b174" class=3D"conflue=
+nceTd">
+<p local-id=3D"075952084aa2"><code>GET /sessions/{id}/documents/{docId}</co=
+de></p></td>
+<td data-local-id=3D"d91ffd70-a50d-4f5b-a57d-9b8189a8f7b6" class=3D"conflue=
+nceTd">
+<p local-id=3D"93258ee75226">Binary (image/PDF)</p></td>
+</tr>
+<tr data-local-id=3D"f7839227-a568-4420-b29f-695de7305dd6">
+<td data-local-id=3D"54fc18cb-fac7-4747-bcbe-961da5f92fd5" class=3D"conflue=
+nceTd">
+<p local-id=3D"d1ef6c493097">Document metadata (type, upload date, file inf=
+o)</p></td>
+<td data-local-id=3D"2f282a2c-dbf6-4bf1-9dff-93b4797c5cca" class=3D"conflue=
+nceTd">
+<p local-id=3D"98d670a578fa"><code>GET /sessions/{id}/documents</code></p><=
+/td>
+<td data-local-id=3D"374c7dc2-0157-44b6-87ea-edb56c8a1abb" class=3D"conflue=
+nceTd">
+<p local-id=3D"7d06de6e266c">Structured JSON</p></td>
+</tr>
+<tr data-local-id=3D"0b2bb66f-d545-47aa-9e5b-31938a4770c3">
+<td data-local-id=3D"cce5d549-4012-4f35-9852-d82aea98df81" class=3D"conflue=
+nceTd">
+<p local-id=3D"7abc33b5602e">Screening results (per person)</p></td>
+<td data-local-id=3D"45a66b1f-8b0f-4e94-98d3-bfcaaefc87f7" class=3D"conflue=
+nceTd">
+<p local-id=3D"79db1dd7a01f"><code>GET /sessions/{id}/screening</code></p><=
+/td>
+<td data-local-id=3D"b7892fb1-ea07-4a69-aa6f-1a7d48f5de03" class=3D"conflue=
+nceTd">
+<p local-id=3D"806f45bd1aff">Structured JSON</p></td>
+</tr>
+<tr data-local-id=3D"b45d2819-c426-40ce-984c-f60bee7a3cec">
+<td data-local-id=3D"addd6839-4776-4988-9a5d-82677be607a2" class=3D"conflue=
+nceTd">
+<p local-id=3D"c5de061c4b19">Session progress (step completion, status)</p>=
+</td>
+<td data-local-id=3D"45b48782-955b-4df3-983f-bf6d7aefc517" class=3D"conflue=
+nceTd">
+<p local-id=3D"80dfe0acc713"><code>GET /sessions/{id}/status</code></p></td=
+>
+<td data-local-id=3D"96a2bea8-fda8-4d2a-9f30-8c4087093a83" class=3D"conflue=
+nceTd">
+<p local-id=3D"b05c2268098e">Structured JSON</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"10abe02287ea" id=3D"v1EntityVerificationFlow-EmbeddedUI-Sec=
+urity&amp;Compliance">Security &amp; Compliance</h3>
+<ul local-id=3D"fd53b957-c3cd-4f40-9924-a9a60216352b">
+<li local-id=3D"142974b6-ca9f-4fb3-874e-68e959658fdd">
+<p local-id=3D"494e786e1d63"><strong>PII in transit:</strong> TLS required =
+for all communication between component, Interro backend, and host backend.=
+</p></li>
+<li local-id=3D"91c8b329-bcef-4748-902a-ff99e4b4f2ad">
+<p local-id=3D"0b7a440a402c"><strong>PII at rest:</strong> SSNs, passport n=
+umbers, and identity documents encrypted at rest in Interro's storage. Host=
+ encrypts its retention copies using its own encryption pipeline.</p></li>
+<li local-id=3D"df4439b8-efef-4cab-8842-93c5ce6cb6bd">
+<p local-id=3D"a134a25e0146"><strong>Document uploads:</strong> Handled dir=
+ectly by the component to Interro infrastructure =E2=80=94 never routed thr=
+ough the host frontend.</p></li>
+<li local-id=3D"55a988ac-1779-4273-80cb-51b74dd3e3cb">
+<p local-id=3D"5f5b5ddeeb8c"><strong>AML/OFAC screening:</strong> Each pers=
+on independently screened. Results delivered per-person via webhook.</p></l=
+i>
+<li local-id=3D"a4bbab81-ab26-45ca-a950-899f01038910">
+<p local-id=3D"6569f19b3432"><strong>Data retention:</strong> Host requires=
+ retrieval access for a minimum of 10 years. If Interro purges data on a sh=
+orter cycle, the host must be notified in advance.</p></li>
+<li local-id=3D"918331ed-dc7d-49c0-8e8a-9c706b178f75">
+<p local-id=3D"ec1af8735d51"><strong>Webhook security:</strong> HMAC signat=
+ure verification, retry with backoff on delivery failure, idempotency keys.=
+</p></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_8_1614914531.1773761079097--

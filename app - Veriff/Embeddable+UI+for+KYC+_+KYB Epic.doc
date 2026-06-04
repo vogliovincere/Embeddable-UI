@@ -1,0 +1,1343 @@
+Date: Mon, 30 Mar 2026 18:35:38 +0000 (UTC)
+Message-ID: <1065517523.41.1774895738597@3cd2cb5057fa>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_40_119584984.1774895738597"
+
+------=_Part_40_119584984.1774895738597
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Embeddable UI for KYC / KYB</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Embeddable UI for KYC / KYB</h1>
+    <div class=3D"Section1">
+        <h2 local-id=3D"95a801e4401f" id=3D"EmbeddableUIforKYC/KYB-Overview=
+">Overview</h2>
+<p local-id=3D"2b0ac1925498">Interro will have a white-label, embeddable UI=
+ component whose purpose is to collect identity and entity information from=
+ end users and route it to the KYC and Risk Review Microservice for verific=
+ation. It supports configurable branding and document collection flows to s=
+erve multiple application clients.</p>
+<hr local-id=3D"d13be068-3357-49d8-9c78-d7ad44357f89">
+<h2 local-id=3D"dc8c16864fce" id=3D"EmbeddableUIforKYC/KYB-ClientContext=E2=
+=80=94Verivend">Client Context =E2=80=94 Verivend</h2>
+<p local-id=3D"6820e5a41fd6">The first client is <strong>Verivend</strong>,=
+ a capital raising and investor portal platform serving General Partners (G=
+Ps) and Limited Partners (LPs).</p>
+<p local-id=3D"e360a39a320b">Verivend has historically allowed GPs to manag=
+e KYC for their own investors, enabling rapid LP onboarding without a verif=
+ication gate. Certain sensitive capabilities =E2=80=94 such as registering =
+multiple bank accounts against an LP organization =E2=80=94 now require Ver=
+ivend to perform direct LP KYC. A parallel need exists on the GP side: Veri=
+vend has historically verified GPs manually through an admin-driven process=
+, and automating that workflow is a strategic priority.</p>
+<p local-id=3D"244b9baad3e1">Verivend will use Interro to collect informati=
+on required for KYC across three verification paths: <strong>Individual (So=
+lo)</strong>, <strong>Individual (Joint Account)</strong>, and <strong>Enti=
+ty</strong>. The component owns the collection experience end-to-end. Veriv=
+end owns the surrounding workflow, path selection, and verification lifecyc=
+le. Verification outcomes surface in Verivend's native UI =E2=80=94 the com=
+ponent collects and submits; it does not display results.</p>
+<hr local-id=3D"a1389f49-554a-4eff-95aa-d3903c831431">
+<h2 local-id=3D"a9a07988ddce" id=3D"EmbeddableUIforKYC/KYB-IntegrationModel=
+">Integration Model</h2>
+<p local-id=3D"7555c14e83e1">Verivend integrates with Interro through three=
+ channels:</p>
+<ol start=3D"1" local-id=3D"6fc2683d-39a9-4cd2-b9ff-3fe805ddbcbe">
+<li local-id=3D"48f206e7-6ac6-4ffb-9f08-d2d035534d49">
+<p local-id=3D"bf8ccce788d1"><strong>Client-side events</strong> emitted by=
+ the embedded component for real-time UX coordination (step progress, navig=
+ation, errors)</p></li>
+<li local-id=3D"ebda9bb8-a579-4e7d-a679-9992d4f6986e">
+<p local-id=3D"bde870fff85c"><strong>Server-side webhooks</strong> delivere=
+d by Interro for asynchronous lifecycle updates (submission, screening resu=
+lts, abandonment detection), HMAC-signed with retry guarantees</p></li>
+<li local-id=3D"d90b0e19-2f75-410c-9c8a-63a5573adfb3">
+<p local-id=3D"8f6b81d4014d"><strong>REST retrieval API</strong> for on-dem=
+and access to applicant data, documents, and screening outcomes</p></li>
+</ol>
+<h3 local-id=3D"ac5990990bcf" id=3D"EmbeddableUIforKYC/KYB-CoreArchitectura=
+lConstraint">Core Architectural Constraint</h3>
+<p local-id=3D"aac8068af8a5">Additional persons required for multi-person f=
+lows (joint account co-holders, entity beneficial owners and directors) are=
+ frequently not Verivend platform users and may never be. Their identity ve=
+rification must occur outside the Verivend portal via token-authenticated s=
+tandalone links served by Interro. This <strong>two-surface model</strong> =
+=E2=80=94 embedded component for the primary user, standalone links for add=
+itional persons =E2=80=94 is a core design constraint for the MVP.</p>
+<hr local-id=3D"89bc932e-a5b6-4654-8ecb-de725845a8a1">
+<h2 local-id=3D"3a8ddcc9c36f" id=3D"EmbeddableUIforKYC/KYB-MVPRequirements"=
+>MVP Requirements</h2>
+<h3 local-id=3D"109feb6386e6" id=3D"EmbeddableUIforKYC/KYB-ConfigurableBran=
+ding">Configurable Branding</h3>
+<ul local-id=3D"7c724ea4-4f2e-4cab-ba2a-f20b2912cbbd">
+<li local-id=3D"f6854b23-8ee5-40cd-a689-ddff67daf8a4">
+<p local-id=3D"10d7f196aad3">Ability to configure primary, accent, heading,=
+ and text colors per application client</p></li>
+<li local-id=3D"00b72092-2f5e-422e-b349-dfa97f3f3ced">
+<p local-id=3D"ee3624f177e3">Ability to configure the font per application =
+client</p></li>
+<li local-id=3D"5bca435f-a8b8-4ba1-92c7-5176affbd2b1">
+<p local-id=3D"c8efa2dfe551">Ability to configure a client logo or wordmark=
+; "Powered by Interro" lockup is always present and must meet a defined min=
+imum size and placement specification</p></li>
+<li local-id=3D"40da56eb-5447-4a77-b54f-0f082476a5d8">
+<p local-id=3D"677bae2352a9">Client-supplied color configurations must be v=
+alidated against WCAG 2.1 AA minimum contrast ratios at configuration time;=
+ a warning must be surfaced for non-compliant values</p></li>
+<li local-id=3D"d16cf7c8-c482-4f08-b02d-3f0e22b91af3">
+<p local-id=3D"8f6b41fb34e1">Standalone verification links must be branded =
+consistently with the host client's active theme configuration</p></li>
+</ul>
+<blockquote local-id=3D"8f641861-1bd1-4484-a05d-9afed7309ef3">
+<p local-id=3D"9117a280f13f"><strong>Open Question =E2=80=94 Alloy Disclosu=
+re:</strong> Is disclosure of Alloy's involvement required within the compo=
+nent UI per the Alloy MSA?</p>
+</blockquote>
+<hr local-id=3D"3d18f59d-24c4-4047-b54e-ccf27496f776">
+<h3 local-id=3D"01be639db691" id=3D"EmbeddableUIforKYC/KYB-VerificationPath=
+s">Verification Paths</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"f0=
+70dac1-d344-441f-8b77-db36dca2e192" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"05636f3e-5207-44fe-9b3a-617324aca759">
+<th data-local-id=3D"299e9347-3dc0-4ed1-8f2e-f97b53160aa3" class=3D"conflue=
+nceTh">
+<p local-id=3D"6359e386b5af">Path</p></th>
+<th data-local-id=3D"6bb823a3-c472-41dd-be8f-2d7298a94f6c" class=3D"conflue=
+nceTh">
+<p local-id=3D"afea3b4291c7">Description</p></th>
+<th data-local-id=3D"7850420c-b20b-44f0-99d9-52b6d5a70af5" class=3D"conflue=
+nceTh">
+<p local-id=3D"0e81b82a4c8d">Steps</p></th>
+<th data-local-id=3D"0915c2a5-200b-498b-baad-43f60a3bcbc4" class=3D"conflue=
+nceTh">
+<p local-id=3D"e531d6248384">Persons KYC'd</p></th>
+</tr>
+<tr data-local-id=3D"46bce399-0b25-4a71-95cb-f2295de6d71a">
+<td data-local-id=3D"1987b24c-e350-4669-bc18-bc5fabaec739" class=3D"conflue=
+nceTd">
+<p local-id=3D"79de98bc10b2">Individual (Solo)</p></td>
+<td data-local-id=3D"8a4c20d6-6c0f-472f-8b75-0a1e4c7f3029" class=3D"conflue=
+nceTd">
+<p local-id=3D"647365b3e895">Single natural person</p></td>
+<td data-local-id=3D"b4db9cbb-3abc-4f73-97cd-04fa8d6acb6d" class=3D"conflue=
+nceTd">
+<p local-id=3D"7de45c152b66">4</p></td>
+<td data-local-id=3D"0a7cf78a-64bb-43a6-91a0-e85b1ed774aa" class=3D"conflue=
+nceTd">
+<p local-id=3D"6a6fe15f338e">1</p></td>
+</tr>
+<tr data-local-id=3D"cbe26583-6273-4bd0-b466-670a2daea22d">
+<td data-local-id=3D"b74312ad-8aa3-4e3a-995e-5181cfe97742" class=3D"conflue=
+nceTd">
+<p local-id=3D"3924da71e197">Individual (Joint Account)</p></td>
+<td data-local-id=3D"7b678c1b-30cf-4640-bfa2-f74cdcdf57a9" class=3D"conflue=
+nceTd">
+<p local-id=3D"a450b354c71a">2=E2=80=935 co-equal natural persons</p></td>
+<td data-local-id=3D"127b4d2d-729e-4093-9475-c8e8a1265c6d" class=3D"conflue=
+nceTd">
+<p local-id=3D"774cbbafa7f5">5</p></td>
+<td data-local-id=3D"e84f039b-8972-417f-826a-5246f159aeee" class=3D"conflue=
+nceTd">
+<p local-id=3D"881f4ce3de58">Each holder independently</p></td>
+</tr>
+<tr data-local-id=3D"ee854517-2a39-4782-848a-961505b98b32">
+<td data-local-id=3D"6d403906-0c8f-452f-aa7f-b1892b43baaf" class=3D"conflue=
+nceTd">
+<p local-id=3D"1044f6899844">Entity</p></td>
+<td data-local-id=3D"50f88b71-22ea-4bd2-b8ba-ec0603264c1a" class=3D"conflue=
+nceTd">
+<p local-id=3D"11d922de869a">LLC, Corporation, Trust, Partnership, etc.</p>=
+</td>
+<td data-local-id=3D"8729e13c-870a-40d0-a13c-32d22b039aee" class=3D"conflue=
+nceTd">
+<p local-id=3D"4574919af738">5</p></td>
+<td data-local-id=3D"5dab1d1a-6fb2-48a6-a334-6cacef7e07d4" class=3D"conflue=
+nceTd">
+<p local-id=3D"49df9590ea08">1 authorized representative + N beneficial own=
+ers (=E2=89=A525% ownership)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr local-id=3D"9fb4d0a2-25e0-4a0c-a4a7-8d211ffa0e95">
+<h3 local-id=3D"d6800f87c8cd" id=3D"EmbeddableUIforKYC/KYB-ContextIDsandIDV=
+FlowOptions">Context IDs and IDV Flow Options</h3>
+<p local-id=3D"da5fe343c942">Interro will offer multiple user flow options =
+out of the box, selectable via Context ID:</p>
+<ul local-id=3D"f5eb674d-2422-400d-8bdd-784f0401ec04">
+<li local-id=3D"b450b959-2286-4b2f-86a0-c7111ab6f497">
+<p local-id=3D"6c2bab35b223"><strong>KYC Basic</strong> =E2=80=94 Does not =
+instantiate the selfie step in the IDV workflow.</p></li>
+<li local-id=3D"b60f23a7-f867-4eb2-94b5-5b5436dda7ce">
+<p local-id=3D"11465f382b43"><strong>KYC Complete</strong> =E2=80=94 Includ=
+es the selfie step in the IDV workflow.</p></li>
+</ul>
+<p local-id=3D"c7a4f3e10d43">It is up to Product to work with Alloy to make=
+ these Journeys available. For Verivend's Phase 1 integration =E2=80=94 whe=
+re Interro will be used only for internal KYC of LPs =E2=80=94 only <strong=
+>KYC Complete</strong> is required.</p>
+<p local-id=3D"bb3cbaac7cb6">When a Context ID is not supplied during sessi=
+on initialization, the default is <strong>KYC Complete</strong>.</p>
+<hr local-id=3D"c08d262a-6a17-42c6-85b0-686d48199d00">
+<h3 local-id=3D"fc1e23dc801c" id=3D"EmbeddableUIforKYC/KYB-Multi-PersonOrch=
+estration">Multi-Person Orchestration</h3>
+<h4 local-id=3D"4e84abe6169f" id=3D"EmbeddableUIforKYC/KYB-Two-PhaseModel">=
+Two-Phase Model</h4>
+<p local-id=3D"40d2ea0cc0ba"><strong>Phase 1 =E2=80=94 Primary User</strong=
+></p>
+<p local-id=3D"bc35d552f068">The Verivend account holder enters biographica=
+l data for all additional persons (name, DOB, address). SSN and equivalent =
+government ID numbers are <strong>not</strong> collected in this phase.</p>
+<p local-id=3D"850f0a221258"><strong>Phase 2 =E2=80=94 Additional Persons</=
+strong></p>
+<p local-id=3D"9fd70edb1602">Each additional person receives a token-authen=
+ticated verification link via email and SMS. IDV must be completed by the i=
+ndividual.</p>
+<ul local-id=3D"6cbc29df-5214-4263-8585-25d182ba9a4f">
+<li local-id=3D"e5e5ffcd-de63-4067-9b1d-dd6a3edc4f52">
+<p local-id=3D"5d17e23d3b79"><strong>"Verify Now"</strong>, <strong>"Copy L=
+ink"</strong>, and <strong>"Send to Email"</strong> must be available to de=
+liver the IDV workflow per person</p></li>
+<li local-id=3D"c2542ad6-1684-434d-a3dc-d36cb4ed7ca4">
+<p local-id=3D"a52315d25f1e">Real-time aggregate progress must be visible</=
+p></li>
+<li local-id=3D"8605d457-549d-4624-9da8-2b17e729bf88">
+<p local-id=3D"ac75076bdcfa">Reminder and resend must be supported</p></li>
+</ul>
+<blockquote local-id=3D"e593860b-48e2-4681-b72f-80c443f8ea13">
+<p local-id=3D"268f4d8df10f"><strong>Open Question =E2=80=94 Reminder Sched=
+ule:</strong> Should reminder timing be client-defined or system-defined? A=
+dd initiation in status.</p>
+</blockquote>
+<blockquote local-id=3D"7c799ae8-98e3-48a5-a323-4a964e684b10">
+<p local-id=3D"b3f2b049c38f"><strong>Action Item:</strong> Confirm with Ver=
+ivend that additional party SSNs are not required for KYB or Joint Account =
+Holder flows. This allows the primary user to enter name, address, and DOB =
+for additional persons in the entity or joint account flow. With this confi=
+rmation, a dedicated Interro-hosted data entry site for additional persons =
+is not needed =E2=80=94 the IDV link can be sent directly to their email, t=
+he primary user can open the IDV link if the additional person is nearby or=
+ has a copy of their scanned ID, or the primary user can copy the IDV workf=
+low link via the copy link button.</p>
+</blockquote>
+<hr local-id=3D"2dcea096-def9-46f0-ae43-ff710697f524">
+<h3 local-id=3D"6e733e493ea1" id=3D"EmbeddableUIforKYC/KYB-SessionInitializ=
+ationContract">Session Initialization Contract</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"13=
+6ae24b-0ad2-489d-b233-3aa7923676b6" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"4bee4a7a-c586-4e06-9800-42dbf6d094bc">
+<th data-local-id=3D"047d7eb2-8fe6-4e0a-b96e-abd0ed6db944" class=3D"conflue=
+nceTh">
+<p local-id=3D"43697a0200b6">Parameter</p></th>
+<th data-local-id=3D"7d6073c4-a68b-45bd-a1cc-5a4619bba670" class=3D"conflue=
+nceTh">
+<p local-id=3D"068d8e97896c">Type</p></th>
+<th data-local-id=3D"cd1c9cae-71ad-4a60-aca1-4caef761430b" class=3D"conflue=
+nceTh">
+<p local-id=3D"53b8456b7562">When Passed</p></th>
+</tr>
+<tr data-local-id=3D"749841ac-3637-4b8c-a263-b731ac04f5f2">
+<td data-local-id=3D"4c42a3d1-c34f-46f5-bb04-388d4ef8919a" class=3D"conflue=
+nceTd">
+<p local-id=3D"03bfa703a94d">Path type</p></td>
+<td data-local-id=3D"a3be342b-8643-49ba-a479-221d420c8d17" class=3D"conflue=
+nceTd">
+<p local-id=3D"5dba96dcd6b3"><code>individual</code> / <code>joint</code> /=
+ <code>entity</code></p></td>
+<td data-local-id=3D"fd4ed9c3-6a2b-4d15-8d53-68e6797be1e0" class=3D"conflue=
+nceTd">
+<p local-id=3D"dd6f5e5ec16d">Always</p></td>
+</tr>
+<tr data-local-id=3D"c9d0889f-f401-45b2-afb0-4e0ae4866e44">
+<td data-local-id=3D"d56eec7d-e447-4b05-a02f-6941f19c5e39" class=3D"conflue=
+nceTd">
+<p local-id=3D"a5787d26906b">Joint account type</p></td>
+<td data-local-id=3D"0f7591fd-82d9-46cb-b39b-6934f22fa019" class=3D"conflue=
+nceTd">
+<p local-id=3D"da02053f0b4a"><code>JTWROS</code> / <code>TIC</code></p></td=
+>
+<td data-local-id=3D"33c924c4-3c55-43d0-86a0-2f89e87005d6" class=3D"conflue=
+nceTd">
+<p local-id=3D"0c6d3c6066ed">Joint only</p></td>
+</tr>
+<tr data-local-id=3D"7e2bc27c-6e92-4607-8c6c-a4b31dfef955">
+<td data-local-id=3D"fef4b2fe-d1ee-4e39-b516-0204999ac003" class=3D"conflue=
+nceTd">
+<p local-id=3D"bab8822e00c8">Number of holders</p></td>
+<td data-local-id=3D"7b4fce25-3299-440b-92da-c57a54902130" class=3D"conflue=
+nceTd">
+<p local-id=3D"c7376a471c8e">2=E2=80=935</p></td>
+<td data-local-id=3D"b9d10456-ed6a-4998-a811-9eecb39b072f" class=3D"conflue=
+nceTd">
+<p local-id=3D"b72ed16e64d7">Joint only</p></td>
+</tr>
+<tr data-local-id=3D"9f31de23-76b2-4502-add0-4347c00efcac">
+<td data-local-id=3D"63f8c841-7fc3-4b4a-8da5-3a968454fcce" class=3D"conflue=
+nceTd">
+<p local-id=3D"2b083ffd71a9">Organization ID</p></td>
+<td data-local-id=3D"78782045-60eb-4563-91d4-f5726f695cd1" class=3D"conflue=
+nceTd">
+<p local-id=3D"eb930b2bb343">String</p></td>
+<td data-local-id=3D"8328b190-66eb-4454-af2f-ef087d8cd2d5" class=3D"conflue=
+nceTd">
+<p local-id=3D"8310c0ddd168">Always</p></td>
+</tr>
+<tr data-local-id=3D"a7e1a402-8d64-44f3-bc66-4fe5cafb8a0a">
+<td data-local-id=3D"79d2ee2a-5934-4ff4-a642-720b50174bca" class=3D"conflue=
+nceTd">
+<p local-id=3D"719c7d56fd22">Authenticated user context</p></td>
+<td data-local-id=3D"d642d15d-4325-4606-a437-497724fa8d48" class=3D"conflue=
+nceTd">
+<p local-id=3D"0b21e8bab9df">Token / session ref</p></td>
+<td data-local-id=3D"b101833f-e024-4d92-baee-5dc5599ca4df" class=3D"conflue=
+nceTd">
+<p local-id=3D"bfa7daeb60b7">Always</p></td>
+</tr>
+<tr data-local-id=3D"f65a07b3-d484-4be4-af57-4187847da188">
+<td data-local-id=3D"ef7434b6-bd64-426a-8ee4-d328cb9da0db" class=3D"conflue=
+nceTd">
+<p local-id=3D"df8ec75e19aa">Pre-fill data</p></td>
+<td data-local-id=3D"6a4cc557-86d4-4905-a286-8521f4810e70" class=3D"conflue=
+nceTd">
+<p local-id=3D"c0f6d2be150a">Key-value map</p></td>
+<td data-local-id=3D"e6730a41-f050-434f-b73a-38de8de8c1a4" class=3D"conflue=
+nceTd">
+<p local-id=3D"5eaeb1d42918">Optional</p></td>
+</tr>
+<tr data-local-id=3D"f565c92e-4ccd-4d3a-8d2d-134a5aa493d6">
+<td data-local-id=3D"b64a1301-ff46-4d6b-a351-a17346bae75f" class=3D"conflue=
+nceTd">
+<p local-id=3D"29d04f782960">Context ID</p></td>
+<td data-local-id=3D"eeae3142-b57b-4f9b-9e0e-4457afeaaeac" class=3D"conflue=
+nceTd">
+<p local-id=3D"3d3299b41e54">String</p></td>
+<td data-local-id=3D"b845327c-745d-42e8-b112-a5f362c4f4c1" class=3D"conflue=
+nceTd">
+<p local-id=3D"ccfd173b52c0">Optional; defaults to KYC Complete when not su=
+pplied</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr local-id=3D"54cadcc0-394e-44c3-a90e-027bd37de19c">
+<h3 local-id=3D"41edde1a44b9" id=3D"EmbeddableUIforKYC/KYB-Client-SideEvent=
+Contract">Client-Side Event Contract</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"da=
+b608ed-c2de-492b-b366-9b6e675f5caa" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"b1499d72-15a7-4de9-b4c2-62e40cc12b13">
+<th data-local-id=3D"41a29b75-de08-44f5-89ec-a6a72d30ca12" class=3D"conflue=
+nceTh">
+<p local-id=3D"6e9b495ed956">Event</p></th>
+<th data-local-id=3D"e3dcb055-a347-4763-baa2-9efdcaa5c593" class=3D"conflue=
+nceTh">
+<p local-id=3D"e2dab74df1b8">When Emitted</p></th>
+<th data-local-id=3D"29820453-6340-4e3a-8279-6d07cea9adb4" class=3D"conflue=
+nceTh">
+<p local-id=3D"b23c5da375ed">Payload</p></th>
+</tr>
+<tr data-local-id=3D"bb695963-ca60-4788-83aa-6661a2733a29">
+<td data-local-id=3D"3260a793-415b-4ebf-b646-6cfde5e48f2a" class=3D"conflue=
+nceTd">
+<p local-id=3D"9c65c6137184"><code>step:completed</code></p></td>
+<td data-local-id=3D"956c5fa8-85a4-4382-8ce6-d4adf3f0cbae" class=3D"conflue=
+nceTd">
+<p local-id=3D"85302ea0dc79">Step completed</p></td>
+<td data-local-id=3D"00f75811-4db1-4387-8b64-5410482be57f" class=3D"conflue=
+nceTd">
+<p local-id=3D"f5bcc2ad0086">Step number, name, completion %</p></td>
+</tr>
+<tr data-local-id=3D"09e25e01-e0c4-491c-b8c5-54f4fcd315e2">
+<td data-local-id=3D"cd43dd75-701b-492f-a43e-6983341a416a" class=3D"conflue=
+nceTd">
+<p local-id=3D"f32614989a99"><code>step:navigated</code></p></td>
+<td data-local-id=3D"63fc5949-efb1-4fca-a790-4c54dba6745b" class=3D"conflue=
+nceTd">
+<p local-id=3D"1fd66dbc5e50">Navigation</p></td>
+<td data-local-id=3D"8c58835a-b57e-4b22-8c1b-3b8f9f4fc875" class=3D"conflue=
+nceTd">
+<p local-id=3D"0c6c88f3a57d">Current step, direction</p></td>
+</tr>
+<tr data-local-id=3D"7636eb67-f09c-4417-925c-632c89da88e6">
+<td data-local-id=3D"1bcb3dab-d952-49d0-8d95-ede25e612189" class=3D"conflue=
+nceTd">
+<p local-id=3D"14760ace5bf8"><code>person:completed</code></p></td>
+<td data-local-id=3D"93031911-cffc-49f3-91dd-4ed17ca742d4" class=3D"conflue=
+nceTd">
+<p local-id=3D"770ac02b93c6">Person completed</p></td>
+<td data-local-id=3D"028f8adb-f7a4-4f79-b578-bd300160796d" class=3D"conflue=
+nceTd">
+<p local-id=3D"1511886dfc30">Index, role</p></td>
+</tr>
+<tr data-local-id=3D"5b31983d-db07-4ca4-bfe7-bca2157771a3">
+<td data-local-id=3D"6da483a2-6267-4dd0-9de9-3b83007c8776" class=3D"conflue=
+nceTd">
+<p local-id=3D"819ac32e4b5c"><code>flow:submitted</code></p></td>
+<td data-local-id=3D"55494481-8f76-4c00-9a90-bc5b64b2a1e2" class=3D"conflue=
+nceTd">
+<p local-id=3D"910130a73db4">Submission</p></td>
+<td data-local-id=3D"0648a675-41c1-4059-99ad-2ef6b4772538" class=3D"conflue=
+nceTd">
+<p local-id=3D"c3cb192a9e2e">Reference ID, count</p></td>
+</tr>
+<tr data-local-id=3D"54afb86d-0c04-4162-b975-b0c77d8b8355">
+<td data-local-id=3D"3ed23581-836e-48b2-a786-a58ad6ba72fc" class=3D"conflue=
+nceTd">
+<p local-id=3D"03e79abefa45"><code>flow:resumed</code></p></td>
+<td data-local-id=3D"416451a0-f205-45f4-9748-2f97d52b80d9" class=3D"conflue=
+nceTd">
+<p local-id=3D"58fa593143fe">Resume</p></td>
+<td data-local-id=3D"0086ff85-3b32-42c4-a006-96da34f83569" class=3D"conflue=
+nceTd">
+<p local-id=3D"aa45ba1ce29d">Step, progress</p></td>
+</tr>
+<tr data-local-id=3D"cf8f1b93-c2b7-4a86-b464-9ff245b9728f">
+<td data-local-id=3D"0bdcd71b-eade-4fcd-b2c5-48c1aa120f60" class=3D"conflue=
+nceTd">
+<p local-id=3D"de32ecbcdfca"><code>document:uploaded</code></p></td>
+<td data-local-id=3D"bedbb09b-c3ae-445d-888a-21699dafbc3e" class=3D"conflue=
+nceTd">
+<p local-id=3D"4ed6b2c361bc">Upload</p></td>
+<td data-local-id=3D"7e79d3f7-fe1e-4266-a979-d88043522ddf" class=3D"conflue=
+nceTd">
+<p local-id=3D"04d041802c92">Type, reference</p></td>
+</tr>
+<tr data-local-id=3D"2b877a65-48ef-4fb2-8761-97ea9424464e">
+<td data-local-id=3D"b088d8a9-b8c5-441d-8cdc-682c539d4cf7" class=3D"conflue=
+nceTd">
+<p local-id=3D"c8be654c9981"><code>error</code></p></td>
+<td data-local-id=3D"9e612f7f-60e5-49df-8054-85ecf8ee884e" class=3D"conflue=
+nceTd">
+<p local-id=3D"6ccbd2f18eda">Failure</p></td>
+<td data-local-id=3D"57861005-1c65-480e-b155-0df61349b66c" class=3D"conflue=
+nceTd">
+<p local-id=3D"439b96acba1a">Type, message</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr local-id=3D"ea8888b7-427c-465d-b485-f777bf4d720b">
+<h3 local-id=3D"62dfb48237c1" id=3D"EmbeddableUIforKYC/KYB-Server-SideWebho=
+okContract">Server-Side Webhook Contract</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"bf=
+6738e7-8c95-404e-8e4c-cb4c36dfbbc6" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"fc866295-703d-49a4-8ac9-5ba2d61b44fd">
+<th data-local-id=3D"dd9e9753-0e6f-4c42-aa2d-a52805f23012" class=3D"conflue=
+nceTh">
+<p local-id=3D"4bd801de73b9">Webhook</p></th>
+<th data-local-id=3D"1cc01365-5f0d-4962-b8ad-9713db7500fe" class=3D"conflue=
+nceTh">
+<p local-id=3D"f6386bbcee69">Payload</p></th>
+<th data-local-id=3D"6980eeba-c0b7-4409-b450-a4a4e9a27a8f" class=3D"conflue=
+nceTh">
+<p local-id=3D"59bb569cb178">Use Case</p></th>
+</tr>
+<tr data-local-id=3D"f8a88094-5834-48df-9ea4-bb840856848e">
+<td data-local-id=3D"5c545f95-dcf6-4cf3-9e61-5c691294e640" class=3D"conflue=
+nceTd">
+<p local-id=3D"bef1626fbda9"><code>session.step_completed</code></p></td>
+<td data-local-id=3D"47bac038-24c3-42b1-9518-e90107dbd94c" class=3D"conflue=
+nceTd">
+<p local-id=3D"b2d70907088e">Step info</p></td>
+<td data-local-id=3D"5a2b5dde-58e5-472d-9253-6b8250696c0f" class=3D"conflue=
+nceTd">
+<p local-id=3D"7709199040cb">Progress tracking</p></td>
+</tr>
+<tr data-local-id=3D"529152cc-6784-4f12-8e31-b80605f21d05">
+<td data-local-id=3D"bc204a9e-a732-47b0-93e7-c77506cffbb9" class=3D"conflue=
+nceTd">
+<p local-id=3D"e01486486fcc"><code>session.last_activity</code></p></td>
+<td data-local-id=3D"8a77679d-a242-4a40-9baa-a6bdf13f68ef" class=3D"conflue=
+nceTd">
+<p local-id=3D"d74fcbc3c018">Timestamp</p></td>
+<td data-local-id=3D"1f69f3b9-72b1-45c8-8d30-370eaed79c96" class=3D"conflue=
+nceTd">
+<p local-id=3D"63276360870c">Abandonment detection</p></td>
+</tr>
+<tr data-local-id=3D"e52bb6c3-fadb-42f2-93b9-d9b5144ba557">
+<td data-local-id=3D"d09ee86f-3e29-4d64-8d64-246d4e99b723" class=3D"conflue=
+nceTd">
+<p local-id=3D"717701c0cab4"><code>session.submitted</code></p></td>
+<td data-local-id=3D"fa83752c-e3bc-4459-81fd-765621ccbb7c" class=3D"conflue=
+nceTd">
+<p local-id=3D"8c6644895045">Summary</p></td>
+<td data-local-id=3D"bef9e28b-00aa-4775-9e99-80d1cdb72df3" class=3D"conflue=
+nceTd">
+<p local-id=3D"ca91bedea127">Lifecycle update</p></td>
+</tr>
+<tr data-local-id=3D"c1cf9046-dc22-45d2-b071-2ed045457f0c">
+<td data-local-id=3D"f25dc36d-601e-4a76-9830-7b54e385781a" class=3D"conflue=
+nceTd">
+<p local-id=3D"58074060b102"><code>session.screening_completed</code></p></=
+td>
+<td data-local-id=3D"7073903f-a87b-4505-9c04-45476c18321e" class=3D"conflue=
+nceTd">
+<p local-id=3D"07c7fa9a72b4">Results</p></td>
+<td data-local-id=3D"4e354dc0-8eab-4c43-a1bd-a2dcfd394157" class=3D"conflue=
+nceTd">
+<p local-id=3D"bf3a626de854">Status update</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"9c4d0a147e56"><strong>Webhook requirements:</strong></p>
+<ul local-id=3D"bb8da09a-bd31-4e00-aa1a-4d18610b6b0a">
+<li local-id=3D"bedbe31d-c102-4308-be18-eab433f6c09d">
+<p local-id=3D"8e2378e56487">HMAC signature verification</p></li>
+<li local-id=3D"4f972b3f-e59a-4196-a929-f3a4d13f90be">
+<p local-id=3D"8e5101b2d204">Retry with exponential backoff</p></li>
+<li local-id=3D"0f3563df-7103-4fe1-8be6-cc06dd63fd6e">
+<p local-id=3D"84ac324ca06b">Idempotency keys</p></li>
+<li local-id=3D"dca62276-c558-47e3-8c96-98d94e4210e2">
+<p local-id=3D"4d42f57bf554">Delivery within 60 seconds</p></li>
+</ul>
+<hr local-id=3D"7bb96c4e-9167-4971-a892-25fd051c19ff">
+<h3 local-id=3D"23a908450fdd" id=3D"EmbeddableUIforKYC/KYB-RetrievalAPI">Re=
+trieval API</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"67=
+9c9dbd-3a14-467c-9592-1737f6654f1f" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"2b878abe-8dff-4d34-a1e6-bbe707ea4ca0">
+<th data-local-id=3D"de46ff1a-38f7-41e3-a5da-a3501cf23784" class=3D"conflue=
+nceTh">
+<p local-id=3D"fdff4e85fd05">Data</p></th>
+<th data-local-id=3D"51526ba8-64f0-4f8e-b630-b81abb43798c" class=3D"conflue=
+nceTh">
+<p local-id=3D"f1a9cd244b10">Endpoint</p></th>
+<th data-local-id=3D"63a5a6f2-eaad-4966-8c5a-ddba5dacef34" class=3D"conflue=
+nceTh">
+<p local-id=3D"b1749c80206f">Format</p></th>
+</tr>
+<tr data-local-id=3D"fafbcad9-8e9b-4dd1-9469-c44bf48b85b8">
+<td data-local-id=3D"c9736cad-ac12-4217-8349-c72f68d6d5eb" class=3D"conflue=
+nceTd">
+<p local-id=3D"c3b29f456345">Applicant data</p></td>
+<td data-local-id=3D"9605c5e4-fad0-4bb6-af67-a7a0b0ae5858" class=3D"conflue=
+nceTd">
+<p local-id=3D"f0240e5225ea"><code>GET /sessions/{id}/applicants</code></p>=
+</td>
+<td data-local-id=3D"90af8264-387e-460a-8b03-94e3f6afc811" class=3D"conflue=
+nceTd">
+<p local-id=3D"127fa79bf28c">JSON</p></td>
+</tr>
+<tr data-local-id=3D"4a0e1f11-fd78-4bfb-bda2-2a9276f9a495">
+<td data-local-id=3D"6e0c5a76-7399-47ea-994e-c8546898c5c4" class=3D"conflue=
+nceTd">
+<p local-id=3D"90c26e91c019">Documents</p></td>
+<td data-local-id=3D"b614467b-c2bc-4081-8512-b5dd483684b0" class=3D"conflue=
+nceTd">
+<p local-id=3D"3f94dfab37af"><code>GET /sessions/{id}/documents/{docId}</co=
+de></p></td>
+<td data-local-id=3D"779f7252-120b-4684-9925-b144679bd390" class=3D"conflue=
+nceTd">
+<p local-id=3D"e0a8f37c9a67">Binary</p></td>
+</tr>
+<tr data-local-id=3D"edc28a06-1dbb-4548-8ccc-39970883e890">
+<td data-local-id=3D"754fd82c-0d82-4f71-b532-99ceb21902e9" class=3D"conflue=
+nceTd">
+<p local-id=3D"8b3bf22161cf">Document metadata</p></td>
+<td data-local-id=3D"99d3149f-ecdc-42d0-8bdf-7c8217bf37a6" class=3D"conflue=
+nceTd">
+<p local-id=3D"27816c39556d"><code>GET /sessions/{id}/documents</code></p><=
+/td>
+<td data-local-id=3D"0dcf8839-7a10-48f2-84b2-46c4d2fc8269" class=3D"conflue=
+nceTd">
+<p local-id=3D"179043ba7f10">JSON</p></td>
+</tr>
+<tr data-local-id=3D"30d569c3-6dbb-45e1-8f8c-39e339b84586">
+<td data-local-id=3D"d36a90f9-97ef-44bc-abfa-a1523ff45832" class=3D"conflue=
+nceTd">
+<p local-id=3D"a2ed9233469c">Screening results</p></td>
+<td data-local-id=3D"f8155945-ea25-4eb7-85a4-23f9993f9e02" class=3D"conflue=
+nceTd">
+<p local-id=3D"60b1a79fc7b7"><code>GET /sessions/{id}/screening</code></p><=
+/td>
+<td data-local-id=3D"a68be7cd-5342-422b-b89f-f8bc746b6502" class=3D"conflue=
+nceTd">
+<p local-id=3D"042a21704007">JSON (received through our microservice)</p></=
+td>
+</tr>
+<tr data-local-id=3D"075f658b-0899-4582-b8a4-4e99039dd727">
+<td data-local-id=3D"6c708c9f-3f41-4268-a664-4c9aa1598a71" class=3D"conflue=
+nceTd">
+<p local-id=3D"c479fd328d6d">Session status</p></td>
+<td data-local-id=3D"e9dc8d19-17f4-4454-b2a0-ee833d9075ca" class=3D"conflue=
+nceTd">
+<p local-id=3D"328f6dc97232"><code>GET /sessions/{id}/status</code></p></td=
+>
+<td data-local-id=3D"b268c8e1-564e-4acc-9142-276b73b711d6" class=3D"conflue=
+nceTd">
+<p local-id=3D"997b79d5e510">JSON</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"29740a2a3b06">Document metadata returned by <code>GET /sessi=
+ons/{id}/documents</code> must include a <strong>person identifier</strong>=
+ and <strong>role</strong> for each document record, attributing every coll=
+ected document to the specific individual who provided it within the sessio=
+n.</p>
+<hr local-id=3D"4635dee6-b69e-4a84-8f77-f51507a37e17">
+<h3 local-id=3D"6285b2ea4cc5" id=3D"EmbeddableUIforKYC/KYB-Returned-for-Cor=
+rectionsFlow">Returned-for-Corrections Flow</h3>
+<p local-id=3D"5be2c98385b4"><strong>Resolved =E2=80=94 Annotated Re-Entry<=
+/strong></p>
+<p local-id=3D"34299bb42eda">Reviewer notes are surfaced inline. All prior =
+data is preserved. Resubmission triggers a new verification run.</p>
+<p local-id=3D"69ced6dcaf8e">Correction supports two outcomes:</p>
+<ol start=3D"1" local-id=3D"bef9a55f-f1b6-4f49-b1f8-e61cce8f35ba">
+<li local-id=3D"9ab29339-7c36-477a-97d5-2cb891798b6c">
+<p local-id=3D"8235e98277e5">The end user successfully resubmits and a new =
+verification run is triggered.</p></li>
+<li local-id=3D"0ce0f682-4a07-4ce3-937b-9314471442e8">
+<p local-id=3D"6622352b02ed">The session is finally rejected and no further=
+ resubmission is permitted.</p></li>
+</ol>
+<p local-id=3D"77e90bb3e240">Resubmission emits <code>flow:submitted</code>=
+.</p>
+<p local-id=3D"d973a578d3f3">See the <strong>Resolved Decisions Log</strong=
+> for the full correction flow description.</p>
+<hr local-id=3D"c60af2dc-5c66-429c-ab2f-5ccbfdf3fcd6">
+<h2 local-id=3D"df6e3e9c9f42" id=3D"EmbeddableUIforKYC/KYB-TechnicalRequire=
+ments">Technical Requirements</h2>
+<h3 local-id=3D"d7f48120e829" id=3D"EmbeddableUIforKYC/KYB-EmbeddingArchite=
+cture">Embedding Architecture</h3>
+<p local-id=3D"595a4383f864">Served in an iframe at <code>{client}.interro.=
+co</code>.</p>
+<p local-id=3D"19bd2d27a85a"><strong>Resolved =E2=80=94 iframe:</strong> Th=
+e embedding architecture will use an iframe. The component renders at a fix=
+ed mobile-friendly width with internal scroll. The host application is resp=
+onsible only for embedding the iframe and allocating space =E2=80=94 no res=
+ize coordination is required. This approach minimizes integration complexit=
+y and ensures a consistent experience across desktop and mobile.</p>
+<hr local-id=3D"d3c8f264-3512-4ba3-a437-f4c8304d61eb">
+<h3 local-id=3D"12bfd9fbb4dc" id=3D"EmbeddableUIforKYC/KYB-SessionandStateM=
+anagement">Session and State Management</h3>
+<h4 local-id=3D"e64611d12779" id=3D"EmbeddableUIforKYC/KYB-Auto-SaveandDura=
+bility">Auto-Save and Durability</h4>
+<ul local-id=3D"5941dcb6-bc03-4736-9c04-5b896a5bf90f">
+<li local-id=3D"40f7611a-8d8f-42ca-9509-c81820341ab5">
+<p local-id=3D"697abd356e20">Server-side auto-save</p></li>
+<li local-id=3D"9063c279-4b80-4787-92d3-6399c7967b9f">
+<p local-id=3D"886d845df755">Cross-device resume</p></li>
+<li local-id=3D"d087d216-6915-47e6-b6e1-1cb822f37bcc">
+<p local-id=3D"73a24d3fdec2">Resume =E2=89=A4 3 seconds</p></li>
+</ul>
+<p local-id=3D"505ac54b99eb"><strong>Resolved =E2=80=94 Session Lifetime:</=
+strong> Sessions remain resumable for <strong>30 days</strong>.</p>
+<p local-id=3D"ec8f7f2fc300"><strong>Sensitive Data Handling:</strong> Sens=
+itive information will be asterisked in the UI.</p>
+<h4 local-id=3D"bf4efcaefb65" id=3D"EmbeddableUIforKYC/KYB-UBOOwnershipThre=
+shold">UBO Ownership Threshold</h4>
+<p local-id=3D"e4f321d21b13"><strong>Resolved ---- </strong>UBO Threshold i=
+s 25%, see the resolved decision log below for details.</p>
+<h4 local-id=3D"804ca2872889" id=3D"EmbeddableUIforKYC/KYB-SessionTokenExpi=
+ry">Session Token Expiry</h4>
+<blockquote local-id=3D"0eaf6f9b-bd84-4f8e-bd35-7490bbe273a1">
+<p local-id=3D"7c77a199dbc4"><strong>Open Question =E2=80=94 Session Token =
+Expiry</strong></p>
+<p local-id=3D"948f38afdd98">Recommendation: Session access tokens for the =
+embedded component expire after 60 minutes and are refreshable by the host =
+application. Standalone verification link tokens expire after 72 hours and =
+are not refreshable =E2=80=94 a new link must be generated via the resend m=
+echanism. All tokens are single-session; opening a session on a new device =
+invalidates the prior token.</p>
+<p local-id=3D"8b4aadc60648"><strong>Note:</strong> Revisit the token expir=
+y =E2=80=94 consider making it stricter.</p>
+</blockquote>
+<h4 local-id=3D"3c4f02dacbea" id=3D"EmbeddableUIforKYC/KYB-ConcurrentSessio=
+nBehavior">Concurrent Session Behavior</h4>
+<p local-id=3D"b4ca40a51eae"><strong>Resolved =E2=80=94 Last-Write-Wins:</s=
+trong> If the same user opens the flow on multiple devices, the most recent=
+ save takes precedence. No conflict detection is applied.</p>
+<hr local-id=3D"78d3dfd1-30ba-41e5-8667-5620d6baedc6">
+<h3 local-id=3D"e8803a1fead4" id=3D"EmbeddableUIforKYC/KYB-PerformanceRequi=
+rements">Performance Requirements</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"02=
+7b0017-ca79-4748-b1c3-b5b5e67ac65d" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"e493dc9c-c61d-40f2-a698-a560f9bd1666">
+<th data-local-id=3D"27e38e2d-f197-4661-83ba-090db9898b41" class=3D"conflue=
+nceTh">
+<p local-id=3D"75b0aa3a8006">Metric</p></th>
+<th data-local-id=3D"07441249-7cfb-4b25-9c6e-6d53cd0ec80b" class=3D"conflue=
+nceTh">
+<p local-id=3D"efbafaa73e13">Requirement</p></th>
+</tr>
+<tr data-local-id=3D"284cbbc1-44b9-4dc1-bb07-21abe0c35577">
+<td data-local-id=3D"2dc535cf-d7eb-4472-9933-b292c2eb9ab9" class=3D"conflue=
+nceTd">
+<p local-id=3D"ab8b3249d907">Component initial render</p></td>
+<td data-local-id=3D"53e32346-10fd-44e6-a2c6-1f43e8660cf1" class=3D"conflue=
+nceTd">
+<p local-id=3D"b6b7d470a894">=E2=89=A4 3 seconds</p></td>
+</tr>
+<tr data-local-id=3D"855714df-96fe-4900-b00a-9d34316fbe21">
+<td data-local-id=3D"2f6d2835-f955-4d55-a313-063bcc2b1757" class=3D"conflue=
+nceTd">
+<p local-id=3D"fe8e64b3959a">Step save latency</p></td>
+<td data-local-id=3D"f309c03a-f521-40bd-b37c-c73065aabd9b" class=3D"conflue=
+nceTd">
+<p local-id=3D"74f1e78da27e">=E2=89=A4 2 seconds</p></td>
+</tr>
+<tr data-local-id=3D"15818f08-88f6-4a63-afb3-ec15bce9b5eb">
+<td data-local-id=3D"c532ba9e-1fee-47bf-88bb-9e731ca9ffd4" class=3D"conflue=
+nceTd">
+<p local-id=3D"80161c566a30">Document upload</p></td>
+<td data-local-id=3D"0f364b6b-1032-4bb6-97dc-c40e68689042" class=3D"conflue=
+nceTd">
+<p local-id=3D"ec64a0dbe4df">=E2=89=A4 10 seconds</p></td>
+</tr>
+<tr data-local-id=3D"cf921a5f-1434-4759-b3d4-cbaa4d26bd63">
+<td data-local-id=3D"85caf51d-f85e-4444-a481-b8e0575e3d27" class=3D"conflue=
+nceTd">
+<p local-id=3D"e8d287b27ffe">Session resume</p></td>
+<td data-local-id=3D"4561cb69-803b-4056-be33-3ea7f6cf0095" class=3D"conflue=
+nceTd">
+<p local-id=3D"c0da1a9e3ad3">=E2=89=A4 3 seconds</p></td>
+</tr>
+<tr data-local-id=3D"b8ea23cd-286e-45eb-b610-0e31c916f4fe">
+<td data-local-id=3D"f14efebd-ca26-4691-97e5-6eb19b455aa8" class=3D"conflue=
+nceTd">
+<p local-id=3D"b0f4965d6515">Webhook delivery</p></td>
+<td data-local-id=3D"e54c5190-675e-4a40-b740-080d5fd68f19" class=3D"conflue=
+nceTd">
+<p local-id=3D"9ee969b19b52">=E2=89=A4 60 seconds</p></td>
+</tr>
+<tr data-local-id=3D"695e5ba0-2d16-4c3e-972c-d9052d34915f">
+<td data-local-id=3D"832aafe1-04a5-491b-835c-5d02ebcb4a8b" class=3D"conflue=
+nceTd">
+<p local-id=3D"b3e526a47869">Retrieval API response</p></td>
+<td data-local-id=3D"dc8fba9e-c441-41e3-9812-e80feefe007b" class=3D"conflue=
+nceTd">
+<p local-id=3D"681745e4601d">=E2=89=A4 5 seconds</p></td>
+</tr>
+<tr data-local-id=3D"9a2ffff6-b741-4679-9beb-9ff4610c0ade">
+<td data-local-id=3D"5c1188db-044e-4b4f-9756-0f1739109987" class=3D"conflue=
+nceTd">
+<p local-id=3D"ee09c1d06258">Concurrent sessions</p></td>
+<td data-local-id=3D"7436564d-af1f-4b83-b022-c5e7d13851c4" class=3D"conflue=
+nceTd">
+<p local-id=3D"fb8b35c24fa9">=E2=89=A5 200</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr local-id=3D"0cdc59ef-b980-4e14-9563-e0d1b983b4f5">
+<h2 local-id=3D"b00b6885f990" id=3D"EmbeddableUIforKYC/KYB-Post-MVPRoadmapI=
+tems">Post-MVP Roadmap Items</h2>
+<h3 local-id=3D"d47452046fbe" id=3D"EmbeddableUIforKYC/KYB-OCRDocumentQuali=
+tyGate">OCR Document Quality Gate</h3>
+<p local-id=3D"e69442f86540">Employ an OCR image quality gate on entity doc=
+uments collected when they are uploaded by the user, to ensure they are rea=
+dable. The user should not be able to continue until the uploaded documents=
+ pass this threshold, which may take a few seconds. <strong>Not an MVP requ=
+irement.</strong></p>
+<h3 local-id=3D"78b4a620871e" id=3D"EmbeddableUIforKYC/KYB-ConfigurableDocu=
+mentCollectionperContextID">Configurable Document Collection per Context ID=
+</h3>
+<p local-id=3D"97316824e351">Be able to ingest additional entity documents =
+required for a specific Context ID received from the application. If a GP n=
+eeds additional documentation to collect, there should be an API endpoint t=
+o configure certain document uploads per Context ID. <strong>Not an MVP req=
+uirement =E2=80=94 Phase 2.</strong></p>
+<hr local-id=3D"7d6e6c7a-6aee-4795-a32b-c5ef48e0bcee">
+<h2 local-id=3D"240541031ec2" id=3D"EmbeddableUIforKYC/KYB-RemainingOpenQue=
+stions">Remaining Open Questions</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"e0=
+06811b-cc8b-427d-9b8a-a410d2180cb5" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"ad67c8a9-fa92-477a-9c29-55b2535d0f96">
+<th data-local-id=3D"75f87fff-6ac3-4dc3-bbb3-eaec8d55819e" class=3D"conflue=
+nceTh">
+<p local-id=3D"3ce223cbfecb">Area</p></th>
+<th data-local-id=3D"2db542c9-7914-4606-b34a-1437268a51db" class=3D"conflue=
+nceTh">
+<p local-id=3D"a7f5e227bdbb">Status</p></th>
+</tr>
+<tr data-local-id=3D"ae7f0d53-84d1-46ba-8428-7a30aa678ef9">
+<td data-local-id=3D"372890fd-6caa-4e23-b404-93b870387699" class=3D"conflue=
+nceTd">
+<p local-id=3D"7226299404bf">Alloy Disclosure</p></td>
+<td data-local-id=3D"91e3abd5-7384-44b2-9fc4-857d3526973b" class=3D"conflue=
+nceTd">
+<p local-id=3D"97f49a8ac39e"><strong>Open</strong></p></td>
+</tr>
+<tr data-local-id=3D"b4a10f03-e97c-460c-82e4-abeb3e60e5c5">
+<td data-local-id=3D"f188602a-62cb-4ba8-8060-cbefb6b2a597" class=3D"conflue=
+nceTd">
+<p local-id=3D"fa3031751f91">Reminder Schedule</p></td>
+<td data-local-id=3D"4f81cac0-b73a-4557-84b0-344ff3b6ff24" class=3D"conflue=
+nceTd">
+<p local-id=3D"5804710e8ee6"><strong>Open</strong></p></td>
+</tr>
+<tr data-local-id=3D"34514c19-560d-4600-a309-810f6903b43a">
+<td data-local-id=3D"3ece5d92-6583-4861-880d-887ec4c7d84d" class=3D"conflue=
+nceTd">
+<p local-id=3D"6248b17bc9b3">Standalone Link Expiry</p></td>
+<td data-local-id=3D"7c5a91e7-cef9-4003-b68b-e5e2d24d356e" class=3D"conflue=
+nceTd">
+<p local-id=3D"628ea3472ffc"><strong>Open</strong></p></td>
+</tr>
+<tr data-local-id=3D"8014ec8e-f4e6-4a72-ad2f-ccf78f4aa33c">
+<td data-local-id=3D"7cad7f27-fa2b-4283-a95e-60d3381b4012" class=3D"conflue=
+nceTd">
+<p local-id=3D"2fcd501f4789">Session Token Expiry</p></td>
+<td data-local-id=3D"28ea2735-165e-46cd-aaf6-ee9b4f388a69" class=3D"conflue=
+nceTd">
+<p local-id=3D"356b1ca9883f"><strong>Open</strong></p></td>
+</tr>
+<tr data-local-id=3D"f1eddb8f-af74-42ba-a82d-dc51580e00e2">
+<td data-local-id=3D"eb99737b-daa7-4856-9da7-b03a8ebf4223" class=3D"conflue=
+nceTd">
+<p local-id=3D"fd34a4a34383">Jurisdictional Disclosures</p></td>
+<td data-local-id=3D"dd867e6a-89a0-4d3d-b38d-ca5261e0a36a" class=3D"conflue=
+nceTd">
+<p local-id=3D"5de1cd4e6953"><strong>Deferred</strong></p></td>
+</tr>
+<tr data-local-id=3D"7513d19d-2b91-4abb-be64-34fe24d88fb5">
+<td data-local-id=3D"1ccc34dc-c457-451c-85eb-088a34bed275" class=3D"conflue=
+nceTd">
+<p local-id=3D"c8dd05febe96">Additional Party SSNs</p></td>
+<td data-local-id=3D"862c7c88-a924-4f86-aa6d-1cf706d8189d" class=3D"conflue=
+nceTd">
+<p local-id=3D"4e9a82205687"><strong>SSN of UBOs Required</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr local-id=3D"c66582a4-8055-497b-bfb0-0c7637bb3f76">
+<h2 local-id=3D"5a1e099cf11a" id=3D"EmbeddableUIforKYC/KYB-ResolvedDecision=
+sLog">Resolved Decisions Log</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"6b=
+afc7d8-3cbf-4585-b55e-37e59594a085" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 380.0px;">
+<col style=3D"width: 379.0px;">
+</colgroup>
+<tbody>
+<tr data-local-id=3D"59615baf-5d1a-4166-851d-4887f9b2f8d9">
+<th data-local-id=3D"af991930-f5fb-4d17-8eef-5836dd6971dd" class=3D"conflue=
+nceTh">
+<p local-id=3D"151d8ce133dc">Decision</p></th>
+<th data-local-id=3D"16bbc654-694f-4ef1-8c87-b0a1a605339c" class=3D"conflue=
+nceTh">
+<p local-id=3D"d3dd5471f65b">Resolution</p></th>
+</tr>
+<tr data-local-id=3D"d98ce673-be0a-4942-87e2-3013321e5e7d">
+<td data-local-id=3D"0f8d368b-30b3-4b2d-a6c4-de82d8988e9b" class=3D"conflue=
+nceTd">
+<p local-id=3D"6cd9183ede8c"><strong>Primary user completing IDV for additi=
+onal persons</strong></p></td>
+<td data-local-id=3D"47ef31d5-ce6b-4891-a780-c8a394d6b68b" class=3D"conflue=
+nceTd">
+<p local-id=3D"5fa9a0b68417">"Verify Now" button available per additional p=
+erson so that the primary user can begin IDV on behalf of an additional per=
+son if the additional person is nearby</p></td>
+</tr>
+<tr data-local-id=3D"4d8cafe2-9186-411f-b0ea-6914e0f7b0fd">
+<td data-local-id=3D"ed1beea0-4a0c-4c1c-a75d-735fc41d25fe" class=3D"conflue=
+nceTd">
+<p local-id=3D"5c75f9287e67"><strong>Correction flow</strong></p></td>
+<td data-local-id=3D"1c5d83f7-a473-49c3-80dd-e51da0464078" class=3D"conflue=
+nceTd">
+<p local-id=3D"af8b0c73173c">Annotated re-entry. After an end user complete=
+s their verification and results are sent to Verivend: a reviewer decides t=
+he end user must edit a detail. The reviewer enters notes in the Verivend a=
+dmin UI where their review happens. Interro ingests the notes. The end user=
+'s verification session is reopened with all prior information saved. The r=
+eviewer's note is displayed so the end user knows what to change. The end u=
+ser can edit their information and documents and resubmit.</p></td>
+</tr>
+<tr data-local-id=3D"82e023f4-0785-4fe0-88d1-2adfc4c099ba">
+<td data-local-id=3D"c45e71e1-01f3-4390-a3c8-0773fcf1a000" class=3D"conflue=
+nceTd">
+<p local-id=3D"864cc689053a"><strong>Session lifetime</strong></p></td>
+<td data-local-id=3D"a3a95731-e7da-4abe-95a5-9a7a94023b4f" class=3D"conflue=
+nceTd">
+<p local-id=3D"a2034f5fb822">30 days</p></td>
+</tr>
+<tr data-local-id=3D"8b578dfd-b1b9-41e5-91e9-9717316484e0">
+<td data-local-id=3D"1e9ff3d2-e447-4f60-bc0e-ce0ff0a952e7" class=3D"conflue=
+nceTd">
+<p local-id=3D"e93838b80f08"><strong>Progress visibility</strong></p></td>
+<td data-local-id=3D"ff289df1-de82-4b9a-9ee8-ce5b0be9fdd3" class=3D"conflue=
+nceTd">
+<p local-id=3D"5ff3702da4f4">Starts after Step 1</p></td>
+</tr>
+<tr data-local-id=3D"4a323bf5-8169-4120-9516-f4962e81d9a9">
+<td data-local-id=3D"9238f87c-e6a2-420c-9529-1ff375d09b16" class=3D"conflue=
+nceTd">
+<p local-id=3D"9e983462a262"><strong>Concurrent session behavior</strong></=
+p></td>
+<td data-local-id=3D"e1c1e682-89a5-4ca1-b85a-631f1d033777" class=3D"conflue=
+nceTd">
+<p local-id=3D"1d2fcca35cd5">Last-write-wins</p></td>
+</tr>
+<tr data-local-id=3D"0c7f14a9-84a7-4f97-9c45-04436f6d7dd2">
+<td data-local-id=3D"45cb36dd-8ca6-4f73-8d3c-b4d26278fd8b" class=3D"conflue=
+nceTd">
+<p local-id=3D"e209315103df"><strong>Pre-fill data</strong></p></td>
+<td data-local-id=3D"0f6b6d72-ee25-4050-9073-ed0e8c443906" class=3D"conflue=
+nceTd">
+<p local-id=3D"2bdfe85794ba">Supported</p></td>
+</tr>
+<tr data-local-id=3D"e9ec96d2-ae0e-4b37-a60f-785284aa9b79">
+<td data-local-id=3D"bd75ec66-6cac-41c8-a410-30a699523a5f" class=3D"conflue=
+nceTd">
+<p local-id=3D"929e5343937d"><strong>iframe vs JS SDK</strong></p></td>
+<td data-local-id=3D"678f6c08-a2b8-4624-8683-1cd0d3556947" class=3D"conflue=
+nceTd">
+<p local-id=3D"2aa16f51bf4c">iframe</p></td>
+</tr>
+<tr data-local-id=3D"ba1e6ed0-cc46-4856-9544-e5f30154e769">
+<td data-local-id=3D"abcdcede-86b7-42b8-932e-ad05c8e3c732" class=3D"conflue=
+nceTd">
+<p local-id=3D"bab911a85a0d"><strong>UI Resize</strong></p></td>
+<td data-local-id=3D"12563949-7c08-4f8d-a379-58872fa64388" class=3D"conflue=
+nceTd">
+<p local-id=3D"49958426ea2e">Mobile-first. Component renders at a fixed mob=
+ile-friendly width with internal scroll. Host application is responsible on=
+ly for embedding the iframe and allocating space =E2=80=94 no resize coordi=
+nation required.</p></td>
+</tr>
+<tr data-local-id=3D"e6fada2235b0">
+<td data-local-id=3D"ffdd63c7-55f2-41ff-a685-8fba0b577c9e" class=3D"conflue=
+nceTd">
+<p local-id=3D"86e713ae42db">UBO Threshold</p></td>
+<td data-local-id=3D"086eb8cb-84a3-4060-85a9-ae09da57f0d3" class=3D"conflue=
+nceTd">
+<p local-id=3D"fbeb3aa13a82"><strong>For MTL Holders:</strong></p>
+<p local-id=3D"324d0cc62be3"><strong>25% Baseline.</strong></p>
+<p local-id=3D"c1935c847898">A 10% threshold is required dynamically based =
+on the MSB's internal risk assessment for high-risk transactional corridors=
+, foreign nested services, or to satisfy specific state supervisory exams.<=
+/p>
+<p local-id=3D"0f4b6d501362"><em>Law Cited: 31 CFR =C2=A7 1010.230; 31 CFR =
+=C2=A7 1022.210.</em></p>
+<p local-id=3D"02f38a170f9a"><strong>For GPs:</strong></p>
+<p local-id=3D"f71e32cd9d00"><strong>25% Baseline.</strong></p>
+<p local-id=3D"7401e0c1f76a">A 10% threshold is frequently contractually ma=
+ndated by upstream clearing banks, institutional LPs, or when funds possess=
+ offshore capital from high-risk jurisdictions.</p>
+<p local-id=3D"e7ead5fe1715"><em>Law Cited: 31 CFR =C2=A7 1010.230; 2024 Fi=
+nal Rule (31 CFR =C2=A7 1010.100(t)).</em></p>
+<p local-id=3D"59137f73d82b"><strong>For Broker Dealers: </strong></p>
+<p local-id=3D"8f271c31cc24"><strong>25% Baseline.</strong></p>
+<p local-id=3D"cf14871a41ed">A 10% threshold is legally mandated for foreig=
+n correspondent accounts and is routinely implemented for high-risk entitie=
+s under FINRA rules.</p>
+<p local-id=3D"f9bb3a955767"><em>Law Cited: 31 CFR =C2=A7 1010.230; 31 CFR =
+=C2=A7 1010.610(b)(3)(ii)(A)</em></p>
+<p local-id=3D"d22b20baf807"></p></td>
+</tr>
+<tr data-local-id=3D"bd8b4c2d1493">
+<td data-local-id=3D"f11f734a-ae9e-4e8f-9609-e3c4e465f343" class=3D"conflue=
+nceTd">
+<p local-id=3D"4eba5d127634">When is proof of address required?</p></td>
+<td data-local-id=3D"46854b78-fe38-4fb9-b4f3-bc88fd5c408f" class=3D"conflue=
+nceTd">
+<p local-id=3D"9d57871c2d43"><strong>Summary: </strong>Might be required in=
+ EDD workflows, not required for KYC.</p>
+<p local-id=3D"b64ead44cc7d"><strong>For MTL Holders:</strong></p>
+<p local-id=3D"d1f0f782eb90"><strong>Recommendation:</strong> Documentary p=
+roof of address (e.g., utility bill, lease agreement) is triggered when non=
+-documentary verification fails, when an individual conducts a non-face-to-=
+face transaction exceeding $3,000, or when issuing prepaid access over $10,=
+000 and the provided address cannot be corroborated by independent data bur=
+eaus.</p>
+<p local-id=3D"b85f666245b0"></p>
+<p local-id=3D"be2f64a5589b"></p>
+<p local-id=3D"9442420a3568"><strong>Law Cited:</strong> 31 CFR =C2=A7 1022=
+.210(d)(1)(i)(A) (MSB AML Program) [<a class=3D"external-link" data-card-ap=
+pearance=3D"inline" href=3D"https://www.law.cornell.edu/cfr/text/31/1022.21=
+0" local-id=3D"7ab3f327-8a9b-4cc3-9a6b-c192f2b76560" rel=3D"nofollow">https=
+://www.law.cornell.edu/cfr/text/31/1022.210</a> ]<sup>2</sup>; 31 CFR =C2=
+=A7 1010.312 (Identification required) [<a class=3D"external-link" data-car=
+d-appearance=3D"inline" href=3D"https://www.law.cornell.edu/cfr/text/31/101=
+0.312" local-id=3D"41b21d8b-6f8c-446e-8452-b9d1530d2b3a" rel=3D"nofollow">h=
+ttps://www.law.cornell.edu/cfr/text/31/1010.312</a> ].</p>
+<p local-id=3D"cafa2bde189b"><strong>For GPs:</strong></p>
+<p local-id=3D"e532d07d8f0c"><strong>Recommendation:</strong> Documentary p=
+roof is required when the individual lacks a standard residential street ad=
+dress (necessitating verification of an APO/FPO or next-of-kin address), or=
+ when the adviser utilizes non-documentary methods (e.g., credit bureau che=
+cks) that return a substantive discrepancy regarding the individual's state=
+d physical location.</p>
+<p local-id=3D"40509dd21d54"></p>
+<p local-id=3D"eacc14d05a99"></p>
+<p local-id=3D"a41462c4c3b1"><strong>Law Cited:</strong> Proposed 31 CFR =
+=C2=A7 1032.220(a)(2)(i)(A)(3) (Address Collection) [<a class=3D"external-l=
+ink" href=3D"https://www.federalregister.gov/documents/2024/05/21/2024-1073=
+8/customer-identification-programs-for-registered-investment-advisers-and-e=
+xempt-reporting-advisers" rel=3D"nofollow"><u>https://www.federalregister.g=
+ov/documents/2024/05/21/2024-10738/customer-identification-programs-for-reg=
+istered-investment-advis</u></a></p>
+<p local-id=3D"8512c43c93f8"><strong>For Broker Dealers:</strong></p>
+<p local-id=3D"f1d23b1acbe3"><strong>Recommendation:</strong> Triggered spe=
+cifically when the individual cannot present an unexpired government-issued=
+ photo ID containing their current residential address, when the broker-dea=
+ler is unfamiliar with the documents presented, or when the account is open=
+ed entirely digitally (non-face-to-face) and automated identity cross-refer=
+encing fails.</p>
+<p local-id=3D"b6110d613382"></p>
+<p local-id=3D"322b592ad139"></p>
+<p local-id=3D"6016ef74f79a"><strong>Law Cited:</strong> 31 CFR =C2=A7 1023=
+.220(a)(2)(ii)(B)(2) (Non-documentary verification triggers) [<a class=3D"e=
+xternal-link" data-card-appearance=3D"inline" href=3D"https://www.law.corne=
+ll.edu/cfr/text/31/1023.220" local-id=3D"6b69ecbc-0c51-4159-b282-7d7db43569=
+e6" rel=3D"nofollow">https://www.law.cornell.edu/cfr/text/31/1023.220</a> ]=
+.</p></td>
+</tr>
+<tr data-local-id=3D"807b9d015450">
+<td data-local-id=3D"29933e12-9a77-412a-9099-61354daadbb6" class=3D"conflue=
+nceTd">
+<p local-id=3D"fb17a9263c99">What documents are required to be collected fr=
+om an Entity to complete KYB?</p></td>
+<td data-local-id=3D"387fa54c-34cc-418e-b37c-ac87fe0d2ffb" class=3D"conflue=
+nceTd">
+<p local-id=3D"48fb7bd9e159"><strong>For MTL Holders:</strong></p>
+<p local-id=3D"bb58807d75d1"><strong>Recommendation:</strong> Obtain docume=
+nts establishing the entity's existence (e.g., articles of incorporation, b=
+usiness licenses). This is strictly required when executing a transmittal o=
+f funds of $3,000 or more, or when selling prepaid access exceeding $10,000=
+ in a single day. The UI must capture the entity name, address, and Employe=
+r Identification Number (EIN).</p>
+<p local-id=3D"8d05fb499e23"></p>
+<p local-id=3D"fd74cf5ca2b9"></p>
+<p local-id=3D"ea55e6a63652"><strong>Law Cited:</strong> 31 CFR =C2=A7 1010=
+.410(e) (Recordkeeping for transmittals) [<a class=3D"external-link" data-c=
+ard-appearance=3D"inline" href=3D"https://www.law.cornell.edu/cfr/text/31/1=
+010.410" local-id=3D"e907790a-fae5-46b5-89ce-92dd10927004" rel=3D"nofollow"=
+>https://www.law.cornell.edu/cfr/text/31/1010.410</a> ]<sup>1</sup>; 31 CFR=
+ =C2=A7 1022.210(d)(1)(iv) (Prepaid access) [<a class=3D"external-link" dat=
+a-card-appearance=3D"inline" href=3D"https://www.law.cornell.edu/cfr/text/3=
+1/1022.210" local-id=3D"2a818ec8-77f3-495b-b8d5-0e5620e88a64" rel=3D"nofoll=
+ow">https://www.law.cornell.edu/cfr/text/31/1022.210</a> ].<sup>2</sup></p>
+<p local-id=3D"5e28fda857fa"></p>
+<p local-id=3D"167b6b486786"><strong>For GPs:</strong></p>
+<p local-id=3D"6c2fd512a240"><strong>Recommendation:</strong> Obtain certif=
+ied formation documents (articles of incorporation, partnership agreements,=
+ trust instruments). Additionally, under the CDD Rule, the UI must present =
+the Appendix A Certification Form to collect Beneficial Ownership Informati=
+on (BOI) identifying natural persons with 25% ownership or significant mana=
+gerial control.</p>
+<p local-id=3D"990d4511bfb1"></p>
+<p local-id=3D"1881f4671943"></p>
+<p local-id=3D"ad3aa4ff4e3b"><strong>Law Cited:</strong> Proposed 31 CFR =
+=C2=A7 1032.220 (CIP for Investment Advisers) [<a class=3D"external-link" d=
+ata-card-appearance=3D"inline" href=3D"https://www.federalregister.gov/docu=
+ments/2024/05/21/2024-10738/customer-identification-programs-for-registered=
+-investment-advisers-and-exempt-reporting-advisers" local-id=3D"27175e16-24=
+a1-4798-a441-94e7f73fb0b2" rel=3D"nofollow">https://www.federalregister.gov=
+/documents/2024/05/21/2024-10738/customer-identification-programs-for-regis=
+tered-investment-advisers-and-exempt-reporting-advisers</a> ]<sup>4</sup></=
+p>
+<p local-id=3D"e3b7d8ddf415"></p>
+<p local-id=3D"a743f5c7d1dc"><strong>For Broker Dealers: </strong></p>
+<p local-id=3D"51053c18c9a1"><strong>Recommendation:</strong> Obtain docume=
+nts showing the legal existence of the entity, explicitly including certifi=
+ed articles of incorporation, a government-issued business license, a partn=
+ership agreement, or a trust instrument. The UI must also mandate the colle=
+ction of the FinCEN BOI certification to fulfill CDD obligations.</p>
+<p local-id=3D"f34c4b0e8050"></p>
+<p local-id=3D"ddb58392c626"></p>
+<p local-id=3D"6ad831df3080"><strong>Law Cited:</strong> 31 CFR =C2=A7 1023=
+.220(a)(2)(ii)(A)(2) (Broker-Dealer CIP) [<a class=3D"external-link" data-c=
+ard-appearance=3D"inline" href=3D"https://www.law.cornell.edu/cfr/text/31/1=
+023.220" local-id=3D"54a7eeed-d20f-4185-8ca9-d3a30cdfdc22" rel=3D"nofollow"=
+>https://www.law.cornell.edu/cfr/text/31/1023.220</a> ]<sup>6</sup>; 31 CFR=
+ =C2=A7 1010.230 (CDD Rule) [<a class=3D"external-link" data-card-appearanc=
+e=3D"inline" href=3D"https://www.law.cornell.edu/cfr/text/31/1010.230" loca=
+l-id=3D"3201fac4-6137-4cb6-8b9b-ce40d8e3011e" rel=3D"nofollow">https://www.=
+law.cornell.edu/cfr/text/31/1010.230</a> ].</p></td>
+</tr>
+<tr data-local-id=3D"ea557f0a5042">
+<td data-local-id=3D"5f25879e-5564-4c35-b649-02c7f80b47bc" class=3D"conflue=
+nceTd">
+<p local-id=3D"e21c693d0993">How many UBOs and Control Persons must KYC be =
+run on to satisfy KYB as part of an AML Program?</p></td>
+<td data-local-id=3D"f56af9ac-f636-4fcc-89cf-3bf08d27f3bd" class=3D"conflue=
+nceTd">
+<p local-id=3D"bd5138957396"><strong>Targets:</strong> UBOs (=E2=89=A525% e=
+quity) and exactly 1 Control Person.</p>
+<p local-id=3D"79b4c7c2811d"></p>
+<p local-id=3D"5dfcff655e12"></p>
+<p local-id=3D"34ff8fa2c109"><strong>0 UBOs Acceptable?</strong> Yes. If no=
+ individual holds =E2=89=A525% equity directly or indirectly, 0 UBOs are re=
+ported.</p>
+<p local-id=3D"3e4c868062b1"></p>
+<p local-id=3D"b6cea49f69f0"></p>
+<p local-id=3D"74f0262c487a"><strong>0 Control Persons Acceptable?</strong>=
+ No. A legal entity must <em>always</em> identify exactly one Control Perso=
+n.</p>
+<p local-id=3D"a514c6fbfd26"></p>
+<p local-id=3D"0836fa6c559e"></p>
+<p local-id=3D"01133b449b99"><strong>Citation:</strong> 31 CFR =C2=A7 1022.=
+210 (Risk-based AML program) utilizing the definitive standard of 31 CFR =
+=C2=A7 1010.230(d).</p>
+<p local-id=3D"0c6eefb20235"></p>
+<p local-id=3D"6de2b4820a87"></p>
+<p local-id=3D"67c1da369f39"><strong>URL:</strong>(<a class=3D"external-lin=
+k" data-card-appearance=3D"inline" href=3D"https://www.law.cornell.edu/cfr/=
+text/31/1022.210" local-id=3D"efdfd425-60a2-4a9b-8d96-492d604cc0da" rel=3D"=
+nofollow">https://www.law.cornell.edu/cfr/text/31/1022.210</a> ) &amp;(<a c=
+lass=3D"external-link" data-card-appearance=3D"inline" href=3D"https://www.=
+law.cornell.edu/cfr/text/31/1010.230" local-id=3D"d9459d79-a55a-478a-a3dc-f=
+cbb3ae04f38" rel=3D"nofollow">https://www.law.cornell.edu/cfr/text/31/1010.=
+230</a> )</p></td>
+</tr>
+<tr data-local-id=3D"625693f264d7">
+<td data-local-id=3D"b77b20fbf708" class=3D"confluenceTd">
+<p local-id=3D"fa31d9bdb638"></p></td>
+<td data-local-id=3D"fed4fc1057cf" class=3D"confluenceTd">
+<p local-id=3D"fb81eebd6898"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr local-id=3D"69fe10f6-0601-4fae-82e4-d3ff397c440c">
+<h2 local-id=3D"6a72e566f439" id=3D"EmbeddableUIforKYC/KYB-EntityVerificati=
+onFlow">Entity Verification Flow</h2>
+<p local-id=3D"3aa1287c3e8f">v1 Entity Verification Flow =E2=80=94 Embedded=
+ UI</p>
+<p local-id=3D"c024a5181355"><a href=3D"https://ialta-team.atlassian.net/wi=
+ki/spaces/IP/pages/934838273/v1+Entity+Verification+Flow+-+Embedded+UI" dat=
+a-linked-resource-id=3D"934838273" data-linked-resource-version=3D"3" data-=
+linked-resource-type=3D"page">v1 Entity Verification Flow - Embedded UI</a>=
+</p>
+    </div>
+</body>
+</html>
+------=_Part_40_119584984.1774895738597--
