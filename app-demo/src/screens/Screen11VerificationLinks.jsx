@@ -1,39 +1,33 @@
 import { useState } from 'react'
 import alloy from '@alloyidentity/web-sdk'
-import { createJourneyApplication } from '../utils/alloyApi'
+import { createJourneyApplication, buildJourneyApplication } from '../utils/alloyApi'
 import { toIsoDate, toStateAbbr } from '../utils/formatters'
 
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 
 async function openAlloyVerification(party, callback) {
-  // Build personData for journey application
-  const personData = {
-    name_first: party.firstName || undefined,
-    name_last: party.lastName || undefined,
-    email_address: party.email || undefined,
-    phone_number: party.phone || undefined,
-    birth_date: toIsoDate(party.dob) || undefined,
-    document_ssn: party.ssn ? party.ssn.replace(/-/g, '') : undefined,
-  }
-
-  // Only include address if primary fields are populated
-  if (party.streetAddress && party.city && party.state && party.postalCode) {
-    personData.addresses = [{
-      line_1: party.streetAddress,
-      city: party.city,
-      state: toStateAbbr(party.state),
-      postal_code: party.postalCode,
-      country_code: party.country?.code || 'US',
-      type: 'primary',
-    }]
+  // Build the journey application (entities format). Entity-flow parties always
+  // run the Complete variant — the SDK hosts the Socure DocV step.
+  const person = {
+    nameFirst: party.firstName,
+    nameLast: party.lastName,
+    email: party.email,
+    phone: party.phone,
+    birthDate: toIsoDate(party.dob),
+    ssn: party.ssn ? party.ssn.replace(/-/g, '') : undefined,
+    address: (party.streetAddress && party.city && party.state && party.postalCode)
+      ? { line1: party.streetAddress, city: party.city, state: toStateAbbr(party.state), postalCode: party.postalCode, countryCode: party.country?.code }
+      : undefined,
   }
 
   let journeyApplicationToken = null
 
   // Attempt to create journey application; fall back to SDK-only flow on failure
   try {
-    const appResult = await createJourneyApplication(personData)
+    const appResult = await createJourneyApplication(
+      buildJourneyApplication(person, { kycVariant: 'complete' })
+    )
     console.log('Journey application result:', appResult)
     // Only use the token if the application is not already completed
     // (sandbox may return a cached completed app for the same person data)

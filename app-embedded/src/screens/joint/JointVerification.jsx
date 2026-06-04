@@ -1,59 +1,41 @@
 import { useState } from 'react'
 import alloy from '@alloyidentity/web-sdk'
-import { createJourneyApplication } from '../../utils/alloyApi'
+import { createJourneyApplication, buildJourneyApplication } from '../../utils/alloyApi'
 import { toIsoDate, toStateAbbr } from '../../utils/formatters'
 
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 
-// crypto.randomUUID is available in modern browsers; fall back for older ones.
-function randomUuid() {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
-    return crypto.randomUUID()
-  }
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0
-    const v = c === 'x' ? r : (r & 0x3) | 0x8
-    return v.toString(16)
-  })
-}
-
-async function openAlloyVerification(holder, holderIndex, callback) {
-  // Build personData for journey application.
-  // document_type / document_country / nationality let the journey's DocV node
-  // (Socure when configured in the Alloy dashboard) pre-select the right flow.
-  const personData = {
-    name_first: holder.firstName || undefined,
-    name_last: holder.lastName || undefined,
-    email_address: holder.email || undefined,
-    phone_number: holder.phone || undefined,
-    birth_date: toIsoDate(holder.dob) || undefined,
+async function openAlloyVerification(holder, kycVariant, callback) {
+  const person = {
+    nameFirst: holder.firstName,
+    nameLast: holder.lastName,
+    email: holder.email,
+    phone: holder.phone,
+    birthDate: toIsoDate(holder.dob),
+    address: (holder.streetAddress && holder.city && holder.state && holder.postalCode)
+      ? { line1: holder.streetAddress, city: holder.city, state: toStateAbbr(holder.state), postalCode: holder.postalCode, countryCode: holder.country?.code }
+      : undefined,
   }
 
-  // Only include address if primary fields are populated
-  if (holder.streetAddress && holder.city && holder.state && holder.postalCode) {
-    personData.addresses = [{
-      line_1: holder.streetAddress,
-      city: holder.city,
-      state: toStateAbbr(holder.state),
-      postal_code: holder.postalCode,
-      country_code: holder.country?.code || 'US',
-      type: 'primary',
-    }]
+  // KYC Basic is data-only — POST the journey and resolve the outcome directly,
+  // no SDK (the post-CIP router skips Socure DocV for the basic variant).
+  if (kycVariant === 'basic') {
+    const appResult = await createJourneyApplication(buildJourneyApplication(person, { kycVariant: 'basic' }))
+    console.log('Journey application result (basic):', appResult)
+    callback({
+      status: appResult.status || 'completed',
+      journey_application_status: appResult.journey_application_status,
+      complete_outcome: appResult.complete_outcome,
+      sdk: { sdkEvent: 'completed' },
+    })
+    return
   }
 
-  let journeyApplicationToken = null
-
-  // Create journey application. Each co-holder is its own application so the
-  // journey routes them through `joint_coholder` independently.
-  const appResult = await createJourneyApplication({
-    persons: [personData],
-  })
+  // Complete — create the application then launch the SDK (hosts Socure DocV).
+  const appResult = await createJourneyApplication(buildJourneyApplication(person, { kycVariant: 'complete' }))
   console.log('Journey application result:', appResult)
-  // Do NOT short-circuit on appResult.status === 'completed' — KYC alone may
-  // synchronously approve before the DocV node is reached. Always launch the
-  // SDK and let its callback decide; that's where IDV actually happens.
-  journeyApplicationToken = appResult.journey_application_token || null
+  const journeyApplicationToken = appResult.journey_application_token || null
 
   if (!journeyApplicationToken) {
     throw new Error('Verification service unavailable. Please contact support.')
@@ -96,7 +78,7 @@ export default function JointVerification({ formData, goNext, contextId }) {
     setStatus(index, { state: 'loading', message: 'Initializing...' })
 
     try {
-      await openAlloyVerification(holder, index, (result) => {
+      await openAlloyVerification(holder, isComplete ? 'complete' : 'basic', (result) => {
         console.log('Alloy SDK result:', result)
         const sdkEvent = result.sdk?.sdkEvent
         const appStatus = (result.journey_application_status || '').toLowerCase()

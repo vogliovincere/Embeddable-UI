@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 
-export default function IndStatus({ goTo, contextId }) {
+export default function IndStatus({ goTo, contextId, formData }) {
+  // Basic flow stores the real Alloy outcome here; complete flow leaves it unset
+  // (success was already gated by the SDK callback on the prior screen).
+  const basicOutcome = formData?.individualData?.basicOutcome
   const [phase, setPhase] = useState('checking') // checking | success | failure
   const [checkedItems, setCheckedItems] = useState({})
   const isComplete = contextId !== 'kyc_basic'
@@ -26,16 +29,17 @@ export default function IndStatus({ goTo, contextId }) {
       }, 1200 * (i + 1))
     )
 
-    // After all items checked, show success
+    // After all items checked, resolve to the real outcome (basic flow) or
+    // default to success (complete flow gated success upstream).
     const finalTimer = setTimeout(() => {
-      setPhase('success')
+      setPhase(basicOutcome === 'denied' ? 'failure' : 'success')
     }, 1200 * (checkItems.length + 1))
 
     return () => {
       timers.forEach(clearTimeout)
       clearTimeout(finalTimer)
     }
-  }, [phase])
+  }, [phase, basicOutcome])
 
   const cycleStatus = () => {
     const order = ['checking', 'success', 'failure']

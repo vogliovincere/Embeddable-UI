@@ -28,3 +28,20 @@ export const docUploadSides = {
   'Driving license': ['Front side', 'Back side'],
   'Residence permit': ['Front side', 'Back side'],
 }
+
+// Map UI document labels → Alloy document `type` codes (for attaching to an entity).
+// NOTE: only 'license' is confirmed against the sandbox; the others are inferred.
+export const docTypeToAlloyCode = {
+  'Driving license': 'license',
+  'Passport': 'passport',
+  'ID card': 'state_id',
+  'Residence permit': 'residence_permit',
+}
+
+// Short document name used when attaching a given upload side to Alloy.
+export function docSideName(side) {
+  const s = (side || '').toLowerCase()
+  if (s.includes('back')) return 'back'
+  if (s.includes('data')) return 'data_page'
+  return 'front'
+}

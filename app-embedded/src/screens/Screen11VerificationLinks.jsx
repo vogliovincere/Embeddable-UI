@@ -1,52 +1,36 @@
 import { useState } from 'react'
 import alloy from '@alloyidentity/web-sdk'
-import { createJourneyApplication } from '../utils/alloyApi'
+import { createJourneyApplication, buildJourneyApplication } from '../utils/alloyApi'
 import { toIsoDate, toStateAbbr } from '../utils/formatters'
 
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 
-// crypto.randomUUID is available in modern browsers; fall back for older ones.
-function randomUuid() {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
-    return crypto.randomUUID()
-  }
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0
-    const v = c === 'x' ? r : (r & 0x3) | 0x8
-    return v.toString(16)
-  })
-}
-
 async function openAlloyVerification(party, partyIndex, entityDetails, callback) {
-  // Build personData for journey application.
-  // document_type / document_country / nationality let the journey's DocV node
-  // (Socure when configured in the Alloy dashboard) pre-select the right flow.
-  const personData = {
-    name_first: party.firstName || undefined,
-    name_last: party.lastName || undefined,
-    email_address: party.email || undefined,
-    phone_number: party.phone || undefined,
-    birth_date: toIsoDate(party.dob) || '1990-03-22',
+  // Build the journey application (entities format). Entity-flow parties always
+  // run the Complete variant — the SDK hosts the Socure DocV step.
+  const person = {
+    nameFirst: party.firstName,
+    nameLast: party.lastName,
+    email: party.email,
+    phone: party.phone,
+    birthDate: toIsoDate(party.dob) || '1990-03-22',
     // Entity flow doesn't collect SSN/address — use sample values so the journey request succeeds.
-    document_ssn: party.ssn ? party.ssn.replace(/-/g, '') : '123456789',
-    addresses: [{
-      line_1: party.streetAddress || '123 Main Street',
+    ssn: party.ssn ? party.ssn.replace(/-/g, '') : '123456789',
+    address: {
+      line1: party.streetAddress || '123 Main Street',
       city: party.city || 'San Francisco',
       state: party.state ? toStateAbbr(party.state) : 'CA',
-      postal_code: party.postalCode || '94102',
-      country_code: party.country?.code || 'US',
-      type: 'primary',
-    }],
+      postalCode: party.postalCode || '94102',
+      countryCode: party.country?.code || 'US',
+    },
   }
 
   let journeyApplicationToken = null
 
-  // Use a plain person journey (same as individual flow) — the entity journey
-  // requires a branch_name that isn't configured in this journey token.
-  const appResult = await createJourneyApplication({
-    persons: [personData],
-  })
+  const appResult = await createJourneyApplication(
+    buildJourneyApplication(person, { kycVariant: 'complete' })
+  )
   console.log('Journey application result:', appResult)
   // Do NOT short-circuit on appResult.status === 'completed' — the SDK callback
   // is the source of truth for IDV completion (DocV runs inside the SDK).

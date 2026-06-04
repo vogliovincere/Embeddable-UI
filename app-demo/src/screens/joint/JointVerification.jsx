@@ -1,42 +1,43 @@
 import { useState } from 'react'
 import alloy from '@alloyidentity/web-sdk'
-import { createJourneyApplication } from '../../utils/alloyApi'
+import { createJourneyApplication, buildJourneyApplication } from '../../utils/alloyApi'
 import { toIsoDate, toStateAbbr } from '../../utils/formatters'
 
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 
-async function openAlloyVerification(holder, callback) {
-  // Build personData for journey application
-  const personData = {
-    name_first: holder.firstName || undefined,
-    name_last: holder.lastName || undefined,
-    email_address: holder.email || undefined,
-    phone_number: holder.phone || undefined,
-    birth_date: toIsoDate(holder.dob) || undefined,
+async function openAlloyVerification(holder, kycVariant, callback) {
+  const person = {
+    nameFirst: holder.firstName,
+    nameLast: holder.lastName,
+    email: holder.email,
+    phone: holder.phone,
+    birthDate: toIsoDate(holder.dob),
+    address: (holder.streetAddress && holder.city && holder.state && holder.postalCode)
+      ? { line1: holder.streetAddress, city: holder.city, state: toStateAbbr(holder.state), postalCode: holder.postalCode, countryCode: holder.country?.code }
+      : undefined,
   }
 
-  // Only include address if primary fields are populated
-  if (holder.streetAddress && holder.city && holder.state && holder.postalCode) {
-    personData.addresses = [{
-      line_1: holder.streetAddress,
-      city: holder.city,
-      state: toStateAbbr(holder.state),
-      postal_code: holder.postalCode,
-      country_code: holder.country?.code || 'US',
-      type: 'primary',
-    }]
+  // KYC Basic is data-only — POST the journey and resolve the outcome directly,
+  // no SDK (the post-CIP router skips Socure DocV for the basic variant).
+  if (kycVariant === 'basic') {
+    const appResult = await createJourneyApplication(buildJourneyApplication(person, { kycVariant: 'basic' }))
+    console.log('Journey application result (basic):', appResult)
+    callback({
+      status: appResult.status || 'completed',
+      journey_application_status: appResult.journey_application_status,
+      complete_outcome: appResult.complete_outcome,
+      sdk: { sdkEvent: 'completed' },
+    })
+    return
   }
 
+  // Complete — create the application then launch the SDK (hosts Socure DocV).
   let journeyApplicationToken = null
-
-  // Attempt to create journey application; fall back to SDK-only flow on failure
   try {
-    const appResult = await createJourneyApplication(personData)
+    const appResult = await createJourneyApplication(buildJourneyApplication(person, { kycVariant: 'complete' }))
     console.log('Journey application result:', appResult)
-    if (appResult.status !== 'completed') {
-      journeyApplicationToken = appResult.journey_application_token
-    }
+    journeyApplicationToken = appResult.journey_application_token || null
   } catch (apiErr) {
     console.warn('Journey application API failed (CORS or network), falling back to SDK-only flow:', apiErr)
   }
@@ -81,7 +82,7 @@ export default function JointVerification({ formData, goNext, contextId }) {
     setStatus(index, { state: 'loading', message: 'Initializing...' })
 
     try {
-      await openAlloyVerification(holder, (result) => {
+      await openAlloyVerification(holder, isComplete ? 'complete' : 'basic', (result) => {
         console.log('Alloy SDK result:', result)
         const sdkEvent = result.sdk?.sdkEvent
         const appStatus = (result.journey_application_status || '').toLowerCase()

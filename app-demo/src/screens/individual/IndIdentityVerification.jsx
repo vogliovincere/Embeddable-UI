@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import alloy from '@alloyidentity/web-sdk'
-import { createJourneyApplication } from '../../utils/alloyApi'
+import { createJourneyApplication, buildJourneyApplication } from '../../utils/alloyApi'
 import { toIsoDate, toStateAbbr } from '../../utils/formatters'
 
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
@@ -16,54 +16,34 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
     setStatus('loading')
     setErrorMsg('')
 
-    // Build personData for journey application
-    const personData = {
-      name_first: firstName || undefined,
-      name_last: lastName || undefined,
-      email_address: email || undefined,
-      phone_number: phone || undefined,
-      birth_date: toIsoDate(dob) || undefined,
-      document_ssn: taxId ? taxId.replace(/-/g, '') : undefined,
-    }
-
-    // Only include address if primary fields are populated
-    if (streetAddress && city && addressState && postalCode) {
-      personData.addresses = [{
-        line_1: streetAddress,
-        city: city,
-        state: toStateAbbr(addressState),
-        postal_code: postalCode,
-        country_code: addressCountry?.code || 'US',
-        type: 'primary',
-      }]
+    // Build the journey application in Alloy's entities[] format. For the
+    // Complete variant the journey's post-CIP router sends the person through
+    // Socure DocV, which the Alloy SDK hosts (launched below).
+    const person = {
+      nameFirst: firstName,
+      nameLast: lastName,
+      email,
+      phone,
+      birthDate: toIsoDate(dob),
+      ssn: taxId ? taxId.replace(/-/g, '') : undefined,
+      address: (streetAddress && city && addressState && postalCode)
+        ? { line1: streetAddress, city, state: toStateAbbr(addressState), postalCode, countryCode: addressCountry?.code }
+        : undefined,
     }
 
     let journeyApplicationToken = null
 
     // Attempt to create journey application; fall back to SDK-only flow on failure
     try {
-      const appResult = await createJourneyApplication(personData)
+      const appResult = await createJourneyApplication(
+        buildJourneyApplication(person, { kycVariant: 'complete' })
+      )
       console.log('Journey application result:', appResult)
 
-      const apiStatus = appResult.status
-      const completeOutcome = appResult.complete_outcome
-
-      // Only use the token if the application is not already completed
-      if (apiStatus !== 'completed') {
-        journeyApplicationToken = appResult.journey_application_token
-      }
-
-      // If already completed (rare - no doc verification needed)
-      if (apiStatus === 'completed') {
-        if (completeOutcome === 'Approved') {
-          setStatus('success')
-          setTimeout(() => goNext(), 1200)
-        } else {
-          setStatus('error')
-          setErrorMsg('Verification was not approved. Please try again or contact support.')
-        }
-        return
-      }
+      // Do NOT short-circuit on appResult.status === 'completed'. The DocV node
+      // is what launches the SDK, and the SDK callback is the source of truth
+      // for IDV. Always proceed to alloy.open() below.
+      journeyApplicationToken = appResult.journey_application_token || null
     } catch (apiErr) {
       console.warn('Journey application API failed (CORS or network), falling back to SDK-only flow:', apiErr)
       // Continue without journeyApplicationToken - preserves existing functionality

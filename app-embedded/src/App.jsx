@@ -43,6 +43,7 @@ const individualInitialState = {
   postalCode: '',
   apartment: '',
   proofOfAddress: [],
+  basicOutcome: null,
 }
 
 const jointInitialState = {

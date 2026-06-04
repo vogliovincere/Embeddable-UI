@@ -1,23 +1,10 @@
 import { useState } from 'react'
 import alloy from '@alloyidentity/web-sdk'
-import { createJourneyApplication } from '../../utils/alloyApi'
+import { createJourneyApplication, buildJourneyApplication } from '../../utils/alloyApi'
 import { toIsoDate, toStateAbbr } from '../../utils/formatters'
 
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
-
-// crypto.randomUUID is available in modern browsers; fall back for older ones.
-function randomUuid() {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
-    return crypto.randomUUID()
-  }
-  // RFC 4122 v4 fallback
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0
-    const v = c === 'x' ? r : (r & 0x3) | 0x8
-    return v.toString(16)
-  })
-}
 
 export default function IndIdentityVerification({ formData, goNext, goBack, flowType }) {
   const [status, setStatus] = useState('idle') // idle | loading | success | error | review
@@ -29,45 +16,33 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
     setStatus('loading')
     setErrorMsg('')
 
-    // Build personData for journey application.
-    // document_type / document_country / nationality are added so the journey's
-    // DocV node (vendor configured in the Alloy dashboard — Socure for this demo)
-    // can pre-select the correct capture flow and country library.
-    const personData = {
-      name_first: firstName || undefined,
-      name_last: lastName || undefined,
-      email_address: email || undefined,
-      phone_number: phone || undefined,
-      birth_date: toIsoDate(dob) || undefined,
-      document_ssn: taxId ? taxId.replace(/-/g, '') : undefined,
-    }
-
-    // Only include address if primary fields are populated
-    if (streetAddress && city && addressState && postalCode) {
-      personData.addresses = [{
-        line_1: streetAddress,
-        city: city,
-        state: toStateAbbr(addressState),
-        postal_code: postalCode,
-        country_code: addressCountry?.code || 'US',
-        type: 'primary',
-      }]
+    // Build the journey application in Alloy's entities[] format. For the
+    // Complete variant the journey's post-CIP router sends the person through
+    // Socure DocV, which the Alloy SDK hosts (launched below).
+    const person = {
+      nameFirst: firstName,
+      nameLast: lastName,
+      email,
+      phone,
+      birthDate: toIsoDate(dob),
+      ssn: taxId ? taxId.replace(/-/g, '') : undefined,
+      address: (streetAddress && city && addressState && postalCode)
+        ? { line1: streetAddress, city, state: toStateAbbr(addressState), postalCode, countryCode: addressCountry?.code }
+        : undefined,
     }
 
     let journeyApplicationToken = null
 
     // Attempt to create journey application; fall back to SDK-only flow on failure
     try {
-      const appResult = await createJourneyApplication({
-        persons: [personData],
-      })
+      const appResult = await createJourneyApplication(
+        buildJourneyApplication(person, { kycVariant: 'complete' })
+      )
       console.log('Journey application result:', appResult)
 
       // IMPORTANT: do NOT short-circuit on appResult.status === 'completed'.
-      // The journey API can synchronously return "completed" when KYC alone
-      // approves the person and no DocV node has been reached yet — that does
-      // NOT mean IDV is done. The DocV node is what actually launches the SDK.
-      // Always proceed to alloy.open() and let the SDK callback decide success.
+      // The DocV node is what actually launches the SDK; the SDK callback is
+      // the source of truth for IDV. Always proceed to alloy.open().
       journeyApplicationToken = appResult.journey_application_token || null
     } catch (apiErr) {
       console.warn('Journey application API failed (CORS or network), falling back to SDK-only flow:', apiErr)

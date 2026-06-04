@@ -1,0 +1,38 @@
+{
+  "entities": [
+    {
+      "data": {
+        "meta": {
+          "kycVariant": "basic"
+        },
+        "name_first": "John",
+        "name_last": "Doe",
+        "name_middle": null,
+        "birth_date": "1990-03-22",
+        "document_ssn": "123456789",
+        "phone_number": "5551234567",
+        "email_address": "john.doe@email.com",
+        "ip_address_v4": null,
+        "addresses": [
+          {
+            "line_1": "123 Main Street",
+            "line_2": null,
+            "city": "San Francisco",
+            "state": "CA",
+            "postal_code": "94102",
+            "country_code": "US",
+            "type": "primary"
+          }
+        ]
+      },
+      "branch_name": "persons",
+      "entity_type": "person",
+      "external_entity_id": "user_e86fa296-a37d-4745-9cfe-de69a016220b"
+    }
+  ],
+  "application_meta": {},
+  "external_group_id": "ver_77b28d13-15c1-43ea-9cf9-1532e247d5ef",
+  "external_partner_id": "c20a1ec1-8071-4a61-9a3f-1de3006e3bb9",
+  "external_product_id": "org-test-002",
+  "external_application_id": "ver_77b28d13-15c1-43ea-9cf9-1532e247d5ef"
+}

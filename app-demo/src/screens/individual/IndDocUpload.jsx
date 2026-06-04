@@ -1,5 +1,7 @@
 import { useState, useRef } from 'react'
-import { docUploadSides } from '../../data/identityDocTypes'
+import { docUploadSides, docTypeToAlloyCode, docSideName } from '../../data/identityDocTypes'
+import { createJourneyApplication, buildJourneyApplication, getEntityToken, uploadEntityDocument } from '../../utils/alloyApi'
+import { toIsoDate, toStateAbbr } from '../../utils/formatters'
 
 function UploadZone({ label, file, onUpload, onRemove }) {
   const inputRef = useRef(null)
@@ -7,8 +9,11 @@ function UploadZone({ label, file, onUpload, onRemove }) {
   const handleDrop = (e) => {
     e.preventDefault()
     const f = e.dataTransfer.files[0]
-    if (f) onUpload(f.name)
+    if (f) onUpload(f)
   }
+
+  // `file` may be a File object (real upload) or a string (dev prefill).
+  const fileName = file && typeof file === 'object' ? file.name : file
 
   return (
     <div style={{ marginBottom: 16 }}>
@@ -19,7 +24,7 @@ function UploadZone({ label, file, onUpload, onRemove }) {
         <div className="upload-zone has-file">
           <div className="file-info">
             <span className="emoji-deco">📄</span>
-            <span>{file}</span>
+            <span>{fileName}</span>
             <button className="remove-file" onClick={onRemove}>✕</button>
           </div>
         </div>
@@ -45,7 +50,7 @@ function UploadZone({ label, file, onUpload, onRemove }) {
         accept=".jpg,.jpeg,.png,.heic,.webp,.pdf"
         onChange={e => {
           const f = e.target.files[0]
-          if (f) onUpload(f.name)
+          if (f) onUpload(f)
           e.target.value = ''
         }}
       />
@@ -53,14 +58,21 @@ function UploadZone({ label, file, onUpload, onRemove }) {
   )
 }
 
-export default function IndDocUpload({ formData, dispatch, goNext, goBack, contextId, flowType }) {
+export default function IndDocUpload({ formData, dispatch, goNext, goBack, flowType }) {
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
+  const [submitError, setSubmitError] = useState('')
 
-  const { idCountry, idDocType, idDocFront, idDocBack } = formData.individualData
+  const ind = formData.individualData
+  const { idCountry, idDocType, idDocFront, idDocBack } = ind
   const sides = docUploadSides[idDocType] || ['Front side']
   const needsBack = sides.length > 1
   const totalSteps = flowType === 'joint' ? 5 : 4
+
+  // Dev "Identity document" prefill sets filenames (strings) with no bytes, so
+  // those sides can't be uploaded to Alloy — surface a note rather than fail.
+  const hasPrefilledOnly =
+    typeof idDocFront === 'string' || (needsBack && typeof idDocBack === 'string')
 
   const validate = () => {
     const errs = {}
@@ -70,13 +82,68 @@ export default function IndDocUpload({ formData, dispatch, goNext, goBack, conte
     return Object.keys(errs).length === 0
   }
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (!validate()) return
     setLoading(true)
-    setTimeout(() => {
+    setSubmitError('')
+
+    try {
+      const person = {
+        nameFirst: ind.firstName,
+        nameLast: ind.lastName,
+        email: ind.email,
+        phone: ind.phone,
+        birthDate: toIsoDate(ind.dob),
+        ssn: ind.taxId ? ind.taxId.replace(/-/g, '') : undefined,
+        address: (ind.streetAddress && ind.city && ind.addressState && ind.postalCode)
+          ? { line1: ind.streetAddress, city: ind.city, state: toStateAbbr(ind.addressState), postalCode: ind.postalCode, countryCode: ind.addressCountry?.code }
+          : undefined,
+      }
+
+      // KYC Basic: data-only journey. The post-CIP router skips Socure DocV for
+      // kycVariant 'basic', so no SDK is launched.
+      const appResult = await createJourneyApplication(
+        buildJourneyApplication(person, { kycVariant: 'basic' })
+      )
+      console.log('KYC Basic journey result:', appResult)
+
+      // Attach the uploaded ID document image(s) to the entity so they are
+      // viewable against it in Alloy. (This does not change the CIP outcome.)
+      const entityToken = getEntityToken(appResult)
+      if (entityToken) {
+        const alloyType = docTypeToAlloyCode[idDocType] || 'license'
+        const uploads = []
+        sides.forEach((side, i) => {
+          const f = i === 0 ? idDocFront : idDocBack
+          if (f && typeof f === 'object') {
+            const ext = (f.name?.split('.').pop() || 'jpg').toLowerCase()
+            uploads.push(
+              uploadEntityDocument(entityToken, { name: docSideName(side), extension: ext, type: alloyType, file: f })
+            )
+          }
+        })
+        const settled = await Promise.allSettled(uploads)
+        settled.forEach(r => { if (r.status === 'rejected') console.warn('Document upload failed:', r.reason) })
+      } else {
+        console.warn('No entity token returned; skipping document upload.')
+      }
+
+      // Resolve the outcome for the status screen.
+      const status = (appResult.status || '').toLowerCase()
+      const outcome = (appResult.complete_outcome || appResult.journey_application_status || '').toLowerCase()
+      let basicOutcome = 'pending'
+      if (outcome === 'approved') basicOutcome = 'approved'
+      else if (outcome === 'denied') basicOutcome = 'denied'
+      else if (status === 'completed') basicOutcome = 'approved'
+      dispatch({ type: 'SET_INDIVIDUAL_DATA', payload: { basicOutcome } })
+
       setLoading(false)
       goNext()
-    }, 1500)
+    } catch (err) {
+      console.error('KYC Basic submission failed:', err)
+      setLoading(false)
+      setSubmitError(err.message || 'Submission failed. Please try again.')
+    }
   }
 
   return (
@@ -133,7 +200,7 @@ export default function IndDocUpload({ formData, dispatch, goNext, goBack, conte
           <UploadZone
             label={sides[0]}
             file={idDocFront}
-            onUpload={name => dispatch({ type: 'SET_INDIVIDUAL_DATA', payload: { idDocFront: name } })}
+            onUpload={f => dispatch({ type: 'SET_INDIVIDUAL_DATA', payload: { idDocFront: f } })}
             onRemove={() => dispatch({ type: 'SET_INDIVIDUAL_DATA', payload: { idDocFront: null } })}
           />
           {errors.front && !idDocFront && (
@@ -145,7 +212,7 @@ export default function IndDocUpload({ formData, dispatch, goNext, goBack, conte
               <UploadZone
                 label={sides[1]}
                 file={idDocBack}
-                onUpload={name => dispatch({ type: 'SET_INDIVIDUAL_DATA', payload: { idDocBack: name } })}
+                onUpload={f => dispatch({ type: 'SET_INDIVIDUAL_DATA', payload: { idDocBack: f } })}
                 onRemove={() => dispatch({ type: 'SET_INDIVIDUAL_DATA', payload: { idDocBack: null } })}
               />
               {errors.back && !idDocBack && (
@@ -154,6 +221,32 @@ export default function IndDocUpload({ formData, dispatch, goNext, goBack, conte
             </>
           )}
         </div>
+
+        {hasPrefilledOnly && (
+          <div style={{
+            background: '#FEF3C7',
+            border: '1px solid #FDE68A',
+            borderRadius: 'var(--radius-sm)',
+            padding: 12,
+            marginBottom: 12,
+          }}>
+            <p style={{ fontSize: 12, color: '#92400E', lineHeight: 1.5 }}>
+              Prefilled documents have no image data — re-select the file to upload the actual image to Alloy.
+            </p>
+          </div>
+        )}
+
+        {submitError && (
+          <div style={{
+            background: '#FEF2F2',
+            border: '1px solid #FECACA',
+            borderRadius: 'var(--radius-sm)',
+            padding: 14,
+            marginBottom: 12,
+          }}>
+            <p style={{ fontSize: 13, color: '#991B1B', lineHeight: 1.5 }}>{submitError}</p>
+          </div>
+        )}
 
         <div className="button-group">
           <button className="btn btn-primary" onClick={handleUpload} disabled={loading}>
