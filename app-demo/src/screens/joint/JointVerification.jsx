@@ -64,7 +64,7 @@ async function openAlloyVerification(holder, kycVariant, callback) {
   alloy.open(callback)
 }
 
-export default function JointVerification({ formData, goNext, contextId }) {
+export default function JointVerification({ formData, goNext, contextId, forceKycBasic }) {
   const [expanded, setExpanded] = useState(true)
   const [copiedIndex, setCopiedIndex] = useState(null)
   const [holderStatuses, setHolderStatuses] = useState({})
@@ -82,7 +82,7 @@ export default function JointVerification({ formData, goNext, contextId }) {
     setStatus(index, { state: 'loading', message: 'Initializing...' })
 
     try {
-      await openAlloyVerification(holder, isComplete ? 'complete' : 'basic', (result) => {
+      await openAlloyVerification(holder, forceKycBasic ? 'basic' : (isComplete ? 'complete' : 'basic'), (result) => {
         console.log('Alloy SDK result:', result)
         const sdkEvent = result.sdk?.sdkEvent
         const appStatus = (result.journey_application_status || '').toLowerCase()

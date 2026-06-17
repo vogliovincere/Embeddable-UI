@@ -6,7 +6,7 @@ import { toIsoDate, toStateAbbr } from '../../utils/formatters'
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 
-export default function IndIdentityVerification({ formData, goNext, goBack, flowType }) {
+export default function IndIdentityVerification({ formData, goNext, goBack, flowType, forceKycBasic }) {
   const [status, setStatus] = useState('idle') // idle | loading | success | error | review
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -36,7 +36,7 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
     // Attempt to create journey application; fall back to SDK-only flow on failure
     try {
       const appResult = await createJourneyApplication(
-        buildJourneyApplication(person, { kycVariant: 'complete' })
+        buildJourneyApplication(person, { kycVariant: forceKycBasic ? 'basic' : 'complete' })
       )
       console.log('Journey application result:', appResult)
 

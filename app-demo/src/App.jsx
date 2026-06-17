@@ -24,6 +24,7 @@ import JointCoHolderEntry from './screens/joint/JointCoHolderEntry'
 import JointAddCoHolder from './screens/joint/JointAddCoHolder'
 import JointVerification from './screens/joint/JointVerification'
 import JointStatus from './screens/joint/JointStatus'
+import { generateIndividual, generateCompany, generateParty, generateCoHolder } from './utils/dataGen'
 
 const individualInitialState = {
   firstName: '',
@@ -187,6 +188,9 @@ export default function App() {
   const [agreedToTerms, setAgreedToTerms] = useState(false)
   const [flowType, setFlowType] = useState(null) // null | 'entity' | 'individual' | 'joint'
   const [contextId, setContextId] = useState('kyc_complete') // kyc_complete | kyc_basic
+  // Dev override: when true, journey applications are sent with kycVariant 'basic'
+  // even in the Complete flow (individual + joint). Off = use the flow's own variant.
+  const [forceKycBasic, setForceKycBasic] = useState(false)
 
   // Display toggles. Applied to <html data-theme=... data-emojis=...> so only
   // the CSS cascade re-runs — the React tree never remounts and no form
@@ -278,6 +282,7 @@ export default function App() {
     setAgreedToTerms,
     contextId,
     flowType,
+    forceKycBasic,
   }
 
   const renderScreen = () => {
@@ -364,50 +369,28 @@ export default function App() {
     }
   }
 
-  // Entity prefill helpers
+  // Entity prefill helpers — fresh company every click.
   const prefillEntityDetails = () => {
-    dispatch({
-      type: 'SET_ENTITY_DETAILS',
-      payload: {
-        country: { code: 'US', name: 'United States', flag: '🇺🇸' },
-        state: 'Delaware',
-        entityName: 'Acme Holdings LLC',
-        fileNumber: '12345678',
-      },
-    })
+    dispatch({ type: 'SET_ENTITY_DETAILS', payload: generateCompany() })
   }
 
   const prefillEntityDocs = () => {
     dispatch({ type: 'SET_ENTITY_DOC', category: 'formation_documents', payload: [{ name: 'articles-of-incorporation.pdf', type: 'Formation document' }] })
   }
 
-  const partyPersonas = [
-    { roles: ['Control Person', 'UBO'], firstName: 'Jane', lastName: 'Smith', middleName: '', dob: '01/15/1985', email: 'jane.smith@acme.com', phone: '5559001001', ssn: '000-00-0001', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'California', streetAddress: '100 Market St', city: 'San Francisco', postalCode: '94105', apartment: 'Ste 300' },
-    { roles: ['UBO'], firstName: 'Michael', lastName: 'Chen', middleName: 'Wei', dob: '06/22/1978', email: 'michael.chen@acme.com', phone: '5559001002', ssn: '000-00-0002', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'New York', streetAddress: '200 Park Ave', city: 'New York', postalCode: '10166', apartment: '' },
-    { roles: ['UBO'], firstName: 'Sarah', lastName: 'Johnson', middleName: 'Marie', dob: '11/03/1990', email: 'sarah.johnson@acme.com', phone: '5559001003', ssn: '000-00-0003', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Texas', streetAddress: '300 Congress Ave', city: 'Austin', postalCode: '73301', apartment: '' },
-    { roles: ['UBO'], firstName: 'David', lastName: 'Okafor', middleName: '', dob: '09/17/1982', email: 'david.okafor@acme.com', phone: '5559001004', ssn: '000-00-0004', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Florida', streetAddress: '400 Brickell Ave', city: 'Miami', postalCode: '33131', apartment: 'Unit 15B' },
-    { roles: ['UBO'], firstName: 'Elena', lastName: 'Rodriguez', middleName: 'Sofia', dob: '04/28/1995', email: 'elena.rodriguez@acme.com', phone: '5559001005', ssn: '000-00-0005', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Illinois', streetAddress: '500 Michigan Ave', city: 'Chicago', postalCode: '60601', apartment: '' },
-  ]
-
+  // Each click adds a brand-new generated UBO. The first party added is a
+  // Control Person + UBO; subsequent ones are UBOs.
   const prefillParty = () => {
-    const usedEmails = new Set(formData.associatedParties.map(p => p.email))
-    const next = partyPersonas.find(p => !usedEmails.has(p.email))
-    if (!next) return
-    dispatch({ type: 'ADD_PARTY', payload: next })
+    const isControlPerson = formData.associatedParties.length === 0
+    dispatch({ type: 'ADD_PARTY', payload: generateParty(isControlPerson) })
   }
 
-  // Individual prefill helpers
+  // Individual prefill helpers — each granular button generates fresh data.
   const prefillIndPersonalInfo = () => {
+    const p = generateIndividual()
     dispatch({
       type: 'SET_INDIVIDUAL_DATA',
-      payload: {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@email.com',
-        phone: '5551234567',
-        dob: '03/22/1990',
-        taxId: '123-45-6789',
-      },
+      payload: { firstName: p.firstName, lastName: p.lastName, email: p.email, phone: p.phone, dob: p.dob, taxId: p.taxId },
     })
   }
 
@@ -424,68 +407,56 @@ export default function App() {
   }
 
   const prefillIndAddress = () => {
+    const p = generateIndividual()
     dispatch({
       type: 'SET_INDIVIDUAL_DATA',
-      payload: {
-        addressCountry: { code: 'US', name: 'United States of America', flag: '🇺🇸' },
-        addressState: 'California',
-        streetAddress: '123 Main Street',
-        city: 'San Francisco',
-        postalCode: '94102',
-        apartment: 'Apt 4B',
-      },
+      payload: { addressCountry: p.addressCountry, addressState: p.addressState, streetAddress: p.streetAddress, city: p.city, postalCode: p.postalCode, apartment: p.apartment },
     })
   }
 
   const prefillIndSupDocs = () => {
+    dispatch({ type: 'SET_INDIVIDUAL_DATA', payload: { proofOfAddress: generateIndividual().proofOfAddress } })
+  }
+
+  // "Fill everything" generates ONE internally-consistent persona so the name,
+  // address, and docs all belong to the same generated identity.
+  const prefillIndAll = () => {
+    setAgreedToTerms(true)
+    const p = generateIndividual()
     dispatch({
       type: 'SET_INDIVIDUAL_DATA',
       payload: {
-        proofOfAddress: [{ name: 'utility-bill-march.pdf', type: 'Utility bill' }],
+        firstName: p.firstName, lastName: p.lastName, email: p.email, phone: p.phone, dob: p.dob, taxId: p.taxId,
+        addressCountry: p.addressCountry, addressState: p.addressState, streetAddress: p.streetAddress, city: p.city, postalCode: p.postalCode, apartment: p.apartment,
+        proofOfAddress: p.proofOfAddress,
       },
     })
-  }
-
-  const prefillIndAll = () => {
-    setAgreedToTerms(true)
-    prefillIndPersonalInfo()
-    prefillIndAddress()
-    prefillIndSupDocs()
     if (contextId === 'kyc_basic') prefillIndIdentityDoc()
   }
 
-  // Joint prefill helpers
-  const coHolderPersonas = [
-    { firstName: 'Lisa', lastName: 'Park', dob: '05/10/1988', email: 'lisa.park@email.com', phone: '5552001001', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'New York', streetAddress: '456 Broadway', city: 'New York', postalCode: '10013', apartment: 'Suite 12A' },
-    { firstName: 'Robert', lastName: 'Kim', dob: '12/01/1975', email: 'robert.kim@email.com', phone: '5552001002', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Texas', streetAddress: '789 Elm Street', city: 'Austin', postalCode: '73301', apartment: '' },
-    { firstName: 'Amanda', lastName: 'Torres', dob: '08/19/1992', email: 'amanda.torres@email.com', phone: '5552001003', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Florida', streetAddress: '321 Ocean Drive', city: 'Miami', postalCode: '33139', apartment: 'Unit 8' },
-    { firstName: 'James', lastName: 'Wright', dob: '02/28/1983', email: 'james.wright@email.com', phone: '5552001004', country: { code: 'US', name: 'United States', flag: '🇺🇸' }, state: 'Illinois', streetAddress: '555 Michigan Ave', city: 'Chicago', postalCode: '60601', apartment: '' },
-  ]
-
+  // Joint prefill helpers — fresh generated co-holder every click.
   const prefillCoHolder = () => {
-    const usedEmails = new Set(formData.jointData.coHolders.map(h => h.email))
-    const next = coHolderPersonas.find(p => !usedEmails.has(p.email))
-    if (!next) return
-    dispatch({ type: 'ADD_CO_HOLDER', payload: next })
+    dispatch({ type: 'ADD_CO_HOLDER', payload: generateCoHolder() })
   }
 
   const prefillJointAll = () => {
     setAgreedToTerms(true)
-    prefillIndPersonalInfo()
-    prefillIndAddress()
-    prefillIndSupDocs()
+    const p = generateIndividual()
+    dispatch({
+      type: 'SET_INDIVIDUAL_DATA',
+      payload: {
+        firstName: p.firstName, lastName: p.lastName, email: p.email, phone: p.phone, dob: p.dob, taxId: p.taxId,
+        addressCountry: p.addressCountry, addressState: p.addressState, streetAddress: p.streetAddress, city: p.city, postalCode: p.postalCode, apartment: p.apartment,
+        proofOfAddress: p.proofOfAddress,
+      },
+    })
     if (contextId === 'kyc_basic') prefillIndIdentityDoc()
-    // Add co-holders up to required count
+    // Add generated co-holders up to the required count.
     const required = formData.jointData.numberOfHolders - 1
-    const usedEmails = new Set(formData.jointData.coHolders.map(h => h.email))
     let added = formData.jointData.coHolders.length
-    for (const persona of coHolderPersonas) {
-      if (added >= required) break
-      if (!usedEmails.has(persona.email)) {
-        dispatch({ type: 'ADD_CO_HOLDER', payload: persona })
-        usedEmails.add(persona.email)
-        added++
-      }
+    while (added < required) {
+      dispatch({ type: 'ADD_CO_HOLDER', payload: generateCoHolder() })
+      added++
     }
   }
 
@@ -654,6 +625,16 @@ export default function App() {
                 KYC Basic
               </button>
             </div>
+          )}
+          {(isIndividualFlow || isJointFlow) && (
+            <button
+              className={`prefill-btn ${forceKycBasic ? 'prefill-btn-flow-active' : ''}`}
+              style={{ width: '100%', textAlign: 'center', marginTop: 4, marginBottom: 0, fontSize: 10 }}
+              onClick={() => setForceKycBasic((v) => !v)}
+              title="When ON, journey applications send kycVariant 'basic' even in the Complete flow (individual + joint). Entity flow is unaffected."
+            >
+              {forceKycBasic ? '⚡ Forcing BASIC payload' : 'Force BASIC payload: off'}
+            </button>
           )}
         </div>
 
@@ -835,7 +816,7 @@ export default function App() {
               </div>
 
               <div className="prefill-data-row">
-                <button className="prefill-btn" onClick={prefillParty} disabled={formData.associatedParties.length >= partyPersonas.length}>
+                <button className="prefill-btn" onClick={prefillParty} disabled={formData.associatedParties.length >= 10}>
                   + Add a party
                 </button>
                 {hasParties && <button className="prefill-clear-btn" onClick={() => dispatch({ type: 'CLEAR_PARTIES' })}>Clear</button>}

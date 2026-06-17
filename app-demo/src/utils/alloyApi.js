@@ -62,7 +62,7 @@ export function buildJourneyApplication(person, { kycVariant }) {
       entity_type: 'person',
       external_entity_id: `user_${randomUuid()}`,
     }],
-    application_meta: {},
+    application_meta: { kycVariant },
     external_group_id: verId,
     external_partner_id: EXTERNAL_PARTNER_ID,
     external_product_id: EXTERNAL_PRODUCT_ID,
