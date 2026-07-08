@@ -4,6 +4,7 @@ import Screen1Welcome from './screens/Screen1Welcome'
 import Screen2Disclaimer from './screens/Screen2Disclaimer'
 import Screen3StepOverview from './screens/Screen3StepOverview'
 import Screen4Consent from './screens/Screen4Consent'
+import ScreenBiometricConsent from './screens/ScreenBiometricConsent'
 import Screen5EntityDetails from './screens/Screen5EntityDetails'
 import Screen6ReviewConfirm from './screens/Screen6ReviewConfirm'
 import Screen7DocRequest from './screens/Screen7DocRequest'
@@ -132,6 +133,7 @@ const IND_SCREENS = {
   DISCLAIMER: 101,
   STEP_OVERVIEW: 102,
   CONSENT: 103,
+  BIOMETRIC_CONSENT: 111,
   PERSONAL_INFO: 104,
   ADDRESS: 105,
   SUPPLEMENTARY_DOCS: 106,
@@ -146,6 +148,7 @@ const JOINT_SCREENS = {
   DISCLAIMER: 201,
   STEP_OVERVIEW: 202,
   CONSENT: 203,
+  BIOMETRIC_CONSENT: 214,
   PERSONAL_INFO: 204,
   ADDRESS: 205,
   SUPPLEMENTARY_DOCS: 206,
@@ -159,18 +162,18 @@ const JOINT_SCREENS = {
 }
 
 // KYC Complete: personal info → address → supp docs → SDK verification → status
-const indScreenOrderComplete = [101, 102, 103, 104, 105, 106, 107, 110]
+const indScreenOrderComplete = [101, 102, 103, 111, 104, 105, 106, 107, 110]
 // KYC Basic: personal info → address → supp docs → doc country/type → doc upload → status
-const indScreenOrderBasic = [101, 102, 103, 104, 105, 106, 108, 109, 110]
+const indScreenOrderBasic = [101, 102, 103, 111, 104, 105, 106, 108, 109, 110]
 
 // Joint KYC Complete: disclaimer → overview → consent → personal → address → supp docs → SDK → co-holders → verification → status
-const jointScreenOrderComplete = [201, 202, 203, 204, 205, 206, 207, 210, 212, 213]
+const jointScreenOrderComplete = [201, 202, 203, 214, 204, 205, 206, 207, 210, 212, 213]
 // Joint KYC Basic: disclaimer → overview → consent → personal → address → supp docs → doc type → doc upload → co-holders → verification → status
-const jointScreenOrderBasic = [201, 202, 203, 204, 205, 206, 208, 209, 210, 212, 213]
+const jointScreenOrderBasic = [201, 202, 203, 214, 204, 205, 206, 208, 209, 210, 212, 213]
 
 // Entity flow: welcome → disclaimer → overview → consent → entity details → review → KYB docs → parties → add party → verification links → status
 // Entity flow: welcome → disclaimer → overview → consent → entity details → review → KYB docs → parties → add party → verification links → status
-const entityScreenOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+const entityScreenOrder = [1, 2, 3, 4, 41, 5, 6, 7, 8, 9, 10, 11]
 
 const THEMES = [
   { id: 'verivend', label: 'Verivend Strict' },
@@ -355,6 +358,8 @@ export default function App() {
           return <JointStepOverview {...props} />
         case JOINT_SCREENS.CONSENT:
           return <Screen4Consent {...props} />
+        case JOINT_SCREENS.BIOMETRIC_CONSENT:
+          return <ScreenBiometricConsent {...props} />
         case JOINT_SCREENS.PERSONAL_INFO:
           return <IndPersonalInfo {...props} />
         case JOINT_SCREENS.ADDRESS:
@@ -389,6 +394,8 @@ export default function App() {
           return <IndStepOverview {...props} />
         case IND_SCREENS.CONSENT:
           return <Screen4Consent {...props} />
+        case IND_SCREENS.BIOMETRIC_CONSENT:
+          return <ScreenBiometricConsent {...props} />
         case IND_SCREENS.PERSONAL_INFO:
           return <IndPersonalInfo {...props} />
         case IND_SCREENS.ADDRESS:
@@ -413,6 +420,7 @@ export default function App() {
       case 2: return <Screen2Disclaimer {...props} />
       case 3: return <Screen3StepOverview {...props} />
       case 4: return <Screen4Consent {...props} />
+      case 41: return <ScreenBiometricConsent {...props} />
       case 5: return <Screen5EntityDetails {...props} />
       case 6: return <Screen6ReviewConfirm {...props} />
       case 7: return <Screen7DocRequest {...props} />
