@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
-export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms, onSelectFlow }) {
-  const [showPanel, setShowPanel] = useState(false)
-  const [pendingFlow, setPendingFlow] = useState(null)
+export default function Screen1Welcome({ setAgreedToTerms, onSelectFlow }) {
   const [showSubSelection, setShowSubSelection] = useState(false)
 
   const handleFlowClick = (type) => {
@@ -11,30 +9,14 @@ export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms
       setShowSubSelection(true)
       return
     }
-    if (agreedToTerms) {
-      onSelectFlow(type)
-    } else {
-      setPendingFlow(type)
-      setShowPanel(true)
-    }
+    setAgreedToTerms(true)
+    onSelectFlow(type)
   }
 
   const handleSubSelect = (type) => {
     setShowSubSelection(false)
-    if (agreedToTerms) {
-      onSelectFlow(type)
-    } else {
-      setPendingFlow(type)
-      setShowPanel(true)
-    }
-  }
-
-  const handleAgree = () => {
     setAgreedToTerms(true)
-    setShowPanel(false)
-    if (pendingFlow) {
-      onSelectFlow(pendingFlow)
-    }
+    onSelectFlow(type)
   }
 
   if (showSubSelection) {
@@ -137,39 +119,6 @@ export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms
           </button>
         </div>
       </div>
-
-      {showPanel && (
-        <>
-          <div
-            className="slide-up-overlay"
-            onClick={() => setShowPanel(false)}
-          />
-          <div className="slide-up-panel">
-            <h2 style={{ marginBottom: 4 }}>Before you continue</h2>
-            <p style={{ fontSize: 13, color: 'var(--color-gray-400)', marginBottom: 12 }}>
-              Identity &amp; compliance verification
-            </p>
-            <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 12 }}>
-              By selecting &ldquo;Continue,&rdquo; you authorize Interro, LLC (&ldquo;Interro&rdquo;) to collect and use the following information to verify your identity for know-your-customer (KYC) compliance purposes; and consent to Interro retaining this information and using the information to verify your identity in future transactions, including any future transactions you enter directly with Interro. See Interro&rsquo;s{' '}
-              <a href="#" style={{ color: 'var(--color-accent)' }}>Privacy Policy</a>{' '}
-              to learn more.
-            </p>
-            <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 16 }}>
-              This includes personal information such as your photo identity documents (like a passport or driver&rsquo;s license), your date of birth, your tax identification number, and your home address, along with device information like your device type, browser, and IP address.
-            </p>
-            <button className="btn btn-primary" onClick={handleAgree}>
-              Continue
-            </button>
-            <button
-              className="btn btn-ghost"
-              style={{ marginTop: 8, width: '100%' }}
-              onClick={() => setShowPanel(false)}
-            >
-              Cancel
-            </button>
-          </div>
-        </>
-      )}
     </div>
   )
 }

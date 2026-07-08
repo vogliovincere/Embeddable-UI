@@ -3,10 +3,9 @@ import { createPortal } from 'react-dom'
 
 export default function Screen4Consent({ goNext, goBack }) {
   const [showModal, setShowModal] = useState(true)
-  const [consent1, setConsent1] = useState(false)
   const [consent2, setConsent2] = useState(false)
 
-  const canProceed = consent1 && consent2
+  const canProceed = consent2
 
   const handleAgree = () => {
     if (canProceed) {
@@ -32,17 +31,14 @@ export default function Screen4Consent({ goNext, goBack }) {
         <div className="modal-overlay center" onClick={goBack}>
           <div className="modal-content" style={{ padding: 24 }} onClick={e => e.stopPropagation()}>
             <h2 style={{ marginBottom: 16 }}>Privacy & Consent</h2>
-            <p style={{ fontSize: 14, color: 'var(--color-text)', lineHeight: 1.6, marginBottom: 20 }}>
-              Before proceeding, please confirm the following:
+            <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 12 }}>
+              By selecting &ldquo;Continue,&rdquo; you authorize Interro, LLC (&ldquo;Interro&rdquo;) to collect and use the following information to verify your identity for know-your-customer (KYC) compliance purposes; and consent to Interro retaining this information and using the information to verify your identity in future transactions, including any future transactions you enter directly with Interro. See Interro&rsquo;s{' '}
+              <a href="#" onClick={e => e.stopPropagation()}>Privacy Policy</a>{' '}
+              to learn more.
             </p>
-
-            <div className="checkbox-group" onClick={() => setConsent1(!consent1)}>
-              <input type="checkbox" checked={consent1} readOnly />
-              <label>
-                I confirm that I have read and understood the{' '}
-                <a href="#" onClick={e => e.stopPropagation()}>Privacy Notice</a>.
-              </label>
-            </div>
+            <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 20 }}>
+              This includes personal information such as your photo identity documents (like a passport or driver&rsquo;s license), your date of birth, your tax identification number, and your home address, along with device information like your device type, browser, and IP address.
+            </p>
 
             <div className="checkbox-group" onClick={() => setConsent2(!consent2)}>
               <input type="checkbox" checked={consent2} readOnly />
@@ -58,7 +54,7 @@ export default function Screen4Consent({ goNext, goBack }) {
                 onClick={handleAgree}
                 disabled={!canProceed}
               >
-                Agree and continue
+                Continue
               </button>
               <button className="btn btn-secondary" onClick={goBack}>
                 Cancel
