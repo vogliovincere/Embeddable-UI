@@ -1,6 +1,16 @@
+import { useState } from 'react'
+
 const linkStyle = { color: 'var(--color-accent)', textDecoration: 'underline', cursor: 'pointer' }
 
 export default function ScreenBiometricConsent({ goNext, goBack }) {
+  const [consent, setConsent] = useState(false)
+
+  const handleContinue = () => {
+    if (consent) {
+      goNext()
+    }
+  }
+
   return (
     <>
       <div className="header">
@@ -32,9 +42,18 @@ export default function ScreenBiometricConsent({ goNext, goBack }) {
           Selecting &ldquo;I Consent&rdquo; below constitutes your execution of this written release and signifies your consent and written release to the collection, use, and storage of Your Biometric Information as described herein.
         </p>
 
+        <div className="checkbox-group" onClick={() => setConsent(!consent)}>
+          <input type="checkbox" checked={consent} readOnly />
+          <label>I Consent</label>
+        </div>
+
         <div className="button-group">
-          <button className="btn btn-primary" onClick={goNext}>
-            I Consent
+          <button
+            className="btn btn-primary"
+            onClick={handleContinue}
+            disabled={!consent}
+          >
+            Continue
           </button>
         </div>
       </div>
