@@ -1128,6 +1128,7 @@ h3 {
   border-radius: var(--radius-lg);
   max-height: 80%;
   margin: 0 20px;
+  overflow-y: auto;
 }
 
 /* Prefill Panel */
