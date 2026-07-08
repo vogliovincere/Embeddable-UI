@@ -40,9 +40,7 @@ export default function Screen4Consent({ goNext, goBack }) {
               <input type="checkbox" checked={consent1} readOnly />
               <label>
                 I confirm that I have read and understood the{' '}
-                <a href="#" onClick={e => e.stopPropagation()}>Privacy Notice</a>{' '}
-                and the{' '}
-                <a href="#" onClick={e => e.stopPropagation()}>Notification to Processing of Personal Data</a>.
+                <a href="#" onClick={e => e.stopPropagation()}>Privacy Notice</a>.
               </label>
             </div>
 
@@ -50,7 +48,7 @@ export default function Screen4Consent({ goNext, goBack }) {
               <input type="checkbox" checked={consent2} readOnly />
               <label>
                 I consent to the processing of my personal data, including biometric data, as described in the{' '}
-                <a href="#" onClick={e => e.stopPropagation()}>Privacy User Acknowledgement and Consent</a>.
+                <a href="#" onClick={e => e.stopPropagation()}>Biometric Written Release</a>.
               </label>
             </div>
 

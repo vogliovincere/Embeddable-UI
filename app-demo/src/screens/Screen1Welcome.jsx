@@ -149,20 +149,16 @@ export default function Screen1Welcome({ goNext, agreedToTerms, setAgreedToTerms
             <p style={{ fontSize: 13, color: 'var(--color-gray-400)', marginBottom: 12 }}>
               Identity &amp; compliance verification
             </p>
-            <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 10 }}>
-              You are about to complete a Know Your Customer (KYC) verification to confirm your identity and comply with anti-money laundering regulations.
-            </p>
-            <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 10 }}>
-              By continuing, you agree to share your information for identity verification. Your data will be processed per our{' '}
+            <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 12 }}>
+              By selecting &ldquo;Continue,&rdquo; you authorize Interro, LLC (&ldquo;Interro&rdquo;) to collect and use the following information to verify your identity for know-your-customer (KYC) compliance purposes; and consent to Interro retaining this information and using the information to verify your identity in future transactions, including any future transactions you enter directly with Interro. See Interro&rsquo;s{' '}
               <a href="#" style={{ color: 'var(--color-accent)' }}>Privacy Policy</a>{' '}
-              and{' '}
-              <a href="#" style={{ color: 'var(--color-accent)' }}>Data Sharing Agreement</a>.
+              to learn more.
             </p>
             <p style={{ fontSize: 13, color: 'var(--color-text)', lineHeight: 1.5, marginBottom: 16 }}>
-              We collect personal information including identification documents and address details as required by applicable regulations.
+              This includes personal information such as your photo identity documents (like a passport or driver&rsquo;s license), your date of birth, your tax identification number, and your home address, along with device information like your device type, browser, and IP address.
             </p>
             <button className="btn btn-primary" onClick={handleAgree}>
-              I agree
+              Continue
             </button>
             <button
               className="btn btn-ghost"
