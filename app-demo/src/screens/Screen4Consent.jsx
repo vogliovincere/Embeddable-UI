@@ -22,6 +22,13 @@ export default function Screen4Consent({ goNext, goBack }) {
           This includes personal information such as your photo identity documents (like a passport or driver&rsquo;s license), your date of birth, your tax identification number, and your home address, along with device information like your device type, browser, and IP address.
         </p>
 
+        {/*
+          KYC consent is mandatory to proceed. Selecting "Continue" is the act of
+          giving KYC consent, and it is the only way forward from this screen — the
+          user cannot advance through verification without it. Biometric consent is
+          then required on the next screen (Screen 4b); both consents are required
+          to complete verification.
+        */}
         <div className="button-group">
           <button className="btn btn-primary" onClick={goNext}>
             Continue

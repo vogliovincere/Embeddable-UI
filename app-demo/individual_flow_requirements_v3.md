@@ -152,10 +152,7 @@ The screen contains:
 
 > **Source of truth:** The biometric written release text on this screen must match the Written Release document maintained in the iAltA shared drive: https://ialta.sharepoint.com/:w:/s/iAltAPayments/IQCAVxBlMWqES5bPdQPE5VkrAVZ4yQSQ0Lln-Kt4xGsl1kU?e=Ce2LIn
 
-- **"Agree and continue"** button (disabled until both checkboxes are checked) to accept and proceed.
-- **"Cancel"** button to return to the previous screen.
-
-Clicking the overlay behind the modal also returns to the previous screen.
+> **Both consents are required to proceed.** A user must give both the KYC consent (Screen 4) and the biometric consent (Screen 4b) to complete verification. On Screen 4, selecting "Continue" is the act of giving KYC consent and is the only way forward. On Screen 4b, the "Continue" button stays disabled until the user selects "I Consent". A user who declines either consent cannot advance through the flow, and verification cannot be completed.
 
 ---
 

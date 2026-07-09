@@ -5,6 +5,10 @@ const linkStyle = { color: 'var(--color-accent)', textDecoration: 'underline', c
 export default function ScreenBiometricConsent({ goNext, goBack }) {
   const [consent, setConsent] = useState(false)
 
+  // Biometric consent is mandatory to proceed. The "Continue" button is disabled
+  // until the user selects "I Consent", so verification cannot continue without it.
+  // Combined with the KYC consent captured on the previous screen (Screen 4), the
+  // user must give both consents to complete verification.
   const handleContinue = () => {
     if (consent) {
       goNext()
