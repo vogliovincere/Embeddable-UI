@@ -72,21 +72,11 @@ After the user selects "Individual," a second selection is presented with a back
 
 Brief explanatory text accompanies the Joint Account option: *"Select Joint Account if this account has multiple holders who each need to be verified."*
 
-### Terms & Conditions Slide-Up Panel
+### Flow Selection
 
-When the user selects a flow type and has not yet agreed to terms, a slide-up panel appears covering approximately two-thirds of the screen. The panel contains:
+Selecting a verification type routes the user directly into the chosen flow. There is no "before you continue" interstitial or slide-up terms panel prior to flow selection. All consent is now captured later on the dedicated consent screens (see Screen 4: Privacy & Consent and Screen 4b: Biometric Consent).
 
-- Header: "Before you continue"
-- Subheader: "Identity & compliance verification"
-- Explanation that the user is about to complete a Know Your Customer (KYC) verification to confirm their identity and comply with anti-money laundering regulations.
-- Statement that by continuing, the user agrees to share their information for identity verification, with links to the **Privacy Policy** and **Data Sharing Agreement**.
-- Statement that personal information including identification documents and address details will be collected as required by applicable regulations.
-- **"I agree"** button to accept and proceed.
-- **"Cancel"** button to dismiss the panel.
-
-Clicking the overlay behind the panel also dismisses it.
-
-**Conditional skip:** If the host application passes `path_type = joint` at session initialization, the type selection screen and sub-selection are both bypassed entirely. The user enters the joint flow directly at Screen 2. The user must still agree to the terms and conditions; the consent is surfaced on Screen 4 instead.
+**Conditional skip:** If the host application passes `path_type = joint` at session initialization, the type selection screen and sub-selection are both bypassed entirely. The user enters the joint flow directly at Screen 2. Consent is still captured later on the dedicated consent screens.
 
 ---
 
@@ -136,25 +126,39 @@ The step overview dynamically adjusts Step 4's label and description based on th
 
 ---
 
-## Joint Account Flow — Screen 4: Privacy & Consent Modal
+## Joint Account Flow — Screen 4: Privacy & Consent
 
 > *Shared with Individual and Entity flows. Identical behavior — see entity flow requirements.*
 
-Display a modal overlay with privacy/consent disclosures before proceeding.
+Display the privacy and consent disclosures as a full screen (not a modal) before proceeding.
 
-The modal contains:
+The screen contains:
 
-- Header: "Privacy & Consent"
-- Instructional text: "Before proceeding, please confirm the following:"
-- **Checkbox 1:** "I confirm that I have read and understood the Privacy Notice and the Notification to Processing of Personal Data." (Both linked.)
-- **Checkbox 2:** "I consent to the processing of my personal data, including biometric data, as described in the Privacy User Acknowledgement and Consent." (Linked.)
+- Heading: "Privacy & Consent"
+- Subtitle: "Please review and accept the disclosures below to proceed with verification."
+- The **KYC consent written notice**: by selecting "Continue," the user authorizes Interro, LLC to collect and use their information for know-your-customer (KYC) compliance purposes, and consents to Interro retaining that information and reusing it to verify their identity in future transactions. The notice includes a plain-language description of the categories of information collected (photo identity documents, date of birth, tax identification number, home address, and device information).
+- A link to the **Privacy Policy**.
+- **"Continue"** button to accept the KYC consent and proceed.
 
-Both checkboxes must be checked to enable the proceed button.
+> **Source of truth:** The KYC consent written notice on this first consent page must match the source notice maintained in the iAltA shared drive: https://ialta.sharepoint.com/:w:/s/iAltAPayments/IQCYkKd9myDlTpmjY8E8_ms8AVE5x5tyMqjd5NppldFtmmc?e=F7JiQ9
 
-- **"Agree and continue"** button (disabled until both checkboxes are checked) to accept and proceed.
-- **"Cancel"** button to return to the previous screen.
+---
 
-Clicking the overlay behind the modal also returns to the previous screen.
+## Joint Account Flow — Screen 4b: Biometric Consent
+
+> *Shared with Individual and Entity flows.*
+
+Display the biometric written release on its own dedicated full screen, separate from the Privacy & Consent screen.
+
+The screen contains:
+
+- Heading: "Biometric Consent"
+- Subtitle: "Written Release for Collection and Use of Biometric Information"
+- The full text of the Written Release for Collection and Use of Biometric Information, including a link to the **Biometric Privacy Policy**. The first two acknowledgements are presented as a numbered list; the voluntariness statement and the execution statement follow as plain paragraphs.
+- An **"I Consent"** checkbox.
+- **"Continue"** button, disabled until the "I Consent" checkbox is selected.
+
+> **Source of truth:** The biometric written release text on this screen must match the Written Release document maintained in the iAltA shared drive: https://ialta.sharepoint.com/:w:/s/iAltAPayments/IQCAVxBlMWqES5bPdQPE5VkrAVZ4yQSQ0Lln-Kt4xGsl1kU?e=Ce2LIn
 
 ---
 
@@ -673,11 +677,11 @@ While verifications are still in progress, the page remains in the Checking phas
 
 ### KYC Complete
 
-Screen 1 (Welcome) -> Screen 2 (Disclaimer) -> Screen 3 (Step Overview) -> Screen 4 (Consent) -> Screen 5 (Identity Info) -> Screen 6 (Address) -> Screen 7 (Supplementary Docs) -> Screen 8c (Alloy SDK Verification) -> Screen 9 (Co-Holder Entry) -> Screen 10 (Co-Holder Verification) -> Screen 11 (Status)
+Screen 1 (Welcome) -> Screen 2 (Disclaimer) -> Screen 3 (Step Overview) -> Screen 4 (Privacy & Consent) -> Screen 4b (Biometric Consent) -> Screen 5 (Identity Info) -> Screen 6 (Address) -> Screen 7 (Supplementary Docs) -> Screen 8c (Alloy SDK Verification) -> Screen 9 (Co-Holder Entry) -> Screen 10 (Co-Holder Verification) -> Screen 11 (Status)
 
 ### KYC Basic
 
-Screen 1 (Welcome) -> Screen 2 (Disclaimer) -> Screen 3 (Step Overview) -> Screen 4 (Consent) -> Screen 5 (Identity Info) -> Screen 6 (Address) -> Screen 7 (Supplementary Docs) -> Screen 8a (ID Country & Type) -> Screen 8b (ID Upload) -> Screen 9 (Co-Holder Entry) -> Screen 10 (Co-Holder Verification) -> Screen 11 (Status)
+Screen 1 (Welcome) -> Screen 2 (Disclaimer) -> Screen 3 (Step Overview) -> Screen 4 (Privacy & Consent) -> Screen 4b (Biometric Consent) -> Screen 5 (Identity Info) -> Screen 6 (Address) -> Screen 7 (Supplementary Docs) -> Screen 8a (ID Country & Type) -> Screen 8b (ID Upload) -> Screen 9 (Co-Holder Entry) -> Screen 10 (Co-Holder Verification) -> Screen 11 (Status)
 
 ---
 
