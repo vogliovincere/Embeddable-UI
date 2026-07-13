@@ -194,6 +194,10 @@ export default function App() {
   // Dev override: when true, journey applications are sent with kycVariant 'basic'
   // even in the Complete flow (individual + joint). Off = use the flow's own variant.
   const [forceKycBasic, setForceKycBasic] = useState(false)
+  // Dev override (individual only): when true, the journey application's address
+  // postal code is forced to 33449, which routes the account to manual review
+  // in the Alloy sandbox.
+  const [forceReview, setForceReview] = useState(false)
 
   // Display toggles. Applied to <html data-theme=... data-emojis=...> so only
   // the CSS cascade re-runs — the React tree never remounts and no form
@@ -286,6 +290,7 @@ export default function App() {
     contextId,
     flowType,
     forceKycBasic,
+    forceReview,
   }
 
   const renderScreen = () => {
@@ -647,6 +652,16 @@ export default function App() {
               title="When ON, journey applications send kycVariant 'basic' even in the Complete flow (individual + joint). Entity flow is unaffected."
             >
               {forceKycBasic ? '⚡ Forcing BASIC payload' : 'Force BASIC payload: off'}
+            </button>
+          )}
+          {isIndividualFlow && (
+            <button
+              className={`prefill-btn ${forceReview ? 'prefill-btn-flow-active' : ''}`}
+              style={{ width: '100%', textAlign: 'center', marginTop: 4, marginBottom: 0, fontSize: 10 }}
+              onClick={() => setForceReview((v) => !v)}
+              title="When ON, the individual journey application's postal code is forced to 33449, which routes the account to manual review in the Alloy sandbox."
+            >
+              {forceReview ? '⚡ Forcing REVIEW (ZIP 33449)' : 'Force review: off'}
             </button>
           )}
         </div>

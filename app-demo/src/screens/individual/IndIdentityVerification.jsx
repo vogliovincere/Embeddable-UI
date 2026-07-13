@@ -6,7 +6,7 @@ import { toIsoDate, toStateAbbr } from '../../utils/formatters'
 const JOURNEY_TOKEN = import.meta.env.VITE_JOURNEY_TOKEN
 const ALLOY_SDK_KEY = import.meta.env.VITE_ALLOY_SDK
 
-export default function IndIdentityVerification({ formData, goNext, goBack, flowType, forceKycBasic }) {
+export default function IndIdentityVerification({ formData, goNext, goBack, flowType, forceKycBasic, forceReview }) {
   const [status, setStatus] = useState('idle') // idle | loading | success | error | review
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -26,8 +26,10 @@ export default function IndIdentityVerification({ formData, goNext, goBack, flow
       phone,
       birthDate: toIsoDate(dob),
       ssn: taxId ? taxId.replace(/-/g, '') : undefined,
-      address: (streetAddress && city && addressState && postalCode)
-        ? { line1: streetAddress, city, state: toStateAbbr(addressState), postalCode, countryCode: addressCountry?.code }
+      // Dev override: forcing review pins the ZIP to 33449 so the Alloy sandbox
+      // routes the account to manual review, regardless of the entered ZIP.
+      address: (streetAddress && city && addressState && (forceReview || postalCode))
+        ? { line1: streetAddress, city, state: toStateAbbr(addressState), postalCode: forceReview ? '33449' : postalCode, countryCode: addressCountry?.code }
         : undefined,
     }
 
